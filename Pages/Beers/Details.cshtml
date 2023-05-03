@@ -50,6 +50,6 @@
     </dl>
 </div>
 <div>
-    <a asp-page="./Edit" asp-route-id="@Model.Beer?.ID">Edit</a> |
-    <a asp-page="./Index">Back to List</a>
+    <button type="button" onclick="location.href='@Url.Page("./Edit", new { id = Model.Beer?.ID })'">Edit</button>
+    <button type="button" onclick="location.href='@Url.Page("./Index")'">Back to List</button>
 </div>
