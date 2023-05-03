@@ -122,5 +122,4 @@ using (var scope = app.Services.CreateScope())
     SampleData.Create(context);
     SampleData.CreateBeer(context);
 }
-//hej hej
 app.Run();
