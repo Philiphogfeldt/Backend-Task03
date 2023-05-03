@@ -212,6 +212,8 @@ namespace Backend_Task03.Data
                     },
                     
                 };
+
+                database.Beers.AddRange(beers);
                 database.SaveChanges();
             }    
         }
