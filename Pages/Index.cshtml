@@ -6,3 +6,12 @@
 }
 
 <h1>Welcome, @accessControl.LoggedInAccountName!</h1>
+
+<h2>Beers</h2>
+
+<p>
+    <form asp-page="/Beers/Index" method="get">
+        <button type="submit" class="btn btn-primary">View Beers</button>
+    </form>
+
+</p>
