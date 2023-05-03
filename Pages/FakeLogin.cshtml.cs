@@ -41,7 +41,7 @@ namespace Backend_Task03.Pages
 
             await HttpContext.SignInAsync(principal);
 
-            return RedirectToPage("./Index");
+            return RedirectToPage("./index");
         }
     }
 }
