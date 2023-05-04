@@ -44,6 +44,12 @@
                 <span asp-validation-for="Beer.Country" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="Beer.EAN13" class="control-label"></label>
+                <input asp-for="Beer.EAN13" class="form-control" readonly />
+                <span asp-validation-for="Beer.EAN13" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
