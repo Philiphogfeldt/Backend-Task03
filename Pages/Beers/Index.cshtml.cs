@@ -33,9 +33,7 @@ namespace Backend_Task03.Pages.Beers
 
             if (!string.IsNullOrEmpty(findBeer))
             {
-                Beer = await database.Beers
-                    .Where(b => b.Name.Contains(findBeer))
-                    .ToListAsync();
+                beers2Show = beers2Show.Where(b => b.Name.Contains(findBeer));
             }
             else
             {
