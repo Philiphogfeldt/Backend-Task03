@@ -5,10 +5,32 @@
     ViewData["Title"] = "Index";
 }
 
+<p>
+    <form asp-page="/Index" method="get">
+        <button type="submit" class="btn btn-primary">Back To Index</button>
+    </form>
+
+</p>
+
+@*<form method="post">
+    <input type="text" name="findBeer" />
+    <button type="submit">Search</button>
+</form>*@
+
+<form method="post">
+    <input type="text" name="findBeer" />
+    <input type="checkbox" name="beerType" value="Ale" /> Ale
+    <input type="checkbox" name="beerType" value="Lager" /> Lager
+    <input type="checkbox" name="beerType" value="Stout" /> Stout
+    <button type="submit">Search</button>
+</form>
+
 <h1>Index</h1>
 
 <p>
-    <a asp-page="Create">Create New</a>
+    <form asp-page="Create" method="get">
+        <button type="submit" class="btn btn-primary">Create New</button>
+    </form>
 </p>
 <table class="table">
     <thead>
@@ -35,32 +57,34 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Beer) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Type)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Percentage)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Brewery)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Country)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model.Beer)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Type)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Percentage)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Brewery)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Country)
+                </td>
+                <td>
+                <td>
+                    <button type="button" onclick="location.href='@Url.Page("./Edit", new { id = item.ID })'">Edit</button>
+                    <button type="button" onclick="location.href='@Url.Page("./Details", new { id = item.ID })'">Details</button>
+                    <button type="button" onclick="location.href='@Url.Page("./Delete", new { id = item.ID })'">Delete</button>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
