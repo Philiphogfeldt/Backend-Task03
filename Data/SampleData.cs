@@ -15,7 +15,7 @@ namespace Backend_Task03.Data
                 {
                     OpenIDIssuer = fakeIssuer,
                     OpenIDSubject = "1111111111",
-                    Name = "Brad"
+                    Name = "Admin"
                 });
                 database.Accounts.Add(new Account
                 {
