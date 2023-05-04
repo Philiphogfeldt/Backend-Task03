@@ -1,4 +1,4 @@
-﻿namespace BeerlyProjectTest.Models
+﻿namespace Backend_Task03.Models
 {
     public class Review
     {
