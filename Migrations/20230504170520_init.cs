@@ -46,10 +46,51 @@ namespace Backend_Task03.Migrations
                 {
                     table.PrimaryKey("PK_Beers", x => x.ID);
                 });
+
+            migrationBuilder.CreateTable(
+                name: "Review",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Rating = table.Column<int>(type: "int", nullable: false),
+                    Comment = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    AccountID = table.Column<int>(type: "int", nullable: false),
+                    BeerID = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Review", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_Review_Accounts_AccountID",
+                        column: x => x.AccountID,
+                        principalTable: "Accounts",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Review_Beers_BeerID",
+                        column: x => x.BeerID,
+                        principalTable: "Beers",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Review_AccountID",
+                table: "Review",
+                column: "AccountID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Review_BeerID",
+                table: "Review",
+                column: "BeerID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "Review");
+
             migrationBuilder.DropTable(
                 name: "Accounts");
 
