@@ -19,6 +19,8 @@
         public bool? GoesBird { get; set; }
         public bool? GoesDessert { get; set; }
 
+        public List<Review> Reviews { get; set; }
+
         //Glöm ej uppdatera EAN-code till not null senare
     }
 }
