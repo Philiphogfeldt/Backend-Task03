@@ -9,6 +9,16 @@
         public string Percentage { get; set; }
         public string Brewery { get; set; }
         public string Country { get; set; }
+        public string? EanCode { get; set; }  
+        public bool? GoesFish { get; set; }
 
+        public bool? GoesMeat { get; set; }
+
+        public bool? GoesVeg { get; set; }
+
+        public bool? GoesBird { get; set; }
+        public bool? GoesDessert { get; set; }
+
+        //Glöm ej uppdatera EAN-code till not null senare
     }
 }

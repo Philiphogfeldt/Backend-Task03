@@ -4,7 +4,7 @@
 
 namespace Backend_Task03.Migrations
 {
-    public partial class first : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -34,7 +34,13 @@ namespace Backend_Task03.Migrations
                     Type = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Percentage = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Brewery = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Country = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Country = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    EanCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    GoesFish = table.Column<bool>(type: "bit", nullable: true),
+                    GoesMeat = table.Column<bool>(type: "bit", nullable: true),
+                    GoesVeg = table.Column<bool>(type: "bit", nullable: true),
+                    GoesBird = table.Column<bool>(type: "bit", nullable: true),
+                    GoesDessert = table.Column<bool>(type: "bit", nullable: true)
                 },
                 constraints: table =>
                 {
