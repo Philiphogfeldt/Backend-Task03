@@ -46,7 +46,8 @@ namespace Backend_Task03.Data
                         Type = "IPA",
                         Percentage = "6.5%",
                         Brewery = "Hoppy Brewery",
-                        Country = "USA"
+                        Country = "USA",
+                        EAN13 = "1940375440218"
                     },
                     new Beer
                     {
@@ -55,7 +56,8 @@ namespace Backend_Task03.Data
                         Type = "Lager",
                         Percentage = "4.8%",
                         Brewery = "Big Brewery",
-                        Country = "Canada"
+                        Country = "Canada",
+                        EAN13 = "1154166643669"
                     },
                     new Beer
                     {
@@ -64,7 +66,8 @@ namespace Backend_Task03.Data
                         Type = "Kolsch",
                         Percentage = "5.0%",
                         Brewery = "Wit Brewery",
-                        Country = "Germany"
+                        Country = "Germany",
+                        EAN13 = "0991733191373"
                     },
                     new Beer
                     {
@@ -73,7 +76,8 @@ namespace Backend_Task03.Data
                         Type = "Saison",
                         Percentage = "6.2%",
                         Brewery = "Seasonal Brewery",
-                        Country = "Belgium"
+                        Country = "Belgium",
+                        EAN13 = "3768642176626"
                     },
                     new Beer
                     {
@@ -82,7 +86,8 @@ namespace Backend_Task03.Data
                         Type = "IPA",
                         Percentage = "6.8%",
                         Brewery = "Hazy Brewery",
-                        Country = "USA"
+                        Country = "USA",
+                        EAN13 = "1222009428947"
                     },
                     new Beer
                     {
@@ -91,7 +96,8 @@ namespace Backend_Task03.Data
                         Type = "Oktoberfest",
                         Percentage = "5.5%",
                         Brewery = "Red Brewery",
-                        Country = "Germany"
+                        Country = "Germany",
+                        EAN13 = "4754493539030"
                     },
                     new Beer
                     {
@@ -100,7 +106,8 @@ namespace Backend_Task03.Data
                         Type = "Imperial Stout",
                         Percentage = "10.0%",
                         Brewery = "Mind Brewery",
-                        Country = "USA"
+                        Country = "USA",
+                        EAN13 = "9614110758235"
                     },
                     new Beer
                     {
@@ -109,7 +116,8 @@ namespace Backend_Task03.Data
                         Type = "Belgian Ale",
                         Percentage = "7.0%",
                         Brewery = "Waffle Brewery",
-                        Country = "Belgium"
+                        Country = "Belgium",
+                        EAN13 = "8623813663884"
                     },
                     new Beer
                     {
@@ -118,7 +126,8 @@ namespace Backend_Task03.Data
                         Type = "Stout",
                         Percentage = "5.2%",
                         Brewery = "Goodbye Brewery",
-                        Country = "Ireland"
+                        Country = "Ireland",
+                        EAN13 = "8212798694862"
                     },
                     new Beer
                     {
@@ -127,7 +136,8 @@ namespace Backend_Task03.Data
                         Type = "Gose",
                         Percentage = "4.2%",
                         Brewery = "Sourpuss Brewery",
-                        Country = "USA"
+                        Country = "USA",
+                        EAN13 = "8991846926529"
                     },
                     new Beer
                     {
@@ -136,7 +146,8 @@ namespace Backend_Task03.Data
                         Type = "Brown Ale",
                         Percentage = "5.8%",
                         Brewery = "Funky Brewery",
-                        Country = "USA"
+                        Country = "USA",
+                        EAN13 = "1442094668961"
                     },
                     new Beer
                     {
@@ -145,7 +156,8 @@ namespace Backend_Task03.Data
                         Type = "Tripel",
                         Percentage = "9.5%",
                         Brewery = "Tropical Brewery",
-                        Country = "Belgium"
+                        Country = "Belgium",
+                        EAN13 = "0855394176653"
                     },
                     new Beer
                     {
@@ -154,7 +166,8 @@ namespace Backend_Task03.Data
                         Type = "Stout",
                         Percentage = "6.0%",
                         Brewery = "Java Brewery",
-                        Country = "USA"
+                        Country = "USA",
+                        EAN13 = "8648669673863"
                     },
                     new Beer
                     {
@@ -163,7 +176,8 @@ namespace Backend_Task03.Data
                         Type = "Kolsch",
                         Percentage = "4.5%",
                         Brewery = "Cucumber Brewery",
-                        Country = "USA"
+                        Country = "USA",
+                        EAN13 = "8431155282560"
                     },
                     new Beer
                     {
@@ -172,7 +186,8 @@ namespace Backend_Task03.Data
                         Type = "Sour",
                         Percentage = "5.0%",
                         Brewery = "Cherry Brewery",
-                        Country = "USA"
+                        Country = "USA",
+                        EAN13 = "4768974526181"
                     },
                     new Beer
                     {
@@ -181,7 +196,8 @@ namespace Backend_Task03.Data
                         Type = "Wheat Ale",
                         Percentage = "4.2%",
                         Brewery = "Honey Brewery",
-                        Country = "USA"
+                        Country = "USA",
+                        EAN13 = "8067715472180"
                     },
                     new Beer
                     {
@@ -190,7 +206,8 @@ namespace Backend_Task03.Data
                         Type = "Stout",
                         Percentage = "8.0%",
                         Brewery = "Gingerbread Brewery",
-                        Country = "USA"
+                        Country = "USA",
+                        EAN13 = "2909312251583"
                     },
                     new Beer
                     {
@@ -199,7 +216,8 @@ namespace Backend_Task03.Data
                         Type = "Porter",
                         Percentage = "6.5%",
                         Brewery = "Peanut Brewery",
-                        Country = "USA" 
+                        Country = "USA",
+                        EAN13 = "1835571799362"
                     },
                     new Beer
                     {
@@ -208,7 +226,8 @@ namespace Backend_Task03.Data
                         Type = "Wheat Ale",
                         Percentage = "5.0%",
                         Brewery = "Mango Habanero Brewery",
-                        Country = "USA"
+                        Country = "USA",
+                        EAN13 = "1265144397501"
                     },
                     
                 };
