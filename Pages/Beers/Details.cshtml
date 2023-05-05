@@ -49,6 +49,54 @@
         </dd>
     </dl>
 </div>
+
+<hr />
+@if (Model.Beer != null && Model.Beer.Reviews != null && Model.Beer.Reviews.Count > 0)
+{
+    <div>
+        <h4>Reviews</h4>
+        @foreach (var comment in Model.Beer.Reviews)
+        {
+            <div>
+                @comment.Rating
+                @comment.Comment
+            </div>
+        }
+    </div>
+}
+
+else
+{
+    <p>No reviews yet.</p>
+}
+
+<div>
+    <h4>Add a Review</h4>
+
+    <form method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="NewReview.Rating" class="control-label"></label>
+            <div>
+                <label><input type="radio" name="NewReview.Rating" value="1" /> 1</label>
+                <label><input type="radio" name="NewReview.Rating" value="2" /> 2</label>
+                <label><input type="radio" name="NewReview.Rating" value="3" /> 3</label>
+                <label><input type="radio" name="NewReview.Rating" value="4" /> 4</label>
+                <label><input type="radio" name="NewReview.Rating" value="5" /> 5</label>
+            </div>
+            <span asp-validation-for="NewReview.Rating" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="NewReview.Comment" class="control-label"></label>
+            <textarea asp-for="NewReview.Comment" class="form-control"></textarea>
+            <span asp-validation-for="NewReview.Comment" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Post" class="btn btn-primary" />
+        </div>
+    </form>
+</div>
+
 <div>
     <button type="button" onclick="location.href='@Url.Page("./Edit", new { id = Model.Beer?.ID })'">Edit</button>
     <button type="button" onclick="location.href='@Url.Page("./Index")'">Back to List</button>
