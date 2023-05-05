@@ -19,25 +19,61 @@ namespace Backend_Task03.Pages.Beers
             database = context;
         }
 
-      public Beer Beer { get; set; } = default!; 
+        [BindProperty]
+        public Beer Beer { get; set; } = default!;
 
-        public async Task<IActionResult> OnGetAsync(int? id)
+        [BindProperty]
+        public Review NewReview { get; set; }
+
+        public void LoadBeer(int id)
         {
-            if (id == null || database.Beers == null)
+            Beer = database.Beers
+                .Include(b => b.Reviews)
+                .FirstOrDefault(b => b.ID == id);
+
+            if (Beer == null)
             {
-                return NotFound();
+                return;
             }
 
-            var beer = await database.Beers.FirstOrDefaultAsync(m => m.ID == id);
-            if (beer == null)
+            if (Beer.Reviews == null)
             {
-                return NotFound();
+                Beer.Reviews = new List<Review>();
             }
-            else 
+
+            NewReview = new Review
             {
-                Beer = beer;
-            }
+                Beer = Beer
+            };
+        }
+
+        public IActionResult OnGet(int id)
+        {
+            LoadBeer(id);
             return Page();
+        }
+
+        public async Task<IActionResult> OnPostAsync(int id)
+        {
+            LoadBeer(id);
+
+            bool success = await TryUpdateModelAsync(
+                NewReview,
+                nameof(NewReview),
+                c => c.Comment,
+                c => c.Beer);
+
+
+            if (success)
+            {
+                Beer.Reviews.Add(NewReview);
+                database.SaveChanges();
+                return RedirectToPage();
+            }
+            else
+            {
+                return Page();
+            }
         }
     }
 }
