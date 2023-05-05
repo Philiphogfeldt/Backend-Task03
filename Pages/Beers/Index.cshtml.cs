@@ -39,10 +39,22 @@ namespace Backend_Task03.Pages.Beers
             {
                 Beer = await database.Beers.ToListAsync();
             }
-
             if (beerType != null && beerType.Any())
             {
-                beers2Show = beers2Show.Where(b => beerType.Contains(b.Type));
+                List<string> types = new List<string>();
+                if (beerType.Contains("Ale"))
+                {
+                    types.AddRange(new string[] { "Ale", "Brown Ale", "IPA", "Wheat Ale", "Belgian Ale", "Saison" });
+                }
+                if (beerType.Contains("Lager"))
+                {
+                    types.AddRange(new string[] { "Lager", "Kolsch", "STUFF HERE", "SORTER NÄR SOM NU" });
+                }
+                if (beerType.Contains("Stout"))
+                {
+                    types.AddRange(new string[] { "Stout", "Imperial Stout", "PUT THING HERE", "PUT IT HERE YES" });
+                }
+                beers2Show = beers2Show.Where(b => types.Contains(b.Type));
             }
 
             Beer = await beers2Show.ToListAsync();
