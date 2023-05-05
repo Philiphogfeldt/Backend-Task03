@@ -55,7 +55,9 @@ namespace Backend_Task03.Pages.Beers
 
         public async Task<IActionResult> OnPostAsync(int id)
         {
-            LoadBeer(id);
+           LoadBeer(id);
+
+            // behövs inte account här? 
 
             bool success = await TryUpdateModelAsync(
                 NewReview,

@@ -121,6 +121,7 @@ using (var scope = app.Services.CreateScope())
     var context = services.GetRequiredService<AppDbContext>();
     SampleData.Create(context);
     SampleData.CreateBeer(context);
+    SampleData.CreateReview(context);
 }
 
 app.Run();

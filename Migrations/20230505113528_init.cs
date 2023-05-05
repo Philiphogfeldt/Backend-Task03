@@ -4,7 +4,7 @@
 
 namespace Backend_Task03.Migrations
 {
-    public partial class first : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -48,7 +48,7 @@ namespace Backend_Task03.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Review",
+                name: "Reviews",
                 columns: table => new
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
@@ -60,15 +60,15 @@ namespace Backend_Task03.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Review", x => x.ID);
+                    table.PrimaryKey("PK_Reviews", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_Review_Accounts_AccountID",
+                        name: "FK_Reviews_Accounts_AccountID",
                         column: x => x.AccountID,
                         principalTable: "Accounts",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Review_Beers_BeerID",
+                        name: "FK_Reviews_Beers_BeerID",
                         column: x => x.BeerID,
                         principalTable: "Beers",
                         principalColumn: "ID",
@@ -76,20 +76,20 @@ namespace Backend_Task03.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Review_AccountID",
-                table: "Review",
+                name: "IX_Reviews_AccountID",
+                table: "Reviews",
                 column: "AccountID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Review_BeerID",
-                table: "Review",
+                name: "IX_Reviews_BeerID",
+                table: "Reviews",
                 column: "BeerID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Review");
+                name: "Reviews");
 
             migrationBuilder.DropTable(
                 name: "Accounts");

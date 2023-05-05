@@ -130,7 +130,7 @@ namespace Backend_Task03.Migrations
 
                     b.HasIndex("BeerID");
 
-                    b.ToTable("Review");
+                    b.ToTable("Reviews");
                 });
 
             modelBuilder.Entity("Backend_Task03.Models.Review", b =>

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Backend_Task03.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230505073622_first")]
-    partial class first
+    [Migration("20230505113528_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -132,7 +132,7 @@ namespace Backend_Task03.Migrations
 
                     b.HasIndex("BeerID");
 
-                    b.ToTable("Review");
+                    b.ToTable("Reviews");
                 });
 
             modelBuilder.Entity("Backend_Task03.Models.Review", b =>
