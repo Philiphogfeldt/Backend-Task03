@@ -229,12 +229,34 @@ namespace Backend_Task03.Data
                         Country = "USA",
                         EAN13 = "1265144397501"
                     },
-                    
+
                 };
 
                 database.Beers.AddRange(beers);
                 database.SaveChanges();
-            }    
+            }
         }
-    } 
+
+        //public static void CreateReview(AppDbContext database)
+        //{
+        //    if (!database.Reviews.Any())
+        //    {
+        //        var reviews = new List<Review>()
+        //        {
+        //            new Review
+        //            {
+        //                Rating = 5,
+        //                Comment = "A bold, hoppy brew with a crisp finish that will leave you feeling hoppily ever after.",
+        //                Account = ,
+        //                Beer = Models.Beer
+
+        //            };
+
+        //        }
+
+
+        //    }
+        //}   
+
+    }
 }

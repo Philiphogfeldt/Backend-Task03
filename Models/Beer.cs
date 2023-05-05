@@ -11,11 +11,8 @@
         public string Country { get; set; }
         public string EAN13 { get; set; }
         public bool? GoesFish { get; set; }
-
         public bool? GoesMeat { get; set; }
-
         public bool? GoesVeg { get; set; }
-
         public bool? GoesBird { get; set; }
         public bool? GoesDessert { get; set; }
 
