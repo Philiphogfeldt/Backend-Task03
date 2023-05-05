@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Backend_Task03.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230504113715_init")]
-    partial class init
+    [Migration("20230505073622_first")]
+    partial class first
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -69,7 +69,8 @@ namespace Backend_Task03.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("EanCode")
+                    b.Property<string>("EAN13")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool?>("GoesBird")
@@ -102,6 +103,60 @@ namespace Backend_Task03.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Beers");
+                });
+
+            modelBuilder.Entity("Backend_Task03.Models.Review", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
+
+                    b.Property<int>("AccountID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("BeerID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Comment")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Rating")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("AccountID");
+
+                    b.HasIndex("BeerID");
+
+                    b.ToTable("Review");
+                });
+
+            modelBuilder.Entity("Backend_Task03.Models.Review", b =>
+                {
+                    b.HasOne("Backend_Task03.Models.Account", "Account")
+                        .WithMany()
+                        .HasForeignKey("AccountID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Backend_Task03.Models.Beer", "Beer")
+                        .WithMany("Reviews")
+                        .HasForeignKey("BeerID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Account");
+
+                    b.Navigation("Beer");
+                });
+
+            modelBuilder.Entity("Backend_Task03.Models.Beer", b =>
+                {
+                    b.Navigation("Reviews");
                 });
 #pragma warning restore 612, 618
         }

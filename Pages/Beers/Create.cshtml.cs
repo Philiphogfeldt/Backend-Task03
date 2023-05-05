@@ -13,32 +13,32 @@ namespace Backend_Task03.Pages.Beers
 {
     public class CreateModel : PageModel
     {
-        private readonly Backend_Task03.Data.AppDbContext _context;
+        private readonly Backend_Task03.Data.AppDbContext database;
 
         public CreateModel(Backend_Task03.Data.AppDbContext context)
         {
-            _context = context;
-        }
-
-        public IActionResult OnGet()
-        {
-            return Page();
+            database = context;
         }
 
         [BindProperty]
         public Beer Beer { get; set; } = default!;
-        
 
-        // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
+        public IActionResult OnGet(bool generateEAN13 = false)
+        {
+            Beer = new Beer { EAN13 = EAN13.GenerateEAN13() };
+            return Page();
+        }
+
         public async Task<IActionResult> OnPostAsync()
         {
-          if (!ModelState.IsValid || _context.Beers == null || Beer == null)
+          if (!ModelState.IsValid || database.Beers == null || Beer == null)
             {
                 return Page();
             }
 
-            _context.Beers.Add(Beer);
-            await _context.SaveChangesAsync();
+            Beer.EAN13 = EAN13.GenerateEAN13();
+            database.Beers.Add(Beer);
+            await database.SaveChangesAsync();
 
             return RedirectToPage("./Index");
         }
