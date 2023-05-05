@@ -5,6 +5,26 @@
     ViewData["Title"] = "Index";
 }
 
+<p>
+    <form asp-page="/Index" method="get">
+        <button type="submit" class="btn btn-primary">Back To Index</button>
+    </form>
+
+</p>
+
+@*<form method="post">
+    <input type="text" name="findBeer" />
+    <button type="submit">Search</button>
+</form>*@
+
+<form method="post">
+    <input type="text" name="findBeer" />
+    <input type="checkbox" name="beerType[]" value="Ale" /> Ale
+    <input type="checkbox" name="beerType[]" value="Lager" /> Lager
+    <input type="checkbox" name="beerType[]" value="Stout" /> Stout
+    <button type="submit">Search</button>
+</form>
+
 <h1>Index</h1>
 
 <p>

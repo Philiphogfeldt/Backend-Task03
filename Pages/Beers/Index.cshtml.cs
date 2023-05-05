@@ -7,26 +7,58 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Backend_Task03.Data;
 using Backend_Task03.Models;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace Backend_Task03.Pages.Beers
 {
     public class IndexModel : PageModel
     {
-        private readonly Backend_Task03.Data.AppDbContext _context;
+        private readonly Backend_Task03.Data.AppDbContext database;
 
         public IndexModel(Backend_Task03.Data.AppDbContext context)
         {
-            _context = context;
+            database = context;
         }
 
-        public IList<Beer> Beer { get;set; } = default!;
+        public IList<Beer> Beer { get; set; }
 
         public async Task OnGetAsync()
         {
-            if (_context.Beers != null)
-            {
-                Beer = await _context.Beers.ToListAsync();
-            }
+            Beer = await database.Beers.ToListAsync();
         }
+
+        public async Task OnPostAsync(string findBeer, string[] beerType)
+        {
+            IQueryable<Beer> beers2Show = database.Beers;
+
+            if (!string.IsNullOrEmpty(findBeer))
+            {
+                beers2Show = beers2Show.Where(b => b.Name.Contains(findBeer));
+            }
+            else
+            {
+                Beer = await database.Beers.ToListAsync();
+            }
+            if (beerType != null && beerType.Any())
+            {
+                List<string> types = new List<string>();
+                if (beerType.Contains("Ale"))
+                {
+                    types.AddRange(new string[] { "Ale", "Brown Ale", "IPA", "Wheat Ale", "Belgian Ale", "Saison" });
+                }
+                if (beerType.Contains("Lager"))
+                {
+                    types.AddRange(new string[] { "Lager", "Kolsch", "STUFF HERE", "SORTER NÄR SOM NU" });
+                }
+                if (beerType.Contains("Stout"))
+                {
+                    types.AddRange(new string[] { "Stout", "Imperial Stout", "PUT THING HERE", "PUT IT HERE YES" });
+                }
+                beers2Show = beers2Show.Where(b => types.Contains(b.Type));
+            }
+
+            Beer = await beers2Show.ToListAsync();
+        }
+
     }
 }
