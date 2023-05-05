@@ -12,23 +12,23 @@ namespace Backend_Task03.Pages.Beers
 {
     public class DetailsModel : PageModel
     {
-        private readonly Backend_Task03.Data.AppDbContext _context;
+        private readonly AppDbContext database;
 
-        public DetailsModel(Backend_Task03.Data.AppDbContext context)
+        public DetailsModel(AppDbContext context)
         {
-            _context = context;
+            database = context;
         }
 
       public Beer Beer { get; set; } = default!; 
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null || _context.Beers == null)
+            if (id == null || database.Beers == null)
             {
                 return NotFound();
             }
 
-            var beer = await _context.Beers.FirstOrDefaultAsync(m => m.ID == id);
+            var beer = await database.Beers.FirstOrDefaultAsync(m => m.ID == id);
             if (beer == null)
             {
                 return NotFound();
