@@ -42,22 +42,20 @@ namespace Backend_Task03.Pages.Beers
 
             if (beerType != null && beerType.Any())
             {
-                beers2Show = beers2Show.Where(b => beerType.Contains(b.Type));
-
+                List<string> types = new List<string>();
                 if (beerType.Contains("Ale"))
                 {
-                    beers2Show = beers2Show.Where(b => b.Type == "Ale" || b.Type == "Brown Ale" || b.Type == "IPA" || b.Type == "Wheat Ale" || b.Type == "Belgian Ale" || b.Type == "Saison");
+                    types.AddRange(new string[] { "Ale", "Brown Ale", "IPA", "Wheat Ale", "Belgian Ale", "Saison" });
                 }
-
                 if (beerType.Contains("Lager"))
                 {
-                    beers2Show = beers2Show.Where(b => b.Type == "Lager" || b.Type == "Kolsch" || b.Type == "STUFF HERE" || b.Type == "SORTER NÄR SOM NU");
+                    types.AddRange(new string[] { "Lager", "Kolsch", "STUFF HERE", "SORTER NÄR SOM NU" });
                 }
-
                 if (beerType.Contains("Stout"))
                 {
-                    beers2Show = beers2Show.Where(b => b.Type == "Stout" || b.Type == "Imperial Stout" || b.Type == "PUT THING HERE" || b.Type == "PUT IT HERE YES");
+                    types.AddRange(new string[] { "Stout", "Imperial Stout", "PUT THING HERE", "PUT IT HERE YES" });
                 }
+                beers2Show = beers2Show.Where(b => types.Contains(b.Type));
             }
 
             Beer = await beers2Show.ToListAsync();
