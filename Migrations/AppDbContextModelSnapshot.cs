@@ -67,7 +67,8 @@ namespace Backend_Task03.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("EanCode")
+                    b.Property<string>("EAN13")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool?>("GoesBird")
@@ -129,7 +130,7 @@ namespace Backend_Task03.Migrations
 
                     b.HasIndex("BeerID");
 
-                    b.ToTable("Review");
+                    b.ToTable("Reviews");
                 });
 
             modelBuilder.Entity("Backend_Task03.Models.Review", b =>

@@ -39,7 +39,6 @@ namespace Backend_Task03.Pages.Beers
             {
                 Beer = await database.Beers.ToListAsync();
             }
-
             if (beerType != null && beerType.Any())
             {
                 List<string> types = new List<string>();
