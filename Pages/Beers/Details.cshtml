@@ -91,6 +91,16 @@ else
             <textarea asp-for="NewReview.Comment" class="form-control"></textarea>
             <span asp-validation-for="NewReview.Comment" class="text-danger"></span>
         </div>
+        
+        <div class="form-group">
+                <label>This beers goes well with:</label>
+            <label><input type="checkbox" name="NewReview.GoesMeat"  /> Meat</label>
+            <label><input type="checkbox" name="NewReview.GoesFish"  /> Fish</label>
+            <label><input type="checkbox" name="NewReview.GoesBird"/> Bird</label>
+            <label><input type="checkbox" name="NewReview.GoesVeg[]" /> Veg</label>
+            <label><input type="checkbox" name="NewReview.GoesDessert[]" /> Dessert</label>
+        </div>
+        
         <div class="form-group">
             <input type="submit" value="Post" class="btn btn-primary" />
         </div>

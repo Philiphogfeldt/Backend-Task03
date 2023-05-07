@@ -35,12 +35,7 @@ namespace Backend_Task03.Migrations
                     Percentage = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Brewery = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Country = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    EAN13 = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    GoesFish = table.Column<bool>(type: "bit", nullable: true),
-                    GoesMeat = table.Column<bool>(type: "bit", nullable: true),
-                    GoesVeg = table.Column<bool>(type: "bit", nullable: true),
-                    GoesBird = table.Column<bool>(type: "bit", nullable: true),
-                    GoesDessert = table.Column<bool>(type: "bit", nullable: true)
+                    EAN13 = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -55,6 +50,11 @@ namespace Backend_Task03.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Rating = table.Column<int>(type: "int", nullable: false),
                     Comment = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    GoesFish = table.Column<bool>(type: "bit", nullable: false),
+                    GoesMeat = table.Column<bool>(type: "bit", nullable: false),
+                    GoesVeg = table.Column<bool>(type: "bit", nullable: false),
+                    GoesBird = table.Column<bool>(type: "bit", nullable: false),
+                    GoesDessert = table.Column<bool>(type: "bit", nullable: false),
                     AccountID = table.Column<int>(type: "int", nullable: false),
                     BeerID = table.Column<int>(type: "int", nullable: false)
                 },

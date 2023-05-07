@@ -10,13 +10,15 @@
         public string Brewery { get; set; }
         public string Country { get; set; }
         public string EAN13 { get; set; }
-        public bool? GoesFish { get; set; }
-        public bool? GoesMeat { get; set; }
-        public bool? GoesVeg { get; set; }
-        public bool? GoesBird { get; set; }
-        public bool? GoesDessert { get; set; }
 
-        public List<Review>? Reviews { get; set; }
+        //public bool? GoesFish { get; set; }
+        //public bool? GoesMeat { get; set; }
+        //public bool? GoesVeg { get; set; }
+        //public bool? GoesBird { get; set; }
+        //public bool? GoesDessert { get; set; }
+
+        //public List<string> GoesWith { get; set; } = new List<string>();
+        public List<Review>? BeerReviews { get; set; }
 
         //Glöm ej uppdatera EAN-code till not null senare
     }
