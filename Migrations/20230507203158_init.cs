@@ -35,7 +35,8 @@ namespace Backend_Task03.Migrations
                     Percentage = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Brewery = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Country = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    EAN13 = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    EAN13 = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    GoesWellWith = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {

@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Backend_Task03.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230507200610_init")]
+    [Migration("20230507203158_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -70,6 +70,9 @@ namespace Backend_Task03.Migrations
 
                     b.Property<string>("EAN13")
                         .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("GoesWellWith")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
