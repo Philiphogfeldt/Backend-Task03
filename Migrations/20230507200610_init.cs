@@ -43,6 +43,19 @@ namespace Backend_Task03.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "FoodCategories",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_FoodCategories", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Reviews",
                 columns: table => new
                 {
@@ -50,11 +63,6 @@ namespace Backend_Task03.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Rating = table.Column<int>(type: "int", nullable: false),
                     Comment = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    GoesFish = table.Column<bool>(type: "bit", nullable: false),
-                    GoesMeat = table.Column<bool>(type: "bit", nullable: false),
-                    GoesVeg = table.Column<bool>(type: "bit", nullable: false),
-                    GoesBird = table.Column<bool>(type: "bit", nullable: false),
-                    GoesDessert = table.Column<bool>(type: "bit", nullable: false),
                     AccountID = table.Column<int>(type: "int", nullable: false),
                     BeerID = table.Column<int>(type: "int", nullable: false)
                 },
@@ -75,6 +83,35 @@ namespace Backend_Task03.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "FoodCategoryReview",
+                columns: table => new
+                {
+                    FoodCategoriesId = table.Column<int>(type: "int", nullable: false),
+                    FoodCategoryReviewsID = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_FoodCategoryReview", x => new { x.FoodCategoriesId, x.FoodCategoryReviewsID });
+                    table.ForeignKey(
+                        name: "FK_FoodCategoryReview_FoodCategories_FoodCategoriesId",
+                        column: x => x.FoodCategoriesId,
+                        principalTable: "FoodCategories",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_FoodCategoryReview_Reviews_FoodCategoryReviewsID",
+                        column: x => x.FoodCategoryReviewsID,
+                        principalTable: "Reviews",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_FoodCategoryReview_FoodCategoryReviewsID",
+                table: "FoodCategoryReview",
+                column: "FoodCategoryReviewsID");
+
             migrationBuilder.CreateIndex(
                 name: "IX_Reviews_AccountID",
                 table: "Reviews",
@@ -88,6 +125,12 @@ namespace Backend_Task03.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "FoodCategoryReview");
+
+            migrationBuilder.DropTable(
+                name: "FoodCategories");
+
             migrationBuilder.DropTable(
                 name: "Reviews");
 

@@ -9,6 +9,7 @@ namespace Backend_Task03.Data
         public DbSet<Account> Accounts { get; set; }
         public DbSet<Beer> Beers { get; set; }
         public DbSet<Review> Reviews { get; set; }
+        public DbSet<FoodCategory> FoodCategories { get; set; } 
 
 
         public AppDbContext(DbContextOptions<AppDbContext> options)

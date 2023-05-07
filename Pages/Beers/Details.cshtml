@@ -51,11 +51,11 @@
 </div>
 
 <hr />
-@if (Model.Beer != null && Model.Beer.Reviews != null && Model.Beer.Reviews.Count > 0)
+@if (Model.Beer != null && Model.Beer.BeerReviews != null && Model.Beer.BeerReviews.Count > 0)
 {
     <div>
         <h4>Reviews</h4>
-        @foreach (var comment in Model.Beer.Reviews)
+        @foreach (var comment in Model.Beer.BeerReviews)
         {
             <div>
                 @comment.Rating

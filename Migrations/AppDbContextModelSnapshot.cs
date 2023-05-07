@@ -87,6 +87,23 @@ namespace Backend_Task03.Migrations
                     b.ToTable("Beers");
                 });
 
+            modelBuilder.Entity("Backend_Task03.Models.FoodCategory", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("FoodCategories");
+                });
+
             modelBuilder.Entity("Backend_Task03.Models.Review", b =>
                 {
                     b.Property<int>("ID")
@@ -105,21 +122,6 @@ namespace Backend_Task03.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("GoesBird")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("GoesDessert")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("GoesFish")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("GoesMeat")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("GoesVeg")
-                        .HasColumnType("bit");
-
                     b.Property<int>("Rating")
                         .HasColumnType("int");
 
@@ -132,6 +134,21 @@ namespace Backend_Task03.Migrations
                     b.ToTable("Reviews");
                 });
 
+            modelBuilder.Entity("FoodCategoryReview", b =>
+                {
+                    b.Property<int>("FoodCategoriesId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("FoodCategoryReviewsID")
+                        .HasColumnType("int");
+
+                    b.HasKey("FoodCategoriesId", "FoodCategoryReviewsID");
+
+                    b.HasIndex("FoodCategoryReviewsID");
+
+                    b.ToTable("FoodCategoryReview");
+                });
+
             modelBuilder.Entity("Backend_Task03.Models.Review", b =>
                 {
                     b.HasOne("Backend_Task03.Models.Account", "Account")
@@ -141,7 +158,7 @@ namespace Backend_Task03.Migrations
                         .IsRequired();
 
                     b.HasOne("Backend_Task03.Models.Beer", "Beer")
-                        .WithMany("Reviews")
+                        .WithMany("BeerReviews")
                         .HasForeignKey("BeerID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -151,6 +168,21 @@ namespace Backend_Task03.Migrations
                     b.Navigation("Beer");
                 });
 
+            modelBuilder.Entity("FoodCategoryReview", b =>
+                {
+                    b.HasOne("Backend_Task03.Models.FoodCategory", null)
+                        .WithMany()
+                        .HasForeignKey("FoodCategoriesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Backend_Task03.Models.Review", null)
+                        .WithMany()
+                        .HasForeignKey("FoodCategoryReviewsID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("Backend_Task03.Models.Account", b =>
                 {
                     b.Navigation("AccountReviews");
@@ -158,7 +190,7 @@ namespace Backend_Task03.Migrations
 
             modelBuilder.Entity("Backend_Task03.Models.Beer", b =>
                 {
-                    b.Navigation("Reviews");
+                    b.Navigation("BeerReviews");
                 });
 #pragma warning restore 612, 618
         }
