@@ -15,19 +15,22 @@ namespace Backend_Task03.Data
                 {
                     OpenIDIssuer = fakeIssuer,
                     OpenIDSubject = "1111111111",
-                    Name = "Admin"
+                    Name = "Admin",
+                    Role = "Admin"
                 });
                 database.Accounts.Add(new Account
                 {
                     OpenIDIssuer = fakeIssuer,
                     OpenIDSubject = "2222222222",
-                    Name = "Angelina"
+                    Name = "Angelina",
+                    Role = "User"
                 });
                 database.Accounts.Add(new Account
                 {
                     OpenIDIssuer = fakeIssuer,
                     OpenIDSubject = "3333333333",
-                    Name = "Will"
+                    Name = "Will",
+                    Role = "User"
                 });
             }
 

@@ -20,7 +20,7 @@ namespace Backend_Task03.Pages
 
         // Log in as the user with the specified account ID, without providing a password etc.
         // IMPORTANT: This should only be allowed in development, hence the if statement below.
-        public async Task<IActionResult> OnPost(int accountID)
+        public async Task<IActionResult> OnPost(int accountID, string currentUrl)
         {
             if (!environment.IsDevelopment())
             {
@@ -42,7 +42,14 @@ namespace Backend_Task03.Pages
             await HttpContext.SignInAsync(principal);
 
 
-            return RedirectToPage("./index");
+            if (!string.IsNullOrEmpty(currentUrl))
+            {
+                return Redirect(currentUrl);
+            }
+            else
+            {
+                return RedirectToPage("./index");
+            }
 
         }
     }

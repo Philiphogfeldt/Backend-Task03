@@ -1,5 +1,6 @@
 ﻿@page
 @model Backend_Task03.Pages.Beers.IndexModel
+@inject Backend_Task03.Data.AccessControl AccessControl
 
 @{
     ViewData["Title"] = "Index";
@@ -80,9 +81,13 @@
                 </td>
                 <td>
                 <td>
-                    <button type="button" onclick="location.href='@Url.Page("./Edit", new { id = item.ID })'">Edit</button>
+                        @if (AccessControl.LoggedInAccountRole == "Admin")
+                        {
+                            <button type="button" onclick="location.href='@Url.Page("./Edit", new { id = item.ID })'">Edit</button>
+                            <button type="button" onclick="location.href='@Url.Page("./Delete", new { id = item.ID })'">Delete</button>
+                        }
                     <button type="button" onclick="location.href='@Url.Page("./Details", new { id = item.ID })'">Details</button>
-                    <button type="button" onclick="location.href='@Url.Page("./Delete", new { id = item.ID })'">Delete</button>
+
                 </td>
             </tr>
         }
