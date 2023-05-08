@@ -1,5 +1,6 @@
 ﻿@page
 @model Backend_Task03.Pages.Beers.DetailsModel
+@inject Backend_Task03.Data.AccessControl AccessControl
 
 @{
     ViewData["Title"] = "Details";
@@ -50,6 +51,9 @@
     </dl>
 </div>
 <div>
-    <button type="button" onclick="location.href='@Url.Page("./Edit", new { id = Model.Beer?.ID })'">Edit</button>
+    @if (AccessControl.LoggedInAccountRole == "Admin")
+    {
+        <button type="button" onclick="location.href='@Url.Page("./Edit", new { id = Model.Beer?.ID })'">Edit</button>
+    }
     <button type="button" onclick="location.href='@Url.Page("./Index")'">Back to List</button>
 </div>
