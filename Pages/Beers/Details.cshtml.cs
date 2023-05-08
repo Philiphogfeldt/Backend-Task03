@@ -31,6 +31,9 @@ namespace Backend_Task03.Pages.Beers
         [BindProperty]
         public Review NewReview { get; set; }
 
+        [BindProperty]
+        public Account Account { get; set; }
+
         public void LoadBeer(int id)
         {
             Beer = database.Beers
@@ -53,6 +56,11 @@ namespace Backend_Task03.Pages.Beers
             };
         }
 
+        public void ActiveAccount()
+        {
+            Account = accessControl.LoggedInAccount;
+        }
+
         public IActionResult OnGet(int id)
         {
             LoadBeer(id);
@@ -66,29 +74,37 @@ namespace Backend_Task03.Pages.Beers
 
             // behövs inte account här? 
 
+            ActiveAccount();
+            //NewReview.Account = accessControl.LoggedInAccount; // Set the AccountID of the new review
+            NewReview.Account = Account;
 
-            NewReview.Account = accessControl.LoggedInAccount; // Set the AccountID of the new review
 
-
-            bool success = await TryUpdateModelAsync(
+            //bool success = 
+                await TryUpdateModelAsync(
                 NewReview,
                 nameof(NewReview),
+                c => c.Rating,
                 c => c.Comment,
-                c => c.Beer,
-                c => c.Account.ID);
+                c => c.Beer);
 
-
-            if (success)
+                        
+/*            if (success)
             {
                 Beer.Reviews.Add(NewReview);
-                //database.Reviews.Add(NewReview);
+                database.Reviews.Add(NewReview);
                 database.SaveChanges();
                 return RedirectToPage();
             }
             else
             {
                 return Page();
-            }
+            }*/
+            
+
+            Beer.Reviews.Add(NewReview);
+            database.Reviews.Add(NewReview);
+            database.SaveChanges();
+            return RedirectToPage();
         }
     }
 }

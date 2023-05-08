@@ -27,6 +27,11 @@ namespace Backend_Task03.Data
             // LoggedInAccount = db.Accounts.Single(p => p.OpenIDIssuer == issuer && p.OpenIDSubject == subject);
             // LoggedInAccount = db.Accounts.SingleOrDefault(a => a.Name == LoggedInAccountName);
         }
+
+        public AccessControl()
+        {
+
+        }
     }
 }
 
