@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Backend_Task03.Data;
 using Backend_Task03.Models;
+using Microsoft.AspNetCore.Http;
 
 namespace Backend_Task03.Pages.Beers
 {
@@ -14,9 +15,14 @@ namespace Backend_Task03.Pages.Beers
     {
         private readonly AppDbContext database;
 
-        public DetailsModel(AppDbContext context)
+        private readonly AccessControl accessControl; // testar mig fram här
+
+
+        public DetailsModel(AppDbContext context, IHttpContextAccessor httpContextAccessor)
         {
             database = context;
+
+            accessControl = new AccessControl(database, httpContextAccessor);
         }
 
         [BindProperty]
@@ -55,20 +61,27 @@ namespace Backend_Task03.Pages.Beers
 
         public async Task<IActionResult> OnPostAsync(int id)
         {
-           LoadBeer(id);
+
+            LoadBeer(id);
 
             // behövs inte account här? 
+
+
+            NewReview.Account = accessControl.LoggedInAccount; // Set the AccountID of the new review
+
 
             bool success = await TryUpdateModelAsync(
                 NewReview,
                 nameof(NewReview),
                 c => c.Comment,
-                c => c.Beer);
+                c => c.Beer,
+                c => c.Account.ID);
 
 
             if (success)
             {
                 Beer.Reviews.Add(NewReview);
+                //database.Reviews.Add(NewReview);
                 database.SaveChanges();
                 return RedirectToPage();
             }

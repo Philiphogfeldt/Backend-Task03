@@ -18,6 +18,8 @@
 
         public List<Review>? Reviews { get; set; }
 
+//        public List<string>? goesWith { get; set; }
+
         //Glöm ej uppdatera EAN-code till not null senare
 
         //account kan inte creata ny review om man redan har en review på den ölen
