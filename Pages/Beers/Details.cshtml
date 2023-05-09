@@ -60,17 +60,17 @@
 <hr />
 @if (Model.Beer != null && Model.Beer.Reviews != null && Model.Beer.Reviews.Count > 0)
 {
-    
+
     <div>
         <h4>Reviews</h4>
         @foreach (var comment in Model.Beer.Reviews)
         {
-            
+
             <div>
                 @comment.Rating
                 @comment.Comment
                 @comment.Account.Name
-
+                
             </div>
         }
     </div>
@@ -102,20 +102,32 @@ else
             <textarea asp-for="NewReview.Comment" class="form-control"></textarea>
             <span asp-validation-for="NewReview.Comment" class="text-danger"></span>
         </div>
-        
-       <div class="form-group">
-            <label asp-for="NewReview.FoodCategories" class="control-label"></label>
+
+        <div class="form-group">
+
             <div>
                 <label>This beers goes well with:</label>
-            <label><input type="checkbox" name="NewReview.FoodCategories"  /> Meat</label>
-            <label><input type="checkbox" name="NewReview.FoodCategories"  /> Fish</label>
-            <label><input type="checkbox" name="NewReview.FoodCategories"/>Chicken </label>
-            <label><input type="checkbox" name="NewReview.FoodCategories" /> Veg</label>
-            <label><input type="checkbox" name="NewReview.FoodCategories" /> Dessert</label>
+                <label asp-for="Meat">Meat<input asp-for="Meat" /></label>
+                <label asp-for="Chicken">Chicken<input asp-for="Chicken" /></label>
+                <label asp-for="Fish">Fish<input asp-for="Fish" /></label>
+                <label asp-for="Vegetarian">Vegetarian<input asp-for="Vegetarian" /></label>
+                <label asp-for="Dessert">Dessert<input asp-for="Dessert" /></label>
+
+                @*<label><input asp-for="Meat" />Meat</label>
+                <input asp-for="Chicken" />
+                <input asp-for="Fish" />
+                <input asp-for="Vegetarian" />
+                <input asp-for="Dessert" />*@
+
+                @*<label><input type="checkbox" name="Meat" value="Meat" checked=""/> Meat</label>*@
+                @*  <label><input type="checkbox" name="NewReview.FoodCategories" value="Fish" checked=""/> Fish</label>
+                <label><input type="checkbox" name="Chicken" value="Chicken" checked=""/>Chicken </label>
+                <label><input type="checkbox" name="NewReview.FoodCategories" value="Vegetarian" checked=""/> Veg</label>
+                <label><input type="checkbox" name="NewReview.FoodCategories" value="Dessert" checked=""/> Dessert</label>*@
             </div>
-            <span asp-validation-for="NewReview.FoodCategories" class="text-danger"></span>
+
         </div>
-        
+
         <div class="form-group">
             <input type="submit" value="Post" class="btn btn-primary" />
         </div>
