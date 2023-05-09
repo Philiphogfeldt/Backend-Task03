@@ -28,24 +28,23 @@ namespace Backend_Task03.Pages.Beers
 
 
             //metod för att beräkna GoesWith
-            foreach (var beer in Beer) 
+            //foreach (var beer in Beer) 
             
-            { 
-                List<string> goesWith = new List<string>();
+            //{ 
+            //    List<string> goesWith = new List<string>();
               
-                var review = database.Reviews.Where(b => b.Beer == beer).Include(b => b.FoodCategories).ToList();
+            //    // behövs account
+            //    var review = database.Reviews.Where(b => b.Beer == beer).Include(b => b.FoodCategories).ToList();
 
-                foreach (var r in review)
-                {
-                    foreach (var c in r.FoodCategories)
-                    {
-                        goesWith.Add(c.Name);
-                    }
-                }
+            //    foreach (var r in review)
+            //    {
+            //        foreach (var c in r.FoodCategories)
+            //        {
+            //            goesWith.Add(c.Name);
+            //        }
+            //    }
 
-
-
-            }
+            //}
         }
 
         public async Task OnPostAsync(string findBeer, string[] beerType)
