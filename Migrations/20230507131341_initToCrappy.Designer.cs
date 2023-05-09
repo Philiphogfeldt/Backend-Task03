@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Backend_Task03.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230505073622_first")]
-    partial class first
+    [Migration("20230507131341_initToCrappy")]
+    partial class initToCrappy
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -128,30 +128,18 @@ namespace Backend_Task03.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("AccountID");
-
                     b.HasIndex("BeerID");
 
-                    b.ToTable("Review");
+                    b.ToTable("Reviews");
                 });
 
             modelBuilder.Entity("Backend_Task03.Models.Review", b =>
                 {
-                    b.HasOne("Backend_Task03.Models.Account", "Account")
-                        .WithMany()
-                        .HasForeignKey("AccountID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Backend_Task03.Models.Beer", "Beer")
+                    b.HasOne("Backend_Task03.Models.Beer", null)
                         .WithMany("Reviews")
                         .HasForeignKey("BeerID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Account");
-
-                    b.Navigation("Beer");
                 });
 
             modelBuilder.Entity("Backend_Task03.Models.Beer", b =>

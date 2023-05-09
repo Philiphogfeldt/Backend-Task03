@@ -35,12 +35,8 @@ namespace Backend_Task03.Migrations
                     Percentage = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Brewery = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Country = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    EanCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    GoesFish = table.Column<bool>(type: "bit", nullable: true),
-                    GoesMeat = table.Column<bool>(type: "bit", nullable: true),
-                    GoesVeg = table.Column<bool>(type: "bit", nullable: true),
-                    GoesBird = table.Column<bool>(type: "bit", nullable: true),
-                    GoesDessert = table.Column<bool>(type: "bit", nullable: true)
+                    EAN13 = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    GoesWellWith = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -48,7 +44,20 @@ namespace Backend_Task03.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Review",
+                name: "FoodCategories",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_FoodCategories", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Reviews",
                 columns: table => new
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
@@ -60,36 +69,71 @@ namespace Backend_Task03.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Review", x => x.ID);
+                    table.PrimaryKey("PK_Reviews", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_Review_Accounts_AccountID",
+                        name: "FK_Reviews_Accounts_AccountID",
                         column: x => x.AccountID,
                         principalTable: "Accounts",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Review_Beers_BeerID",
+                        name: "FK_Reviews_Beers_BeerID",
                         column: x => x.BeerID,
                         principalTable: "Beers",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "FoodCategoryReview",
+                columns: table => new
+                {
+                    FoodCategoriesId = table.Column<int>(type: "int", nullable: false),
+                    ReviewsID = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_FoodCategoryReview", x => new { x.FoodCategoriesId, x.ReviewsID });
+                    table.ForeignKey(
+                        name: "FK_FoodCategoryReview_FoodCategories_FoodCategoriesId",
+                        column: x => x.FoodCategoriesId,
+                        principalTable: "FoodCategories",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_FoodCategoryReview_Reviews_ReviewsID",
+                        column: x => x.ReviewsID,
+                        principalTable: "Reviews",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
-                name: "IX_Review_AccountID",
-                table: "Review",
+                name: "IX_FoodCategoryReview_ReviewsID",
+                table: "FoodCategoryReview",
+                column: "ReviewsID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Reviews_AccountID",
+                table: "Reviews",
                 column: "AccountID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Review_BeerID",
-                table: "Review",
+                name: "IX_Reviews_BeerID",
+                table: "Reviews",
                 column: "BeerID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Review");
+                name: "FoodCategoryReview");
+
+            migrationBuilder.DropTable(
+                name: "FoodCategories");
+
+            migrationBuilder.DropTable(
+                name: "Reviews");
 
             migrationBuilder.DropTable(
                 name: "Accounts");

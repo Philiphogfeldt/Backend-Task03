@@ -1,4 +1,5 @@
 ﻿using Backend_Task03.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 
 namespace Backend_Task03.Data
@@ -229,12 +230,97 @@ namespace Backend_Task03.Data
                         Country = "USA",
                         EAN13 = "1265144397501"
                     },
-                    
+
                 };
 
                 database.Beers.AddRange(beers);
                 database.SaveChanges();
-            }    
+            }
         }
-    } 
+
+        public static void CreateFoodCategories(AppDbContext database)
+        {
+            if (!database.FoodCategories.Any())
+            {
+                var meatCategory = new FoodCategory { Name = "Meat" };
+                var chickenCategory = new FoodCategory { Name = "Chicken" };
+                var vegoCategory = new FoodCategory { Name = "Vegetarian" };
+                var fishCategory = new FoodCategory { Name = "Fish" };
+                var dessertCategory = new FoodCategory { Name = "Dessert" };
+
+                database.FoodCategories.AddRange(meatCategory, chickenCategory, vegoCategory, fishCategory, dessertCategory);
+                database.SaveChanges();
+
+            }
+        }
+
+        public static void CreateReview(AppDbContext database)
+        {
+            if (!database.Reviews.Any())
+            {
+                var accounts = database.Accounts.ToList();
+                var beers = database.Beers.ToList();
+                var foodCategories = database.FoodCategories.ToList();
+                var reviews = new List<Review>();
+
+                var random = new Random();
+                foreach (var beer in beers)
+                {
+                    var reviewCount = random.Next(3, 6); // generate 3 to 5 reviews per beer
+                    for (int i = 0; i < reviewCount; i++)
+                    {
+                        var rating = random.Next(1, 6);
+                        var comment = GetRandomComment(beer.Name, rating);
+                        var account = accounts[random.Next(accounts.Count)];
+                        var selectedCategories = new List<FoodCategory>();
+                        for (int j = 0; j < random.Next(1, 4); j++)
+                        {
+                            var category = foodCategories[random.Next(foodCategories.Count)];
+                            if (!selectedCategories.Contains(category))
+                            {
+                                selectedCategories.Add(category);
+                            }
+                        }
+                        var review = new Review
+                        {
+                            Rating = rating,
+                            Comment = comment,
+                            Account = account,
+                            Beer = beer,
+                            FoodCategories = selectedCategories
+                        };
+                        reviews.Add(review);
+                    }
+                }
+
+                database.Reviews.AddRange(reviews);
+                database.SaveChanges();
+
+            }
+        }
+            // helper method to generate random comments based on beer name and rating
+            private static string GetRandomComment(string beerName, int rating)
+            {
+                var comments = new List<string>
+                {
+                 "Nice fresh taste",
+                 "Smooth and crisp",
+                 "Bold and hoppy",
+                 "Satisfying and refreshing",
+                 "Rich and full-bodied",
+                 "Delightfully hoppy",
+                 "Aromatic and flavorful",
+                 "Robust and flavorful",
+                 "Refreshing and light",
+                  "Fruity and aromatic"
+                };
+                var comment = comments[new Random().Next(comments.Count)];
+                return $"{comment} with {beerName}. Rating: {rating}/5.";
+            }
+        
+      
+
+    }
+
 }
+

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Backend_Task03.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230504170520_init")]
-    partial class init
+    [Migration("20230507182807_initTestingAccounts7")]
+    partial class initTestingAccounts7
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -69,7 +69,8 @@ namespace Backend_Task03.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("EanCode")
+                    b.Property<string>("EAN13")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool?>("GoesBird")
@@ -131,7 +132,7 @@ namespace Backend_Task03.Migrations
 
                     b.HasIndex("BeerID");
 
-                    b.ToTable("Review");
+                    b.ToTable("Reviews");
                 });
 
             modelBuilder.Entity("Backend_Task03.Models.Review", b =>
