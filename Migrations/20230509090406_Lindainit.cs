@@ -4,7 +4,7 @@
 
 namespace Backend_Task03.Migrations
 {
-    public partial class init : Migration
+    public partial class Lindainit : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

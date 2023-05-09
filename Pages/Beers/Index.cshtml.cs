@@ -68,7 +68,7 @@ namespace Backend_Task03.Pages.Beers
 
                 // Update the GoesWellWith property
                 beer.GoesWellWith = string.Join(", ", mostSelectedCategories);
-            }
+                }
 
                 await database.SaveChangesAsync();
                 //return View(beers);  
