@@ -11,7 +11,6 @@ namespace Backend_Task03.Data
     {
         public int LoggedInAccountID { get; set; }
         public string LoggedInAccountName { get; set; }
-
         public Account LoggedInAccount { get; set; }
 
         public AccessControl(AppDbContext db, IHttpContextAccessor httpContextAccessor)
