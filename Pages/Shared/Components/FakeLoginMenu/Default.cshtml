@@ -6,5 +6,6 @@
         Log in as:
         <select asp-items="@Model" name="AccountID" id="account-id"></select>
     </label>
+    <input type="hidden" name="CurrentUrl" value="@Context.Request.Path" />
     <button type="submit">Log In</button>
 </form>

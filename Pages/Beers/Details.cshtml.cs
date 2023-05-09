@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Backend_Task03.Data;
 using Backend_Task03.Models;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore.Storage;
 
 namespace Backend_Task03.Pages.Beers
 {
@@ -37,8 +38,10 @@ namespace Backend_Task03.Pages.Beers
         public void LoadBeer(int id)
         {
             Beer = database.Beers
-                .Include(b => b.Reviews)
+                .Include(b => b.Reviews).ThenInclude(b => b.Account)
                 .FirstOrDefault(b => b.ID == id);
+
+           
 
             if (Beer == null)
             {
@@ -52,7 +55,7 @@ namespace Backend_Task03.Pages.Beers
 
             NewReview = new Review
             {
-                Beer = Beer
+                Beer = Beer,
             };
         }
 
@@ -88,6 +91,9 @@ namespace Backend_Task03.Pages.Beers
                 c => c.Beer,
                 c => c.Account);
 
+   
+
+
             /*            
             if (success)
             {
@@ -105,7 +111,7 @@ namespace Backend_Task03.Pages.Beers
             Beer.Reviews.Add(NewReview);
             database.Reviews.Add(NewReview);
             database.SaveChanges();
-            return RedirectToPage();
+            return RedirectToPage("./Details", new { id = Beer.ID });
         }
     }
 }
