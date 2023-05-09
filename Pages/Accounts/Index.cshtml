@@ -43,6 +43,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Role)
             </td>
+                @*Användare ska bara kunna ändra på sitt namn*@
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
                 <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |

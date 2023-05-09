@@ -24,6 +24,7 @@
                 <input asp-for="Account.OpenIDSubject" class="form-control" />
                 <span asp-validation-for="Account.OpenIDSubject" class="text-danger"></span>
             </div>
+            @*Användare ska bara kunna ändra på sitt namn*@
             <div class="form-group">
                 <label asp-for="Account.Name" class="control-label"></label>
                 <input asp-for="Account.Name" class="form-control" />
