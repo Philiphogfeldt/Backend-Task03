@@ -16,5 +16,6 @@ namespace Backend_Task03.Data
             : base(options)
         {
         }
+
     }
 }
