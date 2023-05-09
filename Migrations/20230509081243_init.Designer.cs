@@ -11,13 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Backend_Task03.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-<<<<<<<< HEAD:Migrations/20230509083400_secondGreco.Designer.cs
-    [Migration("20230509083400_secondGreco")]
-    partial class secondGreco
-========
-    [Migration("20230509081241_init")]
+    [Migration("20230509081243_init")]
     partial class init
->>>>>>>> Dev:Migrations/20230509081241_init.Designer.cs
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

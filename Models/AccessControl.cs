@@ -14,6 +14,7 @@ namespace Backend_Task03.Data
         public string LoggedInAccountRole { get; set; }
         public Account LoggedInAccount { get; set; }
 
+
         public AccessControl(AppDbContext db, IHttpContextAccessor httpContextAccessor)
         {
             var user = httpContextAccessor.HttpContext.User;
@@ -30,4 +31,3 @@ namespace Backend_Task03.Data
         }
     }
 }
-
