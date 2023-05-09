@@ -12,8 +12,13 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Backend_Task03.Migrations
 {
     [DbContext(typeof(AppDbContext))]
+<<<<<<<< HEAD:Migrations/20230505105801_eanUpdate.Designer.cs
     [Migration("20230505105801_eanUpdate")]
     partial class eanUpdate
+========
+    [Migration("20230505113528_init")]
+    partial class init
+>>>>>>>> Dev:Migrations/20230505113528_init.Designer.cs
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
