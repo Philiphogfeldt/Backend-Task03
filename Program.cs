@@ -133,7 +133,10 @@ using (var scope = app.Services.CreateScope())
     var services = scope.ServiceProvider;
     var context = services.GetRequiredService<AppDbContext>();
     SampleData.Create(context);
+    SampleData.CreateFoodCategories(context);
     SampleData.CreateBeer(context);
+    SampleData.CreateReview(context);
+    
 }
 
 app.Run();

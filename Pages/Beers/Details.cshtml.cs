@@ -7,37 +7,109 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Backend_Task03.Data;
 using Backend_Task03.Models;
+using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore.Storage;
 
 namespace Backend_Task03.Pages.Beers
 {
     public class DetailsModel : PageModel
     {
-        private readonly Backend_Task03.Data.AppDbContext _context;
+        private readonly AppDbContext database;
 
-        public DetailsModel(Backend_Task03.Data.AppDbContext context)
+        private readonly AccessControl accessControl; // testar mig fram här
+
+
+        public DetailsModel(AppDbContext context, IHttpContextAccessor httpContextAccessor)
         {
-            _context = context;
+            database = context;
+
+            accessControl = new AccessControl(database, httpContextAccessor);
         }
 
-      public Beer Beer { get; set; } = default!; 
+        [BindProperty]
+        public Beer Beer { get; set; } = default!;
 
-        public async Task<IActionResult> OnGetAsync(int? id)
+        [BindProperty]
+        public Review NewReview { get; set; }
+
+        [BindProperty]
+        public Account Account { get; set; }
+
+        public void LoadBeer(int id)
         {
-            if (id == null || _context.Beers == null)
+            Beer = database.Beers
+                .Include(b => b.Reviews)
+                .FirstOrDefault(b => b.ID == id);
+
+            
+
+            if (Beer == null)
             {
-                return NotFound();
+                return;
             }
 
-            var beer = await _context.Beers.FirstOrDefaultAsync(m => m.ID == id);
-            if (beer == null)
+            if (Beer.Reviews == null)
             {
-                return NotFound();
+                Beer.Reviews = new List<Review>();
             }
-            else 
+
+            NewReview = new Review
             {
-                Beer = beer;
-            }
+                Beer = Beer,
+            };
+        }
+
+        public void ActiveAccount()
+        {
+            Account = accessControl.LoggedInAccount;
+        }
+
+        public IActionResult OnGet(int id)
+        {
+            LoadBeer(id);
             return Page();
+        }
+
+        public async Task<IActionResult> OnPostAsync(int id)
+        {
+
+            LoadBeer(id);
+
+            // behövs inte account här? 
+
+            ActiveAccount();
+            //NewReview.Account = accessControl.LoggedInAccount; // Set the AccountID of the new review
+            NewReview.Account = Account;
+
+
+            //bool success = 
+                await TryUpdateModelAsync(
+                NewReview,
+                nameof(NewReview),
+                c => c.Rating,
+                c => c.Comment,
+                c => c.Beer,
+                c => c.Rating
+                );
+
+                        
+/*            if (success)
+            {
+                Beer.Reviews.Add(NewReview);
+                database.Reviews.Add(NewReview);
+                database.SaveChanges();
+                return RedirectToPage();
+            }
+            else
+            {
+                return Page();
+            }*/
+            
+
+            Beer.Reviews.Add(NewReview);
+            database.Reviews.Add(NewReview);
+            database.SaveChanges();
+            return RedirectToPage();
         }
     }
 }

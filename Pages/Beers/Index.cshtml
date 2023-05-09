@@ -20,9 +20,9 @@
 
 <form method="post">
     <input type="text" name="findBeer" />
-    <input type="checkbox" name="beerType" value="Ale" /> Ale
-    <input type="checkbox" name="beerType" value="Lager" /> Lager
-    <input type="checkbox" name="beerType" value="Stout" /> Stout
+    <input type="checkbox" name="beerType[]" value="Ale" /> Ale
+    <input type="checkbox" name="beerType[]" value="Lager" /> Lager
+    <input type="checkbox" name="beerType[]" value="Stout" /> Stout
     <button type="submit">Search</button>
 </form>
 
@@ -39,9 +39,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.Beer[0].Name)
             </th>
-            <th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.Beer[0].Description)
-            </th>
+            </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.Beer[0].Type)
             </th>
@@ -54,6 +54,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.Beer[0].Country)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Beer[0].GoesWellWith)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -64,9 +67,9 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Name)
                 </td>
-                <td>
+               @* <td>
                     @Html.DisplayFor(modelItem => item.Description)
-                </td>
+                </td>*@
                 <td>
                     @Html.DisplayFor(modelItem => item.Type)
                 </td>
@@ -78,6 +81,9 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Country)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GoesWellWith)
                 </td>
                 <td>
                 <td>

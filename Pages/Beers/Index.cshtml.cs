@@ -25,6 +25,27 @@ namespace Backend_Task03.Pages.Beers
         public async Task OnGetAsync()
         {
             Beer = await database.Beers.ToListAsync();
+
+
+            //metod för att beräkna GoesWith
+            foreach (var beer in Beer) 
+            
+            { 
+                List<string> goesWith = new List<string>();
+              
+                var review = database.Reviews.Where(b => b.Beer == beer).Include(b => b.FoodCategories).ToList();
+
+                foreach (var r in review)
+                {
+                    foreach (var c in r.FoodCategories)
+                    {
+                        goesWith.Add(c.Name);
+                    }
+                }
+
+
+
+            }
         }
 
         public async Task OnPostAsync(string findBeer, string[] beerType)
@@ -33,9 +54,7 @@ namespace Backend_Task03.Pages.Beers
 
             if (!string.IsNullOrEmpty(findBeer))
             {
-                Beer = await database.Beers
-                    .Where(b => b.Name.Contains(findBeer))
-                    .ToListAsync();
+                beers2Show = beers2Show.Where(b => b.Name.Contains(findBeer));
             }
             else
             {
