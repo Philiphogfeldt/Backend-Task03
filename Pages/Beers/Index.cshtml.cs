@@ -27,25 +27,6 @@ namespace Backend_Task03.Pages.Beers
             Beer = await database.Beers.ToListAsync();
 
 
-            //metod för att beräkna GoesWith
-            //    foreach (var beer in Beer)
-
-            //    {
-            //        List<string> goesWith = new List<string>();
-
-            //        // behövs account
-            //        var review = database.Reviews.Where(b => b.Beer == beer).Include(b => b.FoodCategories).ToList();
-
-            //        foreach (var r in review)
-            //        {
-            //            foreach (var c in r.FoodCategories)
-            //            {
-            //                goesWith.Add(c.Name);
-            //            }
-            //        }
-
-            //    }
-
                 var beers = await database.Beers.Include(b => b.Reviews).ThenInclude(r => r.FoodCategories).ToListAsync();
 
                 foreach (var beer in beers)
