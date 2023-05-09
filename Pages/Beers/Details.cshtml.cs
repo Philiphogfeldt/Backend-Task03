@@ -42,8 +42,6 @@ namespace Backend_Task03.Pages.Beers
                 .Include(b => b.Reviews).ThenInclude(b=> b.Account)
                 .FirstOrDefault(b => b.ID == id);
 
-           
-
             if (Beer == null)
             {
                 return;
@@ -104,7 +102,6 @@ namespace Backend_Task03.Pages.Beers
             {
                 return Page();
             }*/
-            
 
             Beer.Reviews.Add(NewReview);
             database.Reviews.Add(NewReview);

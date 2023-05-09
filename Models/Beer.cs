@@ -10,7 +10,6 @@
         public string Brewery { get; set; }
         public string Country { get; set; }
         public string EAN13 { get; set; }
-
         public string? GoesWellWith { get; set; } = "-";
         public List<Review>? Reviews { get; set; }
 
