@@ -1,4 +1,5 @@
 ﻿using Backend_Task03.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 
 namespace Backend_Task03.Data
@@ -237,27 +238,21 @@ namespace Backend_Task03.Data
             }
         }
 
-        //public static void CreateReview(AppDbContext database)
-        //{
-        //    if (!database.Reviews.Any())
-        //    {
-        //        var reviews = new List<Review>()
-        //        {
-        //            new Review
-        //            {
-        //                Rating = 5,
-        //                Comment = "Nice fresh taste",
-        //                Account = database.Accounts.Find(1),
-        //                Beer =  database.Beers.Find(1)
+        public static void CreateFoodCategories(AppDbContext database)
+        {
+            if (!database.FoodCategories.Any())
+            {
+                var meatCategory = new FoodCategory { Name = "Meat" };
+                var chickenCategory = new FoodCategory { Name = "Chicken" };
+                var vegoCategory = new FoodCategory { Name = "Vegetarian" };
+                var fishCategory = new FoodCategory { Name = "Fish" };
+                var dessertCategory = new FoodCategory { Name = "Dessert" };
 
-        //            }
+                database.FoodCategories.AddRange(meatCategory, chickenCategory, vegoCategory, fishCategory, dessertCategory);
+                database.SaveChanges();
 
-        //        };
-
-        //        database.Reviews.AddRange(reviews);
-        //        database.SaveChanges();
-        //    }
-        //}
+            }
+        }
 
         public static void CreateReview(AppDbContext database)
         {
@@ -265,6 +260,7 @@ namespace Backend_Task03.Data
             {
                 var accounts = database.Accounts.ToList();
                 var beers = database.Beers.ToList();
+                var foodCategories = database.FoodCategories.ToList();
                 var reviews = new List<Review>();
 
                 var random = new Random();
@@ -276,12 +272,22 @@ namespace Backend_Task03.Data
                         var rating = random.Next(1, 6);
                         var comment = GetRandomComment(beer.Name, rating);
                         var account = accounts[random.Next(accounts.Count)];
+                        var selectedCategories = new List<FoodCategory>();
+                        for (int j = 0; j < random.Next(1, 4); j++)
+                        {
+                            var category = foodCategories[random.Next(foodCategories.Count)];
+                            if (!selectedCategories.Contains(category))
+                            {
+                                selectedCategories.Add(category);
+                            }
+                        }
                         var review = new Review
                         {
                             Rating = rating,
                             Comment = comment,
                             Account = account,
-                            Beer = beer
+                            Beer = beer,
+                            FoodCategories = selectedCategories
                         };
                         reviews.Add(review);
                     }
@@ -312,6 +318,7 @@ namespace Backend_Task03.Data
                 return $"{comment} with {beerName}. Rating: {rating}/5.";
             }
         
+      
 
     }
 

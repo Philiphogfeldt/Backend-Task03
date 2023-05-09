@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Backend_Task03.Data;
 using Backend_Task03.Models;
+using Microsoft.EntityFrameworkCore.Storage;
 
 namespace Backend_Task03.Pages.Beers
 {
@@ -25,11 +26,17 @@ namespace Backend_Task03.Pages.Beers
         [BindProperty]
         public Review NewReview { get; set; }
 
+        [BindProperty]
+        public Account Account { get; set; }
+
+
         public void LoadBeer(int id)
         {
             Beer = database.Beers
                 .Include(b => b.Reviews)
                 .FirstOrDefault(b => b.ID == id);
+
+            
 
             if (Beer == null)
             {
@@ -43,7 +50,7 @@ namespace Backend_Task03.Pages.Beers
 
             NewReview = new Review
             {
-                Beer = Beer
+                Beer = Beer,
             };
         }
 
@@ -63,7 +70,9 @@ namespace Backend_Task03.Pages.Beers
                 NewReview,
                 nameof(NewReview),
                 c => c.Comment,
-                c => c.Beer);
+                c => c.Beer,
+                c => c.Rating
+                );
 
 
             if (success)
