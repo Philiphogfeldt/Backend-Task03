@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Backend_Task03.Data;
 using Backend_Task03.Models;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore.Storage;
 
 namespace Backend_Task03.Pages.Beers
 {
@@ -40,6 +41,8 @@ namespace Backend_Task03.Pages.Beers
                 .Include(b => b.Reviews)
                 .FirstOrDefault(b => b.ID == id);
 
+            
+
             if (Beer == null)
             {
                 return;
@@ -52,7 +55,7 @@ namespace Backend_Task03.Pages.Beers
 
             NewReview = new Review
             {
-                Beer = Beer
+                Beer = Beer,
             };
         }
 
@@ -85,7 +88,9 @@ namespace Backend_Task03.Pages.Beers
                 nameof(NewReview),
                 c => c.Rating,
                 c => c.Comment,
-                c => c.Beer);
+                c => c.Beer,
+                c => c.Rating
+                );
 
                         
 /*            if (success)
