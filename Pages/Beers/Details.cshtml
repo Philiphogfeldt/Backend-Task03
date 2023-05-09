@@ -64,9 +64,11 @@
         <h4>Reviews</h4>
         @foreach (var comment in Model.Beer.Reviews)
         {
+            
             <div>
                 @comment.Rating
                 @comment.Comment
+                @comment.Account.Name
             </div>
         }
     </div>

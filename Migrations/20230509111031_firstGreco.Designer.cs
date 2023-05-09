@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Backend_Task03.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230509081243_init")]
-    partial class init
+    [Migration("20230509111031_firstGreco")]
+    partial class firstGreco
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

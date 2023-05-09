@@ -38,10 +38,10 @@ namespace Backend_Task03.Pages.Beers
         public void LoadBeer(int id)
         {
             Beer = database.Beers
-                .Include(b => b.Reviews)
+                .Include(b => b.Reviews).ThenInclude(b => b.Account)
                 .FirstOrDefault(b => b.ID == id);
 
-            
+           
 
             if (Beer == null)
             {
@@ -88,8 +88,7 @@ namespace Backend_Task03.Pages.Beers
                 nameof(NewReview),
                 c => c.Rating,
                 c => c.Comment,
-                c => c.Beer,
-                c => c.Rating
+                c => c.Beer
                 );
 
                         

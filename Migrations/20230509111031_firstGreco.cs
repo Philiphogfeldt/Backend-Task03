@@ -4,7 +4,7 @@
 
 namespace Backend_Task03.Migrations
 {
-    public partial class secondGreco : Migration
+    public partial class firstGreco : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
