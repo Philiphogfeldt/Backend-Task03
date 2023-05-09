@@ -1,5 +1,6 @@
 ﻿@page
 @model Backend_Task03.Pages.Beers.DeleteModel
+@inject Backend_Task03.Data.AccessControl AccessControl
 
 @{
     ViewData["Title"] = "Delete";
@@ -52,7 +53,10 @@
     
     <form method="post">
         <input type="hidden" asp-for="Beer.ID" />
-        <input type="submit" value="Delete" class="btn btn-danger" />
+        @if (AccessControl.LoggedInAccountRole == "Admin")
+        {
+            <input type="submit" value="Delete" class="btn btn-danger" />
+        }
         <button type="button" onclick="location.href='@Url.Page("./Index")'">Back to List</button>
     </form>
 
