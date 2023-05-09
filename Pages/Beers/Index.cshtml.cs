@@ -87,24 +87,10 @@ namespace Backend_Task03.Pages.Beers
 
                 // Update the GoesWellWith property
                 beer.GoesWellWith = string.Join(", ", mostSelectedCategories);
-                //string mostSelectedCategory = "-";
-                //int highestCount = 0;
-                //foreach (var kvp in categoryCounts)
-                //{
-                //    if (kvp.Value > highestCount)
-                //    {
-                //        mostSelectedCategory = kvp.Key;
-                //        highestCount = kvp.Value;
-                //    }
-                //}
-
-                //// Update the GoesWellWith property
-                //beer.GoesWellWith = mostSelectedCategory;
             }
 
                 await database.SaveChangesAsync();
-                //return View(beers);
-            
+                //return View(beers);  
 
         }
 
