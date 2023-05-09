@@ -28,23 +28,84 @@ namespace Backend_Task03.Pages.Beers
 
 
             //metod för att beräkna GoesWith
-            //foreach (var beer in Beer) 
-            
-            //{ 
-            //    List<string> goesWith = new List<string>();
-              
-            //    // behövs account
-            //    var review = database.Reviews.Where(b => b.Beer == beer).Include(b => b.FoodCategories).ToList();
+            //    foreach (var beer in Beer)
 
-            //    foreach (var r in review)
             //    {
-            //        foreach (var c in r.FoodCategories)
+            //        List<string> goesWith = new List<string>();
+
+            //        // behövs account
+            //        var review = database.Reviews.Where(b => b.Beer == beer).Include(b => b.FoodCategories).ToList();
+
+            //        foreach (var r in review)
             //        {
-            //            goesWith.Add(c.Name);
+            //            foreach (var c in r.FoodCategories)
+            //            {
+            //                goesWith.Add(c.Name);
+            //            }
             //        }
+
             //    }
 
-            //}
+                var beers = await database.Beers.Include(b => b.Reviews).ThenInclude(r => r.FoodCategories).ToListAsync();
+
+                foreach (var beer in beers)
+                {
+                    Dictionary<string, int> categoryCounts = new Dictionary<string, int>();
+
+                    // Count the number of times each category appears in the reviews
+                    foreach (var review in beer.Reviews)
+                    {
+                        foreach (var category in review.FoodCategories)
+                        {
+                            if (categoryCounts.ContainsKey(category.Name))
+                            {
+                                categoryCounts[category.Name]++;
+                            }
+                            else
+                            {
+                                categoryCounts[category.Name] = 1;
+                            }
+                        }
+                    }
+
+                // Find the category/categories with the highest count
+                List<string> mostSelectedCategories = new List<string>();
+                int highestCount = 0;
+                foreach (var kvp in categoryCounts)
+                {
+                    if (kvp.Value > highestCount)
+                    {
+                        mostSelectedCategories.Clear();
+                        mostSelectedCategories.Add(kvp.Key);
+                        highestCount = kvp.Value;
+                    }
+                    else if (kvp.Value == highestCount)
+                    {
+                        mostSelectedCategories.Add(kvp.Key);
+                    }
+                }
+
+                // Update the GoesWellWith property
+                beer.GoesWellWith = string.Join(", ", mostSelectedCategories);
+                //string mostSelectedCategory = "-";
+                //int highestCount = 0;
+                //foreach (var kvp in categoryCounts)
+                //{
+                //    if (kvp.Value > highestCount)
+                //    {
+                //        mostSelectedCategory = kvp.Key;
+                //        highestCount = kvp.Value;
+                //    }
+                //}
+
+                //// Update the GoesWellWith property
+                //beer.GoesWellWith = mostSelectedCategory;
+            }
+
+                await database.SaveChangesAsync();
+                //return View(beers);
+            
+
         }
 
         public async Task OnPostAsync(string findBeer, string[] beerType)
