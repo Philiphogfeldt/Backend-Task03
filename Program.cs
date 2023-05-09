@@ -3,6 +3,7 @@ using Backend_Task03.Models;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using System.Security.Claims;
 
@@ -24,6 +25,7 @@ builder.Services.AddAuthentication(options =>
         string subject = context.Principal.FindFirstValue(ClaimTypes.NameIdentifier);
         string issuer = context.Principal.FindFirst(ClaimTypes.NameIdentifier).Issuer;
         string name = context.Principal.FindFirst(ClaimTypes.Name).Value;
+        
 
         var account = db.Accounts
             .FirstOrDefault(p => p.OpenIDIssuer == issuer && p.OpenIDSubject == subject);
@@ -34,7 +36,8 @@ builder.Services.AddAuthentication(options =>
             {
                 OpenIDIssuer = issuer,
                 OpenIDSubject = subject,
-                Name = name
+                Name = name,
+                Role = "User"
             };
             db.Accounts.Add(account);
         }
@@ -109,6 +112,16 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
 
+/*Directory.CreateDirectory(builder.Configuration["Uploads:FolderPath"]);
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new PhysicalFileProvider(
+        Path.Combine(builder.Environment.ContentRootPath, builder.Configuration["Uploads:FolderPath"])
+    ),
+    RequestPath = builder.Configuration["Uploads:URLPath"]
+});
+app.UseRouting();
+*/
 app.UseAuthentication();
 app.UseAuthorization();
 

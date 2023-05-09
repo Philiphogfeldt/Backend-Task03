@@ -11,6 +11,8 @@ namespace Backend_Task03.Data
     {
         public int LoggedInAccountID { get; set; }
         public string LoggedInAccountName { get; set; }
+        public string LoggedInAccountRole { get; set; }
+        public Account LoggedInAccount { get; set; }
 
         public Account LoggedInAccount { get; set; }
 
@@ -22,17 +24,12 @@ namespace Backend_Task03.Data
 
             LoggedInAccount = db.Accounts.Single(p => p.OpenIDIssuer == issuer && p.OpenIDSubject == subject);
             LoggedInAccountID = LoggedInAccount.ID;
-            // LoggedInAccountID = db.Accounts.Single(p => p.OpenIDIssuer == issuer && p.OpenIDSubject == subject).ID;
             LoggedInAccountName = user.FindFirst(ClaimTypes.Name).Value;
-            // LoggedInAccount = db.Accounts.Single(p => p.OpenIDIssuer == issuer && p.OpenIDSubject == subject);
-            // LoggedInAccount = db.Accounts.SingleOrDefault(a => a.Name == LoggedInAccountName);
-        }
+            LoggedInAccountRole = LoggedInAccount.Role;
+           
 
-        public AccessControl()
-        {
-
+        
         }
     }
 }
-
 
