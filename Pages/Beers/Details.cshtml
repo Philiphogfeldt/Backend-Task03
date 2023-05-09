@@ -1,5 +1,6 @@
 ﻿@page
 @model Backend_Task03.Pages.Beers.DetailsModel
+@inject Backend_Task03.Data.AccessControl AccessControl
 
 @{
     ViewData["Title"] = "Details";
@@ -47,6 +48,12 @@
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Beer.Country)
         </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Beer.GoesWellWith)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Beer.GoesWellWith)
+        </dd>
     </dl>
 </div>
 
@@ -91,6 +98,16 @@ else
             <textarea asp-for="NewReview.Comment" class="form-control"></textarea>
             <span asp-validation-for="NewReview.Comment" class="text-danger"></span>
         </div>
+        
+       @* <div class="form-group">
+                <label>This beers goes well with:</label>
+            <label><input type="checkbox" name="NewReview.Meat"  /> Meat</label>
+            <label><input type="checkbox" name="NewReview.Fish"  /> Fish</label>
+            <label><input type="checkbox" name="NewReview.Chicken"/> Bird</label>
+            <label><input type="checkbox" name="NewReview.Vegetarian" /> Veg</label>
+            <label><input type="checkbox" name="NewReview.Dessert" /> Dessert</label>
+        </div>*@
+        
         <div class="form-group">
             <input type="submit" value="Post" class="btn btn-primary" />
         </div>
@@ -98,6 +115,9 @@ else
 </div>
 
 <div>
-    <button type="button" onclick="location.href='@Url.Page("./Edit", new { id = Model.Beer?.ID })'">Edit</button>
+    @if (AccessControl.LoggedInAccountRole == "Admin")
+    {
+        <button type="button" onclick="location.href='@Url.Page("./Edit", new { id = Model.Beer?.ID })'">Edit</button>
+    }
     <button type="button" onclick="location.href='@Url.Page("./Index")'">Back to List</button>
 </div>

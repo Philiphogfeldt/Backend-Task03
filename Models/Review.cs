@@ -6,7 +6,13 @@
         //1-5 rating
         public int Rating { get; set; }
         public string Comment { get; set; }
+        //public bool GoesFish { get; set; }
+        //public bool GoesMeat { get; set; }
+        //public bool GoesVeg { get; set; }
+        //public bool GoesBird { get; set; }
+        //public bool GoesDessert { get; set; }
         public Account Account { get; set; }
         public Beer Beer { get; set; }
+        public List<FoodCategory> FoodCategories { get; set; } = new List<FoodCategory>();
     }
 }

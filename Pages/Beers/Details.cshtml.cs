@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Backend_Task03.Data;
 using Backend_Task03.Models;
+using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore.Storage;
 
 namespace Backend_Task03.Pages.Beers
 {
@@ -14,9 +16,14 @@ namespace Backend_Task03.Pages.Beers
     {
         private readonly AppDbContext database;
 
-        public DetailsModel(AppDbContext context)
+        private readonly AccessControl accessControl; // testar mig fram här
+
+
+        public DetailsModel(AppDbContext context, IHttpContextAccessor httpContextAccessor)
         {
             database = context;
+
+            accessControl = new AccessControl(database, httpContextAccessor);
         }
 
         [BindProperty]
@@ -25,11 +32,16 @@ namespace Backend_Task03.Pages.Beers
         [BindProperty]
         public Review NewReview { get; set; }
 
+        [BindProperty]
+        public Account Account { get; set; }
+
         public void LoadBeer(int id)
         {
             Beer = database.Beers
                 .Include(b => b.Reviews)
                 .FirstOrDefault(b => b.ID == id);
+
+            
 
             if (Beer == null)
             {
@@ -43,8 +55,13 @@ namespace Backend_Task03.Pages.Beers
 
             NewReview = new Review
             {
-                Beer = Beer
+                Beer = Beer,
             };
+        }
+
+        public void ActiveAccount()
+        {
+            Account = accessControl.LoggedInAccount;
         }
 
         public IActionResult OnGet(int id)
@@ -55,27 +72,44 @@ namespace Backend_Task03.Pages.Beers
 
         public async Task<IActionResult> OnPostAsync(int id)
         {
-           LoadBeer(id);
+
+            LoadBeer(id);
 
             // behövs inte account här? 
 
-            bool success = await TryUpdateModelAsync(
+            ActiveAccount();
+            //NewReview.Account = accessControl.LoggedInAccount; // Set the AccountID of the new review
+            NewReview.Account = Account;
+
+
+            //bool success = 
+                await TryUpdateModelAsync(
                 NewReview,
                 nameof(NewReview),
+                c => c.Rating,
                 c => c.Comment,
-                c => c.Beer);
+                c => c.Beer,
+                c => c.Rating
+                );
 
-
-            if (success)
+                        
+/*            if (success)
             {
                 Beer.Reviews.Add(NewReview);
+                database.Reviews.Add(NewReview);
                 database.SaveChanges();
                 return RedirectToPage();
             }
             else
             {
                 return Page();
-            }
+            }*/
+            
+
+            Beer.Reviews.Add(NewReview);
+            database.Reviews.Add(NewReview);
+            database.SaveChanges();
+            return RedirectToPage();
         }
     }
 }
