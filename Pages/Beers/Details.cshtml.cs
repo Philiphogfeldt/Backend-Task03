@@ -109,7 +109,7 @@ namespace Backend_Task03.Pages.Beers
             Beer.Reviews.Add(NewReview);
             database.Reviews.Add(NewReview);
             database.SaveChanges();
-            return RedirectToPage();
+            return RedirectToPage("./Details", new { id = Beer.ID });
         }
     }
 }
