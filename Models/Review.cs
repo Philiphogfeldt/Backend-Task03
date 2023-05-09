@@ -8,6 +8,7 @@
         public string Comment { get; set; }
         public Account Account { get; set; }
         public Beer Beer { get; set; }
+        // public DateTime Created { get; set; }
         public List<FoodCategory> FoodCategories { get; set; } = new List<FoodCategory>();
     }
 }

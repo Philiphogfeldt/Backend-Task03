@@ -38,10 +38,11 @@ namespace Backend_Task03.Pages.Beers
         public void LoadBeer(int id)
         {
             Beer = database.Beers
+
                 .Include(b => b.Reviews).ThenInclude(b=> b.Account)
                 .FirstOrDefault(b => b.ID == id);
 
-            
+           
 
             if (Beer == null)
             {
