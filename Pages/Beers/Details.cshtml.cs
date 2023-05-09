@@ -85,10 +85,11 @@ namespace Backend_Task03.Pages.Beers
                 nameof(NewReview),
                 c => c.Rating,
                 c => c.Comment,
-                c => c.Beer);
+                c => c.Beer,
+                c => c.Account);
 
-                        
-/*            if (success)
+            /*            
+            if (success)
             {
                 Beer.Reviews.Add(NewReview);
                 database.Reviews.Add(NewReview);
@@ -98,7 +99,7 @@ namespace Backend_Task03.Pages.Beers
             else
             {
                 return Page();
-            }*/
+            } */
             
 
             Beer.Reviews.Add(NewReview);
