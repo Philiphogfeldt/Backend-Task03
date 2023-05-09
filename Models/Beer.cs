@@ -20,7 +20,7 @@
         //public bool? GoesDessert { get; set; }
 
         //public List<string> GoesWith { get; set; } = new List<string>();
-        public List<Review>? BeerReviews { get; set; }
+        public List<Review>? Reviews { get; set; }
 
         //Glöm ej uppdatera EAN-code till not null senare
     }

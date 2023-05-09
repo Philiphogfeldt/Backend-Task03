@@ -89,11 +89,11 @@ namespace Backend_Task03.Migrations
                 columns: table => new
                 {
                     FoodCategoriesId = table.Column<int>(type: "int", nullable: false),
-                    FoodCategoryReviewsID = table.Column<int>(type: "int", nullable: false)
+                    ReviewsID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_FoodCategoryReview", x => new { x.FoodCategoriesId, x.FoodCategoryReviewsID });
+                    table.PrimaryKey("PK_FoodCategoryReview", x => new { x.FoodCategoriesId, x.ReviewsID });
                     table.ForeignKey(
                         name: "FK_FoodCategoryReview_FoodCategories_FoodCategoriesId",
                         column: x => x.FoodCategoriesId,
@@ -101,17 +101,17 @@ namespace Backend_Task03.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_FoodCategoryReview_Reviews_FoodCategoryReviewsID",
-                        column: x => x.FoodCategoryReviewsID,
+                        name: "FK_FoodCategoryReview_Reviews_ReviewsID",
+                        column: x => x.ReviewsID,
                         principalTable: "Reviews",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_FoodCategoryReview_FoodCategoryReviewsID",
+                name: "IX_FoodCategoryReview_ReviewsID",
                 table: "FoodCategoryReview",
-                column: "FoodCategoryReviewsID");
+                column: "ReviewsID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Reviews_AccountID",

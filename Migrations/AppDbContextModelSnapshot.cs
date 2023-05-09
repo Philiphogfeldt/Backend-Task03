@@ -142,12 +142,12 @@ namespace Backend_Task03.Migrations
                     b.Property<int>("FoodCategoriesId")
                         .HasColumnType("int");
 
-                    b.Property<int>("FoodCategoryReviewsID")
+                    b.Property<int>("ReviewsID")
                         .HasColumnType("int");
 
-                    b.HasKey("FoodCategoriesId", "FoodCategoryReviewsID");
+                    b.HasKey("FoodCategoriesId", "ReviewsID");
 
-                    b.HasIndex("FoodCategoryReviewsID");
+                    b.HasIndex("ReviewsID");
 
                     b.ToTable("FoodCategoryReview");
                 });
@@ -155,13 +155,13 @@ namespace Backend_Task03.Migrations
             modelBuilder.Entity("Backend_Task03.Models.Review", b =>
                 {
                     b.HasOne("Backend_Task03.Models.Account", "Account")
-                        .WithMany("AccountReviews")
+                        .WithMany("Reviews")
                         .HasForeignKey("AccountID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Backend_Task03.Models.Beer", "Beer")
-                        .WithMany("BeerReviews")
+                        .WithMany("Reviews")
                         .HasForeignKey("BeerID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -181,19 +181,19 @@ namespace Backend_Task03.Migrations
 
                     b.HasOne("Backend_Task03.Models.Review", null)
                         .WithMany()
-                        .HasForeignKey("FoodCategoryReviewsID")
+                        .HasForeignKey("ReviewsID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
             modelBuilder.Entity("Backend_Task03.Models.Account", b =>
                 {
-                    b.Navigation("AccountReviews");
+                    b.Navigation("Reviews");
                 });
 
             modelBuilder.Entity("Backend_Task03.Models.Beer", b =>
                 {
-                    b.Navigation("BeerReviews");
+                    b.Navigation("Reviews");
                 });
 #pragma warning restore 612, 618
         }

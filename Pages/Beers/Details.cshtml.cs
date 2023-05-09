@@ -33,7 +33,7 @@ namespace Backend_Task03.Pages.Beers
         public void LoadBeer(int id)
         {
             Beer = database.Beers
-                .Include(b => b.BeerReviews)
+                .Include(b => b.Reviews)
                 .FirstOrDefault(b => b.ID == id);
 
             
@@ -43,9 +43,9 @@ namespace Backend_Task03.Pages.Beers
                 return;
             }
 
-            if (Beer.BeerReviews == null)
+            if (Beer.Reviews == null)
             {
-                Beer.BeerReviews = new List<Review>();
+                Beer.Reviews = new List<Review>();
             }
 
             NewReview = new Review
@@ -77,7 +77,7 @@ namespace Backend_Task03.Pages.Beers
 
             if (success)
             {
-                Beer.BeerReviews.Add(NewReview);
+                Beer.Reviews.Add(NewReview);
                 database.SaveChanges();
                 return RedirectToPage();
             }
