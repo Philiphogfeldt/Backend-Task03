@@ -301,10 +301,10 @@ namespace Backend_Task03.Data
 
             }
         }
-            // helper method to generate random comments based on beer name and rating
-            private static string GetRandomComment(string beerName, int rating)
-            {
-                var comments = new List<string>
+        // helper method to generate random comments based on beer name and rating
+        private static string GetRandomComment(string beerName, int rating)
+        {
+            var comments = new List<string>
                 {
                  "Nice fresh taste",
                  "Smooth and crisp",
@@ -317,11 +317,12 @@ namespace Backend_Task03.Data
                  "Refreshing and light",
                   "Fruity and aromatic"
                 };
-                var comment = comments[new Random().Next(comments.Count)];
-                return $"{comment} with {beerName}. Rating: {rating}/5.";
-            }
-        
-      
+            var comment = comments[new Random().Next(comments.Count)];
+           // return $"{comment} with {beerName}. Rating: {rating}/5.";
+            return $"{comment}.";
+        }
+
+
 
     }
 
