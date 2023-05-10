@@ -42,8 +42,12 @@
 					<option value="Desert">Desert</option>
 
 				</select>
-				<input type="text" class="SearchInputBar" placeholder="Search" aria-label="Search">
-				<button class="MainSearchButton" type="button">Search</button>
+				<div class="AllSearch">
+					@await Component.InvokeAsync("Search")
+				</div>
+
+				@*<input type="text" class="SearchInputBar" placeholder="Search" aria-label="Search">
+				<button class="MainSearchButton" type="button">Search</button>*@
 			</div>
 
 			<div class="NavigationPages">
