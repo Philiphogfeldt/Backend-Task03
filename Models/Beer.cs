@@ -6,7 +6,7 @@
         public string Name { get; set; }
         public string Description { get; set; }
         public string Type { get; set; }
-        public string Percentage { get; set; }
+        public double Percentage { get; set; }
         public string Brewery { get; set; }
         public string Country { get; set; }
         public string EAN13 { get; set; }
