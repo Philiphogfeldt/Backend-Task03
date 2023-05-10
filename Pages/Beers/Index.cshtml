@@ -29,8 +29,12 @@
 <h1>Index</h1>
 
 <p>
+    
     <form asp-page="Create" method="get">
-        <button type="submit" class="btn btn-primary">Create New</button>
+        @if (AccessControl.LoggedInAccountRole == "Admin")
+        {
+            <button type="submit" class="btn btn-primary">Create New</button>
+        }
     </form>
 </p>
 <table class="table">
