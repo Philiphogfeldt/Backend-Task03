@@ -1,0 +1,22 @@
+.homePage {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: auto auto auto auto;
+    grid-template-areas:
+        "header header header"
+        "allsearch allsearch allsearch"
+        "navigationpages navigationpages navigationpages"
+        "dailyBeer dailyBeer favorites";
+    gap: 20px;
+    padding: 20px;
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+.dailyBeer {
+    grid-area: dailyBeer;
+}
+
+.favorites {
+    grid-area: favorites;
+}
