@@ -10,54 +10,57 @@ using Backend_Task03.Models;
 
 namespace Backend_Task03.Pages.Accounts
 {
-    public class DeleteModel : PageModel
-    {
-        private readonly Backend_Task03.Data.AppDbContext _context;
+	public class DeleteModel : PageModel
+	{
+		private readonly AppDbContext database;
 
-        public DeleteModel(Backend_Task03.Data.AppDbContext context)
-        {
-            _context = context;
-        }
+		public DeleteModel(AppDbContext context)
+		{
+			database = context;
+		}
 
-        [BindProperty]
-      public Account Account { get; set; } = default!;
+		[BindProperty]
+		public Account Account { get; set; } = default!;
 
-        public async Task<IActionResult> OnGetAsync(int? id)
-        {
-            if (id == null || _context.Accounts == null)
-            {
-                return NotFound();
-            }
+		public async Task<IActionResult> OnGetAsync(int? id)
+		{
+			if (id == null || database.Accounts == null)
+			{
+				return NotFound();
+			}
 
-            var account = await _context.Accounts.FirstOrDefaultAsync(m => m.ID == id);
+			var account = await database.Accounts.FirstOrDefaultAsync(m => m.ID == id);
 
-            if (account == null)
-            {
-                return NotFound();
-            }
-            else 
-            {
-                Account = account;
-            }
-            return Page();
-        }
+			if (account == null)
+			{
+				return NotFound();
+			}
 
-        public async Task<IActionResult> OnPostAsync(int? id)
-        {
-            if (id == null || _context.Accounts == null)
-            {
-                return NotFound();
-            }
-            var account = await _context.Accounts.FindAsync(id);
+			else
+			{
+				Account = account;
+			}
 
-            if (account != null)
-            {
-                Account = account;
-                _context.Accounts.Remove(Account);
-                await _context.SaveChangesAsync();
-            }
+			return Page();
+		}
 
-            return RedirectToPage("./Index");
-        }
-    }
+		public async Task<IActionResult> OnPostAsync(int? id)
+		{
+			if (id == null || database.Accounts == null)
+			{
+				return NotFound();
+			}
+
+			var account = await database.Accounts.FindAsync(id);
+
+			if (account != null)
+			{
+				Account = account;
+				database.Accounts.Remove(Account);
+				await database.SaveChangesAsync();
+			}
+
+			return RedirectToPage("./Index");
+		}
+	}
 }
