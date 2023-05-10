@@ -22,6 +22,15 @@ namespace Backend_Task03.Pages.Beers
 
         public IList<Beer> Beer { get; set; }
 
+        //public string Goesw { get; set; }
+
+        [BindProperty (SupportsGet = true)] 
+        public string Chicken { get; set; } 
+        public string Meat { get; set; }
+        public string Fish { get; set; }
+        public string Vegetarian { get; set; }
+        public string Dessert { get; set; }
+
         public async Task OnGetAsync()
         {
             Beer = await database.Beers.ToListAsync();
@@ -63,6 +72,12 @@ namespace Backend_Task03.Pages.Beers
                     else if (kvp.Value == highestCount)
                     {
                         mostSelectedCategories.Add(kvp.Key);
+
+                        if (kvp.Key == Chicken)
+                        {
+                            
+                        };
+                        
                     }
                 }
 
