@@ -81,8 +81,9 @@ namespace Backend_Task03.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<double>("Percentage")
-                        .HasColumnType("float");
+                    b.Property<string>("Percentage")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Type")
                         .IsRequired()
