@@ -4,9 +4,9 @@
 @{
     ViewData["Title"] = "Home page";
 }
-<head>
+<header>
     <link rel="stylesheet" href="~/css/homepage.css" />
-</head>
+</header>
 
 <body class="homePage">
     <div class="containerMain">
@@ -52,3 +52,51 @@
         </div>
     </div>
 </body>
+
+@*@page
+@model IndexModel
+@inject Backend_Task03.Data.AccessControl accessControl
+@{
+    ViewData["Title"] = "Home page";
+}
+<header>
+    <link rel="stylesheet" href="~/css/homepage.css" />
+</header>
+
+<body class="homePage">
+    <div class="containerMain">
+        <div class="header">
+            <h1 class="logo">Logo</h1>
+            <p class="WelcomeUserText">Inlogged as: @accessControl.LoggedInAccountName</p>
+        </div>
+
+        <form method="get" action="/Beers">
+            <div class="AllSearch">
+                <div class="SelectionBeer">
+                    <label><input type="checkbox" name="beerType" value="Lager" /> Lager</label>
+                    <label><input type="checkbox" name="beerType" value="Ale" /> Ale</label>
+                    <label><input type="checkbox" name="beerType" value="Stout" /> Stout</label>
+                    <label><input type="checkbox" name="beerType" value="IPA" /> IPA</label>
+                </div>
+                <input type="text" name="findBeer" class="SearchInputBar" placeholder="Search" aria-label="Search">
+                <input type="text" name="ean13" placeholder="EAN13 Code" />
+                <button type="submit" class="MainSearchButton">Search</button>
+            </div>
+        </form>
+
+        <div class="NavigationPages">
+            <button type="button" onclick="location.href='#'">MyPage</button>
+            <button type="button" onclick="location.href='/Beers'">BeerList</button>
+            <button type="button" onclick="location.href='#'">Favorites</button>
+            <button type="button" onclick="location.href='#'">Page 4</button>
+        </div>
+
+        <div class="dailyBeer">
+            <h2>Daily Beer</h2>
+        </div>
+        <div class="favorites">
+            <h2>My Favorites</h2>
+        </div>
+    </div>
+</body>
+*@
