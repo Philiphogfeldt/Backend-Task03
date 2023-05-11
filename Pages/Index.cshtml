@@ -4,6 +4,13 @@
 @{
     ViewData["Title"] = "Home page";
 }
+
+@if (accessControl.LoggedInAccountName == "Philip Högstedt")
+{
+    <h1>
+        Välkommen, godsherren Phillbert!
+    </h1>
+}
 @*<header>
     <link rel="stylesheet" href="~/css/homepage.css" />
 </header>*@

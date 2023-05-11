@@ -47,17 +47,24 @@
 			</div>
 
 			<div class="NavigationPages">
-				<button type="button" onclick="location.href='/Accounts/Details?id=@accessControl.LoggedInAccountID'">MyPage</button>
+				@if (accessControl.LoggedInAccountRole == "Admin")
+				{
+					<button type="button" onclick="location.href='/Accounts/Index?id=@accessControl.LoggedInAccountID'">MyPage</button>
+				}
+				else
+				{
+					<button type="button" onclick="location.href='/Accounts/Details?id=@accessControl.LoggedInAccountID'">MyPage</button>
+				}
 				<button type="button" onclick="location.href='/Beers'">BeerList</button>
 				<button type="button" onclick="location.href='#'">Favorites</button>
 				<button type="button" onclick="location.href='#'">Page 4</button>
 			</div>
 
-@*			<div class="dailyBeer">
-				<h2>Daily Beer</h2>
+			@*			<div class="dailyBeer">
+			<h2>Daily Beer</h2>
 			</div>
 			<div class="favorites">
-				<h2>My Favorites</h2>
+			<h2>My Favorites</h2>
 			</div>*@
 		</div>
 
