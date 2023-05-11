@@ -148,9 +148,11 @@ namespace Backend_Task03.Pages.Beers
                 
                 
                 );
+ 
 
-                        
-/*            if (success)
+
+            /*            
+            if (success)
             {
                 Beer.Reviews.Add(NewReview);
                 database.Reviews.Add(NewReview);
@@ -160,7 +162,9 @@ namespace Backend_Task03.Pages.Beers
             else
             {
                 return Page();
-            }*/
+
+            } */
+
 
             //förstår inte riktigt varför båda dessa behövs
             Beer.Reviews.Add(NewReview);
