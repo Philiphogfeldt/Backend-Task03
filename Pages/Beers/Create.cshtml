@@ -30,7 +30,10 @@
                 <span asp-validation-for="Beer.Type" class="text-danger"></span>
             </div>
             <div class="form-group">
-             @*   <label asp-for="Beer.Percentage" type="number" class="control-label"></label>
+
+             @*Step-attribut krävs för att kunna få in decimal. Vet dock ej vad det betyder
+                 
+             <label asp-for="Beer.Percentage" type="number" class="control-label"></label>
                 <input asp-for="Beer.Percentage" type="number" class="form-control" />   *@  
                 <label asp-for="Beer.Percentage" class="control-label"></label>
                 <input asp-for="Beer.Percentage" class="form-control" />
