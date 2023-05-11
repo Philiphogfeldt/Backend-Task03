@@ -23,9 +23,11 @@ body {
     grid-template-columns: 1fr 1fr;
     align-items: center;
 }
-.WelcomeUserText{
+
+.WelcomeUserText {
     text-align: right;
 }
+
 .logo {
     margin: 0;
 }
@@ -33,9 +35,61 @@ body {
 .AllSearch {
     grid-area: allsearch;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-areas: "selectionBeer selectionFood searchInputBar mainSearchButton";
     gap: 10px;
 }
+
+.SelectionBeer,
+.SelectionFood,
+.MainSearchButton {
+    height: 100%;
+}
+
+.SelectionBeer {
+    grid-area: selectionBeer;
+    background-color: white;
+    border: 1px solid gray;
+    padding: 8px;
+    font-size: 14px;
+    border-radius: 4px;
+}
+
+.SelectionFood {
+    grid-area: selectionFood;
+    background-color: white;
+    border: 1px solid gray;
+    padding: 8px;
+    font-size: 14px;
+    border-radius: 4px;
+}
+
+.SearchInputBar {
+    grid-area: searchInputBar;
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid gray;
+    border-radius: 4px;
+    height: 70%;
+}
+
+.MainSearchButton {
+    grid-area: mainSearchButton;
+    background-color: orange;
+    border: none;
+    color: black;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 18px;
+    margin: 4px 2px;
+    cursor: pointer;
+    transition-duration: 0.4s;
+}
+
+    .MainSearchButton:hover {
+        background-color: #cc7a00;
+    }
 
 .NavigationPages {
     grid-area: navigationpages;
@@ -58,9 +112,9 @@ button {
     transition-duration: 0.4s;
 }
 
- button:hover {
+    button:hover {
         background-color: #cc7a00;
- }
+    }
 
 .dailyBeer {
     grid-area: dailyBeer;
@@ -69,7 +123,6 @@ button {
 .favorites {
     grid-area: favorites;
 }
-
 
 /* frex \/ */
 #reviewGridCell {
@@ -80,9 +133,7 @@ button {
 }
 
 #beerGrid {
-
 }
 
 #beerGridCell {
-
 }
