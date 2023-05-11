@@ -14,13 +14,19 @@ namespace Backend_Task03.Pages.Accounts
 	{
 		private readonly AppDbContext database;
 
+		[BindProperty]
+		public Beer Beer { get; set; } = default!;
+
+		[BindProperty]
+		public Account Account { get; set; } = default!;
+
 		public DetailsModel(AppDbContext context)
 		{
 			database = context;
 		}
 
-		public Account Account { get; set; } = default!;
-
+		/*		public Account Account { get; set; } = default!;
+		*/
 		public async Task<IActionResult> OnGetAsync(int? id)
 		{
 			if (id == null || database.Accounts == null)
@@ -42,5 +48,6 @@ namespace Backend_Task03.Pages.Accounts
 
 			return Page();
 		}
+
 	}
 }
