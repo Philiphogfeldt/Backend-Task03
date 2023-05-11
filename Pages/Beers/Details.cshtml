@@ -55,10 +55,14 @@
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Beer.GoesWellWith)
         </dt>
-
-        @*   Här borde det kanske ligga HTML för alla bilderna med 'hidden' som default? *@
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Beer.GoesWellWith)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Beer.Rating)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Beer.Rating)
         </dd>
     </dl>
    </div>
