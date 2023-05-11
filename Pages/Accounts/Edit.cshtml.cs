@@ -11,71 +11,94 @@ using Backend_Task03.Models;
 
 namespace Backend_Task03.Pages.Accounts
 {
-    public class EditModel : PageModel
-    {
-        private readonly AppDbContext database;
+	public class EditModel : PageModel
+	{
+		private readonly AppDbContext database;
 
-        public EditModel(AppDbContext context)
-        {
-            database = context;
-        }
+		public EditModel(AppDbContext context)
+		{
+			database = context;
+		}
 
-        [BindProperty]
-        public Account Account { get; set; } = default!;
+		[BindProperty]
+		public Account Account { get; set; } = default!;
 
-        public async Task<IActionResult> OnGetAsync(int? id)
-        {
-            if (id == null || database.Accounts == null)
-            {
-                return NotFound();
-            }
+		private void LoadAccount(int id)
+		{
+			Account = database.Accounts.Include(a => a.Reviews).FirstOrDefault(a => a.ID == id);
+		}
 
-            var account =  await database.Accounts.FirstOrDefaultAsync(m => m.ID == id);
+		public async Task<IActionResult> OnGetAsync(int id)
+		{
+			//if (id == null || database.Accounts == null)
+			//{
+			//    return NotFound();
+			//}
 
-            if (account == null)
-            {
-                return NotFound();
-            }
+			//var account =  await database.Accounts.FirstOrDefaultAsync(m => m.ID == id);
 
-            Account = account;
-            return Page();
-        }
+			//if (account == null)
+			//{
+			//    return NotFound();
+			//}
 
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see https://aka.ms/RazorPagesCRUD.
-        public async Task<IActionResult> OnPostAsync()
-        {
-            if (!ModelState.IsValid)
-            {
-                return Page();
-            }
+			//Account = account;
+			LoadAccount(id);
+			return Page();
+		}
 
-            database.Attach(Account).State = EntityState.Modified;
+		// To protect from overposting attacks, enable the specific properties you want to bind to.
+		// For more details, see https://aka.ms/RazorPagesCRUD.
+		public async Task<IActionResult> OnPostAsync(int id)
+		{
+			LoadAccount(id);
+			bool success = await TryUpdateModelAsync(
+				Account, nameof(Account),
+				a => a.OpenIDIssuer,
+				a => a.OpenIDSubject,
+				a => a.Name,
+				a => a.Role);
+			if (success)
+			{
+				database.SaveChanges();
+				return RedirectToPage("./Details");
+			}
 
-            try
-            {
-                await database.SaveChangesAsync();
-            }
+			else
+			{
+				return Page();
+			}
+			//if (!ModelState.IsValid)
+			//{
+			//    return Page();
+			//}
 
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!AccountExists(Account.ID))
-                {
-                    return NotFound();
-                }
+			//database.Attach(Account).State = EntityState.Modified;
 
-                else
-                {
-                    throw;
-                }
-            }
+			//try
+			//{
+			//    await database.SaveChangesAsync();
+			//}
 
-            return RedirectToPage("./Index");
-        }
+			//catch (DbUpdateConcurrencyException)
+			//{
+			//    if (!AccountExists(Account.ID))
+			//    {
+			//        return NotFound();
+			//    }
 
-        private bool AccountExists(int id)
-        {
-          return (database.Accounts?.Any(e => e.ID == id)).GetValueOrDefault();
-        }
-    }
+			//    else
+			//    {
+			//        throw;
+			//    }
+			//}
+
+			return RedirectToPage("./Index");
+		}
+
+		private bool AccountExists(int id)
+		{
+			return (database.Accounts?.Any(e => e.ID == id)).GetValueOrDefault();
+		}
+	}
 }
