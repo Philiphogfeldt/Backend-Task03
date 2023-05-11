@@ -13,11 +13,11 @@ namespace Backend_Task03.Pages.Accounts
 {
     public class EditModel : PageModel
     {
-        private readonly Backend_Task03.Data.AppDbContext _context;
+        private readonly AppDbContext database;
 
-        public EditModel(Backend_Task03.Data.AppDbContext context)
+        public EditModel(AppDbContext context)
         {
-            _context = context;
+            database = context;
         }
 
         [BindProperty]
@@ -25,16 +25,18 @@ namespace Backend_Task03.Pages.Accounts
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null || _context.Accounts == null)
+            if (id == null || database.Accounts == null)
             {
                 return NotFound();
             }
 
-            var account =  await _context.Accounts.FirstOrDefaultAsync(m => m.ID == id);
+            var account =  await database.Accounts.FirstOrDefaultAsync(m => m.ID == id);
+
             if (account == null)
             {
                 return NotFound();
             }
+
             Account = account;
             return Page();
         }
@@ -48,18 +50,20 @@ namespace Backend_Task03.Pages.Accounts
                 return Page();
             }
 
-            _context.Attach(Account).State = EntityState.Modified;
+            database.Attach(Account).State = EntityState.Modified;
 
             try
             {
-                await _context.SaveChangesAsync();
+                await database.SaveChangesAsync();
             }
+
             catch (DbUpdateConcurrencyException)
             {
                 if (!AccountExists(Account.ID))
                 {
                     return NotFound();
                 }
+
                 else
                 {
                     throw;
@@ -71,7 +75,7 @@ namespace Backend_Task03.Pages.Accounts
 
         private bool AccountExists(int id)
         {
-          return (_context.Accounts?.Any(e => e.ID == id)).GetValueOrDefault();
+          return (database.Accounts?.Any(e => e.ID == id)).GetValueOrDefault();
         }
     }
 }

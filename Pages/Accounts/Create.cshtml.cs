@@ -12,11 +12,11 @@ namespace Backend_Task03.Pages.Accounts
 {
     public class CreateModel : PageModel
     {
-        private readonly Backend_Task03.Data.AppDbContext _context;
+        private readonly AppDbContext database;
 
-        public CreateModel(Backend_Task03.Data.AppDbContext context)
+        public CreateModel(AppDbContext context)
         {
-            _context = context;
+            database = context;
         }
 
         public IActionResult OnGet()
@@ -31,13 +31,13 @@ namespace Backend_Task03.Pages.Accounts
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
-          if (!ModelState.IsValid || _context.Accounts == null || Account == null)
+          if (!ModelState.IsValid || database.Accounts == null || Account == null)
             {
                 return Page();
             }
 
-            _context.Accounts.Add(Account);
-            await _context.SaveChangesAsync();
+            database.Accounts.Add(Account);
+            await database.SaveChangesAsync();
 
             return RedirectToPage("./Index");
         }

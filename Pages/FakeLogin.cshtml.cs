@@ -48,7 +48,7 @@ namespace Backend_Task03.Pages
             }
             else
             {
-                return RedirectToPage("./index");
+                return RedirectToPage("./Index");
             }
 
         }
