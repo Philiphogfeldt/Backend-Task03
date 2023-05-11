@@ -36,6 +36,7 @@ namespace Backend_Task03.Pages.Beers
                 return Page();
             }
 
+            Beer.Percentage = Beer.Percentage.ToString() + "%";
             Beer.EAN13 = EAN13.GenerateEAN13();
             database.Beers.Add(Beer);
             await database.SaveChangesAsync();
