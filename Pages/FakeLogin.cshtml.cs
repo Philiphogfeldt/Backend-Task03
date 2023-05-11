@@ -50,7 +50,8 @@ namespace Backend_Task03.Pages
             {
                 return RedirectToPage("./Index");
             }
+            /*return*/ RedirectToPage("./Index");
 
-        }
-    }
+		}
+	}
 }
