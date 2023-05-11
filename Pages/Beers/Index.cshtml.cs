@@ -22,29 +22,19 @@ namespace Backend_Task03.Pages.Beers
 
         public IList<Beer> Beer { get; set; }
 
+        //public string Goesw { get; set; }
+
+        [BindProperty (SupportsGet = true)] 
+        public string Chicken { get; set; } 
+        public string Meat { get; set; }
+        public string Fish { get; set; }
+        public string Vegetarian { get; set; }
+        public string Dessert { get; set; }
+
         public async Task OnGetAsync()
         {
             Beer = await database.Beers.ToListAsync();
 
-
-            //metod för att beräkna GoesWith
-            //    foreach (var beer in Beer)
-
-            //    {
-            //        List<string> goesWith = new List<string>();
-
-            //        // behövs account
-            //        var review = database.Reviews.Where(b => b.Beer == beer).Include(b => b.FoodCategories).ToList();
-
-            //        foreach (var r in review)
-            //        {
-            //            foreach (var c in r.FoodCategories)
-            //            {
-            //                goesWith.Add(c.Name);
-            //            }
-            //        }
-
-            //    }
 
                 var beers = await database.Beers.Include(b => b.Reviews).ThenInclude(r => r.FoodCategories).ToListAsync();
 
@@ -82,12 +72,18 @@ namespace Backend_Task03.Pages.Beers
                     else if (kvp.Value == highestCount)
                     {
                         mostSelectedCategories.Add(kvp.Key);
+
+                        if (kvp.Key == Chicken)
+                        {
+                            
+                        };
+                        
                     }
                 }
 
                 // Update the GoesWellWith property
                 beer.GoesWellWith = string.Join(", ", mostSelectedCategories);
-            }
+                }
 
                 await database.SaveChangesAsync();
                 //return View(beers);  
