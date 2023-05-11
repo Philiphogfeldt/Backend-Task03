@@ -69,3 +69,20 @@ button {
 .favorites {
     grid-area: favorites;
 }
+
+
+/* frex \/ */
+#reviewGridCell {
+    display: grid;
+    padding: 3px;
+    margin-left: 5px;
+    gap: 2px;
+}
+
+#beerGrid {
+
+}
+
+#beerGridCell {
+
+}
