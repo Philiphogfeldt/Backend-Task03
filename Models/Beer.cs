@@ -14,6 +14,7 @@
         public string Country { get; set; }
         public string EAN13 { get; set; }
         public string? GoesWellWith { get; set; } = "-";
+        public double? Rating { get; set; }
         public List<Review>? Reviews { get; set; }
 
         //account kan inte creata ny review om man redan har en review på den ölen
