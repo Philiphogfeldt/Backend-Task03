@@ -12,17 +12,40 @@ namespace Backend_Task03.Pages
     public class IndexModel : PageModel
     {
         private readonly AppDbContext database;
+        private readonly AccessControl accessControl;
+        private readonly FileRepository uploads;
+
 
         public IList<Beer> Beer { get; set; }
 
-        public IndexModel(AppDbContext database)
+        public IndexModel(AppDbContext database, AccessControl accessControl, FileRepository uploads)
         {
             this.database = database;
+            this.accessControl = accessControl;
+            this.uploads = uploads;
         }
+
+
+        public List<string> PhotoURLs { get; set; } = new List<string>();
 
         public void OnGet()
         {
+            string dailyBeerFolderPath = Path.Combine(
+                uploads.FolderPath,
+                "DailyBeer"
+            );
+            Directory.CreateDirectory(dailyBeerFolderPath);
+            string[] files = Directory.GetFiles(dailyBeerFolderPath);
+
+            if (files.Length > 0)
+            {
+                var rand = new Random();
+                string randomFile = files[rand.Next(files.Length)];
+                string url = uploads.GetFileURL(randomFile);
+                PhotoURLs.Add(url);
+            }
         }
+
 
         public async Task<IActionResult> OnPostAsync(string findBeer, string[] beerType, string ean13)
         {
@@ -66,6 +89,15 @@ namespace Backend_Task03.Pages
             }
 
             return Page();
+        }
+        public async Task<IActionResult> OnPost(IFormFile photo)
+        {
+            string path = Path.Combine(
+                accessControl.LoggedInAccountID.ToString(),
+                Guid.NewGuid().ToString() + "-" + photo.FileName
+            );
+            await uploads.SaveFileAsync(photo, path);
+            return RedirectToPage();
         }
 
     }

@@ -6,3 +6,14 @@
 }
 
 
+
+<h2>DailyBeer</h2>
+@foreach (var url in Model.PhotoURLs)
+{
+    <img src="@url" style="width: 250px">
+}
+
+@if (Model.PhotoURLs.Count == 0)
+{
+    <p>You have not uploaded any photos yet.</p>
+}
