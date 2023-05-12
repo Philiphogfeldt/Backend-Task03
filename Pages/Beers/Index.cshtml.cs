@@ -59,7 +59,7 @@ namespace Backend_Task03.Pages.Beers
 						}
 					}
 
-
+					//add the individual rating to the total rating-count
 					ratingValueCount += review.Rating;	
 				}
 
@@ -86,7 +86,7 @@ namespace Backend_Task03.Pages.Beers
 					}
 				}
 
-				//Update the Rating property
+				//Calculate mean value and update the Rating property 
 				decimal totalRating = Math.Round(ratingValueCount / reviewCount, 1);
 				beer.Rating = (double)totalRating;
 
