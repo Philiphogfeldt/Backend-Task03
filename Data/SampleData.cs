@@ -318,10 +318,8 @@ namespace Backend_Task03.Data
                   "Fruity and aromatic"
                 };
                 var comment = comments[new Random().Next(comments.Count)];
-                return $"{comment} with {beerName}. Rating: {rating}/5.";
+                return $"{comment}.";
             }
-        
-      
 
     }
 

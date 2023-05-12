@@ -3,99 +3,128 @@
 @inject Backend_Task03.Data.AccessControl AccessControl
 
 @{
-    ViewData["Title"] = "Index";
+	ViewData["Title"] = "Index";
 }
 
-<p>
-    <form asp-page="/Index" method="get">
-        <button type="submit" class="btn btn-primary">Back To Index</button>
-    </form>
-
-</p>
-
-@*<form method="post">
-    <input type="text" name="findBeer" />
-    <button type="submit">Search</button>
-</form>*@
-
-<form method="post">
-    <input type="text" name="findBeer" />
-    <input type="checkbox" name="beerType[]" value="Ale" /> Ale
-    <input type="checkbox" name="beerType[]" value="Lager" /> Lager
-    <input type="checkbox" name="beerType[]" value="Stout" /> Stout
-    <button type="submit">Search</button>
-</form>
-
-<h1>Index</h1>
+<h1>Beer</h1>
 
 <p>
-    <form asp-page="Create" method="get">
-        <button type="submit" class="btn btn-primary">Create New</button>
-    </form>
+
+	<form asp-page="Create" method="get">
+		@if (AccessControl.LoggedInAccountRole == "Admin")
+		{
+			<button type="submit" class="btn btn-primary">Create New</button>
+		}
+	</form>
 </p>
 <table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Beer[0].Name)
-            </th>
-            @*<th>
-                @Html.DisplayNameFor(model => model.Beer[0].Description)
-            </th>*@
-            <th>
-                @Html.DisplayNameFor(model => model.Beer[0].Type)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Beer[0].Percentage)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Beer[0].Brewery)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Beer[0].Country)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Beer[0].GoesWellWith)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.Beer)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-               @* <td>
-                    @Html.DisplayFor(modelItem => item.Description)
-                </td>*@
-                <td>
-                    @Html.DisplayFor(modelItem => item.Type)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Percentage)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Brewery)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Country)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.GoesWellWith)
-                </td>
-                <td>
-                <td>
-                        @if (AccessControl.LoggedInAccountRole == "Admin")
-                        {
-                            <button type="button" onclick="location.href='@Url.Page("./Edit", new { id = item.ID })'">Edit</button>
-                            <button type="button" onclick="location.href='@Url.Page("./Delete", new { id = item.ID })'">Delete</button>
-                        }
-                    <button type="button" onclick="location.href='@Url.Page("./Details", new { id = item.ID })'">Details</button>
+	<thead>
+		<tr>
+			<th>
+				@Html.DisplayNameFor(model => model.Beer[0].Name)
+			</th>
+			@*<th>
+			@Html.DisplayNameFor(model => model.Beer[0].Description)
+			</th>*@
+			<th>
+				@Html.DisplayNameFor(model => model.Beer[0].Type)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Beer[0].Percentage)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Beer[0].Brewery)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Beer[0].Country)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Beer[0].GoesWellWith)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Beer[0].Rating)
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model.Beer)
+		{
+			<tr>
+				<td>
+					@Html.DisplayFor(modelItem => item.Name)
+				</td>
+				@* <td>
+			@Html.DisplayFor(modelItem => item.Description)
+			</td>*@
+				<td>
+					@Html.DisplayFor(modelItem => item.Type)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Percentage)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Brewery)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Country)
+				</td>
+				<td>
+					@* @Html.DisplayFor(modelItem => item.GoesWellWith) *@
 
-                </td>
-            </tr>
-        }
-    </tbody>
+
+
+					@*<img name="goesw" value="Chicken" src="images/chicken.svg" style="width: 18px" hidden />*@
+
+
+					@*  <label asp-for="Goesw">
+				<img asp-append-version="true" name="Goesw" value="Chicken" src="images/chicken.svg" style="width: 18px" />
+				<img asp-append-version="true" name="Goesw" value="Meat" src="images/meat.svg" style="width: 18px" />
+				<img asp-append-version="true" name="Goesw" value="Fish" src="images/fish.svg" style="width: 18px" />
+				<img asp-append-version="true" name="Goesw" value="Vegetarian" src="images/veg.svg" style="width: 18px" />
+				<img asp-append-version="true" name="Goesw" value="Dessert" src="images/dessert.svg" style="width: 18px" />
+				</label> *@
+
+					@if (item.GoesWellWith.Contains("Chicken"))
+					{
+					<img asp-append-version="true" name="Goesw" value="Chicken" src="images/chicken.svg" style="width: 25px" />
+					}
+
+					@if (item.GoesWellWith.Contains("Meat"))
+					{
+						<img asp-append-version="true" name="Goesw" value="Meat" src="images/meat.svg" style="width: 25px" />
+					}
+
+					@if (item.GoesWellWith.Contains("Fish"))
+					{
+						<img asp-append-version="true" name="Goesw" value="Fish" src="images/fish.svg" style="width: 25px" />
+					}
+
+					@if (item.GoesWellWith.Contains("Vegetarian"))
+					{
+						<img asp-append-version="true" name="Goesw" value="Vegetarian" src="images/veg.svg" style="width: 25px" />
+					}
+
+					@if (item.GoesWellWith.Contains("Dessert"))
+					{
+						<img asp-append-version="true" name="Goesw" value="Dessert" src="images/dessert.svg" style="width: 25px" />
+					}
+
+				</td>
+				<td>
+						@Html.DisplayFor(modelItem => item.Rating)
+				</td>
+
+
+				<td>
+						@if (AccessControl.LoggedInAccountRole == "Admin")
+						{
+						<button type="button" onclick="location.href='@Url.Page("./Edit", new { id = item.ID })'">Edit</button>
+						<button type="button" onclick="location.href='@Url.Page("./Delete", new { id = item.ID })'">Delete</button>
+						}
+					<button type="button" onclick="location.href='@Url.Page("./Details", new { id = item.ID })'">Details</button>
+
+				</td>
+			</tr>
+		}
+	</tbody>
 </table>

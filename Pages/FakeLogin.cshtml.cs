@@ -41,16 +41,21 @@ namespace Backend_Task03.Pages
 
             await HttpContext.SignInAsync(principal);
 
+            //return RedirectToPage("./Accounts/Details?id=@accessControl.LoggedInAccountID");
 
-            if (!string.IsNullOrEmpty(currentUrl))
+			if (!string.IsNullOrEmpty(currentUrl))
             {
-                return Redirect(currentUrl);
+                return Redirect(currentUrl + "?id=" + accountID);
             }
             else
             {
-                return RedirectToPage("./index");
+                return RedirectToPage("./Index");
             }
 
-        }
-    }
+		}
+	}
+
+
+    
+
 }
