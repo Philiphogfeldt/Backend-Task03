@@ -42,8 +42,13 @@
 					<option value="Dessert">Dessert</option>
 
 				</select>
-				<input type="text" class="SearchInputBar" placeholder="Search" aria-label="Search">
-				<button class="MainSearchButton" type="button">Search</button>
+				
+				<form method="get" action="/Beers" class="AllSearch">
+					<input type="text" name="searchInput" class="SearchInputBar" placeholder="Search" aria-label="Search">
+					<button class="MainSearchButton" type="submit">Search</button>
+				</form>
+
+
 			</div>
 
 			<div class="NavigationPages">

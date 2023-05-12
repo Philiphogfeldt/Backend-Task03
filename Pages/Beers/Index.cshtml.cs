@@ -1,47 +1,80 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Backend_Task03.Data;
+using Backend_Task03.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using Backend_Task03.Data;
-using Backend_Task03.Models;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
+using NuGet.Protocol;
 
 namespace Backend_Task03.Pages.Beers
 {
 	public class IndexModel : PageModel
 	{
-		private readonly Backend_Task03.Data.AppDbContext database;
+		private readonly AppDbContext database;
 
-		public IndexModel(Backend_Task03.Data.AppDbContext context)
+		public IndexModel(AppDbContext context)
 		{
 			database = context;
 		}
 
 		public IList<Beer> Beer { get; set; }
 
-		//public string Goesw { get; set; }
+		[BindProperty(SupportsGet = true)]
+		public string FindBeer { get; set; }
+
+		[BindProperty(SupportsGet = true)]
+		public string[] BeerType { get; set; }
 
 		[BindProperty(SupportsGet = true)]
 		public string Chicken { get; set; }
+
 		public string Meat { get; set; }
 		public string Fish { get; set; }
 		public string Vegetarian { get; set; }
 		public string Dessert { get; set; }
 
-		public async Task OnGetAsync()
+		public async Task OnGetAsync(string searchInput)
 		{
-			Beer = await database.Beers.ToListAsync();
+			IQueryable<Beer> beers = database.Beers;
 
-			var beers = await database.Beers.Include(b => b.Reviews).ThenInclude(r => r.FoodCategories).ToListAsync();
-
-			foreach (var beer in beers)
+			if (!string.IsNullOrEmpty(searchInput))
 			{
-				decimal ratingValueCount = 0;
-				decimal reviewCount = beer.Reviews.Count;
+				beers = beers.Where(b => b.Name.Contains(searchInput) || b.EAN13 == searchInput);
+			}
+			if (!string.IsNullOrEmpty(FindBeer))
+			{
+				beers = beers.Where(b => b.Name.Contains(FindBeer));
+			}
 
+			if (BeerType != null && BeerType.Length > 0)
+			{
+				List<string> types = new List<string>();
+				if (BeerType.Contains("Ale"))
+				{
+					types.AddRange(new string[] { "Ale", "Brown Ale", "IPA", "Wheat Ale", "Belgian Ale", "Saison" });
+				}
+				if (BeerType.Contains("Lager"))
+				{
+					types.AddRange(new string[] { "Lager", "Kolsch", "STUFF HERE", "SORTER NÄR SOM NU" });
+				}
+				if (BeerType.Contains("Stout"))
+				{
+					types.AddRange(new string[] { "Stout", "Imperial Stout", "PUT THING HERE", "PUT IT HERE YES" });
+				}
+				beers = beers.Where(b => types.Contains(b.Type));
+			}
+
+			Beer = await beers.ToListAsync();
+
+
+			Beer = await beers.ToListAsync();
+
+			var allBeers = await database.Beers.Include(b => b.Reviews).ThenInclude(r => r.FoodCategories).ToListAsync();
+
+			foreach (var beer in allBeers)
+			{
 				Dictionary<string, int> categoryCounts = new Dictionary<string, int>();
 
 				// Count the number of times each category appears in the reviews
@@ -58,9 +91,6 @@ namespace Backend_Task03.Pages.Beers
 							categoryCounts[category.Name] = 1;
 						}
 					}
-
-
-					ratingValueCount += review.Rating;	
 				}
 
 				// Find the category/categories with the highest count
@@ -80,58 +110,53 @@ namespace Backend_Task03.Pages.Beers
 
 						if (kvp.Key == Chicken)
 						{
-
-						};
-
+							// Do something with Chicken
+						}
 					}
 				}
-
-				//Update the Rating property
-				decimal totalRating = Math.Round(ratingValueCount / reviewCount, 1);
-				beer.Rating = (double)totalRating;
 
 				// Update the GoesWellWith property
 				beer.GoesWellWith = string.Join(", ", mostSelectedCategories);
 			}
 
 			await database.SaveChangesAsync();
-			//return View(beers);  
-
-
 		}
 
-		public async Task OnPostAsync(string findBeer, string[] beerType)
+	public async Task OnPostAsync(string searchInput)
+	{
+		IQueryable<Beer> beers2Show = database.Beers;
+
+		if (!string.IsNullOrEmpty(FindBeer))
 		{
-			IQueryable<Beer> beers2Show = database.Beers;
-
-			if (!string.IsNullOrEmpty(findBeer))
-			{
-				beers2Show = beers2Show.Where(b => b.Name.Contains(findBeer));
-			}
-			else
-			{
-				Beer = await database.Beers.ToListAsync();
-			}
-			if (beerType != null && beerType.Any())
-			{
-				List<string> types = new List<string>();
-				if (beerType.Contains("Ale"))
-				{
-					types.AddRange(new string[] { "Ale", "Brown Ale", "IPA", "Wheat Ale", "Belgian Ale", "Saison" });
-				}
-				if (beerType.Contains("Lager"))
-				{
-					types.AddRange(new string[] { "Lager", "Kolsch", "STUFF HERE", "SORTER NÄR SOM NU" });
-				}
-				if (beerType.Contains("Stout"))
-				{
-					types.AddRange(new string[] { "Stout", "Imperial Stout", "PUT THING HERE", "PUT IT HERE YES" });
-				}
-				beers2Show = beers2Show.Where(b => types.Contains(b.Type));
-			}
-
-			Beer = await beers2Show.ToListAsync();
+			beers2Show = beers2Show.Where(b => b.Name.Contains(FindBeer));
 		}
 
+		if (!string.IsNullOrEmpty(searchInput))
+		{
+			beers2Show = beers2Show.Where(b => b.Name.Contains(searchInput) || b.EAN13 == searchInput);
+		}
+
+		if (BeerType != null && BeerType.Length > 0)
+		{
+			List<string> types = new List<string>();
+			if (BeerType.Contains("Ale"))
+			{
+				types.AddRange(new string[] { "Ale", "Brown Ale", "IPA", "Wheat Ale", "Belgian Ale", "Saison" });
+			}
+			if (BeerType.Contains("Lager"))
+			{
+				types.AddRange(new string[] { "Lager", "Kolsch", "STUFF HERE", "SORTER NÄR SOM NU" });
+			}
+			if (BeerType.Contains("Stout"))
+			{
+				types.AddRange(new string[] { "Stout", "Imperial Stout", "PUT THING HERE", "PUT IT HERE YES" });
+			}
+			beers2Show = beers2Show.Where(b => types.Contains(b.Type));
+		}
+
+		Beer = await beers2Show.ToListAsync();
 	}
+
+
+}
 }
