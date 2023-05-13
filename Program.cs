@@ -1,3 +1,4 @@
+using Backend_Task03;
 using Backend_Task03.Data;
 using Backend_Task03.Models;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -93,6 +94,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<AccessControl>();
+builder.Services.AddSingleton<FileRepository>();
 
 var app = builder.Build();
 
@@ -107,12 +109,10 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-app.UseRouting();
 
-/*Directory.CreateDirectory(builder.Configuration["Uploads:FolderPath"]);
+Directory.CreateDirectory(builder.Configuration["Uploads:FolderPath"]);
 app.UseStaticFiles(new StaticFileOptions
 {
     FileProvider = new PhysicalFileProvider(
@@ -121,7 +121,6 @@ app.UseStaticFiles(new StaticFileOptions
     RequestPath = builder.Configuration["Uploads:URLPath"]
 });
 app.UseRouting();
-*/
 app.UseAuthentication();
 app.UseAuthorization();
 
