@@ -20,7 +20,7 @@ namespace Backend_Task03.Pages.Accounts
 		[BindProperty]
 		public Account Account { get; set; } = default!;
 
-		// public List<Review> AccountReviews { get; set; } = new List<Review>(); greco's test grej
+		public List<Review> AccountReviews { get; set; } = new List<Review>();  //greco's test grej
 
 		public DetailsModel(AppDbContext context)
 		{
@@ -29,6 +29,7 @@ namespace Backend_Task03.Pages.Accounts
 
 		/*		public Account Account { get; set; } = default!;
 		*/
+
 		public async Task<IActionResult> OnGetAsync(int? id)
 		{
 			if (id == null || database.Accounts == null)
@@ -36,7 +37,7 @@ namespace Backend_Task03.Pages.Accounts
 				return NotFound();
 			}
 
-			var account = await database.Accounts.FirstOrDefaultAsync(m => m.ID == id);
+			var account = await database.Accounts.Include(a => a.Reviews).ThenInclude(a => a.Beer).FirstOrDefaultAsync(m => m.ID == id);
 
 			if (account == null)
 			{
@@ -46,9 +47,11 @@ namespace Backend_Task03.Pages.Accounts
 			else
 			{
 				Account = account;
+				AccountReviews = account.Reviews.ToList();
 			}
 
 			return Page();
+
 		}
 
 	}
