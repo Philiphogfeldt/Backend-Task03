@@ -20,6 +20,8 @@ namespace Backend_Task03.Pages.Accounts
 		[BindProperty]
 		public Account Account { get; set; } = default!;
 
+		// public List<Review> AccountReviews { get; set; } = new List<Review>(); greco's test grej
+
 		public DetailsModel(AppDbContext context)
 		{
 			database = context;
