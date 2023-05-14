@@ -1,5 +1,63 @@
-﻿import fakeFetch from './fake-fetch.js';
+﻿//import fakeFetch from './fake-fetch.js';
 
+
+//const useRealAPI = false;
+
+//async function fetchJSON(url, options) {
+//    if (useRealAPI) {
+//        const response = await fetch(url, options);
+//        const json = await response.json();
+//        return json;
+//    }
+//    else {
+//        // Sleep for one second to simulate a network delay.
+//        await new Promise(r => setTimeout(r, 1000));
+//        const json = fakeFetch(url, options);
+//        return json;
+//    }
+//}
+
+
+//const goesWithFoodElement = document.querySelector('#goesWithFood');
+//const pizzacategory = goesWithFoodElement.textContent.trim();
+//const message = document.querySelector('#message');
+
+//const pizzadiv = document.querySelector('#pizzaGridCell')
+//var pizzaname = document.querySelector('#pizzaName')
+//var ingredientlist = document.querySelector('#ingredientlist')
+//var resultList = document.querySelector('#recommendation')
+
+
+//    const result = await fetchJSON(
+//        'https://pizzaexample.com/api/?' +
+//        new URLSearchParams({
+//            q: pizzacategory,
+//        }).toString()
+//    );
+
+//    if (result.hits.length === 0) {
+//        message.hidden = false;
+//        resultList.hidden = true;
+//    }
+//    else {
+//        message.hidden = true;
+//        resultList.hidden = false;
+
+//        resultList.replaceChildren();
+
+//        for (const hit of result.hits) {
+//            const img = document.createElement('img');
+//            img.src = hit.webformatURL;
+//            img.style.width = '250px';
+
+//            const li = document.createElement('li');
+//            li.append(img);
+
+//            resultList.append(li);
+//        }
+//    }
+
+import fakeFetch from './fake-fetch.js';
 
 const useRealAPI = false;
 
@@ -8,44 +66,29 @@ async function fetchJSON(url, options) {
         const response = await fetch(url, options);
         const json = await response.json();
         return json;
-    }
-    else {
+    } else {
         // Sleep for one second to simulate a network delay.
-        await new Promise(r => setTimeout(r, 1000));
+        await new Promise((r) => setTimeout(r, 1000));
         const json = fakeFetch(url, options);
         return json;
     }
 }
 
-
 const goesWithFoodElement = document.querySelector('#goesWithFood');
-const pizzacategory = goesWithFoodElement.textContent.trim();
 const message = document.querySelector('#message');
+const resultList = document.querySelector('#recommendation');
 
-const pizzadiv = document.querySelector('#pizzaGridCell')
-var pizzaname = document.querySelector('#pizzaName')
-var ingredientlist = document.querySelector('#ingredientlist')
-var resultList = document.querySelector('#recommendation')
-
-
-    const result = await fetchJSON(
-        'https://pizzaexample.com/api/?' +
-        new URLSearchParams({
-            q: pizzacategory,
-        }).toString()
-    );
-
-    if (result.hits.length === 0) {
+function displayResults(hits) {
+    if (hits.length === 0) {
         message.hidden = false;
         resultList.hidden = true;
-    }
-    else {
+    } else {
         message.hidden = true;
         resultList.hidden = false;
 
         resultList.replaceChildren();
 
-        for (const hit of result.hits) {
+        for (const hit of hits) {
             const img = document.createElement('img');
             img.src = hit.webformatURL;
             img.style.width = '250px';
@@ -56,4 +99,23 @@ var resultList = document.querySelector('#recommendation')
             resultList.append(li);
         }
     }
+}
 
+async function searchPizzas(q) {
+    const result = await fetchJSON(
+        'https://pizzaexample.com/api/?' + new URLSearchParams({ q }).toString()
+    );
+    displayResults(result.hits);
+}
+
+// When the page is loaded, fetch data from the API.
+searchPizzas(goesWithFoodElement.textContent.trim());
+
+// When the form is submitted, fetch data from the API.
+const form = document.querySelector('#pizza-form');
+form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    const pizzacategory = formData.get('category');
+    searchPizzas(pizzacategory);
+});

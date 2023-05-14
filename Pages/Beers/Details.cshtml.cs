@@ -9,6 +9,7 @@ using Backend_Task03.Data;
 using Backend_Task03.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore.Storage;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace Backend_Task03.Pages.Beers
 {
@@ -63,9 +64,7 @@ namespace Backend_Task03.Pages.Beers
                 .FirstOrDefault(b => b.ID == id);
 
             //oklart om den ska ligga redan här
-         //FoodCategoriesFromDb = database.FoodCategories.ToList();
-
-            
+         //FoodCategoriesFromDb = database.FoodCategories.ToList();  
 
             if (Beer == null)
             {
@@ -83,7 +82,9 @@ namespace Backend_Task03.Pages.Beers
                 //oklart om denna ska ligga här
                 FoodCategories = ThisReviewFoodcategories
             };
+
         }
+
 
         public void ActiveAccount()
         {
@@ -92,8 +93,64 @@ namespace Backend_Task03.Pages.Beers
 
         public IActionResult OnGet(int id)
         {
-            LoadBeer(id);
-            return Page();
+            Beer = database.Beers
+               .Include(b => b.Reviews).ThenInclude(r => r.FoodCategories)
+               .FirstOrDefault(b => b.ID == id);
+
+            if (Beer.Reviews.Any())
+            {
+                decimal ratingValueCount = 0;
+                decimal reviewCount = Beer.Reviews.Count;
+
+                Dictionary<string, int> categoryCounts = new Dictionary<string, int>();
+
+                // Count the number of times each category appears in the reviews
+                foreach (var review in Beer.Reviews)
+                {
+                    foreach (var category in review.FoodCategories)
+                    {
+                        if (categoryCounts.ContainsKey(category.Name))
+                        {
+                            categoryCounts[category.Name]++;
+                        }
+                        else
+                        {
+                            categoryCounts[category.Name] = 1;
+                        }
+                    }
+
+                    ratingValueCount += review.Rating;
+                }
+
+                // Find the category/categories with the highest count
+                List<string> mostSelectedCategories = new List<string>();
+                int highestCount = 0;
+                foreach (var kvp in categoryCounts)
+                {
+                    if (kvp.Value > highestCount)
+                    {
+                        mostSelectedCategories.Clear();
+                        mostSelectedCategories.Add(kvp.Key);
+                        highestCount = kvp.Value;
+                    }
+                    else if (kvp.Value == highestCount)
+                    {
+                        mostSelectedCategories.Add(kvp.Key);
+                    }
+                }
+
+                // Update the Rating property
+                decimal totalRating = Math.Round(ratingValueCount / reviewCount, 1);
+                Beer.Rating = (double)totalRating;
+
+                // Update the GoesWellWith property
+                Beer.GoesWellWith = string.Join(", ", mostSelectedCategories);
+
+                database.SaveChanges();
+            }
+
+                LoadBeer(id);
+                return Page();
         }
 
         public async Task<IActionResult> OnPostAsync(int id)
@@ -144,8 +201,7 @@ namespace Backend_Task03.Pages.Beers
                 nameof(NewReview),
                 c => c.Rating,
                 c => c.Comment,
-                c => c.Beer
-                
+                c => c.Beer    
                 
                 );
  

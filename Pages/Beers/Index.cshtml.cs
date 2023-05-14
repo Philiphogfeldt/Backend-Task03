@@ -66,7 +66,6 @@ namespace Backend_Task03.Pages.Beers
 
             Beer = await beers.ToListAsync();
 
-
             var allBeers = await database.Beers.Include(b => b.Reviews).ThenInclude(r => r.FoodCategories).ToListAsync();
 
             foreach (var beer in allBeers)
@@ -116,10 +115,6 @@ namespace Backend_Task03.Pages.Beers
                         {
                             mostSelectedCategories.Add(kvp.Key);
 
-                            if (kvp.Key == Chicken)
-                            {
-                                // Do something with Chicken
-                            }
                         }
                     }
 

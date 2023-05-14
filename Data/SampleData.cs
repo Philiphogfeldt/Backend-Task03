@@ -323,7 +323,7 @@ namespace Backend_Task03.Data
 
 
         //Vad säger vi om det här? Har lagt den som static för att det ska funka - Vet ej om det är ok. / Linda
-        public static List<string> CountryTest { get; set; } = new List<string>
+        public static List<string> CountryData { get; set; } = new List<string>
         {
         "Australia",
         "Belgium",
