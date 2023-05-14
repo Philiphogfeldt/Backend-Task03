@@ -55,11 +55,11 @@ namespace Backend_Task03.Pages.Beers
                 }
                 if (BeerType.Contains("Lager"))
                 {
-                    types.AddRange(new string[] { "Lager", "Kolsch", "STUFF HERE", "SORTER NÄR SOM NU" });
+                    types.AddRange(new string[] { "Lager", "Kolsch"});
                 }
                 if (BeerType.Contains("Stout"))
                 {
-                    types.AddRange(new string[] { "Stout", "Imperial Stout", "PUT THING HERE", "PUT IT HERE YES" });
+                    types.AddRange(new string[] { "Stout", "Imperial Stout"});
                 }
                 beers = beers.Where(b => types.Contains(b.Type));
             }
