@@ -1,7 +1,10 @@
 ﻿export default function fakeFetch(urlString, options) {
     const url = new URL(urlString);
 
+
     if (url.hostname === 'pizzaexample.com' && url.pathname === '/api/') {
+
+    //Jag har bara behållt det här så länge. Den kommer aldrig att köras eftersom q aldrig= animal
         if (url.searchParams.get('q') === 'animal') {
             return {
                 total: 4,
@@ -42,6 +45,37 @@
                 hits: [
                     {
                         webformatURL: '/fake-images/Chicken.jpg'
+                    }
+                ]
+            }
+        }
+        else if (url.searchParams.get('q') === 'Dessert') {
+            return {
+                total: 1,
+                totalHits: 1,
+                hits: [
+                    {
+                        webformatURL: '/fake-images/Dessert.jpg'
+                    }
+                ]
+            }
+        } else if (url.searchParams.get('q') === 'Fish') {
+            return {
+                total: 1,
+                totalHits: 1,
+                hits: [
+                    {
+                        webformatURL: '/fake-images/Fish.jpg'
+                    }
+                ]
+            }
+        } else if (url.searchParams.get('q') === 'Vegetarian') {
+            return {
+                total: 1,
+                totalHits: 1,
+                hits: [
+                    {
+                        webformatURL: '/fake-images/Vegetarian.jpg'
                     }
                 ]
             }
