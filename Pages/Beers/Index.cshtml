@@ -6,12 +6,9 @@
 	ViewData["Title"] = "Index";
 }
 
-
 <h1>Beer</h1>
 
-
 <p>
-
 	<form asp-page="Create" method="get">
 		@if (AccessControl.LoggedInAccountRole == "Admin")
 		{
@@ -25,9 +22,6 @@
 			<th>
 				@Html.DisplayNameFor(model => model.Beer[0].Name)
 			</th>
-			@*<th>
-			@Html.DisplayNameFor(model => model.Beer[0].Description)
-			</th>*@
 			<th>
 				@Html.DisplayNameFor(model => model.Beer[0].Type)
 			</th>
@@ -55,9 +49,6 @@
 				<td>
 					@Html.DisplayFor(modelItem => item.Name)
 				</td>
-				@* <td>
-			@Html.DisplayFor(modelItem => item.Description)
-			</td>*@
 				<td>
 					@Html.DisplayFor(modelItem => item.Type)
 				</td>
@@ -88,7 +79,7 @@
 
 					@if (item.GoesWellWith.Contains("Chicken"))
 					{
-					<img asp-append-version="true" name="Goesw" value="Chicken" src="images/chicken.svg" style="width: 25px" />
+						<img asp-append-version="true" name="Goesw" value="Chicken" src="images/chicken.svg" style="width: 25px" />
 					}
 
 					@if (item.GoesWellWith.Contains("Meat"))
@@ -113,18 +104,15 @@
 
 				</td>
 				<td>
-						@Html.DisplayFor(modelItem => item.Rating)
+					@Html.DisplayFor(modelItem => item.Rating)
 				</td>
-
-
 				<td>
-						@if (AccessControl.LoggedInAccountRole == "Admin")
-						{
-						<button type="button" onclick="location.href='@Url.Page("./Edit", new { id = item.ID })'">Edit</button>
-						<button type="button" onclick="location.href='@Url.Page("./Delete", new { id = item.ID })'">Delete</button>
-						}
+					@if (AccessControl.LoggedInAccountRole == "Admin")
+					{
+						<button type="button" onclick="location.href='@Url.Page("./Edit", new { id = item.ID, name = item.Name })'">Edit</button>
+						<button type="button" onclick="location.href='@Url.Page("./Delete", new { id = item.ID, name = item.Name })'">Delete</button>
+					}
 					<button type="button" onclick="location.href='@Url.Page("./Details", new { id = item.ID, name = item.Name })'">Details</button>
-
 				</td>
 			</tr>
 		}
