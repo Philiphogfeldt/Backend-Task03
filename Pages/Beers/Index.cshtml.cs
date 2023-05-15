@@ -66,6 +66,7 @@ namespace Backend_Task03.Pages.Beers
 
             Beer = await beers.ToListAsync();
 
+
             var allBeers = await database.Beers.Include(b => b.Reviews).ThenInclude(r => r.FoodCategories).ToListAsync();
 
             foreach (var beer in allBeers)
@@ -93,10 +94,10 @@ namespace Backend_Task03.Pages.Beers
                     ratingValueCount += review.Rating;
                 }
 
-                // Update the Rating property
-                decimal totalRating = Math.Round
-                (ratingValueCount / reviewCount, 1);
-                beer.Rating = (double)totalRating;
+                //// Update the Rating property
+                //decimal totalRating = Math.Round
+                //(ratingValueCount / reviewCount, 1);
+                //beer.Rating = (double)totalRating;
 
                 // Find the category/categories with the highest count
                 List<string> mostSelectedCategories = new List<string>();
@@ -119,8 +120,11 @@ namespace Backend_Task03.Pages.Beers
                         }
                     }
                 }
-                totalRating = Math.Round(ratingValueCount / reviewCount, 1);
+
+				// Update the Rating property
+				decimal totalRating = Math.Round(ratingValueCount / reviewCount, 1);
                 beer.Rating = (double)totalRating;
+
                 // Update the GoesWellWith property
                 beer.GoesWellWith = string.Join(", ", mostSelectedCategories);
             }
