@@ -124,7 +124,6 @@ button {
     grid-area: favorites;
 }
 
-/* frex \/ */
 #reviewGridCell {
     display: grid;
     padding: 3px;
@@ -136,4 +135,30 @@ button {
 }
 
 #beerGridCell {
+}
+
+#accountBodyGrid {
+    display: grid;
+    align-content: start;
+    padding: 10px;
+    grid-template:
+        "a b" /1fr;
+}
+
+#accountleftGrid {
+    display: grid;
+    grid-area: a;
+    height: fit-content;
+}
+
+#accountrightGrid {
+    display: grid;
+    grid-area: b;
+    align-self: end;
+    width: 200px;
+}
+#accountReviewGridBox{
+    border: 1px;
+    border-style: solid;
+    padding: 3px;
 }

@@ -13,41 +13,42 @@ using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace Backend_Task03.Pages.Beers
 {
-    public class DetailsModel : PageModel
-    {
-        private readonly AppDbContext database;
+	public class DetailsModel : PageModel
+	{
+		private readonly AppDbContext database;
 
-        private readonly AccessControl accessControl; // testar mig fram här
-
-
-        public DetailsModel(AppDbContext context, IHttpContextAccessor httpContextAccessor)
-        {
-            database = context;
-
-            accessControl = new AccessControl(database, httpContextAccessor);
-        }
-
-        [BindProperty]
-        public Beer Beer { get; set; } = default!;
-
-        [BindProperty]
-        public Review NewReview { get; set; }
-
-        [BindProperty]
-        public Account Account { get; set; }
-
-        [BindProperty]
-        public List<FoodCategory> ThisReviewFoodcategories { get; set; }
-
-       // [BindProperty]
-        //public List<FoodCategory> FoodCategoriesFromDb { get; set; }
+		private readonly AccessControl accessControl; // testar mig fram här
 
 
-        [BindProperty]
-        public bool Meat { get; set; }
+		public DetailsModel(AppDbContext context, IHttpContextAccessor httpContextAccessor)
+		{
+			database = context;
 
-        [BindProperty]
-        public bool Chicken { get; set; }
+			accessControl = new AccessControl(database, httpContextAccessor);
+		}
+
+		[BindProperty]
+		public Beer Beer { get; set; } = default!;
+
+		[BindProperty]
+		public Review NewReview { get; set; }
+
+		[BindProperty]
+		public Account Account { get; set; }
+
+		[BindProperty]
+		public List<FoodCategory> ThisReviewFoodcategories { get; set; }
+
+		// [BindProperty]
+		//public List<FoodCategory> FoodCategoriesFromDb { get; set; }
+
+
+		[BindProperty]
+		public bool Meat { get; set; }
+
+		[BindProperty]
+		public bool Chicken { get; set; }
+
 
         [BindProperty]
         public bool Fish { get; set; }
@@ -163,36 +164,14 @@ namespace Backend_Task03.Pages.Beers
             NewReview.Account = Account;
 
 
-            if (Chicken == true)
-            {
-                var chicken = database.FoodCategories.FirstOrDefault(c => c.Name == "Chicken");
-                ThisReviewFoodcategories.Add(chicken);
+		public void LoadBeer(int id)
+		{
+			Beer = database.Beers
+				.Include(b => b.Reviews).ThenInclude(b => b.Account)
+				.FirstOrDefault(b => b.ID == id);
 
-            }
-            if (Meat == true)
-            {
-                var meat = database.FoodCategories.FirstOrDefault(c => c.Name == "Meat");
-                ThisReviewFoodcategories.Add(meat);
-
-            }
-            if (Fish == true)
-            {
-                var fish = database.FoodCategories.FirstOrDefault(c => c.Name == "Fish");
-                ThisReviewFoodcategories.Add(fish);
-
-            }
-            if (Vegetarian == true)
-            {
-                var veg = database.FoodCategories.FirstOrDefault(c => c.Name == "Vegetarian");
-                ThisReviewFoodcategories.Add(veg);
-
-            }
-            if (Dessert == true)
-            {
-                var dessert = database.FoodCategories.FirstOrDefault(c => c.Name == "Dessert");
-                ThisReviewFoodcategories.Add(dessert);
-
-            }
+			//oklart om den ska ligga redan här
+			//FoodCategoriesFromDb = database.FoodCategories.ToList();
 
 
             //bool success = 
@@ -207,7 +186,50 @@ namespace Backend_Task03.Pages.Beers
  
 
 
-            /*            
+			if (Chicken == true)
+			{
+				var chicken = database.FoodCategories.FirstOrDefault(c => c.Name == "Chicken");
+				ThisReviewFoodcategories.Add(chicken);
+
+			}
+			if (Meat == true)
+			{
+				var meat = database.FoodCategories.FirstOrDefault(c => c.Name == "Meat");
+				ThisReviewFoodcategories.Add(meat);
+
+			}
+			if (Fish == true)
+			{
+				var fish = database.FoodCategories.FirstOrDefault(c => c.Name == "Fish");
+				ThisReviewFoodcategories.Add(fish);
+
+			}
+			if (Vegetarian == true)
+			{
+				var veg = database.FoodCategories.FirstOrDefault(c => c.Name == "Vegetarian");
+				ThisReviewFoodcategories.Add(veg);
+
+			}
+			if (Dessert == true)
+			{
+				var dessert = database.FoodCategories.FirstOrDefault(c => c.Name == "Dessert");
+				ThisReviewFoodcategories.Add(dessert);
+
+			}
+
+
+			//bool success = 
+			await TryUpdateModelAsync(
+				NewReview,
+				nameof(NewReview),
+				c => c.Rating,
+				c => c.Comment,
+				c => c.Beer
+				);
+
+
+
+			/*            
             if (success)
             {
                 Beer.Reviews.Add(NewReview);
@@ -222,11 +244,12 @@ namespace Backend_Task03.Pages.Beers
             } */
 
 
-            //förstår inte riktigt varför båda dessa behövs
-            Beer.Reviews.Add(NewReview);
-            database.Reviews.Add(NewReview);
-            database.SaveChanges();
-            return RedirectToPage("./Details", new {id = Beer.ID });
-        }
-    }
+			//förstår inte riktigt varför båda dessa behövs
+			//Account.Reviews.Add(NewReview);
+			Beer.Reviews.Add(NewReview);
+			database.Reviews.Add(NewReview);
+			database.SaveChanges();
+			return RedirectToPage("./Details", new { id = Beer.ID });
+		}
+	}
 }

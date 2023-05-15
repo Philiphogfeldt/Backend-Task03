@@ -39,8 +39,8 @@ namespace Backend_Task03.Pages
 
             if (files.Length > 0)
             {
-                var rand = new Random();
-                string randomFile = files[rand.Next(files.Length)];
+                var randomBeer = new Random();
+                string randomFile = files[randomBeer.Next(files.Length)];
                 string url = uploads.GetFileURL(randomFile);
                 PhotoURLs.Add(url);
             }
