@@ -9,6 +9,7 @@ using Backend_Task03.Data;
 using Backend_Task03.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore.Storage;
+using System.Xml.Linq;
 
 namespace Backend_Task03.Pages.Beers
 {
@@ -169,7 +170,7 @@ namespace Backend_Task03.Pages.Beers
 			Beer.Reviews.Add(NewReview);
 			database.Reviews.Add(NewReview);
 			database.SaveChanges();
-			return RedirectToPage("./Details", new { id = Beer.ID });
+			return RedirectToPage("./Details", new { id = Beer.ID, name = Beer.Name });
 		}
 	}
 }

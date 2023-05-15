@@ -123,7 +123,7 @@
 						<button type="button" onclick="location.href='@Url.Page("./Edit", new { id = item.ID })'">Edit</button>
 						<button type="button" onclick="location.href='@Url.Page("./Delete", new { id = item.ID })'">Delete</button>
 						}
-					<button type="button" onclick="location.href='@Url.Page("./Details", new { id = item.ID })'">Details</button>
+					<button type="button" onclick="location.href='@Url.Page("./Details", new { id = item.ID, name = item.Name })'">Details</button>
 
 				</td>
 			</tr>
