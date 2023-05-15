@@ -14,12 +14,21 @@ namespace Backend_Task03.Pages.Accounts
 	{
 		private readonly AppDbContext database;
 
+		[BindProperty]
+		public Beer Beer { get; set; } = default!;
+
+		[BindProperty]
+		public Account Account { get; set; } = default!;
+
+		public List<Review> AccountReviews { get; set; } = new List<Review>();  //greco's test grej
+
 		public DetailsModel(AppDbContext context)
 		{
 			database = context;
 		}
 
-		public Account Account { get; set; } = default!;
+		/*		public Account Account { get; set; } = default!;
+		*/
 
 		public async Task<IActionResult> OnGetAsync(int? id)
 		{
@@ -28,7 +37,7 @@ namespace Backend_Task03.Pages.Accounts
 				return NotFound();
 			}
 
-			var account = await database.Accounts.FirstOrDefaultAsync(m => m.ID == id);
+			var account = await database.Accounts.Include(a => a.Reviews).ThenInclude(a => a.Beer).FirstOrDefaultAsync(m => m.ID == id);
 
 			if (account == null)
 			{
@@ -38,9 +47,12 @@ namespace Backend_Task03.Pages.Accounts
 			else
 			{
 				Account = account;
+				AccountReviews = account.Reviews.ToList();
 			}
 
 			return Page();
+
 		}
+
 	}
 }
