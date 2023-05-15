@@ -39,16 +39,15 @@ namespace Backend_Task03.Pages.Beers
 		[BindProperty]
 		public List<FoodCategory> ThisReviewFoodcategories { get; set; }
 
-		// [BindProperty]
-		//public List<FoodCategory> FoodCategoriesFromDb { get; set; }
+        //[BindProperty]
+        //public List<FoodCategory> FoodCategoriesFromDb { get; set; }
 
 
-		[BindProperty]
-		public bool Meat { get; set; }
+        [BindProperty]
+        public bool Meat { get; set; }
 
-		[BindProperty]
-		public bool Chicken { get; set; }
-
+        [BindProperty]
+        public bool Chicken { get; set; }
 
         [BindProperty]
         public bool Fish { get; set; }
@@ -56,8 +55,8 @@ namespace Backend_Task03.Pages.Beers
         public bool Vegetarian { get; set; }
         [BindProperty]
         public bool Dessert { get; set; }
-       
-   
+
+
         public void LoadBeer(int id)
         {
             Beer = database.Beers
@@ -162,28 +161,6 @@ namespace Backend_Task03.Pages.Beers
             ActiveAccount();
             //NewReview.Account = accessControl.LoggedInAccount; // Set the AccountID of the new review
             NewReview.Account = Account;
-
-
-		public void LoadBeer(int id)
-		{
-			Beer = database.Beers
-				.Include(b => b.Reviews).ThenInclude(b => b.Account)
-				.FirstOrDefault(b => b.ID == id);
-
-			//oklart om den ska ligga redan här
-			//FoodCategoriesFromDb = database.FoodCategories.ToList();
-
-
-            //bool success = 
-            await TryUpdateModelAsync(
-                NewReview,
-                nameof(NewReview),
-                c => c.Rating,
-                c => c.Comment,
-                c => c.Beer    
-                
-                );
- 
 
 
 			if (Chicken == true)
