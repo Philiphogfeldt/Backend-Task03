@@ -8,6 +8,13 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <None Include="wwwroot\imagesBeerly\beerlylogo1001.png" />
+	  <None Include="wwwroot\imagesBeerly\beerlylogo1002.gif" />
+	  <None Include="wwwroot\imagesBeerly\beerlylogo1002.png" />
+	  <None Include="wwwroot\imagesBeerly\beerlylogo1003.png" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
 		<PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="6.0.16" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.16" />
