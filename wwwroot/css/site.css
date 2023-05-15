@@ -1,7 +1,16 @@
+/*
+    colors we use
+    #6b7f9b blu-ish
+    #f2eeea dirtwhite
+    #FFA500 orange
+*/
+
+
 body {
     font-family: sans-serif;
     margin: 0;
     padding: 0;
+    background-color: #f2eeea;
 }
 
 .containerMain {
@@ -15,6 +24,9 @@ body {
     padding: 20px;
     max-width: 960px;
     margin: 0 auto;
+    background-image: url("../imagesBeerly/beerlylogo1005.png");
+    background-position: left;
+    background-repeat: no-repeat;
 }
 
 .header {
@@ -35,55 +47,75 @@ body {
 .AllSearch {
     grid-area: allsearch;
     display: grid;
-    grid-template-areas: "selectionBeer selectionFood searchInputBar mainSearchButton";
+    grid-template-areas: "selectionBeer selectionFood allSearchRight";
+    gap: 10px;
+    width: 100%;
+    /*    height: 50px;
+*/ justify-content: end;
+    /*    align-content: center;
+*/ align-items: end;
+}
+
+.AllSearchRight {
+    grid-area: allSearchRight;
+    display: grid;
+    grid-template-areas: "searchInputBar mainSearchButton";
+    align-items: end;
+    width: 350px;
     gap: 10px;
 }
 
 .SelectionBeer,
 .SelectionFood,
 .MainSearchButton {
-    height: 100%;
+    height: 44px;
+    width: 100px;
+    align-self: center;
 }
 
 .SelectionBeer {
+    display: grid;
     grid-area: selectionBeer;
     background-color: white;
-    border: 1px solid gray;
+    border: 1px solid #6b7f9b;
     padding: 8px;
     font-size: 14px;
     border-radius: 4px;
 }
 
 .SelectionFood {
+    display: grid;
     grid-area: selectionFood;
     background-color: white;
-    border: 1px solid gray;
+    border: 1px solid #6b7f9b;
     padding: 8px;
     font-size: 14px;
     border-radius: 4px;
 }
 
 .SearchInputBar {
+    display: grid;
     grid-area: searchInputBar;
-    padding: 8px;
     font-size: 14px;
-    border: 1px solid gray;
+    border: 1px solid #6b7f9b;
     border-radius: 4px;
-    height: 70%;
+    height: 40px;
+    align-self: center;
 }
 
 .MainSearchButton {
+    display: grid;
     grid-area: mainSearchButton;
     background-color: orange;
     border: none;
     color: black;
-    padding: 10px 20px;
-    text-align: center;
+/*    padding: 10px 20px;
+*/    text-align: center;
     text-decoration: none;
-    display: inline-block;
-    font-size: 18px;
-    margin: 4px 2px;
-    cursor: pointer;
+/*    display: inline-block;
+*/    font-size: 18px;
+/*    margin: 4px 2px;
+*/    cursor: pointer;
     transition-duration: 0.4s;
 }
 
@@ -96,6 +128,7 @@ body {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 10px;
+    margin-left: 150px;
 }
 
 button {
@@ -144,22 +177,50 @@ button {
     padding: 10px;
     grid-template:
         "a b" /1fr;
+    justify-self: center;
+    width: 960px;
 }
 
 #accountleftGrid {
     display: grid;
     grid-area: a;
     height: fit-content;
+
 }
 
 #accountrightGrid {
     display: grid;
     grid-area: b;
-    align-self: end;
+    justify-self: end;
+    justify-items: end;
     width: 200px;
 }
-#accountReviewGridBox{
+#accountReviewGridBox {
     border: 1px;
     border-style: solid;
-    padding: 3px;
+    border-color: orange;
+    width: 100%;
 }
+
+.normalBody {
+    display: grid;
+    padding: 20px;
+    max-width: 960px;
+    margin: 0 auto;
+    justify-content: center;
+    justify-self: center;
+    justify-items: center;
+}
+
+.dailyImage {
+    display: grid;
+    justify-content: center;
+    justify-self: center;
+    justify-items: center;
+}
+
+main {
+    display: grid;
+/*    background-color: #f2eeea;
+*/}
+
