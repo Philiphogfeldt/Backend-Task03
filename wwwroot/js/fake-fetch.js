@@ -91,6 +91,19 @@
                 ]
             }
         }
+        else if (url.searchParams.get('q').includes('Dessert')) {
+            return {
+                total: 1,
+                totalHits: 1,
+                hits: [
+                    {
+                        webformatURL: '/fake-images/Dessert.jpg',
+                        pizzaName: 'Dessert Pizza',
+                        ingredients: 'nutella, banana'
+                    }
+                ]
+            }
+        }
         else if (url.searchParams.get('q') === 'Chicken, Vegetarian') {
             return {
                 total: 2,
