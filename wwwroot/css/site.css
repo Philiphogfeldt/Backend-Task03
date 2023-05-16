@@ -24,7 +24,7 @@ body {
     padding: 20px;
     max-width: 960px;
     margin: 0 auto;
-    background-image: url("../imagesBeerly/beerlylogo1005.png");
+    background-image: url("../imagesBeerly/beerlylogo1002.png");
     background-position: left;
     background-repeat: no-repeat;
 }
@@ -128,10 +128,11 @@ body {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 10px;
-    margin-left: 150px;
+    margin-left: 190px;
 }
 
-button {
+button,
+#postButton {
     background-color: orange;
     border: none;
     color: black;
@@ -143,9 +144,11 @@ button {
     margin: 4px 2px;
     cursor: pointer;
     transition-duration: 0.4s;
+    border-radius: 8px;
 }
 
-    button:hover {
+    button:hover,
+    #postButton:hover {
         background-color: #cc7a00;
     }
 
@@ -165,8 +168,6 @@ button {
     gap: 2px;
 }
 
-#beerGrid {
-}
 
 #beerGridCell {
 }
@@ -223,4 +224,13 @@ main {
     display: grid;
 /*    background-color: #f2eeea;
 */}
+
+#beerGrid,
+#beerIndex {
+    display: grid;
+    align-content: start;
+    padding: 10px;
+    justify-self: center;
+    width: 960px;
+}
 
