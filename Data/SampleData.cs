@@ -321,6 +321,35 @@ namespace Backend_Task03.Data
                 return $"{comment}.";
             }
 
+
+        //Vad säger vi om det här? Har lagt den som static för att det ska funka - Vet ej om det är ok. / Linda
+        public static List<string> CountryData { get; set; } = new List<string>
+        {
+        "Australia",
+        "Belgium",
+        "Canada",
+        "Denmark",
+        "Ecuador",
+        "France",
+        "Germany",
+        "Honduras",
+        "Ireland",
+        "Jamaica",
+        "Kenya",
+        "Lebanon",
+        "Mexico",
+        "Netherlands",
+        "Oman",
+        "Portugal",
+        "Russia",
+        "Spain",
+        "Turkey",
+        "United States",
+        "Vietnam",
+        "Yemen",
+        "Zimbabwe"
+        };
+
     }
 
 }

@@ -16,7 +16,7 @@
 
 <div id="beerGrid">
     <div id="beerGridCell"></div>
-    <h4>Beer</h4>
+    <h2>Beer</h2>
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
@@ -58,6 +58,33 @@
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Beer.GoesWellWith)
         </dt>
+        <dd class="col-sm-10">
+            
+            @if (Model.Beer.GoesWellWith.Contains("Chicken"))
+            {
+                <img asp-append-version="true" name="Goesw" value="Chicken" src="../images/chicken.svg" style="width: 25px" />
+            }
+
+            @if (Model.Beer.GoesWellWith.Contains("Meat"))
+            {
+                <img asp-append-version="true" name="Goesw" value="Meat" src="../images/meat.svg" style="width: 25px" />
+            }
+
+            @if (Model.Beer.GoesWellWith.Contains("Fish"))
+            {
+                <img asp-append-version="true" name="Goesw" value="Fish" src="../images/fish.svg" style="width: 25px" />
+            }
+
+            @if (Model.Beer.GoesWellWith.Contains("Vegetarian"))
+            {
+                <img asp-append-version="true" name="Goesw" value="Vegetarian" src="../images/veg.svg" style="width: 25px" />
+            }
+
+            @if (Model.Beer.GoesWellWith.Contains("Dessert"))
+            {
+                <img asp-append-version="true" name="Goesw" value="Dessert" src="../images/dessert.svg" style="width: 25px" />
+            }
+        </dd>
         <dd id="goesWithFood" class="col-sm-10">
             @Html.DisplayFor(model => model.Beer.GoesWellWith)
         </dd>
@@ -68,19 +95,20 @@
             @Html.DisplayFor(model => model.Beer.Rating)
         </dd>
     </dl>
-   </div>
+</div>
 <hr />
 
-<h4>This pizza goes well with your chosen beer!</h4>
-<div id="recommendation" hidden>
+<h3>This pizza goes well with your chosen beer!</h3>
+@*<div id="recommendation" hidden>
     <div id="pizzaGridCell">
-        @*<img id="pizzapic" asp-append-version="true" name="pizzapic" src="images/chicken.svg" style="width: 25px" />*@
         <h2 id="pizzaName"></h2>
         <h3>Ingredients:</h3>
         <ul id="ingredientList"></ul>
     </div>
 
-</div>
+</div>*@
+
+<ul id="recommendation" hidden></ul>
 
 <p id="message" hidden>There are no results for that keyword.</p>
 
@@ -92,7 +120,7 @@
         <h4>Reviews</h4>
         @foreach (var comment in Model.Beer.Reviews)
         {
-            
+
             <div id="reviewGridCell">
                 @comment.Account.Name said: "@comment.Comment" -about this beer and gave it @comment.Rating / 5
 

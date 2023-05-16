@@ -9,6 +9,7 @@ using Backend_Task03.Data;
 using Backend_Task03.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore.Storage;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace Backend_Task03.Pages.Beers
 {
@@ -38,72 +39,128 @@ namespace Backend_Task03.Pages.Beers
 		[BindProperty]
 		public List<FoodCategory> ThisReviewFoodcategories { get; set; }
 
-		// [BindProperty]
-		//public List<FoodCategory> FoodCategoriesFromDb { get; set; }
+        //[BindProperty]
+        //public List<FoodCategory> FoodCategoriesFromDb { get; set; }
 
 
-		[BindProperty]
-		public bool Meat { get; set; }
+        [BindProperty]
+        public bool Meat { get; set; }
 
-		[BindProperty]
-		public bool Chicken { get; set; }
+        [BindProperty]
+        public bool Chicken { get; set; }
 
-		[BindProperty]
-		public bool Fish { get; set; }
-		[BindProperty]
-		public bool Vegetarian { get; set; }
-		[BindProperty]
-		public bool Dessert { get; set; }
-
-
-		public void LoadBeer(int id)
-		{
-			Beer = database.Beers
-				.Include(b => b.Reviews).ThenInclude(b => b.Account)
-				.FirstOrDefault(b => b.ID == id);
-
-			//oklart om den ska ligga redan här
-			//FoodCategoriesFromDb = database.FoodCategories.ToList();
+        [BindProperty]
+        public bool Fish { get; set; }
+        [BindProperty]
+        public bool Vegetarian { get; set; }
+        [BindProperty]
+        public bool Dessert { get; set; }
 
 
+        public void LoadBeer(int id)
+        {
+            Beer = database.Beers
+                .Include(b => b.Reviews).ThenInclude(b=> b.Account)
+                .FirstOrDefault(b => b.ID == id);
 
-			if (Beer == null)
-			{
-				return;
-			}
+            //oklart om den ska ligga redan här
+         //FoodCategoriesFromDb = database.FoodCategories.ToList();  
 
-			if (Beer.Reviews == null)
-			{
-				Beer.Reviews = new List<Review>();
-			}
+            if (Beer == null)
+            {
+                return;
+            }
 
-			NewReview = new Review
-			{
-				Beer = Beer,
-				//oklart om denna ska ligga här
-				FoodCategories = ThisReviewFoodcategories
-			};
-		}
+            if (Beer.Reviews == null)
+            {
+                Beer.Reviews = new List<Review>();
+            }
 
-		public void ActiveAccount()
-		{
-			Account = accessControl.LoggedInAccount;
-		}
+            NewReview = new Review
+            {
+                Beer = Beer,
+                //oklart om denna ska ligga här
+                FoodCategories = ThisReviewFoodcategories
+            };
 
-		public IActionResult OnGet(int id)
-		{
-			LoadBeer(id);
-			return Page();
-		}
+        }
 
-		public async Task<IActionResult> OnPostAsync(int id)
-		{
 
-			LoadBeer(id);
+        public void ActiveAccount()
+        {
+            Account = accessControl.LoggedInAccount;
+        }
 
-			ActiveAccount();
-			//NewReview.Account = accessControl.LoggedInAccount; // Set the AccountID of the new review
-			NewReview.Account = Account;
+        public IActionResult OnGet(int id)
+        {
+            Beer = database.Beers
+               .Include(b => b.Reviews).ThenInclude(r => r.FoodCategories)
+               .FirstOrDefault(b => b.ID == id);
+
+            if (Beer.Reviews.Any())
+            {
+                decimal ratingValueCount = 0;
+                decimal reviewCount = Beer.Reviews.Count;
+
+                Dictionary<string, int> categoryCounts = new Dictionary<string, int>();
+
+                // Count the number of times each category appears in the reviews
+                foreach (var review in Beer.Reviews)
+                {
+                    foreach (var category in review.FoodCategories)
+                    {
+                        if (categoryCounts.ContainsKey(category.Name))
+                        {
+                            categoryCounts[category.Name]++;
+                        }
+                        else
+                        {
+                            categoryCounts[category.Name] = 1;
+                        }
+                    }
+
+                    ratingValueCount += review.Rating;
+                }
+
+                // Find the category/categories with the highest count
+                List<string> mostSelectedCategories = new List<string>();
+                int highestCount = 0;
+                foreach (var kvp in categoryCounts)
+                {
+                    if (kvp.Value > highestCount)
+                    {
+                        mostSelectedCategories.Clear();
+                        mostSelectedCategories.Add(kvp.Key);
+                        highestCount = kvp.Value;
+                    }
+                    else if (kvp.Value == highestCount)
+                    {
+                        mostSelectedCategories.Add(kvp.Key);
+                    }
+                }
+
+                // Update the Rating property
+                decimal totalRating = Math.Round(ratingValueCount / reviewCount, 1);
+                Beer.Rating = (double)totalRating;
+
+                // Update the GoesWellWith property
+                Beer.GoesWellWith = string.Join(", ", mostSelectedCategories);
+
+                database.SaveChanges();
+            }
+
+                LoadBeer(id);
+                return Page();
+        }
+
+        public async Task<IActionResult> OnPostAsync(int id)
+        {
+
+            LoadBeer(id);
+
+            ActiveAccount();
+            //NewReview.Account = accessControl.LoggedInAccount; // Set the AccountID of the new review
+            NewReview.Account = Account;
 
 
 			if (Chicken == true)

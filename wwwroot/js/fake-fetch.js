@@ -4,7 +4,7 @@
 
     if (url.hostname === 'pizzaexample.com' && url.pathname === '/api/') {
 
-    //Jag har bara behållt det här så länge. Den kommer aldrig att köras eftersom q aldrig= animal
+        //Jag har bara behållt det här så länge. Den kommer aldrig att köras eftersom q aldrig= animal
         if (url.searchParams.get('q') === 'animal') {
             return {
                 total: 4,
@@ -32,7 +32,9 @@
                 totalHits: 1,
                 hits: [
                     {
-                        webformatURL: '/fake-images/Meat.jpg'
+                        webformatURL: '/fake-images/Meat.jpg',
+                        pizzaName: 'Meat Pizza',
+                        ingredients: 'tomato, cheese, ham'
                     }
                 ]
             }
@@ -44,7 +46,9 @@
                 totalHits: 1,
                 hits: [
                     {
-                        webformatURL: '/fake-images/Chicken.jpg'
+                        webformatURL: '/fake-images/Chicken.jpg',
+                        pizzaName: 'Chicken Pizza',
+                        ingredients: 'tomato, cheese, chicken'
                     }
                 ]
             }
@@ -55,7 +59,9 @@
                 totalHits: 1,
                 hits: [
                     {
-                        webformatURL: '/fake-images/Dessert.jpg'
+                        webformatURL: '/fake-images/Dessert.jpg',
+                        pizzaName: 'Dessert Pizza',
+                        ingredients: 'nutella, banana'
                     }
                 ]
             }
@@ -65,7 +71,10 @@
                 totalHits: 1,
                 hits: [
                     {
-                        webformatURL: '/fake-images/Fish.jpg'
+                        webformatURL: '/fake-images/Fish.jpg',
+                        pizzaName: 'Fish Pizza',
+                        ingredients: 'tomato, cheese, tuna'
+
                     }
                 ]
             }
@@ -75,7 +84,27 @@
                 totalHits: 1,
                 hits: [
                     {
-                        webformatURL: '/fake-images/Vegetarian.jpg'
+                        webformatURL: '/fake-images/Vegetarian.jpg',
+                        pizzaName: 'Veggie Pizza',
+                        ingredients: 'tomato, cheese, olives'
+                    }
+                ]
+            }
+        }
+        else if (url.searchParams.get('q') === 'Chicken, Vegetarian') {
+            return {
+                total: 2,
+                totalHits: 2,
+                hits: [
+                    {
+                        webformatURL: '/fake-images/Chicken.jpg',
+                        pizzaName: 'Chicken Pizza',
+                        ingredients: 'tomato, cheese, chicken'
+                    },
+                    {
+                        webformatURL: '/fake-images/Vegetarian.jpg',
+                        pizzaName: 'Veggie Pizza',
+                        ingredients: 'tomato, cheese, olives'
                     }
                 ]
             }

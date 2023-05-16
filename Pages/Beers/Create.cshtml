@@ -46,8 +46,8 @@
             </div>
             <div class="form-group">
                 <label asp-for="Beer.Country" class="control-label"></label>
-                <select asp-for="Beer.Country" asp-items="@(new SelectList(Model.CountryOptions))" class="form-control"> 
-                    @*@foreach (var country in Coun)*@
+                <select asp-for="Beer.Country" asp-items="@(new SelectList(Data.SampleData.CountryData))" class="form-control"> 
+                    @*@foreach (var country in Coun)*@ 
                 </select>
                 <span asp-validation-for="Beer.Country" class="text-danger"></span>
             </div>

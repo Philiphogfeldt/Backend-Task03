@@ -23,32 +23,32 @@ namespace Backend_Task03.Pages.Beers
         [BindProperty]
         public Beer Beer { get; set; } = default!;
 
-        public List<string> CountryOptions { get; } = new List<string>
-        {
-        "Australia",
-        "Belgium",
-        "Canada",
-        "Denmark",
-        "Ecuador",
-        "France",
-        "Germany",
-        "Honduras",
-        "Ireland",
-        "Jamaica",
-        "Kenya",
-        "Lebanon",
-        "Mexico",
-        "Netherlands",
-        "Oman",
-        "Portugal",
-        "Russia",
-        "Spain",
-        "Turkey",
-        "United States",
-        "Vietnam",
-        "Yemen",
-        "Zimbabwe"
-        };
+        //public List<string> CountryOptions { get; } = new List<string>
+        //{
+        //"Australia",
+        //"Belgium",
+        //"Canada",
+        //"Denmark",
+        //"Ecuador",
+        //"France",
+        //"Germany",
+        //"Honduras",
+        //"Ireland",
+        //"Jamaica",
+        //"Kenya",
+        //"Lebanon",
+        //"Mexico",
+        //"Netherlands",
+        //"Oman",
+        //"Portugal",
+        //"Russia",
+        //"Spain",
+        //"Turkey",
+        //"United States",
+        //"Vietnam",
+        //"Yemen",
+        //"Zimbabwe"
+        //};
 
 
         public async Task<IActionResult> OnGetAsync(int? id)
