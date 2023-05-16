@@ -26,7 +26,22 @@
             }
         }
 
-        else if (url.searchParams.get('q') === 'Meat') {
+
+        else if (url.searchParams.get('q').includes('Vegetarian')) {
+            return {
+                total: 1,
+                totalHits: 1,
+                hits: [
+                    {
+                        webformatURL: '/fake-images/Vegetarian.jpg',
+                        pizzaName: 'Veggie Pizza',
+                        ingredients: 'tomato, cheese, olives'
+                    }
+                ]
+            }
+        }
+
+        else if (url.searchParams.get('q').includes('Meat')) {
             return {
                 total: 1,
                 totalHits: 1,
@@ -40,7 +55,7 @@
             }
         }
 
-        else if (url.searchParams.get('q') === 'Chicken') {
+        else if (url.searchParams.get('q').includes('Chicken')) {
             return {
                 total: 1,
                 totalHits: 1,
@@ -49,44 +64,6 @@
                         webformatURL: '/fake-images/Chicken.jpg',
                         pizzaName: 'Chicken Pizza',
                         ingredients: 'tomato, cheese, chicken'
-                    }
-                ]
-            }
-        }
-        else if (url.searchParams.get('q') === 'Dessert') {
-            return {
-                total: 1,
-                totalHits: 1,
-                hits: [
-                    {
-                        webformatURL: '/fake-images/Dessert.jpg',
-                        pizzaName: 'Dessert Pizza',
-                        ingredients: 'nutella, banana'
-                    }
-                ]
-            }
-        } else if (url.searchParams.get('q') === 'Fish') {
-            return {
-                total: 1,
-                totalHits: 1,
-                hits: [
-                    {
-                        webformatURL: '/fake-images/Fish.jpg',
-                        pizzaName: 'Fish Pizza',
-                        ingredients: 'tomato, cheese, tuna'
-
-                    }
-                ]
-            }
-        } else if (url.searchParams.get('q') === 'Vegetarian') {
-            return {
-                total: 1,
-                totalHits: 1,
-                hits: [
-                    {
-                        webformatURL: '/fake-images/Vegetarian.jpg',
-                        pizzaName: 'Veggie Pizza',
-                        ingredients: 'tomato, cheese, olives'
                     }
                 ]
             }
@@ -104,6 +81,35 @@
                 ]
             }
         }
+        else if (url.searchParams.get('q').includes('Fish')) {
+            return {
+                total: 1,
+                totalHits: 1,
+                hits: [
+                    {
+                        webformatURL: '/fake-images/Fish.jpg',
+                        pizzaName: 'Fish Pizza',
+                        ingredients: 'tomato, cheese, tuna'
+
+                    }
+                ]
+            }
+        }
+
+        else if (url.searchParams.get('q').includes('Dessert')) {
+            return {
+                total: 1,
+                totalHits: 1,
+                hits: [
+                    {
+                        webformatURL: '/fake-images/Dessert.jpg',
+                        pizzaName: 'Dessert Pizza',
+                        ingredients: 'nutella, banana'
+                    }
+                ]
+            }
+        }
+
         else if (url.searchParams.get('q') === 'Chicken, Vegetarian') {
             return {
                 total: 2,
@@ -122,12 +128,14 @@
                 ]
             }
         }
+
         else {
             return {
                 total: 0,
                 totalHits: 0,
                 hits: []
             }
+
         }
     }
     else {
