@@ -7,105 +7,159 @@
 }
 
 <div id="beerIndex">
-	<h1>Beer</h1>
+	<h1 id="beerHead">Beer</h1>
 
-<p>
-	<form asp-page="Create" method="get">
+	@*<p>*@
+	<form asp-page="Create" method="get" id="beerCreate">
 		@if (AccessControl.LoggedInAccountRole == "Admin")
 		{
 			<button type="submit" class="btn btn-primary">Create New</button>
 		}
 	</form>
-</p>
-<table class="table">
+	@*</p>*@
+
+	@foreach (var item in Model.Beer)
+	{
+		<div class="beerIndexCell">
+			<h3 id="beerName">@Html.DisplayFor(modelItem => item.Name)</h3>
+			<p id="beerCountry">(@Html.DisplayFor(modelItem => item.Country))</p>
+
+			<p id="beerBrewery">@Html.DisplayFor(modelItem => item.Brewery)</p>
+
+			<p id="beerPercentage">@Html.DisplayFor(modelItem => item.Percentage)</p>
+
+			<div id="beerImage">
+				<img src="~/imagesBeerly/pngaaa.com-2242288.png" width="100px" />
+			</div>
+
+			<p id="beerType">@Html.DisplayFor(modelItem => item.Type)</p>
+
+			<div id="beerGoesWellWith">
+				@*@Html.DisplayFor(modelItem => item.GoesWellWith)*@
+				@if (item.GoesWellWith.Contains("Chicken"))
+				{
+					<img asp-append-version="true" name="Goesw" value="Chicken" src="images/chicken.svg" style="width: 25px" />
+				}
+
+				@if (item.GoesWellWith.Contains("Meat"))
+				{
+					<img asp-append-version="true" name="Goesw" value="Meat" src="images/meat.svg" style="width: 25px" />
+				}
+
+				@if (item.GoesWellWith.Contains("Fish"))
+				{
+					<img asp-append-version="true" name="Goesw" value="Fish" src="images/fish.svg" style="width: 25px" />
+				}
+
+				@if (item.GoesWellWith.Contains("Vegetarian"))
+				{
+					<img asp-append-version="true" name="Goesw" value="Vegetarian" src="images/veg.svg" style="width: 25px" />
+				}
+
+				@if (item.GoesWellWith.Contains("Dessert"))
+				{
+					<img asp-append-version="true" name="Goesw" value="Dessert" src="images/dessert.svg" style="width: 25px" />
+				}
+			</div>
+
+			<p id="beerRating">Rated @Html.DisplayFor(modelItem => item.Rating) of 5 by users.</p>
+
+			<button type="button" id="beerDetailsButton" onclick="location.href='@Url.Page("./Details", new { id = item.ID, name = item.Name })'">Details</button>
+
+		</div>
+	}
+
+	@*
+	<table class="table">
 	<thead>
-		<tr>
-			<th>
-				@Html.DisplayNameFor(model => model.Beer[0].Name)
-			</th>
-			<th>
-				@Html.DisplayNameFor(model => model.Beer[0].Type)
-			</th>
-			<th>
-				@Html.DisplayNameFor(model => model.Beer[0].Percentage)
-			</th>
-			<th>
-				@Html.DisplayNameFor(model => model.Beer[0].Brewery)
-			</th>
-			<th>
-				@Html.DisplayNameFor(model => model.Beer[0].Country)
-			</th>
-			<th>
-				@Html.DisplayNameFor(model => model.Beer[0].GoesWellWith)
-			</th>
-			<th>
-				@Html.DisplayNameFor(model => model.Beer[0].Rating)
-			</th>
-		</tr>
+	<tr>
+	<th>
+	@Html.DisplayNameFor(model => model.Beer[0].Name)
+	</th>
+	<th>
+	@Html.DisplayNameFor(model => model.Beer[0].Type)
+	</th>
+	<th>
+	@Html.DisplayNameFor(model => model.Beer[0].Percentage)
+	</th>
+	<th>
+	@Html.DisplayNameFor(model => model.Beer[0].Brewery)
+	</th>
+	<th>
+	@Html.DisplayNameFor(model => model.Beer[0].Country)
+	</th>
+	<th>
+	@Html.DisplayNameFor(model => model.Beer[0].GoesWellWith)
+	</th>
+	<th>
+	@Html.DisplayNameFor(model => model.Beer[0].Rating)
+	</th>
+	</tr>
 	</thead>
 	<tbody>
-		@foreach (var item in Model.Beer)
-		{
-			<tr>
-				<td>
-					@Html.DisplayFor(modelItem => item.Name)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.Type)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.Percentage)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.Brewery)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.Country)
-				</td>
-				<td>
+	@foreach (var item in Model.Beer)
+	{
+	<tr>
+	<td>
+	@Html.DisplayFor(modelItem => item.Name)
+	</td>
+	<td>
+	@Html.DisplayFor(modelItem => item.Type)
+	</td>
+	<td>
+	@Html.DisplayFor(modelItem => item.Percentage)
+	</td>
+	<td>
+	@Html.DisplayFor(modelItem => item.Brewery)
+	</td>
+	<td>
+	@Html.DisplayFor(modelItem => item.Country)
+	</td>
+	<td>
 
-						@if (item.GoesWellWith.Contains("Chicken"))
-						{
-							<img asp-append-version="true" name="Goesw" value="Chicken" src="images/chicken.svg" style="width: 25px" />
-						}
+	@if (item.GoesWellWith.Contains("Chicken"))
+	{
+	<img asp-append-version="true" name="Goesw" value="Chicken" src="images/chicken.svg" style="width: 25px" />
+	}
 
-						@if (item.GoesWellWith.Contains("Meat"))
-						{
-							<img asp-append-version="true" name="Goesw" value="Meat" src="images/meat.svg" style="width: 25px" />
-						}
+	@if (item.GoesWellWith.Contains("Meat"))
+	{
+	<img asp-append-version="true" name="Goesw" value="Meat" src="images/meat.svg" style="width: 25px" />
+	}
 
-						@if (item.GoesWellWith.Contains("Fish"))
-						{
-							<img asp-append-version="true" name="Goesw" value="Fish" src="images/fish.svg" style="width: 25px" />
-						}
+	@if (item.GoesWellWith.Contains("Fish"))
+	{
+	<img asp-append-version="true" name="Goesw" value="Fish" src="images/fish.svg" style="width: 25px" />
+	}
 
-						@if (item.GoesWellWith.Contains("Vegetarian"))
-						{
-							<img asp-append-version="true" name="Goesw" value="Vegetarian" src="images/veg.svg" style="width: 25px" />
-						}
+	@if (item.GoesWellWith.Contains("Vegetarian"))
+	{
+	<img asp-append-version="true" name="Goesw" value="Vegetarian" src="images/veg.svg" style="width: 25px" />
+	}
 
-						@if (item.GoesWellWith.Contains("Dessert"))
-						{
-							<img asp-append-version="true" name="Goesw" value="Dessert" src="images/dessert.svg" style="width: 25px" />
-						}
+	@if (item.GoesWellWith.Contains("Dessert"))
+	{
+	<img asp-append-version="true" name="Goesw" value="Dessert" src="images/dessert.svg" style="width: 25px" />
+	}
 
-					</td>
-					<td>
-						@Html.DisplayFor(modelItem => item.Rating)
-					</td>
+	</td>
+	<td>
+	@Html.DisplayFor(modelItem => item.Rating)
+	</td>
 
 
-					<td>
-						@if (AccessControl.LoggedInAccountRole == "Admin")
-						{
-							<button type="button" onclick="location.href='@Url.Page("./Edit", new { id = item.ID,  name = item.Name })'">Edit</button>
-							<button type="button" onclick="location.href='@Url.Page("./Delete", new { id = item.ID, name = item.Name })'">Delete</button>
-						}
-						<button type="button" onclick="location.href='@Url.Page("./Details", new { id = item.ID, name = item.Name })'">Details</button>
+	<td>
+	@if (AccessControl.LoggedInAccountRole == "Admin")
+	{
+	<button type="button" onclick="location.href='@Url.Page("./Edit", new { id = item.ID,  name = item.Name })'">Edit</button>
+	<button type="button" onclick="location.href='@Url.Page("./Delete", new { id = item.ID, name = item.Name })'">Delete</button>
+	}
+	<button type="button" onclick="location.href='@Url.Page("./Details", new { id = item.ID, name = item.Name })'">Details</button>
 
-					</td>
-				</tr>
-			}
-		</tbody>
+	</td>
+	</tr>
+	}
+	</tbody>
 	</table>
+	*@
 </div>
