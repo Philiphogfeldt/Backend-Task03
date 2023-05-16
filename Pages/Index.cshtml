@@ -5,4 +5,33 @@
     ViewData["Title"] = "Home page";
 }
 
+<body>
+    <div class="normalBody">
+        <h2>DailyBeer</h2>
+        <div class="dailyImage">
+            @foreach (var url in Model.PhotoURLs)
+            {
+                <img src="@url" style="width: 250px">
+            }
+        </div>
 
+        <div class="noImage">
+            @if (Model.PhotoURLs.Count == 0)
+            {
+                <p>You have not uploaded any photos yet.</p>
+            }
+        </div>
+
+    </div>
+</body>
+
+@*<h2>DailyBeer</h2>
+@foreach (var url in Model.PhotoURLs)
+{
+    <img src="@url" style="width: 250px">
+}
+
+@if (Model.PhotoURLs.Count == 0)
+{
+    <p>You have not uploaded any photos yet.</p>
+}*@

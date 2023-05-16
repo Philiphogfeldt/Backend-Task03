@@ -55,11 +55,11 @@ namespace Backend_Task03.Pages.Beers
                 }
                 if (BeerType.Contains("Lager"))
                 {
-                    types.AddRange(new string[] { "Lager", "Kolsch", "STUFF HERE", "SORTER NÄR SOM NU" });
+                    types.AddRange(new string[] { "Lager", "Kolsch"});
                 }
                 if (BeerType.Contains("Stout"))
                 {
-                    types.AddRange(new string[] { "Stout", "Imperial Stout", "PUT THING HERE", "PUT IT HERE YES" });
+                    types.AddRange(new string[] { "Stout", "Imperial Stout"});
                 }
                 beers = beers.Where(b => types.Contains(b.Type));
             }
@@ -70,59 +70,61 @@ namespace Backend_Task03.Pages.Beers
 
             foreach (var beer in allBeers)
             {
-                decimal ratingValueCount = 0;
-                decimal reviewCount = beer.Reviews.Count;
-
-                Dictionary<string, int> categoryCounts = new Dictionary<string, int>();
-
-                // Count the number of times each category appears in the reviews
-                foreach (var review in beer.Reviews)
+                if (beer.Reviews.Any())
                 {
-                    foreach (var category in review.FoodCategories)
+                    decimal ratingValueCount = 0;
+                    decimal reviewCount = beer.Reviews.Count;
+
+                    Dictionary<string, int> categoryCounts = new Dictionary<string, int>();
+
+                    // Count the number of times each category appears in the reviews
+                    foreach (var review in beer.Reviews)
                     {
-                        if (categoryCounts.ContainsKey(category.Name))
+                        foreach (var category in review.FoodCategories)
                         {
-                            categoryCounts[category.Name]++;
+                            if (categoryCounts.ContainsKey(category.Name))
+                            {
+                                categoryCounts[category.Name]++;
+                            }
+                            else
+                            {
+                                categoryCounts[category.Name] = 1;
+                            }
                         }
-                        else
+
+                        ratingValueCount += review.Rating;
+                    }
+
+                    //// Update the Rating property
+                    //decimal totalRating = Math.Round
+                    //(ratingValueCount / reviewCount, 1);
+                    //beer.Rating = (double)totalRating;
+
+                    // Find the category/categories with the highest count
+                    List<string> mostSelectedCategories = new List<string>();
+                    int highestCount = 0;
+                    foreach (var kvp in categoryCounts)
+                    {
+                        if (kvp.Value > highestCount)
                         {
-                            categoryCounts[category.Name] = 1;
+                            mostSelectedCategories.Clear();
+                            mostSelectedCategories.Add(kvp.Key);
+                            highestCount = kvp.Value;
+                        }
+                        else if (kvp.Value == highestCount)
+                        {
+                            mostSelectedCategories.Add(kvp.Key);
+
                         }
                     }
 
-                    ratingValueCount += review.Rating;
+                    // Update the Rating property
+                    decimal totalRating = Math.Round(ratingValueCount / reviewCount, 1);
+                    beer.Rating = (double)totalRating;
+
+                    // Update the GoesWellWith property
+                    beer.GoesWellWith = string.Join(", ", mostSelectedCategories);
                 }
-
-                // Update the Rating property
-                decimal totalRating = Math.Round
-                (ratingValueCount / reviewCount, 1);
-                beer.Rating = (double)totalRating;
-
-                // Find the category/categories with the highest count
-                List<string> mostSelectedCategories = new List<string>();
-                int highestCount = 0;
-                foreach (var kvp in categoryCounts)
-                {
-                    if (kvp.Value > highestCount)
-                    {
-                        mostSelectedCategories.Clear();
-                        mostSelectedCategories.Add(kvp.Key);
-                        highestCount = kvp.Value;
-                    }
-                    else if (kvp.Value == highestCount)
-                    {
-                        mostSelectedCategories.Add(kvp.Key);
-
-                        if (kvp.Key == Chicken)
-                        {
-                            // Do something with Chicken
-                        }
-                    }
-                }
-                totalRating = Math.Round(ratingValueCount / reviewCount, 1);
-                beer.Rating = (double)totalRating;
-                // Update the GoesWellWith property
-                beer.GoesWellWith = string.Join(", ", mostSelectedCategories);
             }
 
             await database.SaveChangesAsync();
