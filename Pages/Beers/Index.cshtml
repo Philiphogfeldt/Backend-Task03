@@ -12,79 +12,59 @@
 
 	<p>
 
-		<form asp-page="Create" method="get">
-			@if (AccessControl.LoggedInAccountRole == "Admin")
-			{
-				<button type="submit" class="btn btn-primary">Create New</button>
-			}
-		</form>
-	</p>
-	<table class="table">
-		<thead>
+	<form asp-page="Create" method="get">
+		@if (AccessControl.LoggedInAccountRole == "Admin")
+		{
+			<button type="submit" class="btn btn-primary">Create New</button>
+		}
+	</form>
+</p>
+<table class="table">
+	<thead>
+		<tr>
+			<th>
+				@Html.DisplayNameFor(model => model.Beer[0].Name)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Beer[0].Type)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Beer[0].Percentage)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Beer[0].Brewery)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Beer[0].Country)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Beer[0].GoesWellWith)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Beer[0].Rating)
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model.Beer)
+		{
 			<tr>
-				<th>
-					@Html.DisplayNameFor(model => model.Beer[0].Name)
-				</th>
-				@*<th>
-				@Html.DisplayNameFor(model => model.Beer[0].Description)
-				</th>*@
-				<th>
-					@Html.DisplayNameFor(model => model.Beer[0].Type)
-				</th>
-				<th>
-					@Html.DisplayNameFor(model => model.Beer[0].Percentage)
-				</th>
-				<th>
-					@Html.DisplayNameFor(model => model.Beer[0].Brewery)
-				</th>
-				<th>
-					@Html.DisplayNameFor(model => model.Beer[0].Country)
-				</th>
-				<th>
-					@Html.DisplayNameFor(model => model.Beer[0].GoesWellWith)
-				</th>
-				<th>
-					@Html.DisplayNameFor(model => model.Beer[0].Rating)
-				</th>
-			</tr>
-		</thead>
-		<tbody>
-			@foreach (var item in Model.Beer)
-			{
-				<tr>
-					<td>
-						@Html.DisplayFor(modelItem => item.Name)
-					</td>
-					@* <td>
-				@Html.DisplayFor(modelItem => item.Description)
-				</td>*@
-					<td>
-						@Html.DisplayFor(modelItem => item.Type)
-					</td>
-					<td>
-						@Html.DisplayFor(modelItem => item.Percentage)
-					</td>
-					<td>
-						@Html.DisplayFor(modelItem => item.Brewery)
-					</td>
-					<td>
-						@Html.DisplayFor(modelItem => item.Country)
-					</td>
-					<td>
-						@* @Html.DisplayFor(modelItem => item.GoesWellWith) *@
-
-
-
-						@*<img name="goesw" value="Chicken" src="images/chicken.svg" style="width: 18px" hidden />*@
-
-
-						@*  <label asp-for="Goesw">
-					<img asp-append-version="true" name="Goesw" value="Chicken" src="images/chicken.svg" style="width: 18px" />
-					<img asp-append-version="true" name="Goesw" value="Meat" src="images/meat.svg" style="width: 18px" />
-					<img asp-append-version="true" name="Goesw" value="Fish" src="images/fish.svg" style="width: 18px" />
-					<img asp-append-version="true" name="Goesw" value="Vegetarian" src="images/veg.svg" style="width: 18px" />
-					<img asp-append-version="true" name="Goesw" value="Dessert" src="images/dessert.svg" style="width: 18px" />
-					</label> *@
+				<td>
+					@Html.DisplayFor(modelItem => item.Name)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Type)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Percentage)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Brewery)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Country)
+				</td>
+				<td>
 
 						@if (item.GoesWellWith.Contains("Chicken"))
 						{

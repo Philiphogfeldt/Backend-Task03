@@ -12,7 +12,102 @@
 	<link rel="stylesheet" href="~/css/site.css" />
 </header>
 <div id="beerGrid">
-	<h1>Details</h1>
+    <div id="beerGridCell"></div>
+    <h2>Beer</h2>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Beer.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Beer.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Beer.Description)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Beer.Description)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Beer.Type)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Beer.Type)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Beer.Percentage)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Beer.Percentage)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Beer.Brewery)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Beer.Brewery)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Beer.Country)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Beer.Country)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Beer.GoesWellWith)
+        </dt>
+        <dd class="col-sm-10">
+            
+            @if (Model.Beer.GoesWellWith.Contains("Chicken"))
+            {
+                <img asp-append-version="true" name="Goesw" value="Chicken" src="../images/chicken.svg" style="width: 25px" />
+            }
+
+            @if (Model.Beer.GoesWellWith.Contains("Meat"))
+            {
+                <img asp-append-version="true" name="Goesw" value="Meat" src="../images/meat.svg" style="width: 25px" />
+            }
+
+            @if (Model.Beer.GoesWellWith.Contains("Fish"))
+            {
+                <img asp-append-version="true" name="Goesw" value="Fish" src="../images/fish.svg" style="width: 25px" />
+            }
+
+            @if (Model.Beer.GoesWellWith.Contains("Vegetarian"))
+            {
+                <img asp-append-version="true" name="Goesw" value="Vegetarian" src="../images/veg.svg" style="width: 25px" />
+            }
+
+            @if (Model.Beer.GoesWellWith.Contains("Dessert"))
+            {
+                <img asp-append-version="true" name="Goesw" value="Dessert" src="../images/dessert.svg" style="width: 25px" />
+            }
+        </dd>
+        <dd id="goesWithFood" class="col-sm-10">
+            @Html.DisplayFor(model => model.Beer.GoesWellWith)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Beer.Rating)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Beer.Rating)
+        </dd>
+    </dl>
+</div>
+<hr />
+
+<h3>This pizza goes well with your chosen beer!</h3>
+@*<div id="recommendation" hidden>
+    <div id="pizzaGridCell">
+        <h2 id="pizzaName"></h2>
+        <h3>Ingredients:</h3>
+        <ul id="ingredientList"></ul>
+    </div>
+
+</div>*@
+
+<ul id="recommendation" hidden></ul>
+
+<p id="message" hidden>There are no results for that keyword.</p>
 
 
 	<div id="beerGridCell"></div>
@@ -69,7 +164,13 @@
 		</dd>
 	</dl>
 
-	<hr />
+    <div>
+        <h4>Reviews</h4>
+        @foreach (var comment in Model.Beer.Reviews)
+        {
+
+            <div id="reviewGridCell">
+                @comment.Account.Name said: "@comment.Comment" -about this beer and gave it @comment.Rating / 5
 
 	<h4>This pizza goes well with your chosen beer!</h4>
 	<div id="recommendation" hidden>
