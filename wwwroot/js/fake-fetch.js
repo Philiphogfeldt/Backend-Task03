@@ -26,6 +26,10 @@
             }
         }
 
+        // Har lagt lite förenklad hämtning här. Om Vegetarian finns i GoesWellWith så kommer bild på vegetarisk pizza alltid att visas 
+        //(även om GoesWellWith även inkluderar Meat). Kanske inte optimalt men funkar. 
+        //Skulle kunna vara bra att lägga in någon sorts randomizer, men gör inte det nu. 
+        //Tänkte inte greja mer med detta nu förrän vi har ett riktigt API att fetcha
 
         else if (url.searchParams.get('q').includes('Vegetarian')) {
             return {
