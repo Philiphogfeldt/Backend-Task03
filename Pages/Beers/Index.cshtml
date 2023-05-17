@@ -54,7 +54,7 @@
 					@Html.DisplayFor(modelItem => item.Type)
 				</td>
 				<td>
-					@Html.DisplayFor(modelItem => item.Percentage)
+						@Html.DisplayFor(modelItem => item.Percentage)%
 				</td>
 				<td>
 					@Html.DisplayFor(modelItem => item.Brewery)
@@ -98,7 +98,7 @@
 					<td>
 						@if (AccessControl.LoggedInAccountRole == "Admin")
 						{
-							<button type="button" onclick="location.href='@Url.Page("./Edit", new { id = item.ID,  name = item.Name })'">Edit</button>
+							<button type="button" onclick="location.href='@Url.Page("./Edit2", new { id = item.ID,  name = item.Name })'">Edit</button>
 							<button type="button" onclick="location.href='@Url.Page("./Delete", new { id = item.ID, name = item.Name })'">Delete</button>
 						}
 						<button type="button" onclick="location.href='@Url.Page("./Details", new { id = item.ID, name = item.Name })'">Details</button>
