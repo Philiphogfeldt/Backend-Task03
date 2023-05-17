@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.EntityFrameworkCore;
+using static System.Net.WebRequestMethods;
 
 namespace Backend_Task03.Controllers
 {
@@ -37,6 +38,31 @@ namespace Backend_Task03.Controllers
             return randomBeer;
         }
 
+        public string GetImageUrl ()
+        {
+            var imageFiles = Directory.GetFiles("wwwroot/beerimg");
+
+            if (imageFiles.Length == 0)
+            {
+                return null; // No images available
+            }
+
+            // Randomly select an image file name
+            var random = new Random();
+            var randomIndex = random.Next(0, imageFiles.Length);
+            var randomImageFileName = Path.GetFileName(imageFiles[randomIndex]);
+
+            // Construct the image URL based on the randomly selected image file name
+
+            //Correct for deployment
+            var imageUrl = $"https://beerlyazurewebsites.net/beerimg/{randomImageFileName}";
+
+            //Test: Works only in dev
+            //var imageUrl = $"https://localhost:5000//beerimg/{randomImageFileName}";
+
+            return imageUrl;
+        }
+
         [HttpGet]
         public IActionResult Get([FromQuery] string category)
         {
@@ -47,6 +73,9 @@ namespace Backend_Task03.Controllers
                 return NotFound(); // Return a 404 Not Found response if the beer is not found
             }
 
+            // Get a random image URL
+            var imageUrl = GetImageUrl();
+
             // Extract only the desired properties from the beer object
             var beerResponse = new
             {
@@ -56,7 +85,8 @@ namespace Backend_Task03.Controllers
                 Percentage = beer.Percentage,
                 Brewery = beer.Brewery,
                 Country = beer.Country,
-                GoesWellWith = beer.GoesWellWith
+                GoesWellWith = beer.GoesWellWith,
+                ImageUrl = imageUrl
             };
 
             return Ok(beerResponse);
