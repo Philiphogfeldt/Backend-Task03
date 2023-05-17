@@ -167,16 +167,65 @@ button,
     gap: 2px;
 }
 
+#beerGrid {
+    display: grid;
+    width: 960px;
+    justify-self: center;
+    gap: 5px;
+    grid-template:
+        "beerGridCell beerGridCell beerReviewCell"
+        "pizzaWithBeer pizzaWithBeer beerReviewCell"
+        "pizzaWithBeer pizzaWithBeer beerReviewCell"
+        "beerCRUDButtons beerAddReview beerReviewCell";
+}
 
 #beerGridCell {
     display: grid;
-    grid-template-areas:
-        "beerGridCellRow";
+    grid-area: beerGridCell;
+    grid-template-areas: "beerGridCellRow";
 }
 
-#beerGridCellRow{
+.beerReviewCell {
+    display: grid;
+    width: 300px;
+    grid-area: beerReviewCell;
+}
+
+#beerGridCellRow {
     display: grid;
 
+    grid-area: beerGridCellRow;
+}
+
+#pizzaWithBeer {
+    display: grid;
+    width: 600px;
+    height: 600px;
+    grid-area: pizzaWithBeer;
+    grid-template:
+        "pizzaBeerHead"
+        "recommendation";
+}
+
+#pizzaBeerHead {
+    display: grid;
+    grid-area: pizzaBeerHead;
+
+}
+
+#recommendation {
+    display: grid;
+    grid-area: recommendation;
+}
+
+#beerAddReview {
+    display: grid;
+    grid-area: beerAddReview;
+}
+
+#beerCRUDButtons {
+    display: grid;
+    grid-area: beerCRUDButtons;
 }
 
 #accountBodyGrid {
@@ -233,7 +282,6 @@ main {
 */
 }
 
-#beerGrid,
 #beerIndex {
     display: grid;
     align-content: start;
