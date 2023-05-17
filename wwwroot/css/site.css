@@ -169,6 +169,14 @@ button,
 
 
 #beerGridCell {
+    display: grid;
+    grid-template-areas:
+        "beerGridCellRow";
+}
+
+#beerGridCellRow{
+    display: grid;
+
 }
 
 #accountBodyGrid {
