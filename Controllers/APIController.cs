@@ -18,38 +18,50 @@ namespace Backend_Task03.Controllers
             this.database = database;
         }
 
+        public Beer GetBeer(string category)
+        {
+            // Retrieve the beer from the database based on the "goesWellWith" value
+            // Replace this with your actual database query implementation
 
-        //[HttpGet]
-        //public Beer[] Get(string query)
-        //{
-        //    var thisBeer = database.Beers.Where(m => m.GoesWellWith.Contains(query)).ToArray(); 
+            var beers = database.Beers.Where(b => b.GoesWellWith.Contains(category)).ToList();
 
-        //    if (query == "Meat") 
-        //    {
-        //        return default;
+            if (beers.Count == 0)
+            {
+                return null; // No beers found for the given category
+            }
 
-        //    }
+            var random = new Random();
+            var randomIndex = random.Next(0, beers.Count);
+            var randomBeer = beers[randomIndex];
 
-        //    if (completed == null)
-        //    {
-        //        return database.ToDoNotes.ToArray();
+            return randomBeer;
+        }
 
-        //    }
-        //    else if (completed == true)
-        //    {
-        //        return database.ToDoNotes.Where(m => m.IsDone == true).ToArray();
+        [HttpGet]
+        public IActionResult Get([FromQuery] string category)
+        {
+            var beer = GetBeer(category);
 
-        //    }
-        //    else if (completed == false)
-        //    {
-        //        return database.ToDoNotes.Where(m => m.IsDone == false).ToArray();
-        //    }
-        //    //kanske inte en så bra lösning
-        //    else
-        //    {
-        //        return default;
-        //    }
-        //}
+            if (beer == null)
+            {
+                return NotFound(); // Return a 404 Not Found response if the beer is not found
+            }
+
+            // Extract only the desired properties from the beer object
+            var beerResponse = new
+            {
+                Name = beer.Name,
+                Description = beer.Description,
+                Type = beer.Type,
+                Percentage = beer.Percentage,
+                Brewery = beer.Brewery,
+                Country = beer.Country,
+                GoesWellWith = beer.GoesWellWith
+            };
+
+            return Ok(beerResponse);
+
+        }
 
 
 
