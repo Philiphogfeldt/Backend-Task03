@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Backend_Task03.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230516100220_init")]
+    [Migration("20230517080207_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -23,6 +23,21 @@ namespace Backend_Task03.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+
+            modelBuilder.Entity("AccountBeer", b =>
+                {
+                    b.Property<int>("FavoriteBeersID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("FavoritedByID")
+                        .HasColumnType("int");
+
+                    b.HasKey("FavoriteBeersID", "FavoritedByID");
+
+                    b.HasIndex("FavoritedByID");
+
+                    b.ToTable("AccountBeer");
+                });
 
             modelBuilder.Entity("Backend_Task03.Models.Account", b =>
                 {
@@ -160,6 +175,21 @@ namespace Backend_Task03.Migrations
                     b.HasIndex("ReviewsID");
 
                     b.ToTable("FoodCategoryReview");
+                });
+
+            modelBuilder.Entity("AccountBeer", b =>
+                {
+                    b.HasOne("Backend_Task03.Models.Beer", null)
+                        .WithMany()
+                        .HasForeignKey("FavoriteBeersID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Backend_Task03.Models.Account", null)
+                        .WithMany()
+                        .HasForeignKey("FavoritedByID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Backend_Task03.Models.Review", b =>

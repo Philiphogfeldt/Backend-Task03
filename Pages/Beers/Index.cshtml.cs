@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Backend_Task03.Data;
 using Backend_Task03.Models;
@@ -12,13 +13,22 @@ namespace Backend_Task03.Pages.Beers
     public class IndexModel : PageModel
     {
         private readonly AppDbContext database;
+		private readonly AccessControl accessControl;
 
-        public IndexModel(AppDbContext context)
+		/*public IndexModel(AppDbContext context)
         {
             database = context;
-        }
+        }*/
+		public IndexModel(AppDbContext context, IHttpContextAccessor httpContextAccessor)
+		{
+			database = context;
 
-        public IList<Beer> Beer { get; set; }
+		    accessControl = new AccessControl(database, httpContextAccessor);
+		}
+
+		[BindProperty]
+		public int BeerIdToAddToFavorites { get; set; }
+		public IList<Beer> Beer { get; set; }
 
         [BindProperty(SupportsGet = true)]
         public string FindBeer { get; set; }
@@ -164,5 +174,28 @@ namespace Backend_Task03.Pages.Beers
 
             Beer = await beers2Show.ToListAsync();
         }
-    }
+		public async Task<IActionResult> OnPostAddToFavoritesAsync(int beerId)
+		{
+			var beer = database.Beers.Include(b => b.FavoritedBy).FirstOrDefault(b => b.ID == beerId);
+			var account = accessControl.LoggedInAccount;
+
+			if (beer != null && account != null)
+			{
+				if (!account.FavoriteBeers.Any(b => b.ID == beerId))
+				{
+					account.FavoriteBeers.Add(beer);
+				}
+
+				if (!beer.FavoritedBy.Any(a => a.ID == account.ID))
+				{
+					beer.FavoritedBy.Add(account);
+				}
+
+				await database.SaveChangesAsync();
+			}
+
+			return Page();
+		}
+
+	}
 }
