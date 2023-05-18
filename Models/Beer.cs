@@ -1,4 +1,6 @@
-﻿namespace Backend_Task03.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Backend_Task03.Models
 {
     public class Beer
     {
@@ -7,9 +9,10 @@
         public string Description { get; set; }
         public string Type { get; set; }
 
-        public string Percentage { get; set; }
-
-        //public double Percentage { get; set; }
+		//public string Percentage { get; set; }
+		//[Required]
+        //[Range(0, 15, ErrorMessage = "Percentage must be between 0 and 15")]
+        public double? Percentage { get; set; }
         public string Brewery { get; set; }
         public string Country { get; set; }
         public string EAN13 { get; set; }
