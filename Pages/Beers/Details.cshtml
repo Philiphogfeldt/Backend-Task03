@@ -96,14 +96,6 @@
 <hr />
 
 <h3>This pizza goes well with your chosen beer!</h3>
-@*<div id="recommendation" hidden>
-    <div id="pizzaGridCell">
-        <h2 id="pizzaName"></h2>
-        <h3>Ingredients:</h3>
-        <ul id="ingredientList"></ul>
-    </div>
-
-</div>*@
 
 <ul id="recommendation" hidden></ul>
 
@@ -162,18 +154,6 @@ else
                 <label asp-for="Fish">Fish<input asp-for="Fish" /></label>
                 <label asp-for="Vegetarian">Vegetarian<input asp-for="Vegetarian" /></label>
                 <label asp-for="Dessert">Dessert<input asp-for="Dessert" /></label>
-
-                @*<label><input asp-for="Meat" />Meat</label>
-                <input asp-for="Chicken" />
-                <input asp-for="Fish" />
-                <input asp-for="Vegetarian" />
-                <input asp-for="Dessert" />*@
-
-                @*<label><input type="checkbox" name="Meat" value="Meat" checked=""/> Meat</label>*@
-                @*  <label><input type="checkbox" name="NewReview.FoodCategories" value="Fish" checked=""/> Fish</label>
-                <label><input type="checkbox" name="Chicken" value="Chicken" checked=""/>Chicken </label>
-                <label><input type="checkbox" name="NewReview.FoodCategories" value="Vegetarian" checked=""/> Veg</label>
-                <label><input type="checkbox" name="NewReview.FoodCategories" value="Dessert" checked=""/> Dessert</label>*@
             </div>
 
         </div>
@@ -191,4 +171,4 @@ else
     }
     <button type="button" onclick="location.href='@Url.Page("./Index")'">Back to List</button>
 </div>
-@*</div>*@
+
