@@ -15,8 +15,7 @@
 
 	<div id="beerGridCell">
 		@*skiten i h3 nedan finns bara för felsökning just nu*@
-		<h2 id="goesWithFood2">Beer @Html.DisplayFor(model => model.Beer.GoesWellWith)
-		</h2>
+		<h2>Beer</h2>
 		<div class="beerGridCellRow">
 			@Html.DisplayNameFor(model => model.Beer.Name) @Html.DisplayFor(model => model.Beer.Name)
 		</div>
@@ -235,7 +234,7 @@
 
 		<h3 id="pizzaBeerHead">This pizza goes well with your chosen beer!</h3>
 
-		<ul id="recommendation" hidden><li></li></ul>
+		<ul id="recommendation" hidden></ul>
 
 		<p id="message" hidden>There are no results for that keyword.</p>
 

@@ -16,7 +16,7 @@ async function fetchJSON(url, options) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    const goesWithFoodElement = document.querySelector('#goesWithFood2');
+    const goesWithFoodElement = document.querySelector('#goesWithFood');
     const message = document.querySelector('#message');
     const resultList = document.querySelector("#pizzaWithBeer #recommendation");
 
