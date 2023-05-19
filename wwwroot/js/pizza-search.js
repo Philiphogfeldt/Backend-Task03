@@ -16,9 +16,9 @@ async function fetchJSON(url, options) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    const goesWithFoodElement = document.querySelector('#goesWithFood');
+    const goesWithFoodElement = document.querySelector('#goesWithFood2');
     const message = document.querySelector('#message');
-    const resultList = document.querySelector('.pizzaWithBeer #recommendation');
+    const resultList = document.querySelector("#pizzaWithBeer #recommendation");
 
     function displayResults(hits) {
         if (hits.length === 0) {

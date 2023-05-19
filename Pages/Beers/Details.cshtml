@@ -12,8 +12,10 @@
 	<link rel="stylesheet" href="~/css/site.css" />
 </header>
 <div id="beerGrid">
+
 	<div id="beerGridCell">
-		<h2>Beer</h2>
+		<h2 id="goesWithFood2">Beer @Html.DisplayFor(model => model.Beer.GoesWellWith)
+		</h2>
 		<div class="beerGridCellRow">
 			@Html.DisplayNameFor(model => model.Beer.Name) @Html.DisplayFor(model => model.Beer.Name)
 		</div>
@@ -36,8 +38,8 @@
 		</div>
 		<div class="beerGridCellRow" id="goesWithFood">
 			@Html.DisplayNameFor(model => model.Beer.GoesWellWith)
-@*			@Html.DisplayFor(model => model.Beer.GoesWellWith)
-*@			@if (Model.Beer.GoesWellWith.Contains("Chicken"))
+			@Html.DisplayFor(model => model.Beer.GoesWellWith)
+			@if (Model.Beer.GoesWellWith.Contains("Chicken"))
 			{
 				<img asp-append-version="true" name="Goesw" value="Chicken" src="../images/chicken.svg" style="width: 25px" />
 			}
@@ -232,7 +234,7 @@
 
 		<h3 id="pizzaBeerHead">This pizza goes well with your chosen beer!</h3>
 
-		<ul id="recommendation" hidden></ul>
+		<ul id="recommendation" hidden><li></li></ul>
 
 		<p id="message" hidden>There are no results for that keyword.</p>
 
