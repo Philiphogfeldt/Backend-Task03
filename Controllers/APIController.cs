@@ -1,5 +1,6 @@
 ﻿using Backend_Task03.Data;
 using Backend_Task03.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
@@ -10,6 +11,7 @@ namespace Backend_Task03.Controllers
 {
     [Route("/api")]
     [ApiController]
+    [AllowAnonymous] // lägger till den här för säkerhets skull, enligt instruktion från Jakob
     public class APIController : ControllerBase
     {
         private readonly AppDbContext database;
