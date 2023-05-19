@@ -246,7 +246,7 @@
 	<div id="beerCRUDButtons">
 		@if (AccessControl.LoggedInAccountRole == "Admin")
 		{
-			<button type="button" onclick="location.href='@Url.Page("./Edit", new { id = Model.Beer?.ID,  name = Model.Beer?.Name })'">Edit</button>
+			<button type="button" onclick="location.href='@Url.Page("./Edit2", new { id = Model.Beer?.ID,  name = Model.Beer?.Name })'">Edit</button>
 		}
 		<button type="button" onclick="location.href='@Url.Page("./Index")'">Back to List</button>
 	</div>
