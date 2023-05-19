@@ -13,31 +13,31 @@ using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace Backend_Task03.Pages.Beers
 {
-	public class DetailsModel : PageModel
-	{
-		private readonly AppDbContext database;
+    public class DetailsModel : PageModel
+    {
+        private readonly AppDbContext database;
 
-		private readonly AccessControl accessControl; // testar mig fram här
+        private readonly AccessControl accessControl; // testar mig fram här
 
 
-		public DetailsModel(AppDbContext context, IHttpContextAccessor httpContextAccessor)
-		{
-			database = context;
+        public DetailsModel(AppDbContext context, IHttpContextAccessor httpContextAccessor)
+        {
+            database = context;
 
-			accessControl = new AccessControl(database, httpContextAccessor);
-		}
+            accessControl = new AccessControl(database, httpContextAccessor);
+        }
 
-		[BindProperty]
-		public Beer Beer { get; set; } = default!;
+        [BindProperty]
+        public Beer Beer { get; set; } = default!;
 
-		[BindProperty]
-		public Review NewReview { get; set; }
+        [BindProperty]
+        public Review NewReview { get; set; }
 
-		[BindProperty]
-		public Account Account { get; set; }
+        [BindProperty]
+        public Account Account { get; set; }
 
-		[BindProperty]
-		public List<FoodCategory> ThisReviewFoodcategories { get; set; }
+        [BindProperty]
+        public List<FoodCategory> ThisReviewFoodcategories { get; set; }
 
         //[BindProperty]
         //public List<FoodCategory> FoodCategoriesFromDb { get; set; }
@@ -60,11 +60,11 @@ namespace Backend_Task03.Pages.Beers
         public void LoadBeer(int id)
         {
             Beer = database.Beers
-                .Include(b => b.Reviews).ThenInclude(b=> b.Account)
+                .Include(b => b.Reviews).ThenInclude(b => b.Account)
                 .FirstOrDefault(b => b.ID == id);
 
             //oklart om den ska ligga redan här
-         //FoodCategoriesFromDb = database.FoodCategories.ToList();  
+            //FoodCategoriesFromDb = database.FoodCategories.ToList();  
 
             if (Beer == null)
             {
@@ -149,8 +149,8 @@ namespace Backend_Task03.Pages.Beers
                 database.SaveChanges();
             }
 
-                LoadBeer(id);
-                return Page();
+            LoadBeer(id);
+            return Page();
         }
 
         public async Task<IActionResult> OnPostAsync(int id)
@@ -163,50 +163,50 @@ namespace Backend_Task03.Pages.Beers
             NewReview.Account = Account;
 
 
-			if (Chicken == true)
-			{
-				var chicken = database.FoodCategories.FirstOrDefault(c => c.Name == "Chicken");
-				ThisReviewFoodcategories.Add(chicken);
+            if (Chicken == true)
+            {
+                var chicken = database.FoodCategories.FirstOrDefault(c => c.Name == "Chicken");
+                ThisReviewFoodcategories.Add(chicken);
 
-			}
-			if (Meat == true)
-			{
-				var meat = database.FoodCategories.FirstOrDefault(c => c.Name == "Meat");
-				ThisReviewFoodcategories.Add(meat);
+            }
+            if (Meat == true)
+            {
+                var meat = database.FoodCategories.FirstOrDefault(c => c.Name == "Meat");
+                ThisReviewFoodcategories.Add(meat);
 
-			}
-			if (Fish == true)
-			{
-				var fish = database.FoodCategories.FirstOrDefault(c => c.Name == "Fish");
-				ThisReviewFoodcategories.Add(fish);
+            }
+            if (Fish == true)
+            {
+                var fish = database.FoodCategories.FirstOrDefault(c => c.Name == "Fish");
+                ThisReviewFoodcategories.Add(fish);
 
-			}
-			if (Vegetarian == true)
-			{
-				var veg = database.FoodCategories.FirstOrDefault(c => c.Name == "Vegetarian");
-				ThisReviewFoodcategories.Add(veg);
+            }
+            if (Vegetarian == true)
+            {
+                var veg = database.FoodCategories.FirstOrDefault(c => c.Name == "Vegetarian");
+                ThisReviewFoodcategories.Add(veg);
 
-			}
-			if (Dessert == true)
-			{
-				var dessert = database.FoodCategories.FirstOrDefault(c => c.Name == "Dessert");
-				ThisReviewFoodcategories.Add(dessert);
+            }
+            if (Dessert == true)
+            {
+                var dessert = database.FoodCategories.FirstOrDefault(c => c.Name == "Dessert");
+                ThisReviewFoodcategories.Add(dessert);
 
-			}
-
-
-			//bool success = 
-			await TryUpdateModelAsync(
-				NewReview,
-				nameof(NewReview),
-				c => c.Rating,
-				c => c.Comment,
-				c => c.Beer
-				);
+            }
 
 
+            //bool success = 
+            await TryUpdateModelAsync(
+                NewReview,
+                nameof(NewReview),
+                c => c.Rating,
+                c => c.Comment,
+                c => c.Beer
+                );
 
-			/*            
+
+
+            /*            
             if (success)
             {
                 Beer.Reviews.Add(NewReview);
@@ -221,12 +221,12 @@ namespace Backend_Task03.Pages.Beers
             } */
 
 
-			//förstår inte riktigt varför båda dessa behövs
-			//Account.Reviews.Add(NewReview);
-			Beer.Reviews.Add(NewReview);
-			database.Reviews.Add(NewReview);
-			database.SaveChanges();
-			return RedirectToPage("./Details", new { id = Beer.ID, name = Beer.Name });
-		}
-	}
+            //förstår inte riktigt varför båda dessa behövs
+            //Account.Reviews.Add(NewReview);
+            Beer.Reviews.Add(NewReview);
+            database.Reviews.Add(NewReview);
+            database.SaveChanges();
+            return RedirectToPage("./Details", new { id = Beer.ID, name = Beer.Name });
+        }
+    }
 }
