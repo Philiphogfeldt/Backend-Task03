@@ -14,7 +14,6 @@
 <div id="beerGrid">
 
 	<div id="beerGridCell">
-		@*skiten i h3 nedan finns bara för felsökning just nu*@
 		<h2>Beer</h2>
 		<div class="beerGridCellRow">
 			@Html.DisplayNameFor(model => model.Beer.Name) @Html.DisplayFor(model => model.Beer.Name)
@@ -36,9 +35,11 @@
 		<div class="beerGridCellRow">
 			@Html.DisplayNameFor(model => model.Beer.Country) @Html.DisplayFor(model => model.Beer.Country)
 		</div>
-		<div class="beerGridCellRow" id="goesWithFood">
+		<div class="beerGridCellRow">
 			@Html.DisplayNameFor(model => model.Beer.GoesWellWith)
-			@Html.DisplayFor(model => model.Beer.GoesWellWith)
+			<p id="goesWithFood">@Html.DisplayFor(model=>
+				model.Beer.GoesWellWith)
+			</p>
 			@if (Model.Beer.GoesWellWith.Contains("Chicken"))
 			{
 				<img asp-append-version="true" name="Goesw" value="Chicken" src="../images/chicken.svg" style="width: 25px" />

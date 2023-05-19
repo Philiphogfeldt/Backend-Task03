@@ -17,14 +17,14 @@ async function fetchJSON(url, options) {
 
 //Event-listener DOM, to make sure page is loaded. Don't know if needed
 document.addEventListener('DOMContentLoaded', () => {
-    const goesWithFoodElement = document.querySelector('#goesWithFood2');
+    const goesWithFoodElement = document.querySelector('#goesWithFood');
     const message = document.querySelector('#message');
     const resultList = document.querySelector('#recommendation');
 
     function displayResults(hits) {
         if (hits.length === 0) {
             message.hidden = false;
-            resultList.hidden = false;
+            resultList.hidden = true;
 
             resultList.replaceChildren();
 
