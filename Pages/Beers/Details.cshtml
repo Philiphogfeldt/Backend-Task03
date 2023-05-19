@@ -252,6 +252,8 @@
 
 </div>
 
+
+
 @*<hr />
 
 <div id="recommendation" hidden>
@@ -268,7 +270,7 @@
 <p id="message" hidden>There are no results for that keyword.</p>
 
 
-<div id="beerGridCell"></div>
+<div id="beerGridCell"></div>*@
 <h4>Beer</h4>
 <hr />
 <dl class="row">
@@ -311,7 +313,7 @@
 	<dt class="col-sm-2">
 		@Html.DisplayNameFor(model => model.Beer.GoesWellWith)
 	</dt>
-	<dd id="goesWithFood" class="col-sm-10">
+	<dd id="goesWithFood2" class="col-sm-10">
 		@Html.DisplayFor(model => model.Beer.GoesWellWith)
 	</dd>
 	<dt class="col-sm-2">
@@ -322,7 +324,7 @@
 	</dd>
 </dl>
 
-<div>
+@*<div>
 	<h4>Reviews</h4>
 	@foreach (var comment in Model.Beer.Reviews)
 	{

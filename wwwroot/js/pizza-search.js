@@ -16,16 +16,63 @@ async function fetchJSON(url, options) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    const goesWithFoodElement = document.querySelector('#goesWithFood');
+    const goesWithFoodElement = document.querySelector('#goesWithFood2');
     const message = document.querySelector('#message');
-    const resultList = document.querySelector("#pizzaWithBeer #recommendation");
+    const resultList = document.querySelector('#recommendation');
 
     function displayResults(hits) {
         if (hits.length === 0) {
             message.hidden = false;
-            resultList.hidden = true;
+            resultList.hidden = false;
+
+            resultList.replaceChildren();
+
+            for (const hit of hits) {
+                const pizzaName = document.createElement('h4');
+                pizzaName.setAttribute("class", "pizzaName");
+
+                const img = document.createElement('img');
+
+                const ingredientHeader = document.createElement('h4');
+                ingredientHeader.textContent = 'Ingredients:'
+
+                const ingredientList = document.createElement('ul');
+                ingredientList.setAttribute("class", "ingredientList");
+
+                /*const ingredientString = hit.ingredients;*/
+
+                //retrieve the string from the API response and split into an array
+                var ingredientsArray = hit.ingredients.split(',');
+
+                // Iterate over the array of words
+                for (var i = 0; i < ingredientsArray.length; i++) {
+                    // Trim each word to remove any leading or trailing spaces
+                    var ingredient = ingredientsArray[i].trim();
+
+                    // Create an li element for each word
+                    var ingredientLi = document.createElement('li');
+
+                    // Set the text content of the li element to the ingredient
+                    ingredientLi.textContent = ingredient;
+
+                    // Append the li element to the ul element
+                    ingredientList.appendChild(ingredientLi);
+                }
+
+                img.src = hit.webformatURL;
+                img.style.width = '250px';
+                pizzaName.textContent = hit.pizzaName;
+
+                const li = document.createElement('li');
+                li.append(pizzaName);
+                li.append(img);
+                li.append(ingredientHeader);
+                li.append(ingredientList);
+
+                resultList.append(li);
+            }
         } else {
-            message.hidden = true;
+            message.hidden = false;
             resultList.hidden = false;
 
             resultList.replaceChildren();
