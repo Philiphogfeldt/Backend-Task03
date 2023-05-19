@@ -4,7 +4,7 @@
 
 namespace Backend_Task03.Migrations
 {
-    public partial class greco666 : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -65,7 +65,7 @@ namespace Backend_Task03.Migrations
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Rating = table.Column<int>(type: "int", nullable: false),
-                    Comment = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Comment = table.Column<string>(type: "nvarchar(180)", maxLength: 180, nullable: true),
                     AccountID = table.Column<int>(type: "int", nullable: false),
                     BeerID = table.Column<int>(type: "int", nullable: false)
                 },

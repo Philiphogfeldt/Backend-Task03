@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Backend_Task03.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230519113954_review")]
-    partial class review
+    [Migration("20230519230332_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
