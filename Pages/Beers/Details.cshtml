@@ -34,9 +34,10 @@
 		<div class="beerGridCellRow">
 			@Html.DisplayNameFor(model => model.Beer.Country) @Html.DisplayFor(model => model.Beer.Country)
 		</div>
-		<div class="beerGridCellRow">
+		<div class="beerGridCellRow" id="goesWithFood">
 			@Html.DisplayNameFor(model => model.Beer.GoesWellWith)
-			@if (Model.Beer.GoesWellWith.Contains("Chicken"))
+@*			@Html.DisplayFor(model => model.Beer.GoesWellWith)
+*@			@if (Model.Beer.GoesWellWith.Contains("Chicken"))
 			{
 				<img asp-append-version="true" name="Goesw" value="Chicken" src="../images/chicken.svg" style="width: 25px" />
 			}
@@ -232,6 +233,9 @@
 		<h3 id="pizzaBeerHead">This pizza goes well with your chosen beer!</h3>
 
 		<ul id="recommendation" hidden></ul>
+
+		<p id="message" hidden>There are no results for that keyword.</p>
+
 
 	</div>
 
