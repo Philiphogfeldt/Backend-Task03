@@ -11,28 +11,26 @@ using Backend_Task03.Models;
 
 namespace Backend_Task03.Pages.Beers
 {
-    public class EditModel : PageModel
+    public class Edit2Model : PageModel
     {
-        private readonly Backend_Task03.Data.AppDbContext _context;
+        private readonly AppDbContext database;
 
-        public EditModel(Backend_Task03.Data.AppDbContext context)
+        public Edit2Model(AppDbContext context)
         {
-            _context = context;
+            database = context;
         }
 
         [BindProperty]
         public Beer Beer { get; set; } = default!;
 
-     
-
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null || _context.Beers == null)
+            if (id == null || database.Beers == null)
             {
                 return NotFound();
             }
 
-            var beer =  await _context.Beers.FirstOrDefaultAsync(m => m.ID == id);
+            var beer = await database.Beers.FirstOrDefaultAsync(m => m.ID == id);
             if (beer == null)
             {
                 return NotFound();
@@ -50,11 +48,11 @@ namespace Backend_Task03.Pages.Beers
                 return Page();
             }
 
-            _context.Attach(Beer).State = EntityState.Modified;
+            database.Attach(Beer).State = EntityState.Modified;
 
             try
             {
-                await _context.SaveChangesAsync();
+                await database.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -73,7 +71,7 @@ namespace Backend_Task03.Pages.Beers
 
         private bool BeerExists(int id)
         {
-          return (_context.Beers?.Any(e => e.ID == id)).GetValueOrDefault();
+            return (database.Beers?.Any(e => e.ID == id)).GetValueOrDefault();
         }
     }
 }

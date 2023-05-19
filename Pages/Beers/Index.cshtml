@@ -97,25 +97,25 @@
 	</tr>
 	</thead>
 	<tbody>
-	@foreach (var item in Model.Beer)
-	{
-	<tr>
-	<td>
-	@Html.DisplayFor(modelItem => item.Name)
-	</td>
-	<td>
-	@Html.DisplayFor(modelItem => item.Type)
-	</td>
-	<td>
-	@Html.DisplayFor(modelItem => item.Percentage)
-	</td>
-	<td>
-	@Html.DisplayFor(modelItem => item.Brewery)
-	</td>
-	<td>
-	@Html.DisplayFor(modelItem => item.Country)
-	</td>
-	<td>
+		@foreach (var item in Model.Beer)
+		{
+			<tr>
+				<td>
+					@Html.DisplayFor(modelItem => item.Name)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Type)
+				</td>
+				<td>
+						@Html.DisplayFor(modelItem => item.Percentage)%
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Brewery)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Country)
+				</td>
+				<td>
 
 	@if (item.GoesWellWith.Contains("Chicken"))
 	{
@@ -148,13 +148,13 @@
 	</td>
 
 
-	<td>
-	@if (AccessControl.LoggedInAccountRole == "Admin")
-	{
-	<button type="button" onclick="location.href='@Url.Page("./Edit", new { id = item.ID,  name = item.Name })'">Edit</button>
-	<button type="button" onclick="location.href='@Url.Page("./Delete", new { id = item.ID, name = item.Name })'">Delete</button>
-	}
-	<button type="button" onclick="location.href='@Url.Page("./Details", new { id = item.ID, name = item.Name })'">Details</button>
+					<td>
+						@if (AccessControl.LoggedInAccountRole == "Admin")
+						{
+							<button type="button" onclick="location.href='@Url.Page("./Edit2", new { id = item.ID,  name = item.Name })'">Edit</button>
+							<button type="button" onclick="location.href='@Url.Page("./Delete", new { id = item.ID, name = item.Name })'">Delete</button>
+						}
+						<button type="button" onclick="location.href='@Url.Page("./Details", new { id = item.ID, name = item.Name })'">Details</button>
 
 	</td>
 	</tr>

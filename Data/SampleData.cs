@@ -48,7 +48,7 @@ namespace Backend_Task03.Data
                         Name = "Hoppy McHopface",
                         Description = "A bold, hoppy brew with a crisp finish that will leave you feeling hoppily ever after.",
                         Type = "IPA",
-                        Percentage = "6.5%",
+                        Percentage = 6.5,
                         Brewery = "Hoppy Brewery",
                         Country = "USA",
                         EAN13 = "1940375440218"
@@ -58,7 +58,7 @@ namespace Backend_Task03.Data
                         Name = "Lager than Life",
                         Description = "A smooth, refreshing lager that's bigger than life itself.",
                         Type = "Lager",
-                        Percentage = "4.8%",
+                        Percentage = 4.8,
                         Brewery = "Big Brewery",
                         Country = "Canada",
                         EAN13 = "1154166643669"
@@ -68,7 +68,7 @@ namespace Backend_Task03.Data
                         Name = "Witty Kolsch",
                         Description = "A clever and light-bodied Kolsch that's sure to put a smile on your face.",
                         Type = "Kolsch",
-                        Percentage = "5.0%",
+                        Percentage = 5.0,
                         Brewery = "Wit Brewery",
                         Country = "Germany",
                         EAN13 = "0991733191373"
@@ -78,7 +78,7 @@ namespace Backend_Task03.Data
                         Name = "Saison's Greetings",
                         Description = "A spicy, seasonal Saison that's perfect for the holidays.",
                         Type = "Saison",
-                        Percentage = "6.2%",
+                        Percentage = 6.2,
                         Brewery = "Seasonal Brewery",
                         Country = "Belgium",
                         EAN13 = "3768642176626"
@@ -88,7 +88,7 @@ namespace Backend_Task03.Data
                         Name = "Hazy Daze IPA",
                         Description = "A hazy, juicy IPA that will transport you to a lazy day on the beach.",
                         Type = "IPA",
-                        Percentage = "6.8%",
+                        Percentage = 6.8,
                         Brewery = "Hazy Brewery",
                         Country = "USA",
                         EAN13 = "1222009428947"
@@ -98,7 +98,7 @@ namespace Backend_Task03.Data
                         Name = "Red Oktoberfest",
                         Description = "A rich, malty Oktoberfest brew with a deep red color and a smooth finish.",
                         Type = "Oktoberfest",
-                        Percentage = "5.5%",
+                        Percentage = 5.5,
                         Brewery = "Red Brewery",
                         Country = "Germany",
                         EAN13 = "4754493539030"
@@ -108,7 +108,7 @@ namespace Backend_Task03.Data
                         Name = "Imperial Stout of Mind",
                         Description = "A bold and complex Imperial Stout that will blow your mind.",
                         Type = "Imperial Stout",
-                        Percentage = "10.0%",
+                        Percentage = 10.0,
                         Brewery = "Mind Brewery",
                         Country = "USA",
                         EAN13 = "9614110758235"
@@ -118,7 +118,7 @@ namespace Backend_Task03.Data
                         Name = "Belgian Waffle Ale",
                         Description = "A sweet and savory Belgian-style ale that tastes like breakfast in a bottle.",
                         Type = "Belgian Ale",
-                        Percentage = "7.0%",
+                        Percentage = 7.0,
                         Brewery = "Waffle Brewery",
                         Country = "Belgium",
                         EAN13 = "8623813663884"
@@ -128,7 +128,7 @@ namespace Backend_Task03.Data
                         Name = "Irish Goodbye Stout",
                         Description = "A smooth and creamy Irish-style stout that will make you want to say goodbye to your troubles.",
                         Type = "Stout",
-                        Percentage = "5.2%",
+                        Percentage = 5.2,
                         Brewery = "Goodbye Brewery",
                         Country = "Ireland",
                         EAN13 = "8212798694862"
@@ -138,7 +138,7 @@ namespace Backend_Task03.Data
                          Name = "Sourpuss Gose",
                         Description = "A tart and salty Gose that's perfect for those with a sourpuss attitude.",
                         Type = "Gose",
-                        Percentage = "4.2%",
+                        Percentage = 4.2,
                         Brewery = "Sourpuss Brewery",
                         Country = "USA",
                         EAN13 = "8991846926529"
@@ -148,7 +148,7 @@ namespace Backend_Task03.Data
                         Name = "Funky Monkey Brown Ale",
                         Description = "A nutty and chocolatey brown ale with a funky twist.",
                         Type = "Brown Ale",
-                        Percentage = "5.8%",
+                        Percentage = 5.8,
                         Brewery = "Funky Brewery",
                         Country = "USA",
                         EAN13 = "1442094668961"
@@ -158,7 +158,7 @@ namespace Backend_Task03.Data
                         Name = "Tropical Tripel",
                         Description = "A fruity and spicy Belgian Tripel with a tropical twist.",
                         Type = "Tripel",
-                        Percentage = "9.5%",
+                        Percentage = 9.5,
                         Brewery = "Tropical Brewery",
                         Country = "Belgium",
                         EAN13 = "0855394176653"
@@ -168,7 +168,7 @@ namespace Backend_Task03.Data
                         Name = "Java Stout",
                         Description = "A rich and roasty stout brewed with coffee beans for a java kick.",
                         Type = "Stout",
-                        Percentage = "6.0%",
+                        Percentage = 6.0,
                         Brewery = "Java Brewery",
                         Country = "USA",
                         EAN13 = "8648669673863"
@@ -178,7 +178,7 @@ namespace Backend_Task03.Data
                         Name = "Cucumber Kolsch",
                         Description = "A light and refreshing Kolsch brewed with cucumber for a cool twist.",
                         Type = "Kolsch",
-                        Percentage = "4.5%",
+                        Percentage = 4.5,
                         Brewery = "Cucumber Brewery",
                         Country = "USA",
                         EAN13 = "8431155282560"
@@ -188,7 +188,7 @@ namespace Backend_Task03.Data
                         Name = "Cherry Bomb Sour",
                         Description = "A tart and fruity sour brewed with cherries for a flavorful explosion.",
                         Type = "Sour",
-                        Percentage = "5.0%",
+                        Percentage = 5.0,
                         Brewery = "Cherry Brewery",
                         Country = "USA",
                         EAN13 = "4768974526181"
@@ -198,7 +198,7 @@ namespace Backend_Task03.Data
                         Name = "Honey Wheat Ale",
                         Description = "A light and smooth wheat ale brewed with honey for a touch of sweetness.",
                         Type = "Wheat Ale",
-                        Percentage = "4.2%",
+                        Percentage = 4.2,
                         Brewery = "Honey Brewery",
                         Country = "USA",
                         EAN13 = "8067715472180"
@@ -208,7 +208,7 @@ namespace Backend_Task03.Data
                         Name = "Gingerbread Stout",
                         Description = "A spiced and rich stout brewed with gingerbread for a holiday treat.",
                         Type = "Stout",
-                        Percentage = "8.0%",
+                        Percentage = 8.0,
                         Brewery = "Gingerbread Brewery",
                         Country = "USA",
                         EAN13 = "2909312251583"
@@ -218,7 +218,7 @@ namespace Backend_Task03.Data
                         Name = "Peanut Butter Porter",
                         Description = "A smooth and nutty porter brewed with peanut butter for a creamy finish.",
                         Type = "Porter",
-                        Percentage = "6.5%",
+                        Percentage = 6.5,
                         Brewery = "Peanut Brewery",
                         Country = "USA",
                         EAN13 = "1835571799362"
@@ -228,7 +228,7 @@ namespace Backend_Task03.Data
                         Name = "Mango Habanero Wheat Ale",
                         Description = "A spicy and fruity wheat ale brewed with mango and habanero for a kick.",
                         Type = "Wheat Ale",
-                        Percentage = "5.0%",
+                        Percentage = 5.0,
                         Brewery = "Mango Habanero Brewery",
                         Country = "USA",
                         EAN13 = "1265144397501"
