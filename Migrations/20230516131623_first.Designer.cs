@@ -12,12 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Backend_Task03.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-<<<<<<<< HEAD:Migrations/20230519230332_init.Designer.cs
-    [Migration("20230519230332_init")]
-========
-    [Migration("20230516114013_init")]
->>>>>>>> main:Migrations/20230516114013_init.Designer.cs
-    partial class init
+    [Migration("20230516131623_first")]
+    partial class first
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -65,6 +61,9 @@ namespace Backend_Task03.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
 
+                    b.Property<int?>("AccountID")
+                        .HasColumnType("int");
+
                     b.Property<string>("Brewery")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -88,8 +87,9 @@ namespace Backend_Task03.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<double?>("Percentage")
-                        .HasColumnType("float");
+                    b.Property<string>("Percentage")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<double?>("Rating")
                         .HasColumnType("float");
@@ -99,6 +99,8 @@ namespace Backend_Task03.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("AccountID");
 
                     b.ToTable("Beers");
                 });
@@ -135,8 +137,8 @@ namespace Backend_Task03.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Comment")
-                        .HasMaxLength(180)
-                        .HasColumnType("nvarchar(180)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Rating")
                         .HasColumnType("int");
@@ -163,6 +165,13 @@ namespace Backend_Task03.Migrations
                     b.HasIndex("ReviewsID");
 
                     b.ToTable("FoodCategoryReview");
+                });
+
+            modelBuilder.Entity("Backend_Task03.Models.Beer", b =>
+                {
+                    b.HasOne("Backend_Task03.Models.Account", null)
+                        .WithMany("FavoriteBeers")
+                        .HasForeignKey("AccountID");
                 });
 
             modelBuilder.Entity("Backend_Task03.Models.Review", b =>
@@ -201,6 +210,8 @@ namespace Backend_Task03.Migrations
 
             modelBuilder.Entity("Backend_Task03.Models.Account", b =>
                 {
+                    b.Navigation("FavoriteBeers");
+
                     b.Navigation("Reviews");
                 });
 
