@@ -23,8 +23,6 @@ namespace Backend_Task03.Pages.Beers
         [BindProperty]
         public Beer Beer { get; set; } = default!;
 
-     
-
         public async Task<IActionResult> OnGetAsync(int? id)
         {
             if (id == null || _context.Beers == null)

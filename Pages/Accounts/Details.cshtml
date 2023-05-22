@@ -50,7 +50,14 @@
 					<a asp-page="./Index">Back to List</a>
 				}
 			</div>
-
+			@foreach (var b in Model.Account.FavoriteBeers)
+			{
+				<p>Favorite Beers</p>
+				<p>@b.Name</p>
+				<p>@b.Type</p>
+				<p>@b.Percentage</p>
+				<p>@b.GoesWellWith</p>
+			}
 
 
 			<div id="accountrightGrid">
