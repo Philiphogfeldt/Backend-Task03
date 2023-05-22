@@ -129,7 +129,7 @@ body {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 10px;
-    margin-left: 190px;
+    margin-left: 210px;
 }
 
 button,
@@ -315,7 +315,8 @@ main {
         "beerBrewery beerBrewery beerPercentage"
         "beerImage beerImage beerType"
         "beerImage beerImage beerGoesWellWith"
-        "beerRating beerRating beerDetailsButton";
+        "beerRating beerRating beerDetailsButton"
+        "beerRating beerRating beerFavoriteCell";
 }
 
 #beerName,
@@ -383,4 +384,9 @@ beerDetailsButton {
 
 #beerGoesWellWith {
     align-content: end;
+}
+
+#beerFavoriteCell {
+    justify-content: center;
+    justify-self: center;
 }

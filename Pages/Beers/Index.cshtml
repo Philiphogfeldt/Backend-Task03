@@ -65,7 +65,9 @@
 			<p id="beerRating">Our users give this beer an average @Html.DisplayFor(modelItem => item.Rating) of 5.</p>
 
 			<button type="button" id="beerDetailsButton" onclick="location.href='@Url.Page("./Details", new { id = item.ID, name = item.Name })'">Details</button>
-
+			<div id="beerFavoriteCell">
+				<img src="~/imagesBeerly/beerlyStarLH.png" />
+			</div>
 		</div>
 	}
 
