@@ -20,7 +20,7 @@ namespace Backend_Task03.Data
             string subject = user.FindFirst(ClaimTypes.NameIdentifier).Value;
             string issuer = user.FindFirst(ClaimTypes.NameIdentifier).Issuer;
 
-            LoggedInAccount = db.Accounts.Single(p => p.OpenIDIssuer == issuer && p.OpenIDSubject == subject);
+            LoggedInAccount = db.Accounts.Include(a => a.FavoriteBeers).Single(p => p.OpenIDIssuer == issuer && p.OpenIDSubject == subject);
             LoggedInAccountID = LoggedInAccount.ID;
             LoggedInAccountName = user.FindFirst(ClaimTypes.Name).Value;
             LoggedInAccountRole = LoggedInAccount.Role;
