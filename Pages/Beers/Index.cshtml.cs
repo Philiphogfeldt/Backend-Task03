@@ -16,10 +16,6 @@ namespace Backend_Task03.Pages.Beers
         private readonly AppDbContext database;
 		private readonly AccessControl accessControl;
 
-		/*public IndexModel(AppDbContext context)
-        {
-            database = context;
-        }*/
 		public IndexModel(AppDbContext context, IHttpContextAccessor httpContextAccessor)
 		{
 			database = context;
