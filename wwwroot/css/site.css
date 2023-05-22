@@ -388,4 +388,99 @@ beerDetailsButton {
 
 #beerFavoriteCell {
     justify-self: center;
+    width: 100px;
+    height: 30px;
 }
+
+.visually-hidden {
+    position: absolute !important;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+    clip: rect(1px, 1px, 1px, 1px);
+}
+
+/*.visually-hidden {
+    position: absolute !important;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+    clip: rect(1px, 1px, 1px, 1px);
+}
+
+.beerlyStar {
+    display: inline-block;
+    width: 100px;
+    height: 25px;
+}
+
+.not-filled {
+    display: grid;
+    background-image: url('~/imagesBeerly/beerlyStarLH.png');
+    background-repeat: no-repeat;
+}
+
+.filled {
+    display: none;
+}
+
+#beerFavoriteCheckbox_@(item.Name):checked + .beerFavoriteLabel .not-filled {
+    display: none;
+}
+
+#beerFavoriteCheckbox_@(item.Name):checked + .beerFavoriteLabel .filled {
+    display: grid;
+}*/
+
+/*
+.visually-hidden {
+    position: absolute !important;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+    clip: rect(1px, 1px, 1px, 1px);
+}
+
+.@(item.Name)CheckboxLabel {
+    display: grid;
+    width: 100px;
+    height: 30px;
+    background-image: url('../imagesBeerly/beerlyStarLH.png');
+    background-repeat: no-repeat;
+}
+
+#@(item.Name)Checkbox:checked + .starLabel {
+    background-image: url('../imagesBeerly/beerlyStarFav.png');
+    background-repeat: no-repeat;
+}
+*/
+/*.visually-hidden {
+    position: absolute !important;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+    clip: rect(1px, 1px, 1px, 1px);
+}
+
+.beerlyStar {
+    width: 100px;*/
+/*    height: 20px;
+*//*}
+
+    .beerlyStar.checked {
+        display: none;
+    }
+
+.beerFavoriteLabel {
+    display: grid;
+    cursor: pointer;
+}*/
+
+/*
+<input type="checkbox" id="beerFavoriteCheckbox" class="beerFavoriteCheckbox visually-hidden" >
+<label for="beerFavoriteCheckbox" class="beerFavoriteLabel" >
+<img class="beerlyStar" src="~/imagesBeerly/beerlyStarLH.png" alt="Not Filled Star" >
+<img class="beerlyStar checked" src="~/imagesBeerly/beerlyStarFav.png" alt="Filled Star" >
+</label >
+
+*/

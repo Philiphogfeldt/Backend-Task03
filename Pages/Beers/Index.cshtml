@@ -6,6 +6,8 @@
 	ViewData["Title"] = "Index";
 }
 
+<script type="module" src="~/js/site.js" asp-append-version="true" defer></script>
+
 <div id="beerIndex">
 	<h1 id="beerHead">Beer</h1>
 
@@ -66,7 +68,33 @@
 
 			<button type="button" id="beerDetailsButton" onclick="location.href='@Url.Page("./Details", new { id = item.ID, name = item.Name })'">Details</button>
 			<div id="beerFavoriteCell">
-				<img src="~/imagesBeerly/beerlyStarLH.png" />
+
+				<div id="beerFavoriteCell">
+					<input type="checkbox" id="@(item.Name)Checkbox" class="beerFavoriteCheckbox visually-hidden">
+					<label for="@(item.Name)Checkbox" class="beerFavoriteLabel">
+						<img class="beerlyStar" src="~/imagesBeerly/beerlyStarLH.png" alt="Not Filled Star">
+						<img class="beerlyStar checked" src="~/imagesBeerly/beerlyStarFav.png" alt="Filled Star">
+					</label>
+				</div>
+
+
+@*				<input type="checkbox" id="beerFavoriteCheckbox_@(item.Name)" class="beerFavoriteCheckbox visually-hidden">
+				<label for="beerFavoriteCheckbox_@(item.Name)" class="beerFavoriteLabel">
+					<img class="beerlyStar not-filled" src="~/imagesBeerly/beerlyStarLH.png" alt="Not Filled Star">
+					<img class="beerlyStar filled" src="~/imagesBeerly/beerlyStarFav.png" alt="Filled Star">
+				</label>*@
+
+@*				<input type="checkbox" id="@(item.Name)Checkbox" class="@(item.Name)Checkbox visually-hidden">
+				<label for="@(item.Name)Checkbox" class="@(item.Name)CheckboxLabel"></label>*@
+
+
+@*				<input type="checkbox" id="beerFavoriteCheckbox" class="beerFavoriteCheckbox visually-hidden">
+				<label for="beerFavoriteCheckbox" class="beerFavoriteLabel">
+					<img class="beerlyStar" src="~/imagesBeerly/beerlyStarLH.png" alt="Not Filled Star">
+					<img class="beerlyStar checked" src="~/imagesBeerly/beerlyStarFav.png" alt="Filled Star">
+				</label>
+
+				<img src="~/imagesBeerly/beerlyStarLH.png" />*@
 			</div>
 		</div>
 	}
@@ -167,3 +195,4 @@
 	</table>
 	*@
 </div>
+
