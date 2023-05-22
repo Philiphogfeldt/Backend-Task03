@@ -4,6 +4,7 @@ using Backend_Task03.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Backend_Task03.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230517080207_init")]
+    partial class init
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -74,9 +76,6 @@ namespace Backend_Task03.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
 
-                    b.Property<int?>("AccountID")
-                        .HasColumnType("int");
-
                     b.Property<string>("Brewery")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -100,8 +99,9 @@ namespace Backend_Task03.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<double?>("Percentage")
-                        .HasColumnType("float");
+                    b.Property<string>("Percentage")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<double?>("Rating")
                         .HasColumnType("float");
@@ -111,8 +111,6 @@ namespace Backend_Task03.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ID");
-
-                    b.HasIndex("AccountID");
 
                     b.ToTable("Beers");
                 });
@@ -149,8 +147,8 @@ namespace Backend_Task03.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Comment")
-                        .HasMaxLength(180)
-                        .HasColumnType("nvarchar(180)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Rating")
                         .HasColumnType("int");
@@ -179,7 +177,6 @@ namespace Backend_Task03.Migrations
                     b.ToTable("FoodCategoryReview");
                 });
 
-
             modelBuilder.Entity("AccountBeer", b =>
                 {
                     b.HasOne("Backend_Task03.Models.Beer", null)
@@ -193,7 +190,6 @@ namespace Backend_Task03.Migrations
                         .HasForeignKey("FavoritedByID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
                 });
 
             modelBuilder.Entity("Backend_Task03.Models.Review", b =>
@@ -232,8 +228,6 @@ namespace Backend_Task03.Migrations
 
             modelBuilder.Entity("Backend_Task03.Models.Account", b =>
                 {
-                    b.Navigation("FavoriteBeers");
-
                     b.Navigation("Reviews");
                 });
 
