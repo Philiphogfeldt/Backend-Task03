@@ -26,7 +26,7 @@
 
 			<p id="beerBrewery">@Html.DisplayFor(modelItem => item.Brewery)</p>
 
-			<p id="beerPercentage">@Html.DisplayFor(modelItem => item.Percentage)</p>
+			<p id="beerPercentage">@Html.DisplayFor(modelItem => item.Percentage)%</p>
 
 			<div id="beerImage">
 				<img id="smBeerImage" src="~/imagesBeerly/@(item.Name).png" width="100px" />
@@ -62,7 +62,7 @@
 				}
 			</div>
 
-			<p id="beerRating">Rated @Html.DisplayFor(modelItem => item.Rating) of 5 by users.</p>
+			<p id="beerRating">Our users give this beer an average @Html.DisplayFor(modelItem => item.Rating) of 5.</p>
 
 			<button type="button" id="beerDetailsButton" onclick="location.href='@Url.Page("./Details", new { id = item.ID, name = item.Name })'">Details</button>
 
