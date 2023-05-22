@@ -4,6 +4,7 @@ using Backend_Task03.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Backend_Task03.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230516131623_first")]
+    partial class first
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,21 +23,6 @@ namespace Backend_Task03.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
-
-            modelBuilder.Entity("AccountBeer", b =>
-                {
-                    b.Property<int>("FavoriteBeersID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("FavoritedByID")
-                        .HasColumnType("int");
-
-                    b.HasKey("FavoriteBeersID", "FavoritedByID");
-
-                    b.HasIndex("FavoritedByID");
-
-                    b.ToTable("AccountBeer");
-                });
 
             modelBuilder.Entity("Backend_Task03.Models.Account", b =>
                 {
@@ -180,21 +167,11 @@ namespace Backend_Task03.Migrations
                     b.ToTable("FoodCategoryReview");
                 });
 
-
-            modelBuilder.Entity("AccountBeer", b =>
+            modelBuilder.Entity("Backend_Task03.Models.Beer", b =>
                 {
-                    b.HasOne("Backend_Task03.Models.Beer", null)
-                        .WithMany()
-                        .HasForeignKey("FavoriteBeersID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Backend_Task03.Models.Account", null)
-                        .WithMany()
-                        .HasForeignKey("FavoritedByID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
+                        .WithMany("FavoriteBeers")
+                        .HasForeignKey("AccountID");
                 });
 
             modelBuilder.Entity("Backend_Task03.Models.Review", b =>

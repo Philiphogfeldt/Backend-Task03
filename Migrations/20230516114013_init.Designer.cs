@@ -4,6 +4,7 @@ using Backend_Task03.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Backend_Task03.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230516114013_init")]
+    partial class init
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,21 +23,6 @@ namespace Backend_Task03.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
-
-            modelBuilder.Entity("AccountBeer", b =>
-                {
-                    b.Property<int>("FavoriteBeersID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("FavoritedByID")
-                        .HasColumnType("int");
-
-                    b.HasKey("FavoriteBeersID", "FavoritedByID");
-
-                    b.HasIndex("FavoritedByID");
-
-                    b.ToTable("AccountBeer");
-                });
 
             modelBuilder.Entity("Backend_Task03.Models.Account", b =>
                 {
@@ -74,9 +61,6 @@ namespace Backend_Task03.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
 
-                    b.Property<int?>("AccountID")
-                        .HasColumnType("int");
-
                     b.Property<string>("Brewery")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -112,8 +96,6 @@ namespace Backend_Task03.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ID");
-
-                    b.HasIndex("AccountID");
 
                     b.ToTable("Beers");
                 });
@@ -180,23 +162,6 @@ namespace Backend_Task03.Migrations
                     b.ToTable("FoodCategoryReview");
                 });
 
-
-            modelBuilder.Entity("AccountBeer", b =>
-                {
-                    b.HasOne("Backend_Task03.Models.Beer", null)
-                        .WithMany()
-                        .HasForeignKey("FavoriteBeersID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Backend_Task03.Models.Account", null)
-                        .WithMany()
-                        .HasForeignKey("FavoritedByID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                });
-
             modelBuilder.Entity("Backend_Task03.Models.Review", b =>
                 {
                     b.HasOne("Backend_Task03.Models.Account", "Account")
@@ -233,8 +198,6 @@ namespace Backend_Task03.Migrations
 
             modelBuilder.Entity("Backend_Task03.Models.Account", b =>
                 {
-                    b.Navigation("FavoriteBeers");
-
                     b.Navigation("Reviews");
                 });
 
