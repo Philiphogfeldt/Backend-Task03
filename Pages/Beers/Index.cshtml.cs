@@ -6,6 +6,7 @@ using Backend_Task03.Data;
 using Backend_Task03.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.RazorPages.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 
 namespace Backend_Task03.Pages.Beers
@@ -193,9 +194,9 @@ namespace Backend_Task03.Pages.Beers
 
 				await database.SaveChangesAsync();
 			}
-
-			return Page();
-		}
+            return RedirectToAction("index");
+            
+        }
 
 	}
 }
