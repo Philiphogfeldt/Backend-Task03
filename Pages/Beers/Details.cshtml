@@ -160,16 +160,25 @@
 	<div id="beerReviewCell">
 		@if (Model.Beer != null && Model.Beer.Reviews != null && Model.Beer.Reviews.Count > 0)
 		{
-
 			<div>
 				<h4>Reviews</h4>
 				@foreach (var comment in Model.Beer.Reviews)
 				{
+					@if (@comment.Comment != null && @comment.Rating != 0)
+					{
+						<div id="reviewGridCell">
+							@comment.Account.Name said: "@comment.Comment" -about this beer and gave it @comment.Rating / 5
+							@comment.Created.ToString("yyyy-MM-dd HH:mm")
+						</div>
+					}
 
-					<div id="reviewGridCell">
-						@comment.Account.Name said: "@comment.Comment" -about this beer and gave it @comment.Rating / 5
-
-					</div>
+					@if (@comment.Comment != null && @comment.Rating == 0)
+					{
+						<div id="reviewGridCell">
+							@comment.Account.Name said: "@comment.Comment" -about this beer
+							@comment.Created.ToString("yyyy-MM-dd HH:mm")
+						</div>
+					}
 				}
 			</div>
 		}

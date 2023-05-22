@@ -37,6 +37,7 @@ namespace Backend_Task03.Data
 
             database.SaveChanges();
         }
+
         public static void CreateBeer(AppDbContext database)
         {
             if (!database.Beers.Any())
@@ -232,8 +233,7 @@ namespace Backend_Task03.Data
                         Brewery = "Mango Habanero Brewery",
                         Country = "USA",
                         EAN13 = "1265144397501"
-                    },
-
+                    }
                 };
 
                 database.Beers.AddRange(beers);
@@ -253,56 +253,56 @@ namespace Backend_Task03.Data
 
                 database.FoodCategories.AddRange(meatCategory, chickenCategory, vegoCategory, fishCategory, dessertCategory);
                 database.SaveChanges();
-
             }
         }
 
-        public static void CreateReview(AppDbContext database)
-        {
-            if (!database.Reviews.Any())
-            {
-                var accounts = database.Accounts.ToList();
-                var beers = database.Beers.ToList();
-                var foodCategories = database.FoodCategories.ToList();
-                var reviews = new List<Review>();
+		public static void CreateReview(AppDbContext database)
+		{
+			if (!database.Reviews.Any())
+			{
+				var accounts = database.Accounts.ToList();
+				var beers = database.Beers.ToList();
+				var foodCategories = database.FoodCategories.ToList();
+				var reviews = new List<Review>();
+				var random = new Random();
+				foreach (var beer in beers)
+				{
+					var reviewCount = random.Next(3, 6); // generate 3 to 5 reviews per beer
+					for (int i = 0; i < reviewCount; i++)
+					{
+						var rating = random.Next(1, 6);
+						var comment = GetRandomComment(beer.Name, rating);
+						var account = accounts[random.Next(accounts.Count)];
+						var created = GenerateRandomDateTime();
+						var selectedCategories = new List<FoodCategory>();
+						for (int j = 0; j < random.Next(1, 4); j++)
+						{
+							var category = foodCategories[random.Next(foodCategories.Count)];
+							if (!selectedCategories.Contains(category))
+							{
+								selectedCategories.Add(category);
+							}
+						}
+						var review = new Review
+						{
+							Rating = rating,
+							Comment = comment,
+							Created = created,
+							Account = account,
+							Beer = beer,
+							FoodCategories = selectedCategories
+						};
+						reviews.Add(review);
+					}
+				}
 
-                var random = new Random();
-                foreach (var beer in beers)
-                {
-                    var reviewCount = random.Next(3, 6); // generate 3 to 5 reviews per beer
-                    for (int i = 0; i < reviewCount; i++)
-                    {
-                        var rating = random.Next(1, 6);
-                        var comment = GetRandomComment(beer.Name, rating);
-                        var account = accounts[random.Next(accounts.Count)];
-                        var selectedCategories = new List<FoodCategory>();
-                        for (int j = 0; j < random.Next(1, 4); j++)
-                        {
-                            var category = foodCategories[random.Next(foodCategories.Count)];
-                            if (!selectedCategories.Contains(category))
-                            {
-                                selectedCategories.Add(category);
-                            }
-                        }
-                        var review = new Review
-                        {
-                            Rating = rating,
-                            Comment = comment,
-                            Account = account,
-                            Beer = beer,
-                            FoodCategories = selectedCategories
-                        };
-                        reviews.Add(review);
-                    }
-                }
+				database.Reviews.AddRange(reviews);
+				database.SaveChanges();
+			}
+		}
 
-                database.Reviews.AddRange(reviews);
-                database.SaveChanges();
-
-            }
-        }
-            // helper method to generate random comments based on beer name and rating
-            private static string GetRandomComment(string beerName, int rating)
+		// helper method to generate random comments based on beer name and rating
+		private static string GetRandomComment(string beerName, int rating)
             {
                 var comments = new List<string>
                 {
@@ -321,9 +321,19 @@ namespace Backend_Task03.Data
                 return $"{comment}.";
             }
 
+		private static DateTime GenerateRandomDateTime()
+		{
+			Random random = new Random();
+			int year = random.Next(2000, 2023);
+			int month = random.Next(1, 13);
+			int day = random.Next(1, DateTime.DaysInMonth(year, month) + 1);
+			int hour = random.Next(0, 24);
+			int minute = random.Next(0, 60);
+			return new DateTime(year, month, day, hour, minute, 0);
+		}
 
-        //Vad säger vi om det här? Har lagt den som static för att det ska funka - Vet ej om det är ok. / Linda
-        public static List<string> CountryData { get; set; } = new List<string>
+		//Vad säger vi om det här? Har lagt den som static för att det ska funka - Vet ej om det är ok. / Linda
+		public static List<string> CountryData { get; set; } = new List<string>
         {
         "Australia",
         "Belgium",
@@ -349,8 +359,5 @@ namespace Backend_Task03.Data
         "Yemen",
         "Zimbabwe"
         };
-
     }
-
 }
-
