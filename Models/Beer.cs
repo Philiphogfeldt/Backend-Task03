@@ -16,7 +16,8 @@
         public string? GoesWellWith { get; set; } = "-";
         public double? Rating { get; set; }
         public List<Review>? Reviews { get; set; }
+		public List<Account>? FavoritedBy { get; set; }
 
-        //account kan inte creata ny review om man redan har en review på den ölen
-    }
+		//account kan inte creata ny review om man redan har en review på den ölen
+	}
 }

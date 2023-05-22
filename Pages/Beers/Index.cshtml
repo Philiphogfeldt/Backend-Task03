@@ -94,13 +94,15 @@
 						@Html.DisplayFor(modelItem => item.Rating)
 					</td>
 
-
 					<td>
 						@if (AccessControl.LoggedInAccountRole == "Admin")
 						{
 							<button type="button" onclick="location.href='@Url.Page("./Edit", new { id = item.ID,  name = item.Name })'">Edit</button>
 							<button type="button" onclick="location.href='@Url.Page("./Delete", new { id = item.ID, name = item.Name })'">Delete</button>
 						}
+						<form method="post" asp-page-handler="AddToFavorites" asp-route-beerId="@item.ID">
+							<button type="submit">Add to favorites</button>
+						</form>
 						<button type="button" onclick="location.href='@Url.Page("./Details", new { id = item.ID, name = item.Name })'">Details</button>
 
 					</td>
