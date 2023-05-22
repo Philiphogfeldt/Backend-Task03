@@ -3,16 +3,15 @@
 @inject Backend_Task03.Data.AccessControl AccessControl
 
 @{
-	ViewData["Title"] = "Details";
+    ViewData["Title"] = "Details";
 }
 
 <script type="module" src="~/js/pizza-search.js" asp-append-version="true" defer></script>
 
 <header>
-	<link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
 </header>
 <div id="beerGrid">
-
 	<div id="beerGridCell">
 		<h2>Beer</h2>
 		<div class="beerGridCellRow">
@@ -45,20 +44,20 @@
 				<img asp-append-version="true" name="Goesw" value="Chicken" src="../images/chicken.svg" style="width: 25px" />
 			}
 
-			@if (Model.Beer.GoesWellWith.Contains("Meat"))
-			{
-				<img asp-append-version="true" name="Goesw" value="Meat" src="../images/meat.svg" style="width: 25px" />
-			}
+            @if (Model.Beer.GoesWellWith.Contains("Meat"))
+            {
+                <img asp-append-version="true" name="Goesw" value="Meat" src="../images/meat.svg" style="width: 25px" />
+            }
 
-			@if (Model.Beer.GoesWellWith.Contains("Fish"))
-			{
-				<img asp-append-version="true" name="Goesw" value="Fish" src="../images/fish.svg" style="width: 25px" />
-			}
+            @if (Model.Beer.GoesWellWith.Contains("Fish"))
+            {
+                <img asp-append-version="true" name="Goesw" value="Fish" src="../images/fish.svg" style="width: 25px" />
+            }
 
-			@if (Model.Beer.GoesWellWith.Contains("Vegetarian"))
-			{
-				<img asp-append-version="true" name="Goesw" value="Vegetarian" src="../images/veg.svg" style="width: 25px" />
-			}
+            @if (Model.Beer.GoesWellWith.Contains("Vegetarian"))
+            {
+                <img asp-append-version="true" name="Goesw" value="Vegetarian" src="../images/veg.svg" style="width: 25px" />
+            }
 
 			@if (Model.Beer.GoesWellWith.Contains("Dessert"))
 			{
@@ -246,7 +245,7 @@
 	<div id="beerCRUDButtons">
 		@if (AccessControl.LoggedInAccountRole == "Admin")
 		{
-			<button type="button" onclick="location.href='@Url.Page("./Edit", new { id = Model.Beer?.ID,  name = Model.Beer?.Name })'">Edit</button>
+			<button type="button" onclick="location.href='@Url.Page("./Edit2", new { id = Model.Beer?.ID,  name = Model.Beer?.Name })'">Edit</button>
 		}
 		<button type="button" onclick="location.href='@Url.Page("./Index")'">Back to List</button>
 	</div>
@@ -270,8 +269,8 @@
 
 <p id="message" hidden>There are no results for that keyword.</p>
 
-
 <div id="beerGridCell"></div>*@
+
 @*<h4>Beer</h4>
 <hr />
 <dl class="row">
@@ -421,11 +420,13 @@ else
 
 </div>
 
-<div>
-	@if (AccessControl.LoggedInAccountRole == "Admin")
-	{
-		<button type="button" onclick="location.href='@Url.Page("./Edit", new { id = Model.Beer?.ID,  name = Model.Beer?.Name })'">Edit</button>
-	}
-	<button type="button" onclick="location.href='@Url.Page("./Index")'">Back to List</button>
-</div>
-		</div>*@
+			<div>
+				@if (AccessControl.LoggedInAccountRole == "Admin")
+				{
+		<button type="button" onclick="location.href='@Url.Page("./Edit2", new { id = Model.Beer?.ID,  name = Model.Beer?.Name })'">Edit</button>
+				}
+				<button type="button" onclick="location.href='@Url.Page("./Index")'">Back to List</button>
+			</div>
+		@*</div>*@
+	
+
