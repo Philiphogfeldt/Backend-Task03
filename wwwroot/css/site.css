@@ -387,6 +387,5 @@ beerDetailsButton {
 }
 
 #beerFavoriteCell {
-    justify-content: center;
     justify-self: center;
 }
