@@ -36,7 +36,7 @@
 		</div>
 		<div class="beerGridCellRow">
 			@Html.DisplayNameFor(model => model.Beer.GoesWellWith)
-			<p id="goesWithFood">@Html.DisplayFor(model=>
+			<p id="goesWithFood" hidden>@Html.DisplayFor(model=>
 				model.Beer.GoesWellWith)
 			</p>
 			@if (Model.Beer.GoesWellWith.Contains("Chicken"))

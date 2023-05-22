@@ -313,7 +313,7 @@ main {
         "beerName beerName beerCountry"
         "beerBrewery beerBrewery beerPercentage"
         "beerImage beerImage beerType"
-        "beerGoesWellWith beerGoesWellWith beerGoesWellWith"
+        "beerImage beerImage beerGoesWellWith"
         "beerRating beerRating beerDetailsButton";
 }
 
@@ -345,6 +345,13 @@ beerDetailsButton {
 #beerType {
     grid-area: beerType;
 }
+#beerImage {
+    grid-area: beerImage;
+}
+
+#smBeerImage {
+    border-radius: 8px;
+}
 
 #beerRating {
     grid-area: beerRating;
@@ -355,6 +362,6 @@ beerDetailsButton {
 }
 
 #beerGoesWellWith {
-    grid-template-columns: repeat(5);
+    /*grid-template-columns: repeat(5);*/
     align-content: end;
 }
