@@ -145,6 +145,8 @@ button,
     cursor: pointer;
     transition-duration: 0.4s;
     border-radius: 8px;
+    width: fit-content;
+    height: fit-content;
 }
 
     button:hover,
@@ -224,8 +226,10 @@ button,
 }
 
 #beerCRUDButtons {
+    align-content: end;
     display: grid;
     grid-area: beerCRUDButtons;
+    grid-auto-columns: "a";
 }
 
 #accountBodyGrid {
