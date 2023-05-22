@@ -59,6 +59,30 @@ namespace Backend_Task03.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "AccountBeer",
+                columns: table => new
+                {
+                    FavoriteBeersID = table.Column<int>(type: "int", nullable: false),
+                    FavoritedByID = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AccountBeer", x => new { x.FavoriteBeersID, x.FavoritedByID });
+                    table.ForeignKey(
+                        name: "FK_AccountBeer_Accounts_FavoritedByID",
+                        column: x => x.FavoritedByID,
+                        principalTable: "Accounts",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_AccountBeer_Beers_FavoriteBeersID",
+                        column: x => x.FavoriteBeersID,
+                        principalTable: "Beers",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Reviews",
                 columns: table => new
                 {
@@ -111,6 +135,11 @@ namespace Backend_Task03.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_AccountBeer_FavoritedByID",
+                table: "AccountBeer",
+                column: "FavoritedByID");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_FoodCategoryReview_ReviewsID",
                 table: "FoodCategoryReview",
                 column: "ReviewsID");
@@ -128,6 +157,9 @@ namespace Backend_Task03.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "AccountBeer");
+
             migrationBuilder.DropTable(
                 name: "FoodCategoryReview");
 
