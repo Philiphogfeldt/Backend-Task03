@@ -8,6 +8,10 @@ using Microsoft.Extensions.FileProviders;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using System.Security.Claims;
 using System.IO;
+using System.Globalization;
+
+
+CultureInfo.DefaultThreadCurrentCulture = CultureInfo.InvariantCulture;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -123,6 +127,7 @@ app.UseStaticFiles(new StaticFileOptions
 });
 app.UseRouting();
 app.UseAuthentication();
+app.UseCors(options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()); //Tillagd enligt Jakobs instruktion. Innebär att vem som helst får komma åt API:et.
 app.UseAuthorization();
 
 app.MapRazorPages();

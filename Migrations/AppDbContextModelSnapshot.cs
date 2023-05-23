@@ -74,9 +74,6 @@ namespace Backend_Task03.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
 
-                    b.Property<int?>("AccountID")
-                        .HasColumnType("int");
-
                     b.Property<string>("Brewery")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -100,9 +97,8 @@ namespace Backend_Task03.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Percentage")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<double?>("Percentage")
+                        .HasColumnType("float");
 
                     b.Property<double?>("Rating")
                         .HasColumnType("float");
@@ -112,8 +108,6 @@ namespace Backend_Task03.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ID");
-
-                    b.HasIndex("AccountID");
 
                     b.ToTable("Beers");
                 });
@@ -150,8 +144,8 @@ namespace Backend_Task03.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Comment")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(180)
+                        .HasColumnType("nvarchar(180)");
 
                     b.Property<int>("Rating")
                         .HasColumnType("int");
@@ -180,7 +174,6 @@ namespace Backend_Task03.Migrations
                     b.ToTable("FoodCategoryReview");
                 });
 
-
             modelBuilder.Entity("AccountBeer", b =>
                 {
                     b.HasOne("Backend_Task03.Models.Beer", null)
@@ -194,7 +187,6 @@ namespace Backend_Task03.Migrations
                         .HasForeignKey("FavoritedByID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
                 });
 
             modelBuilder.Entity("Backend_Task03.Models.Review", b =>
@@ -233,8 +225,6 @@ namespace Backend_Task03.Migrations
 
             modelBuilder.Entity("Backend_Task03.Models.Account", b =>
                 {
-                    b.Navigation("FavoriteBeers");
-
                     b.Navigation("Reviews");
                 });
 

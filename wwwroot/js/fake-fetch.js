@@ -26,7 +26,26 @@
             }
         }
 
-        else if (url.searchParams.get('q') === 'Meat') {
+        // Har lagt lite förenklad hämtning här. Om Vegetarian finns i GoesWellWith så kommer bild på vegetarisk pizza alltid att visas 
+        //(även om GoesWellWith även inkluderar Meat). Kanske inte optimalt men funkar. 
+        //Skulle kunna vara bra att lägga in någon sorts randomizer, men gör inte det nu. 
+        //Tänkte inte greja mer med detta nu förrän vi har ett riktigt API att fetcha
+
+        else if (url.searchParams.get('q').includes('Vegetarian')) {
+            return {
+                total: 1,
+                totalHits: 1,
+                hits: [
+                    {
+                        webformatURL: '/fake-images/Vegetarian.jpg',
+                        pizzaName: 'Veggie Pizza',
+                        ingredients: 'tomato, cheese, olives'
+                    }
+                ]
+            }
+        }
+
+        else if (url.searchParams.get('q').includes('Meat')) {
             return {
                 total: 1,
                 totalHits: 1,
@@ -40,7 +59,7 @@
             }
         }
 
-        else if (url.searchParams.get('q') === 'Chicken') {
+        else if (url.searchParams.get('q').includes('Chicken')) {
             return {
                 total: 1,
                 totalHits: 1,
@@ -53,7 +72,7 @@
                 ]
             }
         }
-        else if (url.searchParams.get('q') === 'Dessert') {
+        else if (url.searchParams.get('q').includes('Dessert')) {
             return {
                 total: 1,
                 totalHits: 1,
@@ -65,7 +84,8 @@
                     }
                 ]
             }
-        } else if (url.searchParams.get('q') === 'Fish') {
+        }
+        else if (url.searchParams.get('q').includes('Fish')) {
             return {
                 total: 1,
                 totalHits: 1,
@@ -78,43 +98,15 @@
                     }
                 ]
             }
-        } else if (url.searchParams.get('q') === 'Vegetarian') {
-            return {
-                total: 1,
-                totalHits: 1,
-                hits: [
-                    {
-                        webformatURL: '/fake-images/Vegetarian.jpg',
-                        pizzaName: 'Veggie Pizza',
-                        ingredients: 'tomato, cheese, olives'
-                    }
-                ]
-            }
         }
-        else if (url.searchParams.get('q') === 'Chicken, Vegetarian') {
-            return {
-                total: 2,
-                totalHits: 2,
-                hits: [
-                    {
-                        webformatURL: '/fake-images/Chicken.jpg',
-                        pizzaName: 'Chicken Pizza',
-                        ingredients: 'tomato, cheese, chicken'
-                    },
-                    {
-                        webformatURL: '/fake-images/Vegetarian.jpg',
-                        pizzaName: 'Veggie Pizza',
-                        ingredients: 'tomato, cheese, olives'
-                    }
-                ]
-            }
-        }
+
         else {
             return {
                 total: 0,
                 totalHits: 0,
                 hits: []
             }
+
         }
     }
     else {

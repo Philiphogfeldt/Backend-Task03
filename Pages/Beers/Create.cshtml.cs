@@ -23,7 +23,6 @@ namespace Backend_Task03.Pages.Beers
         [BindProperty]
         public Beer Beer { get; set; } = default!;
 
-
         public IActionResult OnGet(bool generateEAN13 = false)
         {
             Beer = new Beer { EAN13 = EAN13.GenerateEAN13() };
@@ -37,7 +36,7 @@ namespace Backend_Task03.Pages.Beers
                 return Page();
             }
 
-            Beer.Percentage = Beer.Percentage.ToString() + "%";
+            //Beer.Percentage = Beer.Percentage.ToString() + "%";
             Beer.EAN13 = EAN13.GenerateEAN13();
             database.Beers.Add(Beer);
             await database.SaveChangesAsync();

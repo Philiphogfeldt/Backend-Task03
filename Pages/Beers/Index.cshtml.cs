@@ -16,10 +16,6 @@ namespace Backend_Task03.Pages.Beers
         private readonly AppDbContext database;
 		private readonly AccessControl accessControl;
 
-		/*public IndexModel(AppDbContext context)
-        {
-            database = context;
-        }*/
 		public IndexModel(AppDbContext context, IHttpContextAccessor httpContextAccessor)
 		{
 			database = context;
@@ -105,11 +101,6 @@ namespace Backend_Task03.Pages.Beers
 
                         ratingValueCount += review.Rating;
                     }
-
-                    //// Update the Rating property
-                    //decimal totalRating = Math.Round
-                    //(ratingValueCount / reviewCount, 1);
-                    //beer.Rating = (double)totalRating;
 
                     // Find the category/categories with the highest count
                     List<string> mostSelectedCategories = new List<string>();

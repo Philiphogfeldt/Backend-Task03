@@ -2,6 +2,7 @@
     colors we use
     #6b7f9b blu-ish
     #f2eeea dirtwhite
+    #f2d3a4 orange-white
     #FFA500 orange
 */
 
@@ -10,7 +11,7 @@ body {
     font-family: sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f2eeea;
+    background-color: #f2d3a4;
 }
 
 .containerMain {
@@ -109,13 +110,13 @@ body {
     background-color: orange;
     border: none;
     color: black;
-/*    padding: 10px 20px;
-*/    text-align: center;
+    /*    padding: 10px 20px;
+*/ text-align: center;
     text-decoration: none;
-/*    display: inline-block;
-*/    font-size: 18px;
-/*    margin: 4px 2px;
-*/    cursor: pointer;
+    /*    display: inline-block;
+*/ font-size: 18px;
+    /*    margin: 4px 2px;
+*/ cursor: pointer;
     transition-duration: 0.4s;
 }
 
@@ -128,7 +129,7 @@ body {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 10px;
-    margin-left: 190px;
+    margin-left: 210px;
 }
 
 button,
@@ -145,6 +146,8 @@ button,
     cursor: pointer;
     transition-duration: 0.4s;
     border-radius: 8px;
+    width: fit-content;
+    height: fit-content;
 }
 
     button:hover,
@@ -167,8 +170,67 @@ button,
     gap: 2px;
 }
 
+#beerGrid {
+    display: grid;
+    width: 960px;
+    justify-self: center;
+    gap: 5px;
+    grid-template:
+        "beerGridCell beerGridCell beerReviewCell"
+        "pizzaWithBeer pizzaWithBeer beerReviewCell"
+        "pizzaWithBeer pizzaWithBeer beerReviewCell"
+        "beerCRUDButtons beerAddReview beerReviewCell";
+}
 
 #beerGridCell {
+    display: grid;
+    grid-area: beerGridCell;
+    grid-template-areas: "beerGridCellRow";
+}
+
+.beerReviewCell {
+    display: grid;
+    width: 300px;
+    grid-area: beerReviewCell;
+}
+
+#beerGridCellRow {
+    display: grid;
+
+    grid-area: beerGridCellRow;
+}
+
+#pizzaWithBeer {
+    display: grid;
+    width: 600px;
+    height: 600px;
+    grid-area: pizzaWithBeer;
+    grid-template:
+        "pizzaBeerHead"
+        "recommendation";
+}
+
+#pizzaBeerHead {
+    display: grid;
+    grid-area: pizzaBeerHead;
+
+}
+
+#recommendation {
+    display: grid;
+    grid-area: recommendation;
+}
+
+#beerAddReview {
+    display: grid;
+    grid-area: beerAddReview;
+}
+
+#beerCRUDButtons {
+    align-content: end;
+    display: grid;
+    grid-area: beerCRUDButtons;
+    grid-auto-columns: "a";
 }
 
 #accountBodyGrid {
@@ -185,7 +247,6 @@ button,
     display: grid;
     grid-area: a;
     height: fit-content;
-
 }
 
 #accountrightGrid {
@@ -195,6 +256,7 @@ button,
     justify-items: end;
     width: 200px;
 }
+
 #accountReviewGridBox {
     border: 1px;
     border-style: solid;
@@ -221,15 +283,217 @@ button,
 
 main {
     display: grid;
-/*    background-color: #f2eeea;
-*/}
+    /*    background-color: #f2eeea;
+*/
+}
 
-#beerGrid,
 #beerIndex {
     display: grid;
     align-content: start;
-    padding: 10px;
-    justify-self: center;
+/*    padding: 15px;
+*/    justify-self: center;
+    gap: 7px;
     width: 960px;
+    grid-template:
+        "beerHead beerHead beerCreate"
+        "beerIndexCell beerIndexCell beerIndexCell";
 }
 
+#beerHead {
+    grid-area: beerHead;
+    width: 600px;
+}
+
+.beerIndexCell {
+    background-color: #f4ddd1;
+    display: grid;
+    margin: 0px;
+    padding: 5px;
+    width: 300px;
+    grid-template:
+        "beerName beerName beerCountry"
+        "beerBrewery beerBrewery beerPercentage"
+        "beerImage beerImage beerType"
+        "beerImage beerImage beerGoesWellWith"
+        "beerRating beerRating beerDetailsButton"
+        "beerRating beerRating beerFavoriteCell";
+}
+
+#beerName,
+#beerCountry,
+#beerBrewery,
+#beerPercentage,
+#beerType,
+#beerGoesWellWith,
+#beerRating,
+beerDetailsButton {
+    display: grid;
+    margin: 0px;
+}
+
+#beerCountry,
+#beerPercentage,
+#beerType,
+#beerGoesWellWith,
+#beerDetailsButton {
+    width: 100px;
+}
+
+#beerName,
+#beerBrewery,
+#beerImage,
+#beerRating {
+    width: 200px;
+}
+
+#beerName {
+    grid-area: beerName;
+    min-height: 2em;
+}
+
+#beerCountry {
+    grid-area: beerCountry;
+}
+#beerBrewery {
+    grid-area: beerBrewery;
+}
+#beerPercentage {
+    grid-area: beerPercentage;
+}
+#beerType {
+    grid-area: beerType;
+}
+#beerImage {
+    grid-area: beerImage;
+}
+
+#smBeerImage {
+    border-radius: 8px;
+    border: 4px solid #FFA500;
+}
+
+#beerRating {
+    grid-area: beerRating;
+}
+
+#beerDetailsButton {
+    grid-area: beerDetailsButton;
+    align-self: end;
+    justify-self: end;
+}
+
+#beerGoesWellWith {
+    align-content: end;
+}
+
+#beerFavoriteCell {
+    justify-self: center;
+    width: 100px;
+    height: 30px;
+}
+
+.visually-hidden {
+    position: absolute !important;
+    height: 10px;
+    width: 10px;
+     overflow: hidden; 
+     clip: rect(1px, 1px, 1px, 1px); 
+}
+
+.beerlyStar {
+    width: 100px;
+    height: 25px;
+}
+
+    .beerlyStar.checked {
+        display: none;
+    }
+
+.beerFavoriteLabel:hover .beerlyStar {
+    filter: brightness(50%);
+}
+
+/*.visually-hidden {
+    position: absolute !important;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+    clip: rect(1px, 1px, 1px, 1px);
+}
+
+.beerlyStar {
+    display: inline-block;
+    width: 100px;
+    height: 25px;
+}
+
+.not-filled {
+    display: grid;
+    background-image: url('~/imagesBeerly/beerlyStarLH.png');
+    background-repeat: no-repeat;
+}
+
+.filled {
+    display: none;
+}
+
+#beerFavoriteCheckbox_@(item.Name):checked + .beerFavoriteLabel .not-filled {
+    display: none;
+}
+
+#beerFavoriteCheckbox_@(item.Name):checked + .beerFavoriteLabel .filled {
+    display: grid;
+}*/
+
+/*
+.visually-hidden {
+    position: absolute !important;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+    clip: rect(1px, 1px, 1px, 1px);
+}
+
+.@(item.Name)CheckboxLabel {
+    display: grid;
+    width: 100px;
+    height: 30px;
+    background-image: url('../imagesBeerly/beerlyStarLH.png');
+    background-repeat: no-repeat;
+}
+
+#@(item.Name)Checkbox:checked + .starLabel {
+    background-image: url('../imagesBeerly/beerlyStarFav.png');
+    background-repeat: no-repeat;
+}
+*/
+/*.visually-hidden {
+    position: absolute !important;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+    clip: rect(1px, 1px, 1px, 1px);
+}
+
+.beerlyStar {
+    width: 100px;*/
+/*    height: 20px;
+*//*}
+
+    .beerlyStar.checked {
+        display: none;
+    }
+
+.beerFavoriteLabel {
+    display: grid;
+    cursor: pointer;
+}*/
+
+/*
+<input type="checkbox" id="beerFavoriteCheckbox" class="beerFavoriteCheckbox visually-hidden" >
+<label for="beerFavoriteCheckbox" class="beerFavoriteLabel" >
+<img class="beerlyStar" src="~/imagesBeerly/beerlyStarLH.png" alt="Not Filled Star" >
+<img class="beerlyStar checked" src="~/imagesBeerly/beerlyStarFav.png" alt="Filled Star" >
+</label >
+
+*/
