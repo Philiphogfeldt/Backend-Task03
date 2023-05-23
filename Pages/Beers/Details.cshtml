@@ -3,71 +3,75 @@
 @inject Backend_Task03.Data.AccessControl AccessControl
 
 @{
-    ViewData["Title"] = "Details";
+	ViewData["Title"] = "Details";
 }
 
 <script type="module" src="~/js/pizza-search.js" asp-append-version="true" defer></script>
 
 <header>
-    <link rel="stylesheet" href="~/css/site.css" />
+	<link rel="stylesheet" href="~/css/site.css" />
 </header>
+
 <div id="beerGrid">
+
 	<div id="beerGridCell">
-		<h2>Beer</h2>
-		<div class="beerGridCellRow">
-			@Html.DisplayNameFor(model => model.Beer.Name) @Html.DisplayFor(model => model.Beer.Name)
+		<div id="beerGridCellRow1">
+			@*@Html.DisplayNameFor(model => model.Beer.Name)*@
+			<h3 id="beerGridCellRowName">@Html.DisplayFor(model => model.Beer.Name) (@Html.DisplayFor(model => model.Beer.Country))</h3>
 		</div>
-		<div class="beerGridCellRow">
-			@Html.DisplayNameFor(model => model.Beer.Description)
+
+		<div id="beerGridCellRow2">
+			@Html.DisplayFor(model => model.Beer.Brewery)
+		</div>
+		<div id="beerGridCellImage">
+			<img id="smBeerImage" src="~/imagesBeerly/@(Model.Beer.Name).png" width="100px" />
+		</div>
+		<div id="beerGridCellRow3">
 			@Html.DisplayFor(model => model.Beer.Description)
+
 		</div>
-		<div class="beerGridCellRow">
-			@Html.DisplayNameFor(model => model.Beer.Type)
+		<div id="beerGridCellRow4">
+			@Html.DisplayFor(model => model.Beer.Percentage)  %
+		</div>
+		<div id="beerGridCellRow5">
+
 			@Html.DisplayFor(model => model.Beer.Type)
 		</div>
-		<div class="beerGridCellRow">
-			@Html.DisplayNameFor(model => model.Beer.Percentage) @Html.DisplayFor(model => model.Beer.Percentage)
-		</div>
-		<div class="beerGridCellRow">
-			@Html.DisplayNameFor(model => model.Beer.Brewery) @Html.DisplayFor(model => model.Beer.Brewery)
-		</div>
-		<div class="beerGridCellRow">
-			@Html.DisplayNameFor(model => model.Beer.Country) @Html.DisplayFor(model => model.Beer.Country)
-		</div>
-		<div class="beerGridCellRow">
-			@Html.DisplayNameFor(model => model.Beer.GoesWellWith)
-			<p id="goesWithFood" hidden>@Html.DisplayFor(model=>
+		<div id="beerGridCellRow6">
+			@*			@Html.DisplayNameFor(model => model.Beer.GoesWellWith)
+			*@			<p id="goesWithFood" hidden>
+				@Html.DisplayFor(model=>
 				model.Beer.GoesWellWith)
 			</p>
 			@if (Model.Beer.GoesWellWith.Contains("Chicken"))
 			{
-				<img asp-append-version="true" name="Goesw" value="Chicken" src="../images/chicken.svg" style="width: 25px" />
+				<img asp-append-version="true" name="Goesw" value="Chicken" src="../images/chicken.svg" style="width: 22px" />
 			}
 
-            @if (Model.Beer.GoesWellWith.Contains("Meat"))
-            {
-                <img asp-append-version="true" name="Goesw" value="Meat" src="../images/meat.svg" style="width: 25px" />
-            }
+			@if (Model.Beer.GoesWellWith.Contains("Meat"))
+			{
+				<img asp-append-version="true" name="Goesw" value="Meat" src="../images/meat.svg" style="width: 22px" />
+			}
 
-            @if (Model.Beer.GoesWellWith.Contains("Fish"))
-            {
-                <img asp-append-version="true" name="Goesw" value="Fish" src="../images/fish.svg" style="width: 25px" />
-            }
+			@if (Model.Beer.GoesWellWith.Contains("Fish"))
+			{
+				<img asp-append-version="true" name="Goesw" value="Fish" src="../images/fish.svg" style="width: 222px" />
+			}
 
-            @if (Model.Beer.GoesWellWith.Contains("Vegetarian"))
-            {
-                <img asp-append-version="true" name="Goesw" value="Vegetarian" src="../images/veg.svg" style="width: 25px" />
-            }
+			@if (Model.Beer.GoesWellWith.Contains("Vegetarian"))
+			{
+				<img asp-append-version="true" name="Goesw" value="Vegetarian" src="../images/veg.svg" style="width: 22px" />
+			}
 
 			@if (Model.Beer.GoesWellWith.Contains("Dessert"))
 			{
-				<img asp-append-version="true" name="Goesw" value="Dessert" src="../images/dessert.svg" style="width: 25px" />
+				<img asp-append-version="true" name="Goesw" value="Dessert" src="../images/dessert.svg" style="width: 22px" />
 			}
 
 		</div>
-		<div class="beerGridCellRow">
+		<div id="beerGridCellRow7">
 
-			@Html.DisplayNameFor(model => model.Beer.Rating) @Html.DisplayFor(model => model.Beer.Rating)
+			Our users rated this beer @Html.DisplayFor(model => model.Beer.Rating) of 5!
 
 		</div>
 
@@ -156,27 +160,29 @@
 
 	@*	<p id="message" hidden>There are no results for that keyword.</p>
 	*@
-	<div id="beerReviewCell">
-		@if (Model.Beer != null && Model.Beer.Reviews != null && Model.Beer.Reviews.Count > 0)
-		{
+	<div id="beerReviewContainer">
+		<div id="beerReviewCell">
+			@if (Model.Beer != null && Model.Beer.Reviews != null && Model.Beer.Reviews.Count > 0)
+			{
 
-			<div>
+
 				<h4>Reviews</h4>
 				@foreach (var comment in Model.Beer.Reviews)
 				{
 
 					<div id="reviewGridCell">
-						@comment.Account.Name said: "@comment.Comment" -about this beer and gave it @comment.Rating / 5
+						@comment.Account.Name said: <em>"@comment.Comment"</em> -and rated it @comment.Rating / 5!
 
 					</div>
 				}
-			</div>
-		}
 
-		else
-		{
-			<p>No reviews yet.</p>
-		}
+			}
+
+			else
+			{
+				<p>No reviews yet.</p>
+			}
+		</div>
 	</div>
 	<div id="beerAddReview">
 		<h4>Add a Review</h4>
@@ -428,5 +434,5 @@ else
 				<button type="button" onclick="location.href='@Url.Page("./Index")'">Back to List</button>
 			</div>
 		@*</div>*@
-	
+
 
