@@ -63,7 +63,64 @@
 				}
 			</div>
 
-			<p id="beerRating">Our users give this beer an average @Html.DisplayFor(modelItem => item.Rating) of 5.</p>
+			@*<p id="beerRating">Our users give this beer an average @Html.DisplayFor(modelItem => item.Rating) of 5.</p>*@
+
+			<div id="beerRating">
+				<p id="ratingText">Our users give this beer a rating average of:</p>
+
+				@if (item.Rating < 0.5)
+				{
+					<img class="firstGlass" asp-append-version="true" src="images/empty.svg" style="width: 30px" />
+					<img class="secondGlass" asp-append-version="true" src="images/empty.svg" style="width: 30px" />
+					<img class="thirdGlass" asp-append-version="true" src="images/empty.svg" style="width: 30px" />
+					<img class="fourthGlass" asp-append-version="true" src="images/empty.svg" style="width: 30px" />
+					<img class="fifthGlass" asp-append-version="true" src="images/empty.svg" style="width: 30px" />
+				}
+				@if (item.Rating >= 0.5 && item.Rating < 1.5)
+				{
+					<img class="firstGlass" asp-append-version="true" src="images/filled.svg" style="width: 30px" />
+					<img class="secondGlass" asp-append-version="true" src="images/empty.svg" style="width: 30px" />
+					<img class="thirdGlass" asp-append-version="true" src="images/empty.svg" style="width: 30px" />
+					<img class="fourthGlass" asp-append-version="true" src="images/empty.svg" style="width: 30px" />
+					<img class="fifthGlass" asp-append-version="true" src="images/empty.svg" style="width: 30px" />
+				}
+				@if (item.Rating >= 1.5 && item.Rating < 2.5)
+				{
+					<img class="firstGlass" asp-append-version="true" src="images/filled.svg" style="width: 30px" />
+					<img class="secondGlass" asp-append-version="true" src="images/filled.svg" style="width: 30px" />
+					<img class="thirdGlass" asp-append-version="true" src="images/empty.svg" style="width: 30px" />
+					<img class="fourthGlass" asp-append-version="true" src="images/empty.svg" style="width: 30px" />
+					<img class="fifthGlass" asp-append-version="true" src="images/empty.svg" style="width: 30px" />
+				}
+				@if (item.Rating >= 2.5 && item.Rating < 3.5)
+				{
+					<img class="firstGlass" asp-append-version="true" src="images/filled.svg" style="width: 30px" />
+					<img class="secondGlass" asp-append-version="true" src="images/filled.svg" style="width: 30px" />
+					<img class="thirdGlass" asp-append-version="true" src="images/filled.svg" style="width: 30px" />
+					<img class="fourthGlass" asp-append-version="true" src="images/empty.svg" style="width: 30px" />
+					<img class="fifthGlass" asp-append-version="true" src="images/empty.svg" style="width: 30px" />
+				}
+				@if (item.Rating >= 3.5 && item.Rating < 4.5)
+				{
+					<img class="firstGlass" asp-append-version="true" src="images/filled.svg" style="width: 30px" />
+					<img class="secondGlass" asp-append-version="true" src="images/filled.svg" style="width: 30px" />
+					<img class="thirdGlass" asp-append-version="true" src="images/filled.svg" style="width: 30px" />
+					<img class="fourthGlass" asp-append-version="true" src="images/filled.svg" style="width: 30px" />
+					<img class="fifthGlass" asp-append-version="true" src="images/empty.svg" style="width: 30px" />
+				}
+				@if (item.Rating >= 4.5)
+				{
+					<img class="firstGlass" asp-append-version="true" src="images/filled.svg" style="width: 30px" />
+					<img class="secondGlass" asp-append-version="true" src="images/filled.svg" style="width: 30px" />
+					<img class="thirdGlass" asp-append-version="true" src="images/filled.svg" style="width: 30px" />
+					<img class="fourthGlass" asp-append-version="true" src="images/filled.svg" style="width: 30px" />
+					<img class="fifthGlass" asp-append-version="true" src="images/filled.svg" style="width: 30px" />
+				}
+
+
+			</div>
+
+
 
 			<button type="button" id="beerDetailsButton" onclick="location.href='@Url.Page("./Details", new { id = item.ID, name = item.Name })'">Details</button>
 			<div id="beerFavoriteCell">

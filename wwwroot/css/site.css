@@ -403,8 +403,24 @@ beerDetailsButton {
 }
 
 #beerRating {
+    display: grid;
+    grid-template:
+   "m m m m m m m"
+   "n o p q r s t" ;
     grid-area: beerRating;
 }
+
+#ratingText 
+{
+    grid-area: m;
+    margin: 0px;
+}
+.firstGlass { grid-area: o;}
+.secondGlass { grid-area: p;}
+.thirdGlass { grid-area: q;}
+.fourthGlass { grid-area: r;}
+.fifthGlass { grid-area: s;}
+
 
 #beerDetailsButton {
     grid-area: beerDetailsButton;
@@ -416,7 +432,7 @@ beerDetailsButton {
     display: grid;
     grid-template:
         "g h i j k" ;
-    align-content: end;
+    align-content: start;
 }
 
 #meat {
