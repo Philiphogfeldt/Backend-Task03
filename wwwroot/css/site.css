@@ -393,25 +393,33 @@ beerDetailsButton {
 }
 
 .visually-hidden {
-    position: absolute !important;
-    height: 10px;
-    width: 10px;
-     overflow: hidden; 
-     clip: rect(1px, 1px, 1px, 1px); 
+    position: absolute;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    width: 1px;
+    margin: -1px;
+    padding: 0;
+    border: 0;
 }
 
-.beerlyStar {
-    width: 100px;
-    height: 25px;
+.beerFavoriteLabel .unfilledStar {
+    display: inline-block;
 }
 
-    .beerlyStar.checked {
-        display: none;
-    }
-
-.beerFavoriteLabel:hover .beerlyStar {
-    filter: brightness(50%);
+.beerFavoriteLabel .filledStar {
+    display: none;
 }
+
+.beerFavoriteCheckbox:checked + .beerFavoriteLabel .unfilledStar {
+    display: none;
+}
+
+.beerFavoriteCheckbox:checked + .beerFavoriteLabel .filledStar {
+    display: inline-block;
+}
+
+
 
 /*.visually-hidden {
     position: absolute !important;
