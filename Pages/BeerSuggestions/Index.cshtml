@@ -1,0 +1,32 @@
+﻿@page
+@model Backend_Task03.Pages.BeerSuggestions.IndexModel
+@{
+    
+	ViewData["Title"] = "Beer Suggestion";
+}
+    <h1 class="display-4">Beer Suggestions</h1>
+    <p>Based on your favorite beer types, we recommend:</p>
+
+    @if (Model.Beers.Any())
+    {
+        foreach (var item in Model.Beers)
+        {
+            <div class="beerIndexCell">
+                <h3 class="beerName">@item.Name</h3>
+                <p class="beerCountry">(@item.Country)</p>
+                <p class="beerBrewery">@item.Brewery</p>
+                <p class="beerPercentage">@item.Percentage%</p>
+
+                <div class="beerImage">
+                    <img class="smBeerImage" src="~/imagesBeerly/@(item.Name).png" alt="@item.Name beer image" width="300px" />
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <div class="text-center">
+            <p>No beer suggestions at this time. Please add more beers to your favorites.</p>
+        </div>
+    }
+
