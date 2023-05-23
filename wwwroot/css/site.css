@@ -386,7 +386,7 @@ beerDetailsButton {
     display: grid;
     grid-template:
         "g h i j k" ;
-    /*align-content: end;*/
+    align-content: end;
 }
 
 #meat {
