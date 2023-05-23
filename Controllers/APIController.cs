@@ -42,27 +42,6 @@ namespace Backend_Task03.Controllers
 
         public string GetImageUrl (string name)
         {
-            //var imageFiles = Directory.GetFiles("wwwroot/beerimg");
-
-            //if (imageFiles.Length == 0)
-            //{
-            //    return null; // No images available
-            //}
-
-            //// Randomly select an image file name
-            //var random = new Random();
-            //var randomIndex = random.Next(0, imageFiles.Length);
-            //var randomImageFileName = Path.GetFileName(imageFiles[randomIndex]);
-
-            //// Construct the image URL based on the randomly selected image file name
-
-            ////Correct for deployment
-            //var imageUrl = $"https://beerlyazurewebsites.net/beerimg/{randomImageFileName}";
-
-            ////Test: Works only in dev
-            ////var imageUrl = $"https://localhost:5000//beerimg/{randomImageFileName}";
-
-            //return imageUrl;
 
             var imageFiles = Directory.GetFiles("wwwroot/imagesBeerly");
 
@@ -80,7 +59,7 @@ namespace Backend_Task03.Controllers
             // Construct the image URL 
 
             //Correct for deployment
-            var imageUrl = $"https://beerlyazurewebsites.net/imagesBeerly/{name}" + ".png";
+            var imageUrl = $"https://beerly.azurewebsites.net/imagesBeerly/{name}" + ".png";
 
             //Test: Works only in dev
             //var imageUrl = $"https://localhost:5000//imagesBeerly/{name}" + ".png";
