@@ -39,9 +39,6 @@ namespace Backend_Task03.Pages.Beers
         [BindProperty]
         public List<FoodCategory> ThisReviewFoodcategories { get; set; }
 
-        //[BindProperty]
-        //public List<FoodCategory> FoodCategoriesFromDb { get; set; }
-
 
         [BindProperty]
         public bool Meat { get; set; }

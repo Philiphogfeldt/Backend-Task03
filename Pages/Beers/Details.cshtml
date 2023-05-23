@@ -69,9 +69,63 @@
 			}
 
 		</div>
-		<div id="beerGridCellRow7">
+		@*<div id="beerGridCellRow7">
 
 			Our users rated this beer @Html.DisplayFor(model => model.Beer.Rating) of 5!
+
+		</div>*@
+
+		<div id="beerGridCellRow7">
+			<p id="beerGridCellRow7Text">Our users give this beer a rating average of:</p>
+
+			@if (Model.Beer.Rating < 0.5)
+			{
+				<img class="row7firstGlass" asp-append-version="true" src="../images/empty.svg" style="width: 30px" />
+				<img class="row7secondGlass" asp-append-version="true" src="../images/empty.svg" style="width: 30px" />
+				<img class="row7thirdGlass" asp-append-version="true" src="../images/empty.svg" style="width: 30px" />
+				<img class="row7fourthGlass" asp-append-version="true" src="../images/empty.svg" style="width: 30px" />
+				<img class="row7fifthGlass" asp-append-version="true" src="../images/empty.svg" style="width: 30px" />
+			}
+			@if (Model.Beer.Rating >= 0.5 && Model.Beer.Rating < 1.5)
+			{
+				<img class="row7firstGlass" asp-append-version="true" src="../images/filled.svg" style="width: 30px" />
+				<img class="row7secondGlass" asp-append-version="true" src="../images/empty.svg" style="width: 30px" />
+				<img class="row7thirdGlass" asp-append-version="true" src="../images/empty.svg" style="width: 30px" />
+				<img class="row7fourthGlass" asp-append-version="true" src="../images/empty.svg" style="width: 30px" />
+				<img class="row7fifthGlass" asp-append-version="true" src="../images/empty.svg" style="width: 30px" />
+			}
+			@if (Model.Beer.Rating >= 1.5 && Model.Beer.Rating < 2.5)
+			{
+				<img class="row7firstGlass" asp-append-version="true" src="../images/filled.svg" style="width: 30px" />
+				<img class="row7secondGlass" asp-append-version="true" src="../images/filled.svg" style="width: 30px" />
+				<img class="row7thirdGlass" asp-append-version="true" src="../images/empty.svg" style="width: 30px" />
+				<img class="row7fourthGlass" asp-append-version="true" src="../images/empty.svg" style="width: 30px" />
+				<img class="row7fifthGlass" asp-append-version="true" src="../images/empty.svg" style="width: 30px" />
+			}
+			@if (Model.Beer.Rating >= 2.5 && Model.Beer.Rating < 3.5)
+			{
+				<img class="row7firstGlass" asp-append-version="true" src="../images/filled.svg" style="width: 30px" />
+				<img class="row7secondGlass" asp-append-version="true" src="../images/filled.svg" style="width: 30px" />
+				<img class="row7thirdGlass" asp-append-version="true" src="../images/filled.svg" style="width: 30px" />
+				<img class="row7fourthGlass" asp-append-version="true" src="../images/empty.svg" style="width: 30px" />
+				<img class="row7fifthGlass" asp-append-version="true" src="../images/empty.svg" style="width: 30px" />
+			}
+			@if (Model.Beer.Rating >= 3.5 && Model.Beer.Rating < 4.5)
+			{
+				<img class="row7firstGlass" asp-append-version="true" src="../images/filled.svg" style="width: 30px" />
+				<img class="row7secondGlass" asp-append-version="true" src="../images/filled.svg" style="width: 30px" />
+				<img class="row7thirdGlass" asp-append-version="true" src="../images/filled.svg" style="width: 30px" />
+				<img class="row7fourthGlass" asp-append-version="true" src="../images/filled.svg" style="width: 30px" />
+				<img class="row7fifthGlass" asp-append-version="true" src="../images/empty.svg" style="width: 30px" />
+			}
+			@if (Model.Beer.Rating >= 4.5)
+			{
+				<img class="row7firstGlass" asp-append-version="true" src="../images/filled.svg" style="width: 30px" />
+				<img class="row7secondGlass" asp-append-version="true" src="../images/filled.svg" style="width: 30px" />
+				<img class="row7thirdGlass" asp-append-version="true" src="../images/filled.svg" style="width: 30px" />
+				<img class="row7fourthGlass" asp-append-version="true" src="../images/filled.svg" style="width: 30px" />
+				<img class="row7fifthGlass" asp-append-version="true" src="../images/filled.svg" style="width: 30px" />
+			}
 
 		</div>
 
@@ -200,21 +254,21 @@
 				</div>
 				<span asp-validation-for="NewReview.Rating" class="text-danger"></span>
 			</div>
-			<div class="form-group">
+			<div id="beerAddReviewComment" class="form-group">
+				<p><label asp-for="NewReview.Comment" class="control-label"></label></p>
 				<textarea asp-for="NewReview.Comment" class="form-control"></textarea>
-				<label asp-for="NewReview.Comment" class="control-label"></label>
 				<span asp-validation-for="NewReview.Comment" class="text-danger"></span>
 			</div>
 
-			<div class="form-group">
-
-				<div>
-					<label>This beers goes well with:</label>
-					<label asp-for="Meat">Meat<input asp-for="Meat" /></label>
-					<label asp-for="Chicken">Chicken<input asp-for="Chicken" /></label>
-					<label asp-for="Fish">Fish<input asp-for="Fish" /></label>
-					<label asp-for="Vegetarian">Vegetarian<input asp-for="Vegetarian" /></label>
-					<label asp-for="Dessert">Dessert<input asp-for="Dessert" /></label>
+			<div id="beerAddReviewGoes" class="form-group">
+					<p>This beers goes well with: </p>
+					
+					<label asp-for="Meat"><img asp-append-version="true" value="Meat" src="../images/meat.svg" style="width: 22px" /><input asp-for="Meat" /></label>
+					<label asp-for="Chicken"><img asp-append-version="true" value="Chicken" src="../images/chicken.svg" style="width: 22px" /><input asp-for="Chicken" /></label>
+					<label asp-for="Fish"><img asp-append-version="true" value="Fish" src="../images/fish.svg" style="width: 22px" /><input asp-for="Fish" /></label>
+					<label asp-for="Vegetarian"><img asp-append-version="true" value="Vegetarian" src="../images/veg.svg" style="width: 22px" /><input asp-for="Vegetarian" /></label>
+					<label asp-for="Dessert"><img asp-append-version="true" value="Dessert" src="../images/dessert.svg" style="width: 22px" /><input asp-for="Dessert" /></label>
+					
 
 					@*<label><input asp-for="Meat" />Meat</label>
 					<input asp-for="Chicken" />
@@ -227,8 +281,6 @@
 					<label><input type="checkbox" name="Chicken" value="Chicken" checked=""/>Chicken </label>
 					<label><input type="checkbox" name="NewReview.FoodCategories" value="Vegetarian" checked=""/> Veg</label>
 					<label><input type="checkbox" name="NewReview.FoodCategories" value="Dessert" checked=""/> Dessert</label>*@
-				</div>
-
 			</div>
 
 			<div class="form-group">
