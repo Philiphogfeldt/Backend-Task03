@@ -166,28 +166,35 @@ namespace Backend_Task03.Pages.Beers
 
             Beer = await beers2Show.ToListAsync();
         }
-		public async Task<IActionResult> OnPostAddToFavoritesAsync(int beerId)
+		public async Task<IActionResult> OnPostToggleFavoriteAsync(int beerId)
 		{
 			var beer = database.Beers.Include(b => b.FavoritedBy).FirstOrDefault(b => b.ID == beerId);
 			var account = accessControl.LoggedInAccount;
 
 			if (beer != null && account != null)
 			{
-				if (!account.FavoriteBeers.Any(b => b.ID == beerId))
+				if (account.FavoriteBeers.Any(b => b.ID == beerId))
+				{
+					account.FavoriteBeers.Remove(beer);
+					beer.FavoritedBy.Remove(account);
+				}
+				else
 				{
 					account.FavoriteBeers.Add(beer);
-				}
-
-				if (!beer.FavoritedBy.Any(a => a.ID == account.ID))
-				{
 					beer.FavoritedBy.Add(account);
 				}
 
 				await database.SaveChangesAsync();
 			}
-            return RedirectToAction("index");
-            
+
+            return RedirectToPage();
         }
 
-	}
+		public bool IsFavorite(int beerId)
+        {
+            var account = accessControl.LoggedInAccount;
+            return account != null && account.FavoriteBeers.Any(b => b.ID == beerId);
+        }
+
+    }
 }

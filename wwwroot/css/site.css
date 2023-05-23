@@ -438,30 +438,50 @@ beerDetailsButton {
         "u x y z zx zy";
 }
 
+
+.visually-hidden {
+    position: absolute;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    width: 1px;
+    margin: -1px;
+    padding: 0;
+    border: 0;
+}
+
+.beerFavoriteLabel .unfilledStar {
+    display: inline-block;
+}
+
+.beerFavoriteLabel .filledStar {
+    display: none;
+}
+
+.beerFavoriteCheckbox:checked + .beerFavoriteLabel .unfilledStar {
+    display: none;
+}
+
+.beerFavoriteCheckbox:checked + .beerFavoriteLabel .filledStar {
+    display: inline-block;
+}
+
+
+
+
 #beerGridCellRow7Text {
     grid-area: u;
 }
 
-.row7firstGlass {
-    grid-area: x;
-    display: flex;
-    justify-self: center;
-    align-self: center
-}
 
-.row7secondGlass {
-    grid-area: y;
-    display: flex;
-    justify-self: center;
-    align-self: center
-}
 
 .row7thirdGlass {
     grid-area: z;
     display: flex;
     justify-self: center;
     align-self: center
-}
+
+
 
 .row7fourthGlass {
     grid-area: zx;
