@@ -26,25 +26,24 @@ namespace Backend_Task03.Pages
         }
 
 
-        public List<string> PhotoURLs { get; set; } = new List<string>();
-
         public void OnGet()
         {
-            string dailyBeerFolderPath = Path.Combine(
-                uploads.FolderPath,
-                "DailyBeer"
-            );
-            Directory.CreateDirectory(dailyBeerFolderPath);
-            string[] files = Directory.GetFiles(dailyBeerFolderPath);
+            Beer = database.Beers.ToList(); 
 
-            if (files.Length > 0)
+            if (Beer.Count > 0)
             {
-                var randomBeer = new Random();
-                string randomFile = files[randomBeer.Next(files.Length)];
-                string url = uploads.GetFileURL(randomFile);
-                PhotoURLs.Add(url);
+                var random = new Random();
+                var randomBeer = Beer[random.Next(Beer.Count)];
+                string imageName = $"{randomBeer.Name}.png";
+                string imagePath = Path.Combine("imagesBeerly", imageName);
+
+                
+                Beer = new List<Beer> { randomBeer }; 
+                
             }
         }
+
+
 
 
         public async Task<IActionResult> OnPostAsync(string findBeer, string[] beerType, string ean13)
