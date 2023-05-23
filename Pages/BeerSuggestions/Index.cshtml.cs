@@ -42,13 +42,16 @@ namespace Backend_Task03.Pages.BeerSuggestions
 
             foreach (var type in favoriteTypes)
             {
+                var favoriteBeerIds = account.FavoriteBeers.Select(b => b.ID).ToList();
+
                 var beersOfThisType = await database.Beers
-                    .Where(b => b.Type == type && !account.FavoriteBeers.Contains(b))
+                    .Where(b => b.Type == type && !favoriteBeerIds.Contains(b.ID))
                     .Take(2)
                     .ToListAsync();
 
                 suggestedBeers.AddRange(beersOfThisType);
             }
+
 
             return suggestedBeers;
         }
