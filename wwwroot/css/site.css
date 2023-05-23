@@ -383,7 +383,14 @@ beerDetailsButton {
 }
 
 #beerGoesWellWith {
-    align-content: end;
+    display: grid;
+    grid-template:
+        "g h i j k" ;
+    /*align-content: end;*/
+}
+
+#meat {
+    padding-left: 2px;
 }
 
 #beerFavoriteCell {
