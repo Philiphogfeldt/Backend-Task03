@@ -8,20 +8,29 @@
 <body>
     <div class="normalBody">
         <h2>DailyBeer</h2>
+
         <div class="dailyImage">
-            @foreach (var url in Model.PhotoURLs)
+            @foreach (var item in Model.Beer)
             {
-                <img src="@url" style="width: 250px">
+                <div class="beerIndexCell">
+                    <h3 id="beerName">@Html.DisplayFor(modelItem => item.Name)</h3>
+                    <p id="beerCountry">(@Html.DisplayFor(modelItem => item.Country))</p>
+                    <p id="beerBrewery">@Html.DisplayFor(modelItem => item.Brewery)</p>
+                    <p id="beerPercentage">@Html.DisplayFor(modelItem => item.Percentage)%</p>
+
+                    <div id="beerImage">
+                        <img id="smBeerImage" src="~/imagesBeerly/@(item.Name).png" width="300px" />
+                    </div>
+                </div>
             }
         </div>
 
         <div class="noImage">
-            @if (Model.PhotoURLs.Count == 0)
+            @if (!Model.Beer.Any())
             {
-                <p>You have not uploaded any photos yet.</p>
+                <p>You have not uploaded any beers yet.</p>
             }
         </div>
-
     </div>
 </body>
 
