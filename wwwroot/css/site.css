@@ -379,6 +379,8 @@ button,
     justify-items: center;
     margin-top: 0px;
     gap: 10px;
+    align-content: start;
+
 }
 
 #accountFavBeerCell {
@@ -389,10 +391,10 @@ button,
     margin: 10px;
     grid-template:
         "a"
-        "b"
+/*        "b"
         "c"
         "d"
-        "e";
+        "e"*/;
 }
 
 #accountrightGrid {
