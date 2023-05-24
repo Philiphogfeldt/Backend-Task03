@@ -8,6 +8,7 @@
 
 
 body {
+    display: grid;
     font-family: sans-serif;
     margin: 0;
     padding: 0;
@@ -187,7 +188,7 @@ button,
     display: grid;
     grid-area: beerGridCell;
     padding: 5px;
-    gap: 5px;
+    gap: 10px;
     grid-template-areas:
         "beerGridCellRow1"
         "beerGridCellImage"
@@ -260,13 +261,20 @@ button,
     background-color: #f4ddd1;
     display: grid;
     height: fit-content;
+    width: 300px;
+    padding: 10px;
     grid-area: beerAddReview;
     padding: 5px;
 }
 
-    #beerAddReview p {
-        margin-bottom: 6px;
-    }
+.form-control {
+    height: 200px;
+    width: 260px;
+}
+
+#beerAddReview p {
+    margin-bottom: 6px;
+}
 
 #beerReviewContainer {
     padding: 5px;
@@ -355,11 +363,22 @@ button,
 .normalBody {
     display: grid;
     padding: 20px;
-    max-width: 960px;
+    width: 960px;
     margin: 0 auto;
     justify-content: center;
     justify-self: center;
     justify-items: center;
+}
+
+#frontPageBorderCell {
+    background-color: #f4ddd1;
+    display: grid;
+    background-image: url("/imagesBeerly/beerlyStarBorder.png");
+    background-size: cover;
+    height: 390px;
+    width: 390px;
+    align-content: center;
+    border-radius: 20px;
 }
 
 .dailyImage {
@@ -392,10 +411,18 @@ main {
     width: 600px;
 }
 
-.beerIndexCell {
+#suggBeerContainer {
+    display: grid;
+    grid-template:
+        "cellsOnTop";
+}
+
+#suggCell {
+    grid-area: cellsOnTop;
     background-color: #f4ddd1;
     display: grid;
     margin: 0px;
+    margin-top: 10px;
     padding: 5px;
     width: 300px;
     grid-template:
@@ -405,6 +432,38 @@ main {
         "beerImage beerImage beerGoesWellWith"
         "beerRating beerRating beerDetailsButton"
         "beerRating beerRating beerFavoriteCell";
+}
+.beerIndexCell {
+    background-color: #f4ddd1;
+    display: grid;
+    margin: 0px;
+    margin-top: 10px;
+    padding: 5px;
+    width: 300px;
+    grid-template:
+        "beerName beerName beerCountry"
+        "beerBrewery beerBrewery beerPercentage"
+        "beerImage beerImage beerType"
+        "beerImage beerImage beerGoesWellWith"
+        "beerRating beerRating beerDetailsButton"
+        "beerRating beerRating beerFavoriteCell";
+}
+
+#overlay {
+    display: grid;
+    grid-area: cellsOnTop;
+    margin: 0px;
+    margin-top: 10px;
+    padding: 5px;
+    width: 300px;
+    height: 100%;
+    background-color: transparent;
+    z-index: 1;
+}
+
+#overlayIMG {
+    width: 100%;
+    height: 100%;
 }
 
 #beerName,
@@ -535,7 +594,13 @@ beerDetailsButton {
 }
 
 
-
+#suggContainer {
+    display: grid;
+    width: 960px;
+    justify-self: start;
+    justify-content: center;
+    justify-items: center;
+}
 
 #beerGridCellRow7Text {
     grid-area: u;
@@ -547,9 +612,10 @@ beerDetailsButton {
     grid-area: z;
     display: flex;
     justify-self: center;
-    align-self: center .row7fourthGlass
+    align-self: center;
+}
 
-{
+.row7fourthGlass {
     grid-area: zx;
     display: flex;
     justify-self: center;
