@@ -1,23 +1,30 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Backend_Task03.Data;
 using Backend_Task03.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.RazorPages.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 
 namespace Backend_Task03.Pages.Beers
 {
-	public class IndexModel : PageModel
-	{
-		private readonly AppDbContext database;
+    public class IndexModel : PageModel
+    {
+        private readonly AppDbContext database;
+		private readonly AccessControl accessControl;
 
-		public IndexModel(AppDbContext context)
+		public IndexModel(AppDbContext context, IHttpContextAccessor httpContextAccessor)
 		{
 			database = context;
+
+		    accessControl = new AccessControl(database, httpContextAccessor);
 		}
 
+		[BindProperty]
+		public int BeerIdToAddToFavorites { get; set; }
 		public IList<Beer> Beer { get; set; }
 
 		[BindProperty(SupportsGet = true)]
@@ -95,25 +102,20 @@ namespace Backend_Task03.Pages.Beers
 						ratingValueCount += review.Rating;
 					}
 
-					//// Update the Rating property
-					//decimal totalRating = Math.Round
-					//(ratingValueCount / reviewCount, 1);
-					//beer.Rating = (double)totalRating;
-
-					// Find the category/categories with the highest count
-					List<string> mostSelectedCategories = new List<string>();
-					int highestCount = 0;
-					foreach (var kvp in categoryCounts)
-					{
-						if (kvp.Value > highestCount)
-						{
-							mostSelectedCategories.Clear();
-							mostSelectedCategories.Add(kvp.Key);
-							highestCount = kvp.Value;
-						}
-						else if (kvp.Value == highestCount)
-						{
-							mostSelectedCategories.Add(kvp.Key);
+                    // Find the category/categories with the highest count
+                    List<string> mostSelectedCategories = new List<string>();
+                    int highestCount = 0;
+                    foreach (var kvp in categoryCounts)
+                    {
+                        if (kvp.Value > highestCount)
+                        {
+                            mostSelectedCategories.Clear();
+                            mostSelectedCategories.Add(kvp.Key);
+                            highestCount = kvp.Value;
+                        }
+                        else if (kvp.Value == highestCount)
+                        {
+                            mostSelectedCategories.Add(kvp.Key);
 
 						}
 					}
@@ -162,7 +164,37 @@ namespace Backend_Task03.Pages.Beers
 				beers2Show = beers2Show.Where(b => types.Contains(b.Type));
 			}
 
-			Beer = await beers2Show.ToListAsync();
-		}
-	}
+            Beer = await beers2Show.ToListAsync();
+        }
+		public async Task<IActionResult> OnPostToggleFavoriteAsync(int beerId)
+		{
+			var beer = database.Beers.Include(b => b.FavoritedBy).FirstOrDefault(b => b.ID == beerId);
+			var account = accessControl.LoggedInAccount;
+
+			if (beer != null && account != null)
+			{
+				if (account.FavoriteBeers.Any(b => b.ID == beerId))
+				{
+					account.FavoriteBeers.Remove(beer);
+					beer.FavoritedBy.Remove(account);
+				}
+				else
+				{
+					account.FavoriteBeers.Add(beer);
+					beer.FavoritedBy.Add(account);
+				}
+
+				await database.SaveChangesAsync();
+			}
+
+            return RedirectToPage();
+        }
+
+		public bool IsFavorite(int beerId)
+        {
+            var account = accessControl.LoggedInAccount;
+            return account != null && account.FavoriteBeers.Any(b => b.ID == beerId);
+        }
+
+    }
 }

@@ -50,12 +50,23 @@
 					<a asp-page="./Index">Back to List</a>
 				}
 			</div>
+			<p>Favorite Beers</p>
+			@foreach (var item in Model.Account.FavoriteBeers)
+			{
+				<div class="beerIndexCell">
+					<h3 class="beerName">@item.Name</h3>
+					<p class="beerCountry">(@item.Country)</p>
+					<p class="beerBrewery">@item.Brewery</p>
+					<p class="beerPercentage">@item.Percentage%</p>
 
-
+					<div class="beerImage">
+						<img class="smBeerImage" src="~/imagesBeerly/@(item.Name).png" alt="@item.Name beer image" width="100px" />
+					</div>
+				</div>
+			}
 
 			<div id="accountrightGrid">
 				<h4>Reviews</h4>
-
 
 				@foreach (var review in Model.AccountReviews)
 				{

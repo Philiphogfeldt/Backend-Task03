@@ -100,39 +100,6 @@
             }
         }
 
-        else if (url.searchParams.get('q').includes('Dessert')) {
-            return {
-                total: 1,
-                totalHits: 1,
-                hits: [
-                    {
-                        webformatURL: '/fake-images/Dessert.jpg',
-                        pizzaName: 'Dessert Pizza',
-                        ingredients: 'nutella, banana'
-                    }
-                ]
-            }
-        }
-
-        else if (url.searchParams.get('q') === 'Chicken, Vegetarian') {
-            return {
-                total: 2,
-                totalHits: 2,
-                hits: [
-                    {
-                        webformatURL: '/fake-images/Chicken.jpg',
-                        pizzaName: 'Chicken Pizza',
-                        ingredients: 'tomato, cheese, chicken'
-                    },
-                    {
-                        webformatURL: '/fake-images/Vegetarian.jpg',
-                        pizzaName: 'Veggie Pizza',
-                        ingredients: 'tomato, cheese, olives'
-                    }
-                ]
-            }
-        }
-
         else {
             return {
                 total: 0,

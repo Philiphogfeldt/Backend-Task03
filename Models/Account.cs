@@ -8,5 +8,6 @@
         public string Name { get; set; }
         public string Role { get; set; }
         public List<Review>? Reviews { get; set; }
-    }
+		public List<Beer>? FavoriteBeers { get; set; }
+	}
 }

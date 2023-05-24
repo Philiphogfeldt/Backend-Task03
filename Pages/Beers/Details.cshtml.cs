@@ -13,34 +13,31 @@ using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace Backend_Task03.Pages.Beers
 {
-	public class DetailsModel : PageModel
-	{
-		private readonly AppDbContext database;
+    public class DetailsModel : PageModel
+    {
+        private readonly AppDbContext database;
 
-		private readonly AccessControl accessControl; // testar mig fram här
+        private readonly AccessControl accessControl; // testar mig fram här
 
 
-		public DetailsModel(AppDbContext context, IHttpContextAccessor httpContextAccessor)
-		{
-			database = context;
+        public DetailsModel(AppDbContext context, IHttpContextAccessor httpContextAccessor)
+        {
+            database = context;
 
-			accessControl = new AccessControl(database, httpContextAccessor);
-		}
+            accessControl = new AccessControl(database, httpContextAccessor);
+        }
 
-		[BindProperty]
-		public Beer Beer { get; set; } = default!;
+        [BindProperty]
+        public Beer Beer { get; set; } = default!;
 
-		[BindProperty]
-		public Review NewReview { get; set; }
+        [BindProperty]
+        public Review NewReview { get; set; }
 
-		[BindProperty]
-		public Account Account { get; set; }
+        [BindProperty]
+        public Account Account { get; set; }
 
-		[BindProperty]
-		public List<FoodCategory> ThisReviewFoodcategories { get; set; }
-
-		//[BindProperty]
-		//public List<FoodCategory> FoodCategoriesFromDb { get; set; }
+        [BindProperty]
+        public List<FoodCategory> ThisReviewFoodcategories { get; set; }
 
 
 		[BindProperty]

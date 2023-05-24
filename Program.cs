@@ -127,8 +127,8 @@ app.UseStaticFiles(new StaticFileOptions
 });
 app.UseRouting();
 app.UseAuthentication();
+app.UseCors(options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()); //Tillagd enligt Jakobs instruktion. Innebär att vem som helst får komma åt API:et.
 app.UseAuthorization();
-
 app.MapRazorPages();
 app.MapControllers();
 

@@ -2,6 +2,7 @@
     colors we use
     #6b7f9b blu-ish
     #f2eeea dirtwhite
+    #f2d3a4 orange-white
     #FFA500 orange
 */
 
@@ -10,7 +11,7 @@ body {
     font-family: sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f2eeea;
+    background-color: #f2d3a4;
 }
 
 .containerMain {
@@ -50,10 +51,8 @@ body {
     grid-template-areas: "selectionBeer selectionFood allSearchRight";
     gap: 10px;
     width: 100%;
-    /*    height: 50px;
-*/ justify-content: end;
-    /*    align-content: center;
-*/ align-items: end;
+    justify-content: end;
+    align-items: end;
 }
 
 .AllSearchRight {
@@ -109,13 +108,10 @@ body {
     background-color: orange;
     border: none;
     color: black;
-    /*    padding: 10px 20px;
-*/ text-align: center;
+    text-align: center;
     text-decoration: none;
-    /*    display: inline-block;
-*/ font-size: 18px;
-    /*    margin: 4px 2px;
-*/ cursor: pointer;
+    font-size: 18px;
+    cursor: pointer;
     transition-duration: 0.4s;
 }
 
@@ -128,7 +124,7 @@ body {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 10px;
-    margin-left: 190px;
+    margin-left: 210px;
 }
 
 button,
@@ -145,6 +141,8 @@ button,
     cursor: pointer;
     transition-duration: 0.4s;
     border-radius: 8px;
+    width: fit-content;
+    height: fit-content;
 }
 
     button:hover,
@@ -160,57 +158,87 @@ button,
     grid-area: favorites;
 }
 
-#reviewGridCell {
-    display: grid;
-    padding: 3px;
-    margin-left: 5px;
-    gap: 2px;
-}
-
 #beerGrid {
     display: grid;
     width: 960px;
     justify-self: center;
-    gap: 5px;
+    gap: 10px;
     grid-template:
-        "beerGridCell beerGridCell beerReviewCell"
-        "pizzaWithBeer pizzaWithBeer beerReviewCell"
-        "pizzaWithBeer pizzaWithBeer beerReviewCell"
-        "beerCRUDButtons beerAddReview beerReviewCell";
+        "beerGridCell beerGridCell beerAddReview"
+        "pizzaWithBeer pizzaWithBeer beerReviewContainer"
+        "pizzaWithBeer pizzaWithBeer beerReviewContainer"
+        "beerCRUDButtons beerCRUDButtons beerReviewContainer";
 }
+
 
 #beerGridCell {
+    background-color: #f4ddd1;
     display: grid;
     grid-area: beerGridCell;
-    grid-template-areas: "beerGridCellRow";
+    padding: 5px;
+    gap: 5px;
+    grid-template-areas:
+        "beerGridCellRow1" 
+        "beerGridCellImage"
+        "beerGridCellRow2"
+        "beerGridCellRow3"
+        "beerGridCellRow4"
+        "beerGridCellRow5"
+         "beerGridCellRow6"
+        "beerGridCellRow7";
 }
 
-.beerReviewCell {
+#beerReviewContainer {
     display: grid;
+    gap: 10px;
+    grid-area: beerReviewContainer;
+}
+
+#beerReviewCell {
+    background-color: #f4ddd1;
+    display: grid;
+    height: fit-content;
     width: 300px;
-    grid-area: beerReviewCell;
 }
 
-#beerGridCellRow {
+#reviewGridCell {
     display: grid;
+    margin: 10px;
 
-    grid-area: beerGridCellRow;
+}
+
+#beerGridCellRow1,
+#beerGridCellImage,
+#beerGridCellRow2,
+#beerGridCellRow3,
+#beerGridCellRow4,
+#beerGridCellRow5,
+#beerGridCellRow6,
+#beerGridCellRow7 {
+    display: grid;
+}
+
+#beerGridCellRow3 {
+    font-style: italic;
+    min-height: 3em;
+    margin: 10px;
 }
 
 #pizzaWithBeer {
+    background-color: #f4ddd1;
     display: grid;
-    width: 600px;
-    height: 600px;
+    /*width: 600px;*/
+    height: fit-content;
     grid-area: pizzaWithBeer;
     grid-template:
         "pizzaBeerHead"
         "recommendation";
+    padding: 5px;
 }
 
 #pizzaBeerHead {
     display: grid;
     grid-area: pizzaBeerHead;
-
 }
 
 #recommendation {
@@ -219,11 +247,23 @@ button,
 }
 
 #beerAddReview {
+    background-color: #f4ddd1;
     display: grid;
+    height: fit-content;
     grid-area: beerAddReview;
+    padding: 5px;
+}
+
+#beerAddReview p {
+    margin-bottom: 6px;
+}
+
+#beerReviewContainer {
+    padding: 5px;
 }
 
 #beerCRUDButtons {
+    align-content: end;
     display: grid;
     grid-area: beerCRUDButtons;
 }
@@ -285,9 +325,9 @@ main {
 #beerIndex {
     display: grid;
     align-content: start;
-    padding: 10px;
-    justify-self: center;
-    gap: 10px;
+    /*    padding: 15px;
+*/ justify-self: center;
+    gap: 7px;
     width: 960px;
     grid-template:
         "beerHead beerHead beerCreate"
@@ -300,17 +340,18 @@ main {
 }
 
 .beerIndexCell {
-    background-color: #dbae7e;
+    background-color: #f4ddd1;
     display: grid;
     margin: 0px;
-    padding: 0px;
+    padding: 5px;
     width: 300px;
     grid-template:
         "beerName beerName beerCountry"
         "beerBrewery beerBrewery beerPercentage"
         "beerImage beerImage beerType"
-        "beerGoesWellWith beerGoesWellWith beerGoesWellWith"
-        "beerRating beerRating beerDetailsButton";
+        "beerImage beerImage beerGoesWellWith"
+        "beerRating beerRating beerDetailsButton"
+        "beerRating beerRating beerFavoriteCell";
 }
 
 #beerName,
@@ -325,32 +366,178 @@ beerDetailsButton {
     margin: 0px;
 }
 
+#beerCountry,
+#beerPercentage,
+#beerType,
+#beerGoesWellWith,
+#beerDetailsButton {
+    width: 100px;
+}
+
+#beerName,
+#beerBrewery,
+#beerImage,
+#beerRating {
+    width: 200px;
+}
+
 #beerName {
     grid-area: beerName;
+    min-height: 2em;
 }
 
 #beerCountry {
     grid-area: beerCountry;
 }
+
 #beerBrewery {
     grid-area: beerBrewery;
 }
+
 #beerPercentage {
     grid-area: beerPercentage;
 }
+
 #beerType {
     grid-area: beerType;
 }
 
+#beerImage {
+    grid-area: beerImage;
+}
+
+#smBeerImage {
+    border-radius: 8px;
+    border: 4px solid #FFA500;
+}
+
 #beerRating {
+    display: grid;
+    grid-template:
+   "m m m m m m m"
+   "n o p q r s t" ;
     grid-area: beerRating;
 }
 
+#ratingText 
+{
+    grid-area: m;
+    margin: 0px;
+}
+
+.firstGlass { grid-area: o;}
+.secondGlass { grid-area: p;}
+.thirdGlass { grid-area: q;}
+.fourthGlass { grid-area: r;}
+.fifthGlass { grid-area: s;}
+
+#beerGridCellRow7 {
+    display: grid;
+    padding-right: 75px;
+    grid-template:
+        "u x y z zx zy";
+}
+
+
+.visually-hidden {
+    position: absolute;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    width: 1px;
+    margin: -1px;
+    padding: 0;
+    border: 0;
+}
+
+.beerFavoriteLabel .unfilledStar {
+    display: inline-block;
+}
+
+.beerFavoriteLabel .filledStar {
+    display: none;
+}
+
+.beerFavoriteCheckbox:checked + .beerFavoriteLabel .unfilledStar {
+    display: none;
+}
+
+.beerFavoriteCheckbox:checked + .beerFavoriteLabel .filledStar {
+    display: inline-block;
+}
+
+
+
+
+#beerGridCellRow7Text {
+    grid-area: u;
+}
+
+
+
+.row7thirdGlass {
+    grid-area: z;
+    display: flex;
+    justify-self: center;
+    align-self: center
+
+
+
+.row7fourthGlass {
+    grid-area: zx;
+    display: flex;
+    justify-self: center;
+    align-self: center
+}
+
+.row7fifthGlass {
+    grid-area: zy;
+    display: flex;
+    justify-self: center;
+    align-self: center
+}
+
+
 #beerDetailsButton {
     grid-area: beerDetailsButton;
+    align-self: end;
+    justify-self: end;
 }
 
 #beerGoesWellWith {
-    grid-template-columns: repeat(5);
-    align-content: end;
+    display: grid;
+    grid-template:
+        "g h i j k" ;
+    align-content: start;
+}
+
+#meat {
+    padding-left: 2px;
+}
+
+#beerFavoriteCell {
+    justify-self: center;
+    width: 100px;
+    height: 30px;
+}
+
+.visually-hidden {
+    position: absolute !important;
+    height: 10px;
+    width: 10px;
+    overflow: hidden;
+    clip: rect(1px, 1px, 1px, 1px);
+}
+
+.beerlyStar {
+    width: 100px;
+    height: 25px;
+}
+
+    .beerlyStar.checked {
+        display: none;
+    }
+
+.beerFavoriteLabel:hover .beerlyStar {
+    filter: brightness(50%);
 }
