@@ -1,32 +1,261 @@
 ﻿@page
 @model Backend_Task03.Pages.BeerSuggestions.IndexModel
+@inject Backend_Task03.Data.AccessControl AccessControl
 @{
-    
+
 	ViewData["Title"] = "Beer Suggestion";
 }
-    <h1 class="display-4">Beer Suggestions</h1>
-    <p>Based on your favorite beer types, we recommend:</p>
+<body>
 
-    @if (Model.Beers.Any())
-    {
-        foreach (var item in Model.Beers)
-        {
-            <div class="beerIndexCell">
-                <h3 class="beerName">@item.Name</h3>
-                <p class="beerCountry">(@item.Country)</p>
-                <p class="beerBrewery">@item.Brewery</p>
-                <p class="beerPercentage">@item.Percentage%</p>
+	<div id="suggContainer">
+		<h1 class="display-4">Beer Suggestions</h1>
+		<p>Based on your favorite beer types, we recommend:</p>
 
-                <div class="beerImage">
-                    <img class="smBeerImage" src="~/imagesBeerly/@(item.Name).png" alt="@item.Name beer image" width="100px" />
-                </div>
-            </div>
-        }
-    }
-    else
-    {
-        <div class="text-center">
-            <p>No beer suggestions at this time. Please add more beers to your favorites.</p>
-        </div>
-    }
+		@if (Model.Beers.Any())
+		{
+			foreach (var item in Model.Beers)
+			{
+				<div id="suggBeerContainer">
+					<div id="suggCell">
 
+						<div class="beerIndexCell">
+							<h3 id="beerName">@Html.DisplayFor(modelItem => item.Name)</h3>
+							<p id="beerCountry">(@Html.DisplayFor(modelItem => item.Country))</p>
+
+							<p id="beerBrewery">@Html.DisplayFor(modelItem => item.Brewery)</p>
+
+							<p id="beerPercentage">@Html.DisplayFor(modelItem => item.Percentage)%</p>
+
+							<div id="beerImage">
+								<img id="smBeerImage" src="~/imagesBeerly/@(item.Name).png" width="100px" />
+							</div>
+
+							<p id="beerType">@Html.DisplayFor(modelItem => item.Type)</p>
+
+							<div id="beerGoesWellWith">
+								@*@Html.DisplayFor(modelItem => item.GoesWellWith)*@
+								@if (item.GoesWellWith.Contains("Chicken"))
+								{
+									<img id="chicken " asp-append-version="true" name="Goesw" value="Chicken" src="images/chicken.svg" style="width: 22px" />
+								}
+
+								@if (item.GoesWellWith.Contains("Meat"))
+								{
+									<img id="meat" asp-append-version="true" name="Goesw" value="Meat" src="images/meat.svg" style="width: 22px" />
+								}
+
+								@if (item.GoesWellWith.Contains("Fish"))
+								{
+									<img id="fish" asp-append-version="true" name="Goesw" value="Fish" src="images/fish.svg" style="width: 22px" />
+								}
+
+								@if (item.GoesWellWith.Contains("Vegetarian"))
+								{
+									<img id="veg" asp-append-version="true" name="Goesw" value="Vegetarian" src="images/veg.svg" style="width: 22px" />
+								}
+
+								@if (item.GoesWellWith.Contains("Dessert"))
+								{
+									<img id="dessert" asp-append-version="true" name="Goesw" value="Dessert" src="images/dessert.svg" style="width: 22px" />
+								}
+							</div>
+
+							@*<p id="beerRating">Our users give this beer an average @Html.DisplayFor(modelItem => item.Rating) of 5.</p>*@
+
+							<div id="beerRating">
+								<p id="ratingText">Our users give this beer a rating average of:</p>
+
+								@if (item.Rating < 0.5)
+								{
+									<img class="firstGlass" asp-append-version="true" src="images/empty.svg" style="width: 30px" />
+									<img class="secondGlass" asp-append-version="true" src="images/empty.svg" style="width: 30px" />
+									<img class="thirdGlass" asp-append-version="true" src="images/empty.svg" style="width: 30px" />
+									<img class="fourthGlass" asp-append-version="true" src="images/empty.svg" style="width: 30px" />
+									<img class="fifthGlass" asp-append-version="true" src="images/empty.svg" style="width: 30px" />
+								}
+								@if (item.Rating >= 0.5 && item.Rating < 1.5)
+								{
+									<img class="firstGlass" asp-append-version="true" src="images/filled.svg" style="width: 30px" />
+									<img class="secondGlass" asp-append-version="true" src="images/empty.svg" style="width: 30px" />
+									<img class="thirdGlass" asp-append-version="true" src="images/empty.svg" style="width: 30px" />
+									<img class="fourthGlass" asp-append-version="true" src="images/empty.svg" style="width: 30px" />
+									<img class="fifthGlass" asp-append-version="true" src="images/empty.svg" style="width: 30px" />
+								}
+								@if (item.Rating >= 1.5 && item.Rating < 2.5)
+								{
+									<img class="firstGlass" asp-append-version="true" src="images/filled.svg" style="width: 30px" />
+									<img class="secondGlass" asp-append-version="true" src="images/filled.svg" style="width: 30px" />
+									<img class="thirdGlass" asp-append-version="true" src="images/empty.svg" style="width: 30px" />
+									<img class="fourthGlass" asp-append-version="true" src="images/empty.svg" style="width: 30px" />
+									<img class="fifthGlass" asp-append-version="true" src="images/empty.svg" style="width: 30px" />
+								}
+								@if (item.Rating >= 2.5 && item.Rating < 3.5)
+								{
+									<img class="firstGlass" asp-append-version="true" src="images/filled.svg" style="width: 30px" />
+									<img class="secondGlass" asp-append-version="true" src="images/filled.svg" style="width: 30px" />
+									<img class="thirdGlass" asp-append-version="true" src="images/filled.svg" style="width: 30px" />
+									<img class="fourthGlass" asp-append-version="true" src="images/empty.svg" style="width: 30px" />
+									<img class="fifthGlass" asp-append-version="true" src="images/empty.svg" style="width: 30px" />
+								}
+								@if (item.Rating >= 3.5 && item.Rating < 4.5)
+								{
+									<img class="firstGlass" asp-append-version="true" src="images/filled.svg" style="width: 30px" />
+									<img class="secondGlass" asp-append-version="true" src="images/filled.svg" style="width: 30px" />
+									<img class="thirdGlass" asp-append-version="true" src="images/filled.svg" style="width: 30px" />
+									<img class="fourthGlass" asp-append-version="true" src="images/filled.svg" style="width: 30px" />
+									<img class="fifthGlass" asp-append-version="true" src="images/empty.svg" style="width: 30px" />
+								}
+								@if (item.Rating >= 4.5)
+								{
+									<img class="firstGlass" asp-append-version="true" src="images/filled.svg" style="width: 30px" />
+									<img class="secondGlass" asp-append-version="true" src="images/filled.svg" style="width: 30px" />
+									<img class="thirdGlass" asp-append-version="true" src="images/filled.svg" style="width: 30px" />
+									<img class="fourthGlass" asp-append-version="true" src="images/filled.svg" style="width: 30px" />
+									<img class="fifthGlass" asp-append-version="true" src="images/filled.svg" style="width: 30px" />
+								}
+
+							</div>
+
+
+
+							<button type="button" id="beerDetailsButton" onclick="location.href='@Url.Page("./Details", new { id = item.ID, name = item.Name })'">Details</button>
+							<div id="beerFavoriteCell">
+
+								<div id="beerFavoriteCell">
+@*									<form asp-page-handler="ToggleFavorite" method="post">
+										<input type="hidden" name="beerId" value="@(item.ID)" />
+										<input type="checkbox" id="@(item.ID)Checkbox" class="beerFavoriteCheckbox visually-hidden" onchange="this.form.submit()" @(Model.IsFavorite(item.ID) ? "checked" : "") />
+										<label for="@(item.ID)Checkbox" class="beerFavoriteLabel">
+											<span class="unfilledStar">
+												<img class="beerlyStar" src="~/imagesBeerly/beerlyStarLH.png" alt="Not Filled Star">
+											</span>
+											<span class="filledStar">
+												<img class="beerlyStar checked" src="~/imagesBeerly/beerlyStarFav.png" alt="Filled Star">
+											</span>
+										</label>
+									</form>*@
+
+									@* Funkar
+							@*<form asp-page-handler="ToggleFavorite" method="post">
+							<input type="hidden" name="beerId" value="@(item.ID)" />
+							<input type="checkbox" onchange="this.form.submit()" class="beerFavoriteCheckbox" @(Model.IsFavorite(item.ID) ? "checked" : "") />
+							</form>*@
+
+
+									@*<input type="checkbox" id="@(item.Name)Checkbox" class="beerFavoriteCheckbox visually-hidden">
+							<label for="@(item.Name)Checkbox" class="beerFavoriteLabel">
+							<img class="beerlyStar" src="~/imagesBeerly/beerlyStarLH.png" alt="Not Filled Star">
+							<img class="beerlyStar checked" src="~/imagesBeerly/beerlyStarFav.png" alt="Filled Star">
+							</label>*@
+								</div>
+
+
+								@*FUNKAR GAMLA*@
+								@*<input type="checkbox" id="@(item.Name)Checkbox" class="beerFavoriteCheckbox visually-hidden">
+						<label for="@(item.Name)Checkbox" class="beerFavoriteLabel">
+						<img class="beerlyStar" src="~/imagesBeerly/beerlyStarLH.png" alt="Not Filled Star">
+						<img class="beerlyStar checked" src="~/imagesBeerly/beerlyStarFav.png" alt="Filled Star">
+						</label>*@
+
+
+								@*				KNAPPEN FAVVO
+						*@
+								@*				<form method="post" asp-page-handler="AddToFavorites" asp-route-beerId="@item.ID">
+						<button type="submit">Add to favorites</button>
+						</form>*@
+
+
+
+								@*				<script>
+						const checkbox = document.getElementById('@(item.Name)Checkbox');
+						const starUnselected = checkbox.previousElementSibling;
+						const starSelected = checkbox.nextElementSibling.querySelector('.checked');
+
+						checkbox.addEventListener('change', function () {
+						if (checkbox.checked) {
+						starUnselected.style.display = 'none';
+						starSelected.style.display = 'grid';
+						} else {
+						starUnselected.style.display = 'grid';
+						starSelected.style.display = 'none';
+						}
+						});
+						</script>*@
+
+								@*				<input type="checkbox" id="beerFavoriteCheckbox_@(item.Name)" class="beerFavoriteCheckbox visually-hidden">
+						<label for="beerFavoriteCheckbox_@(item.Name)" class="beerFavoriteLabel">
+						<img class="beerlyStar not-filled" src="~/imagesBeerly/beerlyStarLH.png" alt="Not Filled Star">
+						<img class="beerlyStar filled" src="~/imagesBeerly/beerlyStarFav.png" alt="Filled Star">
+						</label>*@
+
+								@*				<input type="checkbox" id="@(item.Name)Checkbox" class="@(item.Name)Checkbox visually-hidden">
+						<label for="@(item.Name)Checkbox" class="@(item.Name)CheckboxLabel"></label>*@
+
+
+								@*				<input type="checkbox" id="beerFavoriteCheckbox" class="beerFavoriteCheckbox visually-hidden">
+						<label for="beerFavoriteCheckbox" class="beerFavoriteLabel">
+						<img class="beerlyStar" src="~/imagesBeerly/beerlyStarLH.png" alt="Not Filled Star">
+						<img class="beerlyStar checked" src="~/imagesBeerly/beerlyStarFav.png" alt="Filled Star">
+						</label>
+
+						<img src="~/imagesBeerly/beerlyStarLH.png" />*@
+							</div>
+						</div>
+
+@*						<script>
+							document.addEventListener('DOMContentLoaded', function () {
+								const checkboxes = document.querySelectorAll('.beerFavoriteCheckbox');
+
+								checkboxes.forEach(function (checkbox) {
+									const label = checkbox.nextElementSibling;
+
+									checkbox.addEventListener('change', function () {
+										const starUnselected = label.querySelector('.beerlyStar');
+										const starSelected = label.querySelector('.beerlyStar.checked');
+
+										if (checkbox.checked) {
+											starUnselected.style.display = 'none';
+											starSelected.style.display = 'grid';
+										} else {
+											starUnselected.style.display = 'grid';
+											starSelected.style.display = 'none';
+										}
+									});
+								});
+							});
+						</script>*@
+
+
+					</div>
+
+					<div id="overlay">
+						<a href="@Url.Page("/Beers/Details", new { id = item.ID })" class="beerLink">
+							<img id="overlayIMG" src="~/imagesBeerly/beerlyTransIMG.png">
+						</a>
+					</div>
+
+				</div>
+
+
+				@*					<div class="beerIndexCell">
+		<h3 class="beerName">@item.Name</h3>
+		<p class="beerCountry">(@item.Country)</p>
+		<p class="beerBrewery">@item.Brewery</p>
+		<p class="beerPercentage">@item.Percentage%</p>
+
+		<div class="beerImage">
+		<img class="smBeerImage" src="~/imagesBeerly/@(item.Name).png" alt="@item.Name beer image" width="100px" />
+		</div>
+		</div>*@
+			}
+		}
+		else
+		{
+			<div class="text-center">
+				<p>No beer suggestions at this time. Please add more beers to your favorites.</p>
+			</div>
+		}
+
+	</div>
+
+</body>
