@@ -23,6 +23,11 @@ namespace Backend_Task03.Pages.Beers
 		    accessControl = new AccessControl(database, httpContextAccessor);
 		}
 
+		[BindProperty(SupportsGet = true)]
+		public string SelectedFoodType { get; set; }
+
+		[BindProperty(SupportsGet = true)]
+		public string SelectedBeerType { get; set; }
 		[BindProperty]
 		public int BeerIdToAddToFavorites { get; set; }
 		public IList<Beer> Beer { get; set; }
@@ -52,7 +57,6 @@ namespace Backend_Task03.Pages.Beers
 				beers = beers.Where(b => b.Name.Contains(FindBeer));
 			}
 
-			// BeerType filtering
 			if (BeerType != null && BeerType.Length > 0)
 			{
 				List<string> types = new List<string>();
@@ -69,6 +73,15 @@ namespace Backend_Task03.Pages.Beers
 					types.AddRange(new string[] { "Stout", "Imperial Stout" });
 				}
 				beers = beers.Where(b => types.Contains(b.Type));
+			}
+
+			if (!string.IsNullOrEmpty(SelectedBeerType) && SelectedBeerType != "Beer")
+			{
+				beers = beers.Where(b => b.Type == SelectedBeerType);
+			}
+			if (!string.IsNullOrEmpty(SelectedFoodType) && SelectedFoodType != "Food")
+			{
+				beers = beers.Where(b => b.GoesWellWith.Contains(SelectedFoodType));
 			}
 
 			Beer = await beers.ToListAsync();
@@ -144,6 +157,14 @@ namespace Backend_Task03.Pages.Beers
 			if (!string.IsNullOrEmpty(searchInput))
 			{
 				beers2Show = beers2Show.Where(b => b.Name.Contains(searchInput) || b.EAN13 == searchInput);
+			}
+			if (!string.IsNullOrEmpty(SelectedBeerType) && SelectedBeerType != "Beer")
+			{
+				beers2Show = beers2Show.Where(b => b.Type == SelectedBeerType);
+			}
+			if (!string.IsNullOrEmpty(SelectedFoodType) && SelectedFoodType != "Food")
+			{
+				beers2Show = beers2Show.Where(b => b.GoesWellWith.Contains(SelectedFoodType));
 			}
 
 			if (BeerType != null && BeerType.Length > 0)
