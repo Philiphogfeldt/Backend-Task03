@@ -71,7 +71,7 @@
 		</div>
 		@*<div id="beerGridCellRow7">
 
-			Our users rated this beer @Html.DisplayFor(model => model.Beer.Rating) of 5!
+		Our users rated this beer @Html.DisplayFor(model => model.Beer.Rating) of 5!
 
 		</div>*@
 
@@ -218,26 +218,28 @@
 		<div id="beerReviewCell">
 			@if (Model.Beer != null && Model.Beer.Reviews != null && Model.Beer.Reviews.Count > 0)
 			{
-
-
 				<h4>Reviews</h4>
 				@foreach (var comment in Model.Beer.Reviews)
 				{
-
 					<div id="reviewGridCell">
-						@comment.Account.Name said: <em>"@comment.Comment"</em> -and rated it @comment.Rating / 5!
+						@if (@comment.Comment != null && @comment.Rating != 0)
+						{
+							<div id="reviewGridCell">
+								@comment.Account.Name said: "@comment.Comment" -and rated it @comment.Rating / 5!
+								@comment.Created.ToString("yyyy-MM-dd HH:mm")
+							</div>
+						}
 
-					@if (@comment.Comment != null && @comment.Rating == 0)
-					{
-						<div id="reviewGridCell">
-							@comment.Account.Name said: "@comment.Comment" -about this beer
-							@comment.Created.ToString("yyyy-MM-dd HH:mm")
-						</div>
-					}
+						@if (@comment.Comment != null && @comment.Rating == 0)
+						{
+							<div id="reviewGridCell">
+								@comment.Account.Name said: "@comment.Comment" -about this beer
+								@comment.Created.ToString("yyyy-MM-dd HH:mm")
+							</div>
+						}
+					</div>
 				}
-			</div>
-		}
-
+			}
 			else
 			{
 				<p>No reviews yet.</p>
@@ -267,26 +269,26 @@
 			</div>
 
 			<div id="beerAddReviewGoes" class="form-group">
-					<p>This beers goes well with: </p>
-					
-					<label asp-for="Meat"><img asp-append-version="true" value="Meat" src="../images/meat.svg" style="width: 22px" /><input asp-for="Meat" /></label>
-					<label asp-for="Chicken"><img asp-append-version="true" value="Chicken" src="../images/chicken.svg" style="width: 22px" /><input asp-for="Chicken" /></label>
-					<label asp-for="Fish"><img asp-append-version="true" value="Fish" src="../images/fish.svg" style="width: 22px" /><input asp-for="Fish" /></label>
-					<label asp-for="Vegetarian"><img asp-append-version="true" value="Vegetarian" src="../images/veg.svg" style="width: 22px" /><input asp-for="Vegetarian" /></label>
-					<label asp-for="Dessert"><img asp-append-version="true" value="Dessert" src="../images/dessert.svg" style="width: 22px" /><input asp-for="Dessert" /></label>
-					
+				<p>This beers goes well with: </p>
 
-					@*<label><input asp-for="Meat" />Meat</label>
-					<input asp-for="Chicken" />
-					<input asp-for="Fish" />
-					<input asp-for="Vegetarian" />
-					<input asp-for="Dessert" />*@
+				<label asp-for="Meat"><img asp-append-version="true" value="Meat" src="../images/meat.svg" style="width: 22px" /><input asp-for="Meat" /></label>
+				<label asp-for="Chicken"><img asp-append-version="true" value="Chicken" src="../images/chicken.svg" style="width: 22px" /><input asp-for="Chicken" /></label>
+				<label asp-for="Fish"><img asp-append-version="true" value="Fish" src="../images/fish.svg" style="width: 22px" /><input asp-for="Fish" /></label>
+				<label asp-for="Vegetarian"><img asp-append-version="true" value="Vegetarian" src="../images/veg.svg" style="width: 22px" /><input asp-for="Vegetarian" /></label>
+				<label asp-for="Dessert"><img asp-append-version="true" value="Dessert" src="../images/dessert.svg" style="width: 22px" /><input asp-for="Dessert" /></label>
 
-					@*<label><input type="checkbox" name="Meat" value="Meat" checked=""/> Meat</label>*@
-					@*  <label><input type="checkbox" name="NewReview.FoodCategories" value="Fish" checked=""/> Fish</label>
-					<label><input type="checkbox" name="Chicken" value="Chicken" checked=""/>Chicken </label>
-					<label><input type="checkbox" name="NewReview.FoodCategories" value="Vegetarian" checked=""/> Veg</label>
-					<label><input type="checkbox" name="NewReview.FoodCategories" value="Dessert" checked=""/> Dessert</label>*@
+
+				@*<label><input asp-for="Meat" />Meat</label>
+				<input asp-for="Chicken" />
+				<input asp-for="Fish" />
+				<input asp-for="Vegetarian" />
+				<input asp-for="Dessert" />*@
+
+				@*<label><input type="checkbox" name="Meat" value="Meat" checked=""/> Meat</label>*@
+				@*  <label><input type="checkbox" name="NewReview.FoodCategories" value="Fish" checked=""/> Fish</label>
+				<label><input type="checkbox" name="Chicken" value="Chicken" checked=""/>Chicken </label>
+				<label><input type="checkbox" name="NewReview.FoodCategories" value="Vegetarian" checked=""/> Veg</label>
+				<label><input type="checkbox" name="NewReview.FoodCategories" value="Dessert" checked=""/> Dessert</label>*@
 			</div>
 
 			<div class="form-group">
