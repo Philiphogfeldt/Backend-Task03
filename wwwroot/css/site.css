@@ -17,32 +17,39 @@ body {
 .containerMain {
     display: grid;
     grid-template-areas:
-        "header header header"
-        "allsearch allsearch allsearch"
-        "navigationpages navigationpages navigationpages"
+        "beerlyLogoContainer header header"
+        "beerlyLogoContainer allsearch allsearch"
+        "beerlyLogoContainer navigationpages navigationpages"
         "dailyBeer dailyBeer favorites";
     gap: 20px;
     padding: 20px;
     max-width: 960px;
     margin: 0 auto;
-    background-image: url("../imagesBeerly/beerlylogo1002.png");
+    /*    background-image: url("../imagesBeerly/beerlylogo1002.png");
     background-position: left;
-    background-repeat: no-repeat;
+    background-repeat: no-repeat;*/
 }
 
 .header {
     grid-area: header;
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    align-items: center;
+    grid-template-columns: 1fr;
 }
 
 .WelcomeUserText {
     text-align: right;
 }
 
-.logo {
-    margin: 0;
+#beerlyLogoContainer {
+    display: grid;
+    grid-area: beerlyLogoContainer;
+    z-index: 0;
+    /*    width: 250px;
+*/ margin: 0;
+    justify-content: start;
+}
+
+#beerlyLogo {
 }
 
 .AllSearch {
@@ -53,6 +60,7 @@ body {
     width: 100%;
     justify-content: end;
     align-items: end;
+    z-index: 1;
 }
 
 .AllSearchRight {
@@ -122,9 +130,12 @@ body {
 .NavigationPages {
     grid-area: navigationpages;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    z-index: 1;
+    grid-template-columns: repeat(3, 1fr);
     gap: 10px;
     margin-left: 210px;
+    align-content: end;
+    justify-content: end;
 }
 
 button,
@@ -141,7 +152,7 @@ button,
     cursor: pointer;
     transition-duration: 0.4s;
     border-radius: 8px;
-    width: fit-content;
+    min-width: min-content;
     height: fit-content;
 }
 
@@ -178,13 +189,13 @@ button,
     padding: 5px;
     gap: 5px;
     grid-template-areas:
-        "beerGridCellRow1" 
+        "beerGridCellRow1"
         "beerGridCellImage"
         "beerGridCellRow2"
         "beerGridCellRow3"
         "beerGridCellRow4"
         "beerGridCellRow5"
-         "beerGridCellRow6"
+        "beerGridCellRow6"
         "beerGridCellRow7";
 }
 
@@ -204,7 +215,6 @@ button,
 #reviewGridCell {
     display: grid;
     margin: 10px;
-
 }
 
 #beerGridCellRow1,
@@ -254,9 +264,9 @@ button,
     padding: 5px;
 }
 
-#beerAddReview p {
-    margin-bottom: 6px;
-}
+    #beerAddReview p {
+        margin-bottom: 6px;
+    }
 
 #beerReviewContainer {
     padding: 5px;
@@ -414,22 +424,35 @@ beerDetailsButton {
 #beerRating {
     display: grid;
     grid-template:
-   "m m m m m m m"
-   "n o p q r s t" ;
+        "m m m m m m m"
+        "n o p q r s t";
     grid-area: beerRating;
 }
 
-#ratingText 
-{
+#ratingText {
     grid-area: m;
     margin: 0px;
 }
 
-.firstGlass { grid-area: o;}
-.secondGlass { grid-area: p;}
-.thirdGlass { grid-area: q;}
-.fourthGlass { grid-area: r;}
-.fifthGlass { grid-area: s;}
+.firstGlass {
+    grid-area: o;
+}
+
+.secondGlass {
+    grid-area: p;
+}
+
+.thirdGlass {
+    grid-area: q;
+}
+
+.fourthGlass {
+    grid-area: r;
+}
+
+.fifthGlass {
+    grid-area: s;
+}
 
 #beerGridCellRow7 {
     display: grid;
@@ -479,11 +502,9 @@ beerDetailsButton {
     grid-area: z;
     display: flex;
     justify-self: center;
-    align-self: center
+    align-self: center .row7fourthGlass
 
-
-
-.row7fourthGlass {
+{
     grid-area: zx;
     display: flex;
     justify-self: center;
@@ -507,7 +528,7 @@ beerDetailsButton {
 #beerGoesWellWith {
     display: grid;
     grid-template:
-        "g h i j k" ;
+        "g h i j k";
     align-content: start;
 }
 
