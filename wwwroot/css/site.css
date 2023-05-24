@@ -178,13 +178,13 @@ button,
     padding: 5px;
     gap: 5px;
     grid-template-areas:
-        "beerGridCellRow1"
+        "beerGridCellRow1" 
         "beerGridCellImage"
         "beerGridCellRow2"
         "beerGridCellRow3"
         "beerGridCellRow4"
         "beerGridCellRow5"
-        "beerGridCellRow6"
+         "beerGridCellRow6"
         "beerGridCellRow7";
 }
 
@@ -224,16 +224,16 @@ button,
     margin: 10px;
 }
 
-
 #pizzaWithBeer {
     background-color: #f4ddd1;
     display: grid;
-    width: 600px;
+    /*width: 600px;*/
     height: fit-content;
     grid-area: pizzaWithBeer;
     grid-template:
         "pizzaBeerHead"
         "recommendation";
+    padding: 5px;
 }
 
 #pizzaBeerHead {
@@ -251,6 +251,15 @@ button,
     display: grid;
     height: fit-content;
     grid-area: beerAddReview;
+    padding: 5px;
+}
+
+#beerAddReview p {
+    margin-bottom: 6px;
+}
+
+#beerReviewContainer {
+    padding: 5px;
 }
 
 #beerCRUDButtons {
@@ -403,8 +412,91 @@ beerDetailsButton {
 }
 
 #beerRating {
+    display: grid;
+    grid-template:
+   "m m m m m m m"
+   "n o p q r s t" ;
     grid-area: beerRating;
 }
+
+#ratingText 
+{
+    grid-area: m;
+    margin: 0px;
+}
+
+.firstGlass { grid-area: o;}
+.secondGlass { grid-area: p;}
+.thirdGlass { grid-area: q;}
+.fourthGlass { grid-area: r;}
+.fifthGlass { grid-area: s;}
+
+#beerGridCellRow7 {
+    display: grid;
+    padding-right: 75px;
+    grid-template:
+        "u x y z zx zy";
+}
+
+
+.visually-hidden {
+    position: absolute;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    width: 1px;
+    margin: -1px;
+    padding: 0;
+    border: 0;
+}
+
+.beerFavoriteLabel .unfilledStar {
+    display: inline-block;
+}
+
+.beerFavoriteLabel .filledStar {
+    display: none;
+}
+
+.beerFavoriteCheckbox:checked + .beerFavoriteLabel .unfilledStar {
+    display: none;
+}
+
+.beerFavoriteCheckbox:checked + .beerFavoriteLabel .filledStar {
+    display: inline-block;
+}
+
+
+
+
+#beerGridCellRow7Text {
+    grid-area: u;
+}
+
+
+
+.row7thirdGlass {
+    grid-area: z;
+    display: flex;
+    justify-self: center;
+    align-self: center
+
+
+
+.row7fourthGlass {
+    grid-area: zx;
+    display: flex;
+    justify-self: center;
+    align-self: center
+}
+
+.row7fifthGlass {
+    grid-area: zy;
+    display: flex;
+    justify-self: center;
+    align-self: center
+}
+
 
 #beerDetailsButton {
     grid-area: beerDetailsButton;
@@ -413,7 +505,14 @@ beerDetailsButton {
 }
 
 #beerGoesWellWith {
-    align-content: end;
+    display: grid;
+    grid-template:
+        "g h i j k" ;
+    align-content: start;
+}
+
+#meat {
+    padding-left: 2px;
 }
 
 #beerFavoriteCell {

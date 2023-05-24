@@ -40,27 +40,29 @@ namespace Backend_Task03.Controllers
             return randomBeer;
         }
 
-        public string GetImageUrl ()
+        public string GetImageUrl (string name)
         {
-            var imageFiles = Directory.GetFiles("wwwroot/beerimg");
+
+            var imageFiles = Directory.GetFiles("wwwroot/imagesBeerly");
 
             if (imageFiles.Length == 0)
             {
                 return null; // No images available
             }
 
-            // Randomly select an image file name
-            var random = new Random();
-            var randomIndex = random.Next(0, imageFiles.Length);
-            var randomImageFileName = Path.GetFileName(imageFiles[randomIndex]);
+            
+            var thisImage = imageFiles.Where(c=> c.Contains(name)).FirstOrDefault();
 
-            // Construct the image URL based on the randomly selected image file name
+           
+            var imageFileName = Path.GetFileName(thisImage);
+
+            // Construct the image URL 
 
             //Correct for deployment
-            var imageUrl = $"https://beerlyazurewebsites.net/beerimg/{randomImageFileName}";
+            var imageUrl = $"https://beerly.azurewebsites.net/imagesBeerly/{name}" + ".png";
 
             //Test: Works only in dev
-            //var imageUrl = $"https://localhost:5000//beerimg/{randomImageFileName}";
+            //var imageUrl = $"https://localhost:5000//imagesBeerly/{name}" + ".png";
 
             return imageUrl;
         }
@@ -76,7 +78,7 @@ namespace Backend_Task03.Controllers
             }
 
             // Get a random image URL
-            var imageUrl = GetImageUrl();
+            var imageUrl = GetImageUrl(beer.Name);
 
             // Extract only the desired properties from the beer object
             var beerResponse = new

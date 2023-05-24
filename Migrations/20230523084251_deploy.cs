@@ -4,7 +4,7 @@
 
 namespace Backend_Task03.Migrations
 {
-    public partial class first : Migration
+    public partial class deploy : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
