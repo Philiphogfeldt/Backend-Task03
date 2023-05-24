@@ -18,27 +18,17 @@
 			<div id="accountleftGrid">
 				<h2>Account</h2>
 				<div id="accountDetailContainer">
-					@*	<dt class="col-sm-2">
-				@Html.DisplayNameFor(model => model.Account.OpenIDIssuer)
-				</dt>
-				<dd class="col-sm-10">
-				@Html.DisplayFor(model => model.Account.OpenIDIssuer)
-				</dd>
-				<dt class="col-sm-2">
-				@Html.DisplayNameFor(model => model.Account.OpenIDSubject)
-				</dt>
-				<dd class="col-sm-10">
-				@Html.DisplayFor(model => model.Account.OpenIDSubject)
-				</dd>*@
-					<p>NAME</p>
+					<h3>Name</h3>
 					<p id="accountName">
 						@Html.DisplayFor(model => model.Account.Name)
 					</p>
-					<p>ROLE</p>
+					<h3>Role</h3>
 					<p id="accountRole">
 						@Html.DisplayFor(model => model.Account.Role)
 					</p>
-					<a asp-page="./Edit" asp-route-id="@Model.Account?.ID">Edit</a>
+					<form asp-page="./Edit" asp-route-id="@Model.Account?.ID">
+						<button type="submit">Details</button>
+					</form>
 					@if (AccessControl.LoggedInAccountRole == "Admin")
 					{
 						<a asp-page="./Index">Back to List</a>
