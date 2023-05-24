@@ -187,7 +187,7 @@ button,
     display: grid;
     grid-area: beerGridCell;
     padding: 5px;
-    gap: 5px;
+    gap: 10px;
     grid-template-areas:
         "beerGridCellRow1"
         "beerGridCellImage"
@@ -260,8 +260,15 @@ button,
     background-color: #f4ddd1;
     display: grid;
     height: fit-content;
+    width: 300px;
+    padding: 10px;
     grid-area: beerAddReview;
     padding: 5px;
+}
+
+.form-control {
+    height: 200px;
+    width: 260px;
 }
 
     #beerAddReview p {
@@ -355,11 +362,23 @@ button,
 .normalBody {
     display: grid;
     padding: 20px;
-    max-width: 960px;
+    width: 960px;
+
     margin: 0 auto;
     justify-content: center;
     justify-self: center;
     justify-items: center;
+}
+
+#frontPageBorderCell {
+    background-color: #f4ddd1;
+    display: grid;
+    background-image: url("/imagesBeerly/beerlyStarBorder.png");
+    background-size: cover;
+    height: 390px;
+    width: 390px;
+    align-content: center;
+    border-radius: 20px;
 }
 
 .dailyImage {
@@ -396,6 +415,7 @@ main {
     background-color: #f4ddd1;
     display: grid;
     margin: 0px;
+    margin-top: 10px;
     padding: 5px;
     width: 300px;
     grid-template:
