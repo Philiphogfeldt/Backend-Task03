@@ -24,7 +24,7 @@
 			@Html.DisplayFor(model => model.Beer.Brewery)
 		</div>
 		<div id="beerGridCellImage">
-			<img id="smBeerImage" src="~/imagesBeerly/@(Model.Beer.Name).png" width="100px" />
+			<img id="smBeerImage" src="~/imagesBeerly/@(Model.Beer.Name).png" width="200px" />
 		</div>
 		<div id="beerGridCellRow3">
 			@Html.DisplayFor(model => model.Beer.Description)
@@ -225,16 +225,18 @@
 						@if (@comment.Comment != null && @comment.Rating != 0)
 						{
 							<div id="reviewGridCell">
-								@comment.Account.Name said: "@comment.Comment" -and rated it @comment.Rating / 5!
-								@comment.Created.ToString("yyyy-MM-dd HH:mm")
+								<p>@comment.Account.Name said:</p>
+								<em>"@comment.Comment"</em> -and rated it @comment.Rating / 5!
+								<p>@comment.Created.ToString("yyyy-MM-dd HH:mm")</p>
 							</div>
 						}
 
 						@if (@comment.Comment != null && @comment.Rating == 0)
 						{
 							<div id="reviewGridCell">
-								@comment.Account.Name said: "@comment.Comment" -about this beer
-								@comment.Created.ToString("yyyy-MM-dd HH:mm")
+								<p>@comment.Account.Name said:</p>
+								<em>"@comment.Comment"</em> -about this beer
+								<p>@comment.Created.ToString("yyyy-MM-dd HH:mm")</p>
 							</div>
 						}
 					</div>
