@@ -283,30 +283,58 @@ button,
     align-content: start;
     padding: 10px;
     grid-template:
-        "a b" /1fr;
+        "a b c" /1fr;
     justify-self: center;
     width: 960px;
 }
 
 #accountleftGrid {
+    background-color: #f4ddd1;
     display: grid;
     grid-area: a;
-    height: fit-content;
+    height: 380px;
+}
+
+#accountmidGrid {
+    display: grid;
+    grid-area: b;
+    width: 300px;
+    justify-self: center;
+    justify-items: center;
+    margin-top: 0px;
+    gap: 10px;
+}
+
+#accountFavBeerCell {
+    background-color: #f4ddd1;
+    width: 250px;
+    display: grid;
+    padding: 10px;
+    margin: 10px;
+    grid-template:
+        "a"
+        "b"
+        "c"
+        "d"
+        "e";
 }
 
 #accountrightGrid {
     display: grid;
-    grid-area: b;
-    justify-self: end;
-    justify-items: end;
-    width: 200px;
+    grid-area: c;
+    margin-top: 0px;
+    justify-self: center;
+    justify-items: center;
+    width: 300px;
+    gap: 10px;
 }
 
 #accountReviewGridBox {
-    border: 1px;
-    border-style: solid;
-    border-color: orange;
-    width: 100%;
+    background-color: #f4ddd1;
+    width: 250px;
+    display: grid;
+    padding: 10px;
+    margin: 10px;
 }
 
 .normalBody {
@@ -459,6 +487,8 @@ beerDetailsButton {
     padding-right: 75px;
     grid-template:
         "u x y z zx zy";
+    gap: 0px;
+    justify-content: start;
 }
 
 
