@@ -3,325 +3,340 @@
 @inject Backend_Task03.Data.AccessControl AccessControl
 
 @{
-	ViewData["Title"] = "Details";
+    ViewData["Title"] = "Details";
 }
 
 <script type="module" src="~/js/pizza-search.js" asp-append-version="true" defer></script>
 
 <header>
-	<link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
 </header>
 
-<div id="beerGrid">
+<div id="beerDetailsContainer">
+    <div id="beerGrid">
 
-	<div id="beerGridCell">
-		<div id="beerGridCellRow1">
-			@*@Html.DisplayNameFor(model => model.Beer.Name)*@
-			<h3 id="beerGridCellRowName">@Html.DisplayFor(model => model.Beer.Name) (@Html.DisplayFor(model => model.Beer.Country))</h3>
-		</div>
+        <div id="beerGridCell">
+            <div id="beerGridCellRow1">
+                @*@Html.DisplayNameFor(model => model.Beer.Name)*@
+                <h3 id="beerGridCellRowName">@Html.DisplayFor(model => model.Beer.Name) (@Html.DisplayFor(model => model.Beer.Country))</h3>
+            </div>
 
-		<div id="beerGridCellRow2">
-			@Html.DisplayFor(model => model.Beer.Brewery)
-		</div>
-		<div id="beerGridCellImage">
-			<img id="smBeerImage" src="~/imagesBeerly/@(Model.Beer.Name).png" width="200px" />
-		</div>
-		<div id="beerGridCellRow3">
-			@Html.DisplayFor(model => model.Beer.Description)
+            <div id="beerGridCellRow2">
+                @Html.DisplayFor(model => model.Beer.Brewery)
+            </div>
+            <div id="beerGridCellImage">
+                <img id="smBeerImage" src="~/imagesBeerly/@(Model.Beer.Name).png" width="200px" />
+            </div>
+            <div id="beerGridCellRow3">
+                @Html.DisplayFor(model => model.Beer.Description)
 
-		</div>
-		<div id="beerGridCellRow4">
-			@Html.DisplayFor(model => model.Beer.Percentage)  %
-		</div>
-		<div id="beerGridCellRow5">
+            </div>
+            <div id="beerGridCellRow4">
+                @Html.DisplayFor(model => model.Beer.Percentage)  %
+            </div>
+            <div id="beerGridCellRow5">
 
-			@Html.DisplayFor(model => model.Beer.Type)
-		</div>
-		<div id="beerGridCellRow6">
-			@*			@Html.DisplayNameFor(model => model.Beer.GoesWellWith)
-			*@			<p id="goesWithFood" hidden>
-				@Html.DisplayFor(model=>
-				model.Beer.GoesWellWith)
-			</p>
-			@if (Model.Beer.GoesWellWith.Contains("Chicken"))
-			{
-				<img asp-append-version="true" name="Goesw" value="Chicken" src="../images/chicken.svg" style="width: 22px" />
-			}
+                @Html.DisplayFor(model => model.Beer.Type)
+            </div>
+            <div id="beerGridCellRow6">
+                @*			@Html.DisplayNameFor(model => model.Beer.GoesWellWith)
+                *@			<p id="goesWithFood" hidden>
+                    @Html.DisplayFor(model=>
+                    model.Beer.GoesWellWith)
+                </p>
+                @if (Model.Beer.GoesWellWith.Contains("Chicken"))
+                {
+                    <img asp-append-version="true" name="Goesw" value="Chicken" src="../images/chicken.svg" style="width: 22px" />
+                }
 
-			@if (Model.Beer.GoesWellWith.Contains("Meat"))
-			{
-				<img asp-append-version="true" name="Goesw" value="Meat" src="../images/meat.svg" style="width: 22px" />
-			}
+                @if (Model.Beer.GoesWellWith.Contains("Meat"))
+                {
+                    <img asp-append-version="true" name="Goesw" value="Meat" src="../images/meat.svg" style="width: 22px" />
+                }
 
-			@if (Model.Beer.GoesWellWith.Contains("Fish"))
-			{
-				<img asp-append-version="true" name="Goesw" value="Fish" src="../images/fish.svg" style="width: 22px" />
-			}
+                @if (Model.Beer.GoesWellWith.Contains("Fish"))
+                {
+                    <img asp-append-version="true" name="Goesw" value="Fish" src="../images/fish.svg" style="width: 22px" />
+                }
 
-			@if (Model.Beer.GoesWellWith.Contains("Vegetarian"))
-			{
-				<img asp-append-version="true" name="Goesw" value="Vegetarian" src="../images/veg.svg" style="width: 22px" />
-			}
+                @if (Model.Beer.GoesWellWith.Contains("Vegetarian"))
+                {
+                    <img asp-append-version="true" name="Goesw" value="Vegetarian" src="../images/veg.svg" style="width: 22px" />
+                }
 
-			@if (Model.Beer.GoesWellWith.Contains("Dessert"))
-			{
-				<img asp-append-version="true" name="Goesw" value="Dessert" src="../images/dessert.svg" style="width: 22px" />
-			}
+                @if (Model.Beer.GoesWellWith.Contains("Dessert"))
+                {
+                    <img asp-append-version="true" name="Goesw" value="Dessert" src="../images/dessert.svg" style="width: 22px" />
+                }
 
-		</div>
-		@*<div id="beerGridCellRow7">
+            </div>
+            @*<div id="beerGridCellRow7">
 
-		Our users rated this beer @Html.DisplayFor(model => model.Beer.Rating) of 5!
+            Our users rated this beer @Html.DisplayFor(model => model.Beer.Rating) of 5!
 
-		</div>*@
+            </div>*@
 
-		<div id="beerGridCellRow7">
-			<p id="beerGridCellRow7Text">Our users give this beer a rating average of:</p>
+            <div id="beerGridCellRow7">
+                <p id="beerGridCellRow7Text">Our users give this beer a rating average of:</p>
 
-			@if (Model.Beer.Rating < 0.5)
-			{
-				<img class="row7firstGlass" asp-append-version="true" src="../images/empty.svg" style="width: 30px" />
-				<img class="row7secondGlass" asp-append-version="true" src="../images/empty.svg" style="width: 30px" />
-				<img class="row7thirdGlass" asp-append-version="true" src="../images/empty.svg" style="width: 30px" />
-				<img class="row7fourthGlass" asp-append-version="true" src="../images/empty.svg" style="width: 30px" />
-				<img class="row7fifthGlass" asp-append-version="true" src="../images/empty.svg" style="width: 30px" />
-			}
-			@if (Model.Beer.Rating >= 0.5 && Model.Beer.Rating < 1.5)
-			{
-				<img class="row7firstGlass" asp-append-version="true" src="../images/filled.svg" style="width: 30px" />
-				<img class="row7secondGlass" asp-append-version="true" src="../images/empty.svg" style="width: 30px" />
-				<img class="row7thirdGlass" asp-append-version="true" src="../images/empty.svg" style="width: 30px" />
-				<img class="row7fourthGlass" asp-append-version="true" src="../images/empty.svg" style="width: 30px" />
-				<img class="row7fifthGlass" asp-append-version="true" src="../images/empty.svg" style="width: 30px" />
-			}
-			@if (Model.Beer.Rating >= 1.5 && Model.Beer.Rating < 2.5)
-			{
-				<img class="row7firstGlass" asp-append-version="true" src="../images/filled.svg" style="width: 30px" />
-				<img class="row7secondGlass" asp-append-version="true" src="../images/filled.svg" style="width: 30px" />
-				<img class="row7thirdGlass" asp-append-version="true" src="../images/empty.svg" style="width: 30px" />
-				<img class="row7fourthGlass" asp-append-version="true" src="../images/empty.svg" style="width: 30px" />
-				<img class="row7fifthGlass" asp-append-version="true" src="../images/empty.svg" style="width: 30px" />
-			}
-			@if (Model.Beer.Rating >= 2.5 && Model.Beer.Rating < 3.5)
-			{
-				<img class="row7firstGlass" asp-append-version="true" src="../images/filled.svg" style="width: 30px" />
-				<img class="row7secondGlass" asp-append-version="true" src="../images/filled.svg" style="width: 30px" />
-				<img class="row7thirdGlass" asp-append-version="true" src="../images/filled.svg" style="width: 30px" />
-				<img class="row7fourthGlass" asp-append-version="true" src="../images/empty.svg" style="width: 30px" />
-				<img class="row7fifthGlass" asp-append-version="true" src="../images/empty.svg" style="width: 30px" />
-			}
-			@if (Model.Beer.Rating >= 3.5 && Model.Beer.Rating < 4.5)
-			{
-				<img class="row7firstGlass" asp-append-version="true" src="../images/filled.svg" style="width: 30px" />
-				<img class="row7secondGlass" asp-append-version="true" src="../images/filled.svg" style="width: 30px" />
-				<img class="row7thirdGlass" asp-append-version="true" src="../images/filled.svg" style="width: 30px" />
-				<img class="row7fourthGlass" asp-append-version="true" src="../images/filled.svg" style="width: 30px" />
-				<img class="row7fifthGlass" asp-append-version="true" src="../images/empty.svg" style="width: 30px" />
-			}
-			@if (Model.Beer.Rating >= 4.5)
-			{
-				<img class="row7firstGlass" asp-append-version="true" src="../images/filled.svg" style="width: 30px" />
-				<img class="row7secondGlass" asp-append-version="true" src="../images/filled.svg" style="width: 30px" />
-				<img class="row7thirdGlass" asp-append-version="true" src="../images/filled.svg" style="width: 30px" />
-				<img class="row7fourthGlass" asp-append-version="true" src="../images/filled.svg" style="width: 30px" />
-				<img class="row7fifthGlass" asp-append-version="true" src="../images/filled.svg" style="width: 30px" />
-			}
+                @if (Model.Beer.Rating < 0.5)
+                {
+                    <img class="row7firstGlass" asp-append-version="true" src="../images/empty.svg" style="width: 30px" />
+                    <img class="row7secondGlass" asp-append-version="true" src="../images/empty.svg" style="width: 30px" />
+                    <img class="row7thirdGlass" asp-append-version="true" src="../images/empty.svg" style="width: 30px" />
+                    <img class="row7fourthGlass" asp-append-version="true" src="../images/empty.svg" style="width: 30px" />
+                    <img class="row7fifthGlass" asp-append-version="true" src="../images/empty.svg" style="width: 30px" />
+                }
+                @if (Model.Beer.Rating >= 0.5 && Model.Beer.Rating < 1.5)
+                {
+                    <img class="row7firstGlass" asp-append-version="true" src="../images/filled.svg" style="width: 30px" />
+                    <img class="row7secondGlass" asp-append-version="true" src="../images/empty.svg" style="width: 30px" />
+                    <img class="row7thirdGlass" asp-append-version="true" src="../images/empty.svg" style="width: 30px" />
+                    <img class="row7fourthGlass" asp-append-version="true" src="../images/empty.svg" style="width: 30px" />
+                    <img class="row7fifthGlass" asp-append-version="true" src="../images/empty.svg" style="width: 30px" />
+                }
+                @if (Model.Beer.Rating >= 1.5 && Model.Beer.Rating < 2.5)
+                {
+                    <img class="row7firstGlass" asp-append-version="true" src="../images/filled.svg" style="width: 30px" />
+                    <img class="row7secondGlass" asp-append-version="true" src="../images/filled.svg" style="width: 30px" />
+                    <img class="row7thirdGlass" asp-append-version="true" src="../images/empty.svg" style="width: 30px" />
+                    <img class="row7fourthGlass" asp-append-version="true" src="../images/empty.svg" style="width: 30px" />
+                    <img class="row7fifthGlass" asp-append-version="true" src="../images/empty.svg" style="width: 30px" />
+                }
+                @if (Model.Beer.Rating >= 2.5 && Model.Beer.Rating < 3.5)
+                {
+                    <img class="row7firstGlass" asp-append-version="true" src="../images/filled.svg" style="width: 30px" />
+                    <img class="row7secondGlass" asp-append-version="true" src="../images/filled.svg" style="width: 30px" />
+                    <img class="row7thirdGlass" asp-append-version="true" src="../images/filled.svg" style="width: 30px" />
+                    <img class="row7fourthGlass" asp-append-version="true" src="../images/empty.svg" style="width: 30px" />
+                    <img class="row7fifthGlass" asp-append-version="true" src="../images/empty.svg" style="width: 30px" />
+                }
+                @if (Model.Beer.Rating >= 3.5 && Model.Beer.Rating < 4.5)
+                {
+                    <img class="row7firstGlass" asp-append-version="true" src="../images/filled.svg" style="width: 30px" />
+                    <img class="row7secondGlass" asp-append-version="true" src="../images/filled.svg" style="width: 30px" />
+                    <img class="row7thirdGlass" asp-append-version="true" src="../images/filled.svg" style="width: 30px" />
+                    <img class="row7fourthGlass" asp-append-version="true" src="../images/filled.svg" style="width: 30px" />
+                    <img class="row7fifthGlass" asp-append-version="true" src="../images/empty.svg" style="width: 30px" />
+                }
+                @if (Model.Beer.Rating >= 4.5)
+                {
+                    <img class="row7firstGlass" asp-append-version="true" src="../images/filled.svg" style="width: 30px" />
+                    <img class="row7secondGlass" asp-append-version="true" src="../images/filled.svg" style="width: 30px" />
+                    <img class="row7thirdGlass" asp-append-version="true" src="../images/filled.svg" style="width: 30px" />
+                    <img class="row7fourthGlass" asp-append-version="true" src="../images/filled.svg" style="width: 30px" />
+                    <img class="row7fifthGlass" asp-append-version="true" src="../images/filled.svg" style="width: 30px" />
+                }
 
-		</div>
-
-	</div>
-
-	@*<hr />
-	<dl class="row">
-	<dt class="col-sm-2">
-	@Html.DisplayNameFor(model => model.Beer.Name)
-	</dt>
-	<dd class="col-sm-10">
-	@Html.DisplayFor(model => model.Beer.Name)
-	</dd>
-	<dt class="col-sm-2">
-	@Html.DisplayNameFor(model => model.Beer.Description)
-	</dt>
-	<dd class="col-sm-10">
-	@Html.DisplayFor(model => model.Beer.Description)
-	</dd>
-	<dt class="col-sm-2">
-	@Html.DisplayNameFor(model => model.Beer.Type)
-	</dt>
-	<dd class="col-sm-10">
-	@Html.DisplayFor(model => model.Beer.Type)
-	</dd>
-	<dt class="col-sm-2">
-	@Html.DisplayNameFor(model => model.Beer.Percentage)
-	</dt>
-	<dd class="col-sm-10">
-	@Html.DisplayFor(model => model.Beer.Percentage)
-	</dd>
-	<dt class="col-sm-2">
-	@Html.DisplayNameFor(model => model.Beer.Brewery)
-	</dt>
-	<dd class="col-sm-10">
-	@Html.DisplayFor(model => model.Beer.Brewery)
-	</dd>
-	<dt class="col-sm-2">
-	@Html.DisplayNameFor(model => model.Beer.Country)
-	</dt>
-	<dd class="col-sm-10">
-	@Html.DisplayFor(model => model.Beer.Country)
-	</dd>
-	<dt class="col-sm-2">
-	@Html.DisplayNameFor(model => model.Beer.GoesWellWith)
-	</dt>
-	<dd class="col-sm-10">
-
-	@if (Model.Beer.GoesWellWith.Contains("Chicken"))
-	{
-	<img asp-append-version="true" name="Goesw" value="Chicken" src="../images/chicken.svg" style="width: 25px" />
-	}
-
-	@if (Model.Beer.GoesWellWith.Contains("Meat"))
-	{
-	<img asp-append-version="true" name="Goesw" value="Meat" src="../images/meat.svg" style="width: 25px" />
-	}
-
-	@if (Model.Beer.GoesWellWith.Contains("Fish"))
-	{
-	<img asp-append-version="true" name="Goesw" value="Fish" src="../images/fish.svg" style="width: 25px" />
-	}
-
-	@if (Model.Beer.GoesWellWith.Contains("Vegetarian"))
-	{
-	<img asp-append-version="true" name="Goesw" value="Vegetarian" src="../images/veg.svg" style="width: 25px" />
-	}
-
-	@if (Model.Beer.GoesWellWith.Contains("Dessert"))
-	{
-	<img asp-append-version="true" name="Goesw" value="Dessert" src="../images/dessert.svg" style="width: 25px" />
-	}
-	</dd>
-	<dd id="goesWithFood" class="col-sm-10">
-	@Html.DisplayFor(model => model.Beer.GoesWellWith)
-	</dd>
-	<dt class="col-sm-2">
-	@Html.DisplayNameFor(model => model.Beer.Rating)
-	</dt>
-	<dd class="col-sm-10">
-	@Html.DisplayFor(model => model.Beer.Rating)
-	</dd>
-	</dl>*@
+            </div>
 
 
-
-	@*	<p id="message" hidden>There are no results for that keyword.</p>
-	*@
-	<div id="beerReviewContainer">
-		<div id="beerReviewCell">
-			@if (Model.Beer != null && Model.Beer.Reviews != null && Model.Beer.Reviews.Count > 0)
-			{
-				<h4>Reviews</h4>
-				@foreach (var comment in Model.Beer.Reviews)
-				{
-					<div id="reviewGridCell">
-						@if (@comment.Comment != null && @comment.Rating != 0)
-						{
-							<div id="reviewGridCell">
-								<p>@comment.Account.Name said:</p>
-								<em>"@comment.Comment"</em> -and rated it @comment.Rating / 5!
-								<p>@comment.Created.ToString("yyyy-MM-dd HH:mm")</p>
-							</div>
-						}
-
-						@if (@comment.Comment != null && @comment.Rating == 0)
-						{
-							<div id="reviewGridCell">
-								<p>@comment.Account.Name said:</p>
-								<em>"@comment.Comment"</em> -about this beer
-								<p>@comment.Created.ToString("yyyy-MM-dd HH:mm")</p>
-							</div>
-						}
-					</div>
-				}
-			}
-			else
-			{
-				<p>No reviews yet.</p>
-			}
-		</div>
-	</div>
-	<div id="beerAddReview">
-		<h4>Add a Review</h4>
-
-		<form method="post">
-			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
-			<div class="form-group">
-				<label asp-for="NewReview.Rating" class="control-label"></label>
-				<div>
-					<label><input type="radio" name="NewReview.Rating" value="1" /> 1</label>
-					<label><input type="radio" name="NewReview.Rating" value="2" /> 2</label>
-					<label><input type="radio" name="NewReview.Rating" value="3" /> 3</label>
-					<label><input type="radio" name="NewReview.Rating" value="4" /> 4</label>
-					<label><input type="radio" name="NewReview.Rating" value="5" /> 5</label>
-				</div>
-				<span asp-validation-for="NewReview.Rating" class="text-danger"></span>
-			</div>
-			<div id="beerAddReviewComment" class="form-group">
-				<p><label asp-for="NewReview.Comment" class="control-label"></label></p>
-				<textarea asp-for="NewReview.Comment" class="form-control"></textarea>
-				<span asp-validation-for="NewReview.Comment" class="text-danger"></span>
-			</div>
-
-			<div id="beerAddReviewGoes" class="form-group">
-				<p>This beers goes well with: </p>
-
-				<label asp-for="Meat"><img asp-append-version="true" value="Meat" src="../images/meat.svg" style="width: 22px" /><input asp-for="Meat" /></label>
-				<label asp-for="Chicken"><img asp-append-version="true" value="Chicken" src="../images/chicken.svg" style="width: 22px" /><input asp-for="Chicken" /></label>
-				<label asp-for="Fish"><img asp-append-version="true" value="Fish" src="../images/fish.svg" style="width: 22px" /><input asp-for="Fish" /></label>
-				<label asp-for="Vegetarian"><img asp-append-version="true" value="Vegetarian" src="../images/veg.svg" style="width: 22px" /><input asp-for="Vegetarian" /></label>
-				<label asp-for="Dessert"><img asp-append-version="true" value="Dessert" src="../images/dessert.svg" style="width: 22px" /><input asp-for="Dessert" /></label>
+        </div>
 
 
-				@*<label><input asp-for="Meat" />Meat</label>
-				<input asp-for="Chicken" />
-				<input asp-for="Fish" />
-				<input asp-for="Vegetarian" />
-				<input asp-for="Dessert" />*@
+        <div id="pizzaWithBeer">
 
-				@*<label><input type="checkbox" name="Meat" value="Meat" checked=""/> Meat</label>*@
-				@*  <label><input type="checkbox" name="NewReview.FoodCategories" value="Fish" checked=""/> Fish</label>
-				<label><input type="checkbox" name="Chicken" value="Chicken" checked=""/>Chicken </label>
-				<label><input type="checkbox" name="NewReview.FoodCategories" value="Vegetarian" checked=""/> Veg</label>
-				<label><input type="checkbox" name="NewReview.FoodCategories" value="Dessert" checked=""/> Dessert</label>*@
-			</div>
+            <h3 id="pizzaBeerHead">This pizza goes well with your chosen beer!</h3>
 
-			<div class="form-group">
-				<input type="submit" value="Post" class="btn btn-primary" id="postButton" />
-			</div>
-		</form>
-	</div>
-	<div id="pizzaWithBeer">
+            @*<ul id="recommendation" hidden></ul>*@
 
-		<h3 id="pizzaBeerHead">This pizza goes well with your chosen beer!</h3>
+            <div id="recommendation" hidden></div>
 
-		@*<ul id="recommendation" hidden></ul>*@
-
-		<div id="recommendation" hidden></div>
-
-		<p id="message" hidden>There are no results for that keyword.</p>
+            <p id="message" hidden>There are no results for that keyword.</p>
 
 
-	</div>
+        </div>
 
 
-	<div id="beerCRUDButtons">
-		@if (AccessControl.LoggedInAccountRole == "Admin")
-		{
-			<button type="button" onclick="location.href='@Url.Page("./Edit2", new { id = Model.Beer?.ID,  name = Model.Beer?.Name })'">Edit</button>
-		}
-		<button type="button" onclick="location.href='@Url.Page("./Index")'">Back to List</button>
-	</div>
+        <div id="beerCRUDButtons">
+            @if (AccessControl.LoggedInAccountRole == "Admin")
+            {
+                <button type="button" onclick="location.href='@Url.Page("./Edit2", new { id = Model.Beer?.ID,  name = Model.Beer?.Name })'">Edit</button>
+            }
+            <button type="button" onclick="location.href='@Url.Page("./Index")'">Back to List</button>
+        </div>
+
+        @*<hr />
+        <dl class="row">
+        <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.Beer.Name)
+        </dt>
+        <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.Beer.Name)
+        </dd>
+        <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.Beer.Description)
+        </dt>
+        <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.Beer.Description)
+        </dd>
+        <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.Beer.Type)
+        </dt>
+        <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.Beer.Type)
+        </dd>
+        <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.Beer.Percentage)
+        </dt>
+        <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.Beer.Percentage)
+        </dd>
+        <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.Beer.Brewery)
+        </dt>
+        <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.Beer.Brewery)
+        </dd>
+        <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.Beer.Country)
+        </dt>
+        <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.Beer.Country)
+        </dd>
+        <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.Beer.GoesWellWith)
+        </dt>
+        <dd class="col-sm-10">
+
+        @if (Model.Beer.GoesWellWith.Contains("Chicken"))
+        {
+        <img asp-append-version="true" name="Goesw" value="Chicken" src="../images/chicken.svg" style="width: 25px" />
+        }
+
+        @if (Model.Beer.GoesWellWith.Contains("Meat"))
+        {
+        <img asp-append-version="true" name="Goesw" value="Meat" src="../images/meat.svg" style="width: 25px" />
+        }
+
+        @if (Model.Beer.GoesWellWith.Contains("Fish"))
+        {
+        <img asp-append-version="true" name="Goesw" value="Fish" src="../images/fish.svg" style="width: 25px" />
+        }
+
+        @if (Model.Beer.GoesWellWith.Contains("Vegetarian"))
+        {
+        <img asp-append-version="true" name="Goesw" value="Vegetarian" src="../images/veg.svg" style="width: 25px" />
+        }
+
+        @if (Model.Beer.GoesWellWith.Contains("Dessert"))
+        {
+        <img asp-append-version="true" name="Goesw" value="Dessert" src="../images/dessert.svg" style="width: 25px" />
+        }
+        </dd>
+        <dd id="goesWithFood" class="col-sm-10">
+        @Html.DisplayFor(model => model.Beer.GoesWellWith)
+        </dd>
+        <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.Beer.Rating)
+        </dt>
+        <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.Beer.Rating)
+        </dd>
+        </dl>*@
+
+    </div>
+
+    @*	<p id="message" hidden>There are no results for that keyword.</p>
+    *@
+
+    <div id="beerReviewContainer">
+        <div id="beerAddReview">
+            <h4>Add a Review</h4>
+
+            <form method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="NewReview.Rating" class="control-label"></label>
+                    <div>
+                        <label><input type="radio" name="NewReview.Rating" value="1" /> 1</label>
+                        <label><input type="radio" name="NewReview.Rating" value="2" /> 2</label>
+                        <label><input type="radio" name="NewReview.Rating" value="3" /> 3</label>
+                        <label><input type="radio" name="NewReview.Rating" value="4" /> 4</label>
+                        <label><input type="radio" name="NewReview.Rating" value="5" /> 5</label>
+                    </div>
+                    <span asp-validation-for="NewReview.Rating" class="text-danger"></span>
+                </div>
+                <div id="beerAddReviewComment" class="form-group">
+                    <p><label asp-for="NewReview.Comment" class="control-label"></label></p>
+                    <textarea asp-for="NewReview.Comment" class="form-control"></textarea>
+                    <span asp-validation-for="NewReview.Comment" class="text-danger"></span>
+                </div>
+
+                <div id="beerAddReviewGoes" class="form-group">
+                    <p>This beers goes well with: </p>
+
+                    <label asp-for="Meat"><img asp-append-version="true" value="Meat" src="../images/meat.svg" style="width: 22px" /><input asp-for="Meat" /></label>
+                    <label asp-for="Chicken"><img asp-append-version="true" value="Chicken" src="../images/chicken.svg" style="width: 22px" /><input asp-for="Chicken" /></label>
+                    <label asp-for="Fish"><img asp-append-version="true" value="Fish" src="../images/fish.svg" style="width: 22px" /><input asp-for="Fish" /></label>
+                    <label asp-for="Vegetarian"><img asp-append-version="true" value="Vegetarian" src="../images/veg.svg" style="width: 22px" /><input asp-for="Vegetarian" /></label>
+                    <label asp-for="Dessert"><img asp-append-version="true" value="Dessert" src="../images/dessert.svg" style="width: 22px" /><input asp-for="Dessert" /></label>
+
+
+                    @*<label><input asp-for="Meat" />Meat</label>
+                    <input asp-for="Chicken" />
+                    <input asp-for="Fish" />
+                    <input asp-for="Vegetarian" />
+                    <input asp-for="Dessert" />*@
+
+                    @*<label><input type="checkbox" name="Meat" value="Meat" checked=""/> Meat</label>*@
+                    @*  <label><input type="checkbox" name="NewReview.FoodCategories" value="Fish" checked=""/> Fish</label>
+                    <label><input type="checkbox" name="Chicken" value="Chicken" checked=""/>Chicken </label>
+                    <label><input type="checkbox" name="NewReview.FoodCategories" value="Vegetarian" checked=""/> Veg</label>
+                    <label><input type="checkbox" name="NewReview.FoodCategories" value="Dessert" checked=""/> Dessert</label>*@
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" value="Post" class="btn btn-primary" id="postButton" />
+                </div>
+            </form>
+        </div>
+
+
+
+        <div id="beerReviewCell">
+            @if (Model.Beer != null && Model.Beer.Reviews != null && Model.Beer.Reviews.Count > 0)
+            {
+                <h4>Reviews</h4>
+                @foreach (var comment in Model.Beer.Reviews)
+                {
+                    @*<div id="reviewGridCell">*@
+                        @if (@comment.Comment != null && @comment.Rating != 0)
+                        {
+                            <div id="reviewGridCell">
+                                <p>@comment.Account.Name said:</p>
+                            <em>"@comment.Comment"</em><p> -and rated it @comment.Rating / 5!</p>
+                                <p>@comment.Created.ToString("yyyy-MM-dd HH:mm")</p>
+                            </div>
+                        }
+
+                        @if (@comment.Comment != null && @comment.Rating == 0)
+                        {
+                            <div id="reviewGridCell">
+                                <p>@comment.Account.Name said:</p>
+                                <em>"@comment.Comment"</em> -about this beer
+                                <p>@comment.Created.ToString("yyyy-MM-dd HH:mm")</p>
+                            </div>
+                        }
+                    @*</div>*@
+                }
+            }
+            else
+            {
+                <p>No reviews yet.</p>
+            }
+        </div>
+
+        
+
+    </div>
+
+
+   
+
+
 
 </div>
-
 
 
 @*<hr />
@@ -498,9 +513,9 @@ else
 				<button type="button" onclick="location.href='@Url.Page("./Index")'">Back to List</button>
 			</div>
 		@*</div>*@
-	}
+    }
 @section Scripts {
-	@{
-		await Html.RenderPartialAsync("_ValidationScriptsPartial");
-	}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }
