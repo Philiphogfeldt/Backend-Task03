@@ -404,7 +404,6 @@ button:hover,
     margin-top: 0px;
     gap: 10px;
     align-content: start;
-    <<<<<<< HEAD=======>>>>>>>Dev
 }
 
 #accountFavBeerCell {
@@ -699,7 +698,19 @@ beerDetailsButton {
     grid-area: u;
 }
 
+.row7firstGlass {
+    grid-area: x;
+    display: flex;
+    justify-self: center;
+    align-self: center;
+}
 
+.row7secondGlass {
+    grid-area: y;
+    display: flex;
+    justify-self: center;
+    align-self: center
+}
 
 .row7thirdGlass {
     grid-area: z;
