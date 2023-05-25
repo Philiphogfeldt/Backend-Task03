@@ -297,11 +297,12 @@ button:hover,
 #beerGridCellRow6,
 #beerGridCellRow7 {
     display: grid;
+    margin-left: 10px;
 }
 
 #beerGridCellRow3 {
     font-style: italic;
-    min-height: 3em;
+    /*min-height: 3em;*/
     margin: 10px;
 }
 
@@ -320,6 +321,7 @@ button:hover,
 #pizzaBeerHead {
     display: grid;
     grid-area: pizzaBeerHead;
+    margin-left: 10px;
 }
 
 #recommendation {
@@ -351,6 +353,11 @@ button:hover,
     grid-area: beerAddReview;
     padding: 5px;
 }
+
+#beerAddReview > * {
+    margin-left: 10px;
+}
+
 
 .form-control {
     height: 40px;
@@ -702,6 +709,9 @@ beerDetailsButton {
 
 #beerGridCellRow7Text {
     grid-area: u;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    align-self: center;
 }
 
 .row7firstGlass {
