@@ -306,7 +306,18 @@ button:hover,
     margin: 10px;
 }
 
-#pizzaWithBeer {
+#beerGridCellRow6 {
+ grid-template:
+     "g h i j k l" / auto auto auto auto 1fr;
+ margin-left: 0px;
+}
+
+#beerGridCellRow6 img {
+    padding-left: 10px;
+}
+
+
+    #pizzaWithBeer {
     background-color: #f4ddd1;
     display: grid;
     /*width: 600px;*/
