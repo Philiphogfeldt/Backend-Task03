@@ -30,25 +30,10 @@ namespace Backend_Task03.Pages.Accounts
 
 		public async Task<IActionResult> OnGetAsync(int id)
 		{
-			//if (id == null || database.Accounts == null)
-			//{
-			//    return NotFound();
-			//}
-
-			//var account =  await database.Accounts.FirstOrDefaultAsync(m => m.ID == id);
-
-			//if (account == null)
-			//{
-			//    return NotFound();
-			//}
-
-			//Account = account;
+			
 			LoadAccount(id);
 			return Page();
 		}
-
-		// To protect from overposting attacks, enable the specific properties you want to bind to.
-		// For more details, see https://aka.ms/RazorPagesCRUD.
 		public async Task<IActionResult> OnPostAsync(int id)
 		{
 			LoadAccount(id);
@@ -68,32 +53,6 @@ namespace Backend_Task03.Pages.Accounts
 			{
 				return Page();
 			}
-			//if (!ModelState.IsValid)
-			//{
-			//    return Page();
-			//}
-
-			//database.Attach(Account).State = EntityState.Modified;
-
-			//try
-			//{
-			//    await database.SaveChangesAsync();
-			//}
-
-			//catch (DbUpdateConcurrencyException)
-			//{
-			//    if (!AccountExists(Account.ID))
-			//    {
-			//        return NotFound();
-			//    }
-
-			//    else
-			//    {
-			//        throw;
-			//    }
-			//}
-
-			return RedirectToPage("./Index");
 		}
 
 		private bool AccountExists(int id)
