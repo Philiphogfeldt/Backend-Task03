@@ -21,4 +21,5 @@ public class Review : IValidatableObject
 			yield return new ValidationResult("Please enter a rating or a comment.", new[] { nameof(Rating), nameof(Comment) });
 		}
 	}
+
 }
