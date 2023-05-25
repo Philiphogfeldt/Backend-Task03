@@ -46,14 +46,14 @@ body {
     grid-area: beerlyLogoContainer;
     z-index: 0;
     /*    width: 250px;
-*/ margin: 0;
+*/
+    margin: 0;
     justify-content: start;
 }
 
-#beerlyLogo {
-}
+#beerlyLogo {}
 
-.AllSearch {
+/*.AllSearch {
     grid-area: allsearch;
     display: grid;
     grid-template-areas: "selectionBeer selectionFood allSearchRight";
@@ -126,7 +126,62 @@ body {
 
     .MainSearchButton:hover {
         background-color: #cc7a00;
-    }
+    }*/
+.AllSearch {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+    gap: 10px;
+}
+
+.AllSearchRight {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.SelectionBeer,
+.SelectionFood,
+.SearchInputBar,
+.MainSearchButton {
+    height: 44px;
+    align-self: center;
+}
+
+.SelectionBeer,
+.SelectionFood {
+    width: 100px;
+    background-color: white;
+    border: 1px solid #6b7f9b;
+    padding: 8px;
+    font-size: 14px;
+    border-radius: 4px;
+}
+
+.SearchInputBar {
+    width: 200px;
+    font-size: 14px;
+    border: 1px solid #6b7f9b;
+    border-radius: 4px;
+}
+
+.MainSearchButton {
+    width: 100px;
+    background-color: orange;
+    border: none;
+    color: black;
+    text-align: center;
+    text-decoration: none;
+    font-size: 18px;
+    cursor: pointer;
+    transition-duration: 0.4s;
+}
+
+.MainSearchButton:hover {
+    background-color: #cc7a00;
+}
 
 .NavigationPages {
     grid-area: navigationpages;
@@ -157,10 +212,10 @@ button,
     height: fit-content;
 }
 
-    button:hover,
-    #postButton:hover {
-        background-color: #cc7a00;
-    }
+button:hover,
+#postButton:hover {
+    background-color: #cc7a00;
+}
 
 .dailyBeer {
     grid-area: dailyBeer;
@@ -268,7 +323,7 @@ button,
 }
 
 .form-control {
-    height: 200px;
+    height: 40px;
     width: 260px;
 }
 
@@ -325,6 +380,7 @@ button,
     margin-top: 0px;
     gap: 10px;
     align-content: start;
+    <<<<<<< HEAD=======>>>>>>>Dev
 }
 
 #accountFavBeerCell {
@@ -335,10 +391,11 @@ button,
     margin: 10px;
     grid-template:
         "a"
-/*        "b"
+        /*        "b"
         "c"
         "d"
-        "e"*/;
+        "e"*/
+    ;
 }
 
 #accountrightGrid {
@@ -399,7 +456,8 @@ main {
     display: grid;
     align-content: start;
     /*    padding: 15px;
-*/ justify-self: center;
+*/
+    justify-self: center;
     gap: 7px;
     width: 960px;
     grid-template:
@@ -434,6 +492,7 @@ main {
         "beerRating beerRating beerDetailsButton"
         "beerRating beerRating beerFavoriteCell";
 }
+
 .beerIndexCell {
     background-color: #f4ddd1;
     display: grid;
@@ -586,11 +645,11 @@ beerDetailsButton {
     display: none;
 }
 
-.beerFavoriteCheckbox:checked + .beerFavoriteLabel .unfilledStar {
+.beerFavoriteCheckbox:checked+.beerFavoriteLabel .unfilledStar {
     display: none;
 }
 
-.beerFavoriteCheckbox:checked + .beerFavoriteLabel .filledStar {
+.beerFavoriteCheckbox:checked+.beerFavoriteLabel .filledStar {
     display: inline-block;
 }
 
@@ -667,9 +726,9 @@ beerDetailsButton {
     height: 25px;
 }
 
-    .beerlyStar.checked {
-        display: none;
-    }
+.beerlyStar.checked {
+    display: none;
+}
 
 .beerFavoriteLabel:hover .beerlyStar {
     filter: brightness(50%);
