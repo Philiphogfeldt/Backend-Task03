@@ -487,6 +487,15 @@ main {
         "cellsOnTop";
 }
 
+#suggBeerGrid {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    justify-self: center;
+    justify-content: center;
+    justify-items: center;
+    gap: 20px;
+}
+
 #suggCell {
     grid-area: cellsOnTop;
     background-color: #f4ddd1;
@@ -668,7 +677,7 @@ beerDetailsButton {
 #suggContainer {
     display: grid;
     width: 960px;
-    justify-self: start;
+    justify-self: center;
     justify-content: center;
     justify-items: center;
 }
