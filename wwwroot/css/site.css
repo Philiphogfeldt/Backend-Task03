@@ -323,6 +323,19 @@ button:hover,
     grid-area: recommendation;
 }
 
+#recommendation:first-of-type {
+    list-style-type: none;
+}
+
+#recommendation h4, .ingredientList, #recommendation img {
+
+    margin: 10px;
+}
+
+.ingredientList {
+    padding-inline-start: 20px;
+}
+
 #beerAddReview {
     background-color: #f4ddd1;
     display: grid;
@@ -391,7 +404,6 @@ button:hover,
     margin-top: 0px;
     gap: 10px;
     align-content: start;
-    <<<<<<< HEAD=======>>>>>>>Dev
 }
 
 #accountFavBeerCell {
@@ -686,7 +698,19 @@ beerDetailsButton {
     grid-area: u;
 }
 
+.row7firstGlass {
+    grid-area: x;
+    display: flex;
+    justify-self: center;
+    align-self: center;
+}
 
+.row7secondGlass {
+    grid-area: y;
+    display: flex;
+    justify-self: center;
+    align-self: center
+}
 
 .row7thirdGlass {
     grid-area: z;

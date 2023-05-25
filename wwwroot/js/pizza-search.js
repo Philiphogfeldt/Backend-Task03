@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const img = document.createElement('img');
 
                 const ingredientHeader = document.createElement('h4');
-                ingredientHeader.textContent = 'Ingredients:'
+                ingredientHeader.textContent = 'Ingredients'
 
                 const ingredientList = document.createElement('ul');
                 ingredientList.setAttribute("class", "ingredientList");
