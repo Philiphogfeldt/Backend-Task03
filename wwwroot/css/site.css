@@ -20,8 +20,9 @@ body {
     grid-template-areas:
         "beerlyLogoContainer header header"
         "beerlyLogoContainer allsearch allsearch"
-        "beerlyLogoContainer navigationpages navigationpages"
-        "dailyBeer dailyBeer favorites";
+        "beerlyLogoContainer navigationpages navigationpages";
+/*        "dailyBeer dailyBeer favorites";
+*/    
     gap: 20px;
     padding: 20px;
     max-width: 960px;
@@ -35,6 +36,8 @@ body {
     grid-area: header;
     display: grid;
     grid-template-columns: 1fr;
+    width: 690px;
+    padding: 10px;
 }
 
 .WelcomeUserText {
@@ -45,8 +48,8 @@ body {
     display: grid;
     grid-area: beerlyLogoContainer;
     z-index: 0;
-    /*    width: 250px;
-*/
+        width: 250px;
+
     margin: 0;
     justify-content: start;
 }
@@ -128,18 +131,25 @@ body {
         background-color: #cc7a00;
     }*/
 .AllSearch {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
+/*    grid-area: allSearch;
+*/    display: grid;
+/*    justify-content: end;
+    justify-items: end;
+    justify-self: end;*/
     align-items: center;
-    gap: 10px;
-}
+/*    gap: 10px;
+*/}
 
 .AllSearchRight {
-    display: flex;
-    justify-content: space-between;
+    grid-area: allSearch;
+    display: grid;
+    justify-content: end;
+    justify-items: end;
+    justify-self: end;
     align-items: center;
     gap: 10px;
+    width: 710px;
+    grid-template: "a b c d";
 }
 
 .SelectionBeer,
@@ -187,11 +197,12 @@ body {
     grid-area: navigationpages;
     display: grid;
     z-index: 1;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, auto);
     gap: 10px;
-    margin-left: 210px;
-    align-content: end;
+/*    margin-left: 210px;
+*/    align-content: end;
     justify-content: end;
+    width: 710px;
 }
 
 button,
@@ -202,13 +213,13 @@ button,
     padding: 10px 20px;
     text-align: center;
     text-decoration: none;
-    display: inline-block;
-    font-size: 18px;
+/*    display: inline-block;
+*/    font-size: 18px;
     margin: 4px 2px;
     cursor: pointer;
     transition-duration: 0.4s;
     border-radius: 8px;
-    min-width: min-content;
+    width: fit-content;
     height: fit-content;
 }
 
