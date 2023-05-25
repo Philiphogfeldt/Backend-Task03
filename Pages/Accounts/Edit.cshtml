@@ -5,7 +5,7 @@
 @{
 	ViewData["Title"] = "Edit";
 }
-
+<div class="adminGrid">
 @if (AccessControl.LoggedInAccount.ID == Model.Account?.ID)
 {
 	<h1>Edit</h1>
@@ -66,3 +66,4 @@ else
 		"ACCESS DENIED"
 	</h1>
 }
+</div>
