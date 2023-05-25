@@ -10,7 +10,7 @@
 	<link rel="stylesheet" href="~/css/site.css" />
 </header>
 
-@if (AccessControl.LoggedInAccount.ID == Model.Account?.ID)
+@if (AccessControl.LoggedInAccount.Role == "Admin" || AccessControl.LoggedInAccount.ID == Model.Account?.ID)
 {
 	<div class="normalBody">
 		
