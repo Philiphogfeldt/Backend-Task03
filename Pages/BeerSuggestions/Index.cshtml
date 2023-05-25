@@ -17,7 +17,7 @@
 				foreach (var item in Model.Beers)
 				{
 					<div id="suggBeerContainer">
-						<div id="suggCell">
+						@*<div id="suggCell">*@
 
 							<div class="beerIndexCell">
 								<h3 id="beerName">@Html.DisplayFor(modelItem => item.Name)</h3>
@@ -229,14 +229,14 @@
 
 						</div>
 
-						<div id="overlay">
+@*						<div id="overlay">
 							<a href="@Url.Page("/Beers/Details", new { id = item.ID })" class="beerLink">
 								<img id="overlayIMG" src="~/imagesBeerly/beerlyTransIMG.png">
 							</a>
-						</div>
+						</div>*@
 
-					</div>
-
+@*					</div>
+*@
 
 					@*					<div class="beerIndexCell">
 			<h3 class="beerName">@item.Name</h3>
