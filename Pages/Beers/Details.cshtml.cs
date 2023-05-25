@@ -22,19 +22,19 @@ namespace Backend_Task03.Pages.Beers
         {
             database = context;
 
-            accessControl = new AccessControl(database, httpContextAccessor);
-        }
+			accessControl = new AccessControl(database, httpContextAccessor);
+		}
 
         public Beer Beer { get; set; } = default!;
 
-        [BindProperty]
-        public Review NewReview { get; set; }
+		[BindProperty]
+		public Review NewReview { get; set; }
 
-        [BindProperty]
-        public Account Account { get; set; }
+		[BindProperty]
+		public Account Account { get; set; }
 
-        [BindProperty]
-        public List<FoodCategory> ThisReviewFoodcategories { get; set; }
+		[BindProperty]
+		public List<FoodCategory> ThisReviewFoodcategories { get; set; }
 
 		public bool Meat { get; set; }
 		public bool Chicken { get; set; }
@@ -181,10 +181,27 @@ namespace Backend_Task03.Pages.Beers
 					c => c.Comment
 				);
 
-			Beer.Reviews.Add(NewReview);
+			if (string.IsNullOrWhiteSpace(NewReview.Comment) && NewReview.Rating == 0)
+			{
+				ModelState.AddModelError("", "Please enter a rating or a comment.");
+
+				return Page();
+			}
+
+			if (string.IsNullOrWhiteSpace(NewReview.Comment))
+			{
+				NewReview.Comment = "No Comment";
+			}
+
+
+				Beer.Reviews.Add(NewReview);
 			database.Reviews.Add(NewReview);
 			database.SaveChanges();
 			return RedirectToPage("./Details", new { id = Beer.ID, name = Beer.Name });
+
+
+
+
 		}
 	}
 }

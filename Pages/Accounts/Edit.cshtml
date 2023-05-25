@@ -1,4 +1,4 @@
-﻿@page
+@page
 @model Backend_Task03.Pages.Accounts.EditModel
 @inject Backend_Task03.Data.AccessControl AccessControl
 
@@ -6,7 +6,7 @@
 	ViewData["Title"] = "Edit";
 }
 <div class="adminGrid">
-@if (AccessControl.LoggedInAccount.ID == Model.Account?.ID)
+@if (AccessControl.LoggedInAccount.Role == "Admin" || AccessControl.LoggedInAccount.ID == Model.Account?.ID)
 {
 	<h1>Edit</h1>
 

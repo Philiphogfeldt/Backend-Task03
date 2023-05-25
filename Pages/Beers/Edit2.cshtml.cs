@@ -73,5 +73,46 @@ namespace Backend_Task03.Pages.Beers
         {
             return (database.Beers?.Any(e => e.ID == id)).GetValueOrDefault();
         }
-    }
+		public async Task<IActionResult> OnPostDeleteAsync(int id)
+		{
+			var beer = await database.Beers.FindAsync(id);
+
+			if (beer != null)
+			{
+				database.Beers.Remove(beer);
+				await database.SaveChangesAsync();
+			}
+
+			return RedirectToPage("./Index");
+		}
+		public async Task<IActionResult> OnPostUpdateAsync()
+		{
+			if (!ModelState.IsValid)
+			{
+				return Page();
+			}
+
+			database.Attach(Beer).State = EntityState.Modified;
+
+			try
+			{
+				await database.SaveChangesAsync();
+			}
+			catch (DbUpdateConcurrencyException)
+			{
+				if (!BeerExists(Beer.ID))
+				{
+					return NotFound();
+				}
+				else
+				{
+					throw;
+				}
+			}
+
+			return RedirectToPage("./Index");
+		}
+
+
+	}
 }

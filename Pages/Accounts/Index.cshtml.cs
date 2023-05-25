@@ -28,5 +28,17 @@ namespace Backend_Task03.Pages.Accounts
                 Account = await database.Accounts.ToListAsync();
             }
         }
-    }
+		public async Task<IActionResult> OnPostDeleteAsync(int id)
+		{
+			var account = await database.Accounts.FindAsync(id);
+
+			if (account != null)
+			{
+				database.Accounts.Remove(account);
+				await database.SaveChangesAsync();
+			}
+
+			return RedirectToPage("./Index");
+		}
+	}
 }
