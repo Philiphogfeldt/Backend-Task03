@@ -5,11 +5,11 @@
 @{
 	ViewData["Title"] = "Index";
 }
-
+<div class="adminGrid">
 @if (AccessControl.LoggedInAccountRole == "Admin")
 {
 	
-		<div class="normalBody">
+@*		<div class="normalBody">
 			<h2>Index</h2>
 			<div class="newBeer">
 				<p>
@@ -63,7 +63,7 @@
 				</table>
 			</div>
 
-		</div>
+		</div>*@
 	
 	<h1>Index</h1>
 
@@ -121,3 +121,4 @@ else
 		"ACCESS DENIED"
 	</h1>
 }
+</div>

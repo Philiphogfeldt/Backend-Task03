@@ -766,3 +766,11 @@ beerDetailsButton {
 .beerFavoriteLabel:hover .beerlyStar {
     filter: brightness(50%);
 }
+
+.adminGrid {
+    display: grid;
+    width: 960px;
+    justify-self: center;
+/*    justify-content: center;
+    justify-items: center;*/
+}
