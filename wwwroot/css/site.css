@@ -49,12 +49,12 @@ body {
     grid-area: beerlyLogoContainer;
     z-index: 0;
     width: 250px;
-
     margin: 0;
     justify-content: start;
 }
 
-#beerlyLogo {}
+#beerlyLogo {
+}
 
 /*.AllSearch {
     grid-area: allsearch;
@@ -191,9 +191,9 @@ body {
     transition-duration: 0.4s;
 }
 
-.MainSearchButton:hover {
-    background-color: #cc7a00;
-}
+    .MainSearchButton:hover {
+        background-color: #cc7a00;
+    }
 
 .NavigationPages {
     grid-area: navigationpages;
@@ -227,10 +227,10 @@ button,
     height: fit-content;
 }
 
-button:hover,
-#postButton:hover {
-    background-color: #cc7a00;
-}
+    button:hover,
+    #postButton:hover {
+        background-color: #cc7a00;
+    }
 
 .dailyBeer {
     grid-area: dailyBeer;
@@ -244,10 +244,12 @@ button:hover,
     display: grid;
     width: 960px;
     justify-self: center;
+    align-content: start;
+    align-items:start;
+    align-self: start;
     gap: 10px;
     grid-template:
         "beerGridCell beerGridCell beerAddReview"
-        "pizzaWithBeer pizzaWithBeer beerReviewContainer"
         "pizzaWithBeer pizzaWithBeer beerReviewContainer"
         "beerCRUDButtons beerCRUDButtons beerReviewContainer";
 }
@@ -329,16 +331,15 @@ button:hover,
     grid-area: recommendation;
 }
 
-#recommendation:first-of-type {
-    list-style-type: none;
-}
+    #recommendation:first-of-type {
+        list-style-type: none;
+    }
 
-#recommendation h4,
-.ingredientList,
-#recommendation img {
-
-    margin: 10px;
-}
+    #recommendation h4,
+    .ingredientList,
+    #recommendation img {
+        margin: 10px;
+    }
 
 .ingredientList {
     padding-inline-start: 20px;
@@ -373,8 +374,11 @@ button:hover,
 }
 
 #beerCRUDButtons {
-    align-content: end;
+    align-content: start;
+    align-self: start;
+    align-items: start;
     display: grid;
+    height:max-content;
     grid-area: beerCRUDButtons;
 }
 
@@ -431,7 +435,7 @@ button:hover,
         "c"
         "d"
         "e"*/
-    ;
+        ;
 }
 
 #accountrightGrid {
@@ -690,11 +694,11 @@ beerDetailsButton {
     display: none;
 }
 
-.beerFavoriteCheckbox:checked+.beerFavoriteLabel .unfilledStar {
+.beerFavoriteCheckbox:checked + .beerFavoriteLabel .unfilledStar {
     display: none;
 }
 
-.beerFavoriteCheckbox:checked+.beerFavoriteLabel .filledStar {
+.beerFavoriteCheckbox:checked + .beerFavoriteLabel .filledStar {
     display: inline-block;
 }
 
@@ -786,9 +790,9 @@ beerDetailsButton {
     height: 25px;
 }
 
-.beerlyStar.checked {
-    display: none;
-}
+    .beerlyStar.checked {
+        display: none;
+    }
 
 .beerFavoriteLabel:hover .beerlyStar {
     filter: brightness(50%);
