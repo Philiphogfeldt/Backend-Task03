@@ -877,24 +877,27 @@ beerDetailsButton {
             "beerlyLogoContainer"
             "allsearch"
             "navigationpages";
-        max-width: 500px;
+        width: 450px;
     }
 
     .header {
         width: 450px;
     }
 
+    .AllSearch {
+        width: 450px;
+        border-radius: 32px;
+        border: solid 2px orange;
+    }
+
     .AllSearchRight {
-        justify-content: center;
-        justify-items: center;
-        justify-self: center;
         align-items: center;
+        justify-content: center;
         width: 450px;
         grid-template:
-            "a"
-            "b"
-            "c"
-            "d";
+            "a b"
+            "c d";
+        padding: 20px;
     }
 
     #beerlyLogoContainer {
@@ -904,7 +907,9 @@ beerDetailsButton {
     }
 
     .NavigationPages {
-        grid-template-columns: repeat(1, auto);
+        border-radius: 32px;
+        border: solid 2px orange;
+        grid-template-columns: repeat(3, auto);
         align-content: center;
         justify-content: center;
         width: 450px;
@@ -970,5 +975,23 @@ beerDetailsButton {
         display: grid;
         width: 500px;
         justify-self: center;
+    }
+
+    #beerGridCellRow7 {
+        display: grid;
+        padding-right: 75px;
+        grid-template:
+            "u u u u u"
+            "x y z zx zy";
+        gap: 0px;
+        justify-content: start;
+    }
+
+    #beerGridCell {
+        max-width: 450px;
+    }
+
+    #beerReviewContainer {
+        margin-left: 30px;
     }
 }
