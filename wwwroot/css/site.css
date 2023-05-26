@@ -702,23 +702,23 @@ beerDetailsButton {
     margin: 0px;
 }
 
-.firstGlass {
+.Glass1 {
     grid-area: o;
 }
 
-.secondGlass {
+.Glass2 {
     grid-area: p;
 }
 
-.thirdGlass {
+.Glass3 {
     grid-area: q;
 }
 
-.fourthGlass {
+.Glass4 {
     grid-area: r;
 }
 
-.fifthGlass {
+.Glass5 {
     grid-area: s;
 }
 
@@ -775,35 +775,35 @@ beerDetailsButton {
     align-self: center;
 }
 
-.row7firstGlass {
+.row7Glass1 {
     grid-area: x;
     display: flex;
     justify-self: center;
     align-self: center;
 }
 
-.row7secondGlass {
+.row7Glass2 {
     grid-area: y;
     display: flex;
     justify-self: center;
     align-self: center
 }
 
-.row7thirdGlass {
+.row7Glass3 {
     grid-area: z;
     display: flex;
     justify-self: center;
     align-self: center;
 }
 
-.row7fourthGlass {
+.row7Glass4 {
     grid-area: zx;
     display: flex;
     justify-self: center;
     align-self: center
 }
 
-.row7fifthGlass {
+.row7Glass5 {
     grid-area: zy;
     display: flex;
     justify-self: center;

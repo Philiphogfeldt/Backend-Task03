@@ -79,57 +79,13 @@
 			<div id="beerGridCellRow7">
 				<p id="beerGridCellRow7Text">Our users give this beer a rating average of:</p>
 
-				@if (Model.Beer.Rating < 0.5)
+				@for (int i = 0; i < 5; i++)
 				{
-					<img class="row7firstGlass" asp-append-version="true" src="../images/empty.svg" style="width: 30px" />
-					<img class="row7secondGlass" asp-append-version="true" src="../images/empty.svg" style="width: 30px" />
-					<img class="row7thirdGlass" asp-append-version="true" src="../images/empty.svg" style="width: 30px" />
-					<img class="row7fourthGlass" asp-append-version="true" src="../images/empty.svg" style="width: 30px" />
-					<img class="row7fifthGlass" asp-append-version="true" src="../images/empty.svg" style="width: 30px" />
+					<img class="row7@($"glass{i + 1}")" asp-append-version="true"
+					 src="@($"../images/{(i < Math.Floor((decimal)Model.Beer.Rating) ? "filled" : "empty")}.svg")"
+		  style="width: 30px" />
 				}
-				@if (Model.Beer.Rating >= 0.5 && Model.Beer.Rating < 1.5)
-				{
-					<img class="row7firstGlass" asp-append-version="true" src="../images/filled.svg" style="width: 30px" />
-					<img class="row7secondGlass" asp-append-version="true" src="../images/empty.svg" style="width: 30px" />
-					<img class="row7thirdGlass" asp-append-version="true" src="../images/empty.svg" style="width: 30px" />
-					<img class="row7fourthGlass" asp-append-version="true" src="../images/empty.svg" style="width: 30px" />
-					<img class="row7fifthGlass" asp-append-version="true" src="../images/empty.svg" style="width: 30px" />
-				}
-				@if (Model.Beer.Rating >= 1.5 && Model.Beer.Rating < 2.5)
-				{
-					<img class="row7firstGlass" asp-append-version="true" src="../images/filled.svg" style="width: 30px" />
-					<img class="row7secondGlass" asp-append-version="true" src="../images/filled.svg" style="width: 30px" />
-					<img class="row7thirdGlass" asp-append-version="true" src="../images/empty.svg" style="width: 30px" />
-					<img class="row7fourthGlass" asp-append-version="true" src="../images/empty.svg" style="width: 30px" />
-					<img class="row7fifthGlass" asp-append-version="true" src="../images/empty.svg" style="width: 30px" />
-				}
-				@if (Model.Beer.Rating >= 2.5 && Model.Beer.Rating < 3.5)
-				{
-					<img class="row7firstGlass" asp-append-version="true" src="../images/filled.svg" style="width: 30px" />
-					<img class="row7secondGlass" asp-append-version="true" src="../images/filled.svg" style="width: 30px" />
-					<img class="row7thirdGlass" asp-append-version="true" src="../images/filled.svg" style="width: 30px" />
-					<img class="row7fourthGlass" asp-append-version="true" src="../images/empty.svg" style="width: 30px" />
-					<img class="row7fifthGlass" asp-append-version="true" src="../images/empty.svg" style="width: 30px" />
-				}
-				@if (Model.Beer.Rating >= 3.5 && Model.Beer.Rating < 4.5)
-				{
-					<img class="row7firstGlass" asp-append-version="true" src="../images/filled.svg" style="width: 30px" />
-					<img class="row7secondGlass" asp-append-version="true" src="../images/filled.svg" style="width: 30px" />
-					<img class="row7thirdGlass" asp-append-version="true" src="../images/filled.svg" style="width: 30px" />
-					<img class="row7fourthGlass" asp-append-version="true" src="../images/filled.svg" style="width: 30px" />
-					<img class="row7fifthGlass" asp-append-version="true" src="../images/empty.svg" style="width: 30px" />
-				}
-				@if (Model.Beer.Rating >= 4.5)
-				{
-					<img class="row7firstGlass" asp-append-version="true" src="../images/filled.svg" style="width: 30px" />
-					<img class="row7secondGlass" asp-append-version="true" src="../images/filled.svg" style="width: 30px" />
-					<img class="row7thirdGlass" asp-append-version="true" src="../images/filled.svg" style="width: 30px" />
-					<img class="row7fourthGlass" asp-append-version="true" src="../images/filled.svg" style="width: 30px" />
-					<img class="row7fifthGlass" asp-append-version="true" src="../images/filled.svg" style="width: 30px" />
-				}
-
 			</div>
-
 
 		</div>
 

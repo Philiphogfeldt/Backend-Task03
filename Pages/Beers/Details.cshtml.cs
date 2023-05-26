@@ -19,7 +19,6 @@ namespace Backend_Task03.Pages.Beers
 
 		private readonly AccessControl accessControl; // testar mig fram här
 
-
 		public DetailsModel(AppDbContext context, IHttpContextAccessor httpContextAccessor)
 		{
 			database = context;
@@ -39,7 +38,6 @@ namespace Backend_Task03.Pages.Beers
 		[BindProperty]
 		public List<FoodCategory> ThisReviewFoodcategories { get; set; }
 
-
 		[BindProperty]
 		public bool Meat { get; set; }
 
@@ -48,11 +46,12 @@ namespace Backend_Task03.Pages.Beers
 
 		[BindProperty]
 		public bool Fish { get; set; }
+
 		[BindProperty]
 		public bool Vegetarian { get; set; }
+
 		[BindProperty]
 		public bool Dessert { get; set; }
-
 
 		public void LoadBeer(int id)
 		{
@@ -79,9 +78,7 @@ namespace Backend_Task03.Pages.Beers
 				//oklart om denna ska ligga här
 				FoodCategories = ThisReviewFoodcategories
 			};
-
 		}
-
 
 		public void ActiveAccount()
 		{
@@ -211,10 +208,6 @@ namespace Backend_Task03.Pages.Beers
 			database.Reviews.Add(NewReview);
 			database.SaveChanges();
 			return RedirectToPage("./Details", new { id = Beer.ID, name = Beer.Name });
-
-
-
-
 		}
 	}
 }
