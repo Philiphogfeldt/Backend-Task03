@@ -14,10 +14,8 @@
 
 <div id="beerDetailsContainer">
 	<div id="beerGrid">
-
 		<div id="beerGridCell">
 			<div id="beerGridCellRow1">
-				@*@Html.DisplayNameFor(model => model.Beer.Name)*@
 				<h3 id="beerGridCellRowName">@Html.DisplayFor(model => model.Beer.Name) (@Html.DisplayFor(model => model.Beer.Country))</h3>
 			</div>
 
@@ -36,14 +34,16 @@
 			</div>
 			<div id="beerGridCellRow5">
 
+			<div id="beerGridCellRow5">
 				@Html.DisplayFor(model => model.Beer.Type)
 			</div>
+
 			<div id="beerGridCellRow6">
-				@*			@Html.DisplayNameFor(model => model.Beer.GoesWellWith)
-				*@			<p id="goesWithFood" hidden>
+				<p id="goesWithFood" hidden>
 					@Html.DisplayFor(model=>
 					model.Beer.GoesWellWith)
 				</p>
+
 				@if (Model.Beer.GoesWellWith.Contains("Chicken"))
 				{
 					<img asp-append-version="true" name="Goesw" value="Chicken" src="../images/chicken.svg" style="width: 22px" />
@@ -70,12 +70,6 @@
 				}
 
 			</div>
-			@*<div id="beerGridCellRow7">
-
-			Our users rated this beer @Html.DisplayFor(model => model.Beer.Rating) of 5!
-
-			</div>*@
-
 			<div id="beerGridCellRow7">
 				<p id="beerGridCellRow7Text">Our users give this beer a rating average of:</p>
 
@@ -193,54 +187,58 @@
 
 	</div>
 
-	@*	<p id="message" hidden>There are no results for that keyword.</p>
-	*@
-
 	<div id="beerReviewContainer">
 		<div id="beerAddReview">
 			<h4>Add a Review</h4>
-
 			<form method="post">
 				<div asp-validation-summary="ModelOnly" class="text-danger"></div>
 				<div class="form-group">
 					<label asp-for="NewReview.Rating" class="control-label"></label>
 					<div>
-						<label><input type="radio" name="NewReview.Rating" value="1" /> 1</label>
-						<label><input type="radio" name="NewReview.Rating" value="2" /> 2</label>
-						<label><input type="radio" name="NewReview.Rating" value="3" /> 3</label>
-						<label><input type="radio" name="NewReview.Rating" value="4" /> 4</label>
-						<label><input type="radio" name="NewReview.Rating" value="5" /> 5</label>
+						<label><input type="radio" name="Rating" value="1" /> 1</label>
+						<label><input type="radio" name="Rating" value="2" /> 2</label>
+						<label><input type="radio" name="Rating" value="3" /> 3</label>
+						<label><input type="radio" name="Rating" value="4" /> 4</label>
+						<label><input type="radio" name="Rating" value="5" /> 5</label>
 					</div>
-					<span asp-validation-for="NewReview.Rating" class="text-danger"></span>
+					@*<span asp-validation-for="NewReview.Rating" class="text-danger"></span>*@
 				</div>
+
 				<div id="beerAddReviewComment" class="form-group">
 					<p><label asp-for="NewReview.Comment" class="control-label"></label></p>
-					<textarea asp-for="NewReview.Comment" class="form-control"></textarea>
+					<textarea asp-for="NewReview.Comment" name="Comment" class="form-control"></textarea>
 					<span asp-validation-for="NewReview.Comment" class="text-danger"></span>
 				</div>
 
 				<div id="beerAddReviewGoes" class="form-group">
-					<p>This beers goes well with: </p>
+					<p>This beer goes well with:</p>
+					<label>
+						<input type="checkbox" name="food" value="Meat" />
+						<img src="../images/meat.svg" asp-append-version="true" style="width: 22px" />
+					</label>
 
-					<label asp-for="Meat"><img asp-append-version="true" value="Meat" src="../images/meat.svg" style="width: 22px" /><input asp-for="Meat" /></label>
-					<label asp-for="Chicken"><img asp-append-version="true" value="Chicken" src="../images/chicken.svg" style="width: 22px" /><input asp-for="Chicken" /></label>
-					<label asp-for="Fish"><img asp-append-version="true" value="Fish" src="../images/fish.svg" style="width: 22px" /><input asp-for="Fish" /></label>
-					<label asp-for="Vegetarian"><img asp-append-version="true" value="Vegetarian" src="../images/veg.svg" style="width: 22px" /><input asp-for="Vegetarian" /></label>
-					<label asp-for="Dessert"><img asp-append-version="true" value="Dessert" src="../images/dessert.svg" style="width: 22px" /><input asp-for="Dessert" /></label>
+					<label>
+						<input type="checkbox" name="food" value="Chicken" />
+						<img src="../images/chicken.svg" asp-append-version="true" style="width: 22px" />
+					</label>
 
+					<label>
+						<input type="checkbox" name="food" value="Fish" />
+						<img src="../images/fish.svg" asp-append-version="true" style="width: 22px" />
+					</label>
 
-					@*<label><input asp-for="Meat" />Meat</label>
-					<input asp-for="Chicken" />
-					<input asp-for="Fish" />
-					<input asp-for="Vegetarian" />
-					<input asp-for="Dessert" />*@
+					<label>
+						<input type="checkbox" name="food" value="Vegetarian" />
+						<img src="../images/veg.svg" asp-append-version="true" style="width: 22px" />
+					</label>
 
-					@*<label><input type="checkbox" name="Meat" value="Meat" checked=""/> Meat</label>*@
-					@*  <label><input type="checkbox" name="NewReview.FoodCategories" value="Fish" checked=""/> Fish</label>
-					<label><input type="checkbox" name="Chicken" value="Chicken" checked=""/>Chicken </label>
-					<label><input type="checkbox" name="NewReview.FoodCategories" value="Vegetarian" checked=""/> Veg</label>
-					<label><input type="checkbox" name="NewReview.FoodCategories" value="Dessert" checked=""/> Dessert</label>*@
+					<label>
+						<input type="checkbox" name="food" value="Dessert" />
+						<img src="../images/dessert.svg" asp-append-version="true" style="width: 22px" />
+					</label>
 				</div>
+
+
 
 				<div class="form-group">
 					<input type="submit" value="Post" class="btn btn-primary" id="postButton" />
@@ -248,21 +246,17 @@
 			</form>
 		</div>
 
-
-
 		<div id="beerReviewCell">
 			@if (Model.Beer != null && Model.Beer.Reviews != null && Model.Beer.Reviews.Count > 0)
 			{
 				<h4>Reviews</h4>
 				@foreach (var comment in Model.Beer.Reviews)
 				{
-					@*<div id="reviewGridCell">*@
 					@if (@comment.Comment != null && @comment.Rating != 0)
 					{
 						<div id="reviewGridCell">
 							<p>@comment.Account.Name said:</p>
-							<em>"@comment.Comment"</em>
-							<p>-and rated it @comment.Rating / 5!</p>
+							<em>"@comment.Comment"</em><p> -and rated it @comment.Rating / 5!</p>
 							<p>@comment.Created.ToString("yyyy-MM-dd HH:mm")</p>
 						</div>
 					}
@@ -271,207 +265,21 @@
 					{
 						<div id="reviewGridCell">
 							<p>@comment.Account.Name said:</p>
-							<em>"@comment.Comment"</em>
-							<p>-about this beer</p>
+							<em>"@comment.Comment"</em> -about this beer
 							<p>@comment.Created.ToString("yyyy-MM-dd HH:mm")</p>
 						</div>
 					}
-					@*</div>*@
 				}
 			}
+
 			else
 			{
 				<p>No reviews yet.</p>
 			}
 		</div>
-
-
-
 	</div>
-
-
-
-
-
-
 </div>
 
-
-@*<hr />
-
-<div id="recommendation" hidden>
-    <div id="pizzaGridCell">
-        <h2 id="pizzaName"></h2>
-        <h3>Ingredients:</h3>
-        <ul id="ingredientList"></ul>
-    </div>
-
-</div>
-
-<ul id="recommendation" hidden></ul>
-
-<p id="message" hidden>There are no results for that keyword.</p>
-
-<div id="beerGridCell"></div>*@
-
-@*<h4>Beer</h4>
-<hr />
-<dl class="row">
-	<dt class="col-sm-2">
-		@Html.DisplayNameFor(model => model.Beer.Name)
-	</dt>
-	<dd class="col-sm-10">
-		@Html.DisplayFor(model => model.Beer.Name)
-	</dd>
-	<dt class="col-sm-2">
-		@Html.DisplayNameFor(model => model.Beer.Description)
-	</dt>
-	<dd class="col-sm-10">
-		@Html.DisplayFor(model => model.Beer.Description)
-	</dd>
-	<dt class="col-sm-2">
-		@Html.DisplayNameFor(model => model.Beer.Type)
-	</dt>
-	<dd class="col-sm-10">
-		@Html.DisplayFor(model => model.Beer.Type)
-	</dd>
-	<dt class="col-sm-2">
-		@Html.DisplayNameFor(model => model.Beer.Percentage)
-	</dt>
-	<dd class="col-sm-10">
-		@Html.DisplayFor(model => model.Beer.Percentage)
-	</dd>
-	<dt class="col-sm-2">
-		@Html.DisplayNameFor(model => model.Beer.Brewery)
-	</dt>
-	<dd class="col-sm-10">
-		@Html.DisplayFor(model => model.Beer.Brewery)
-	</dd>
-	<dt class="col-sm-2">
-		@Html.DisplayNameFor(model => model.Beer.Country)
-	</dt>
-	<dd class="col-sm-10">
-		@Html.DisplayFor(model => model.Beer.Country)
-	</dd>
-	<dt class="col-sm-2">
-		@Html.DisplayNameFor(model => model.Beer.GoesWellWith)
-	</dt>
-	<dd id="goesWithFood2" class="col-sm-10">
-		@Html.DisplayFor(model => model.Beer.GoesWellWith)
-	</dd>
-	<dt class="col-sm-2">
-		@Html.DisplayNameFor(model => model.Beer.Rating)
-	</dt>
-	<dd class="col-sm-10">
-		@Html.DisplayFor(model => model.Beer.Rating)
-	</dd>
-</dl>*@
-
-@*<div>
-	<h4>Reviews</h4>
-	@foreach (var comment in Model.Beer.Reviews)
-	{
-
-		<div id="reviewGridCell">
-			@comment.Account.Name said: "@comment.Comment" -about this beer and gave it @comment.Rating / 5
-
-			<h4>This pizza goes well with your chosen beer!</h4>
-			<div id="recommendation" hidden>
-				<div id="pizzaGridCell">
-					@*<img id="pizzapic" asp-append-version="true" name="pizzapic" src="images/chicken.svg" style="width: 25px" />
-			<h2 id="pizzaName"></h2>
-					<h3>Ingredients:</h3>
-					<ul id="ingredientList"></ul>
-				</div>
-
-			</div>
-
-			<p id="message" hidden>There are no results for that keyword.</p>
-
-
-@if (Model.Beer != null && Model.Beer.Reviews != null && Model.Beer.Reviews.Count > 0)
-{
-
-	<div>
-		<h4>Reviews</h4>
-		@foreach (var comment in Model.Beer.Reviews)
-		{
-
-			<div id="reviewGridCell">
-				@comment.Account.Name said: "@comment.Comment" -about this beer and gave it @comment.Rating / 5
-
-			</div>
-		}
-	</div>
-}
-
-else
-{
-	<p>No reviews yet.</p>
-}
-
-<div>
-	<h4>Add a Review</h4>
-
-	<form method="post">
-		<div asp-validation-summary="ModelOnly" class="text-danger"></div>
-		<div class="form-group">
-			<label asp-for="NewReview.Rating" class="control-label"></label>
-			<div>
-				<label><input type="radio" name="NewReview.Rating" value="1" /> 1</label>
-				<label><input type="radio" name="NewReview.Rating" value="2" /> 2</label>
-				<label><input type="radio" name="NewReview.Rating" value="3" /> 3</label>
-				<label><input type="radio" name="NewReview.Rating" value="4" /> 4</label>
-				<label><input type="radio" name="NewReview.Rating" value="5" /> 5</label>
-			</div>
-			<span asp-validation-for="NewReview.Rating" class="text-danger"></span>
-		</div>
-		<div class="form-group">
-			<label asp-for="NewReview.Comment" class="control-label"></label>
-			<textarea asp-for="NewReview.Comment" class="form-control"></textarea>
-			<span asp-validation-for="NewReview.Comment" class="text-danger"></span>
-		</div>
-
-		<div class="form-group">
-
-			<div>
-				<label>This beers goes well with:</label>
-				<label asp-for="Meat">Meat<input asp-for="Meat" /></label>
-				<label asp-for="Chicken">Chicken<input asp-for="Chicken" /></label>
-				<label asp-for="Fish">Fish<input asp-for="Fish" /></label>
-				<label asp-for="Vegetarian">Vegetarian<input asp-for="Vegetarian" /></label>
-				<label asp-for="Dessert">Dessert<input asp-for="Dessert" /></label>
-
-				@*<label><input asp-for="Meat" />Meat</label>
-				<input asp-for="Chicken" />
-				<input asp-for="Fish" />
-				<input asp-for="Vegetarian" />
-				<input asp-for="Dessert" />
-
-<label><input type="checkbox" name="Meat" value="Meat" checked=""/> Meat</label>
-  <label><input type="checkbox" name="NewReview.FoodCategories" value="Fish" checked=""/> Fish</label>
-				<label><input type="checkbox" name="Chicken" value="Chicken" checked=""/>Chicken </label>
-				<label><input type="checkbox" name="NewReview.FoodCategories" value="Vegetarian" checked=""/> Veg</label>
-				<label><input type="checkbox" name="NewReview.FoodCategories" value="Dessert" checked=""/> Dessert</label>
-			</div>
-
-		</div>
-
-<div class="form-group">
-	<input type="submit" value="Post" class="btn btn-primary" id="postButton" />
-</div>
-
-</div>
-
-			<div>
-				@if (AccessControl.LoggedInAccountRole == "Admin")
-				{
-		<button type="button" onclick="location.href='@Url.Page("./Edit2", new { id = Model.Beer?.ID,  name = Model.Beer?.Name })'">Edit</button>
-				}
-				<button type="button" onclick="location.href='@Url.Page("./Index")'">Back to List</button>
-			</div>
-		@*</div>*@
-	}
 @section Scripts {
 	@{
 		await Html.RenderPartialAsync("_ValidationScriptsPartial");
