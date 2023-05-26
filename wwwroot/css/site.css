@@ -240,19 +240,44 @@ button,
     grid-area: favorites;
 }
 
-#beerGrid {
+#beerDetailsContainer {
     display: grid;
     width: 960px;
     justify-self: center;
     align-content: start;
-    align-items:start;
+    align-items: start;
+    align-self: start;
+    gap: 10px;
+    grid-template:
+        "beerGrid beerReviewContainer" / 2fr 1fr ;
+}
+
+#beerGrid {
+    display: grid;
+    justify-self: center;
+    align-content: start;
+    align-items: start;
+    align-self: start;
+    gap: 10px;
+    grid-template:
+        "beerGridCell"
+        "pizzaWithBeer"
+        "beerCRUDButtons";
+}
+
+/*#beerGrid {
+    display: grid;
+    width: 960px;
+    justify-self: center;
+    align-content: start;
+    align-items: start;
     align-self: start;
     gap: 10px;
     grid-template:
         "beerGridCell beerGridCell beerAddReview"
         "pizzaWithBeer pizzaWithBeer beerReviewContainer"
         "beerCRUDButtons beerCRUDButtons beerReviewContainer";
-}
+}*/
 
 
 #beerGridCell {
@@ -274,7 +299,11 @@ button,
 
 #beerReviewContainer {
     display: grid;
-    gap: 10px;
+    grid-template:
+        "beerAddReview"
+        "beerReviewCell";
+    /*gap: 10px;*/
+    width: 300px;
     grid-area: beerReviewContainer;
 }
 
@@ -284,10 +313,26 @@ button,
     width: 300px;
 }
 
+    #beerReviewCell h4 {
+        background-color: #f4ddd1;
+        padding: 10px;
+        padding-right: 0px;
+        margin:0px 0px 10px 0px;
+        border-bottom: 2px solid black;
+    }
+
 #reviewGridCell {
     background-color: #f4ddd1;
     display: grid;
-    margin: 10px;
+    margin: 0px 0px 10px 0px;
+}
+
+#reviewGridCell > * {
+    margin: 5px 5px 5px 10px;
+}
+
+#reviewGridCell em {
+    margin: 10px 0px 10px 10px;
 }
 
 #beerGridCellRow1,
@@ -361,9 +406,9 @@ button,
     display: grid;
     height: fit-content;
     width: 300px;
-    padding: 10px;
     grid-area: beerAddReview;
-    padding: 5px;
+ /*   padding: 0px 5px;*/
+    margin-bottom: 12px;
 }
 
 #beerAddReview > * {
@@ -380,9 +425,9 @@ button,
     margin-bottom: 6px;
 }
 
-#beerReviewContainer {
+/*#beerReviewContainer {
     padding: 5px;
-}
+}*/
 
 #beerCRUDButtons {
     align-content: start;
