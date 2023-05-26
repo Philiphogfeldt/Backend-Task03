@@ -37,9 +37,6 @@ namespace Backend_Task03.Pages.Beers
 				.Include(b => b.Reviews).ThenInclude(b => b.Account)
 				.FirstOrDefault(b => b.ID == id);
 
-			//oklart om den ska ligga redan här
-			//FoodCategoriesFromDb = database.FoodCategories.ToList();  
-
 			if (Beer == null)
 			{
 				return;
@@ -193,25 +190,6 @@ namespace Backend_Task03.Pages.Beers
 			{
 				return Page();
 			}
-
-			//if (string.IsNullOrWhiteSpace(NewReview.Comment) && NewReview.Rating == 0)
-			//{
-			//	ModelState.AddModelError("", "Please enter a rating or a comment.");
-
-			//	return Page();
-			//}
-
-			//if (string.IsNullOrWhiteSpace(NewReview.Comment))
-			//{
-			//	NewReview.Comment = "No Comment";
-			//}
-
-
-			//	Beer.Reviews.Add(NewReview);
-			//database.Reviews.Add(NewReview);
-			//database.SaveChanges();
-			//return RedirectToPage("./Details", new { id = Beer.ID, name = Beer.Name });
-
 		}
 	}
 }
