@@ -168,13 +168,13 @@ body {
     background-color: white;
     border: 1px solid #6b7f9b;
     padding: 8px;
-    font-size: 14px;
+    font-size: 16px;
     border-radius: 4px;
 }
 
 .SearchInputBar {
     width: 200px;
-    font-size: 14px;
+    font-size: 16px;
     border: 1px solid #6b7f9b;
     border-radius: 4px;
 }
