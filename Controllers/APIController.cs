@@ -21,51 +21,7 @@ namespace Backend_Task03.Controllers
             this.database = database;
         }
 
-        public Beer GetBeer(string category)
-        {
-            // Retrieve the beer from the database based on the "goesWellWith" value
-            // Replace this with your actual database query implementation
-
-            var beers = database.Beers.Where(b => b.GoesWellWith.Contains(category)).ToList();
-
-            if (beers.Count == 0)
-            {
-                return null; // No beers found for the given category
-            }
-
-            var random = new Random();
-            var randomIndex = random.Next(0, beers.Count);
-            var randomBeer = beers[randomIndex];
-
-            return randomBeer;
-        }
-
-        public string GetImageUrl (string name)
-        {
-
-            var imageFiles = Directory.GetFiles("wwwroot/imagesBeerly");
-
-            if (imageFiles.Length == 0)
-            {
-                return null; // No images available
-            }
-
-            
-            var thisImage = imageFiles.Where(c=> c.Contains(name)).FirstOrDefault();
-
-           
-            var imageFileName = Path.GetFileName(thisImage);
-
-            // Construct the image URL 
-
-            //Correct for deployment
-            var imageUrl = $"https://beerly.azurewebsites.net/imagesBeerly/{name}" + ".png";
-
-            //Test: Works only in dev
-            //var imageUrl = $"https://localhost:5000//imagesBeerly/{name}" + ".png";
-
-            return imageUrl;
-        }
+      
 
         [HttpGet]
         public IActionResult Get([FromQuery] string category)
@@ -97,7 +53,55 @@ namespace Backend_Task03.Controllers
 
         }
 
+        [ApiExplorerSettings(IgnoreApi = true)]
+        public Beer GetBeer(string category)
+        {
+            // Retrieve the beer from the database based on the "goesWellWith" value
+            // Replace this with your actual database query implementation
+
+            var beers = database.Beers.Where(b => b.GoesWellWith.Contains(category)).ToList();
+
+            if (beers.Count == 0)
+            {
+                return null; // No beers found for the given category
+            }
+
+            var random = new Random();
+            var randomIndex = random.Next(0, beers.Count);
+            var randomBeer = beers[randomIndex];
+
+            return randomBeer;
+        }
+
+        [ApiExplorerSettings(IgnoreApi = true)]
+        public string GetImageUrl(string name)
+        {
+
+            var imageFiles = Directory.GetFiles("wwwroot/imagesBeerly");
+
+            if (imageFiles.Length == 0)
+            {
+                return null; // No images available
+            }
+
+
+            var thisImage = imageFiles.Where(c => c.Contains(name)).FirstOrDefault();
+
+
+            var imageFileName = Path.GetFileName(thisImage);
+
+            // Construct the image URL 
+
+            //Correct for deployment
+            var imageUrl = $"https://beerly.azurewebsites.net/imagesBeerly/{name}" + ".png";
+
+            //Test: Works only in dev
+            //var imageUrl = $"https://localhost:5000//imagesBeerly/{name}" + ".png";
+
+            return imageUrl;
+        }
 
 
     }
+
 }
