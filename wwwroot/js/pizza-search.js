@@ -1,6 +1,6 @@
 ﻿import fakeFetch from './fake-fetch.js';
 
-const useRealAPI = true;
+const useRealAPI = false;
 
 async function fetchJSON(url, options) {
     if (useRealAPI) {
