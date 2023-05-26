@@ -1,6 +1,6 @@
 ﻿import fakeFetch from './fake-fetch.js';
 
-const useRealAPI = false;
+const useRealAPI = true;
 
 async function fetchJSON(url, options) {
     if (useRealAPI) {
@@ -21,8 +21,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const message = document.querySelector('#message');
     const resultList = document.querySelector('#recommendation');
 
-    function displayResults(hits) {
-        if (hits.length === 0) {
+    function displayResults(result) {
+        if (result.length === 0) {
             message.hidden = false;
             resultList.hidden = true;
         } else {
@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             resultList.replaceChildren();
 
-            for (const hit of hits) {
+          /*  for (const hit of hits) {*/
                 const pizzaName = document.createElement('h4');
                 pizzaName.setAttribute("class", "pizzaName");
 
@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 /*const ingredientString = hit.ingredients;*/
 
                 //retrieve the string from the API response and split into an array
-                var ingredientsArray = hit.ingredients.split(',');
+                var ingredientsArray = result.ingredients;
 
                 // Iterate over the array of words
                 for (var i = 0; i < ingredientsArray.length; i++) {
@@ -63,9 +63,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     ingredientList.appendChild(ingredientLi);
                 }
 
-                img.src = hit.webformatURL;
+                img.src = result.webformatURL;
                 img.style.width = '250px';
-                pizzaName.textContent = hit.pizzaName;
+                pizzaName.textContent = result.name;
 
                 const li = document.createElement('li');
                 li.append(pizzaName);
@@ -74,15 +74,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 li.append(ingredientList);
 
                 resultList.append(li);
-            }
+            /*}*/
         }
     }
 
-    async function searchPizzas(q) {
+    async function searchPizzas(categoryname) {
         const result = await fetchJSON(
-            'https://pizzaproject3.azurewebsites.net/api/?' + new URLSearchParams({ q }).toString()
+            'https://pizzaproject3.azurewebsites.net/api?' + new URLSearchParams({ categoryname }).toString()
         );
-        displayResults(result.hits);
+        displayResults(result);
     }
 
     // When the page is loaded, fetch data from the API.
