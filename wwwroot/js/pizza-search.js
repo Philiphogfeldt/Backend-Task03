@@ -1,6 +1,6 @@
 ﻿import fakeFetch from './fake-fetch.js';
 
-const useRealAPI = false;
+const useRealAPI = true;
 
 async function fetchJSON(url, options) {
     if (useRealAPI) {
@@ -80,13 +80,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function searchPizzas(q) {
         const result = await fetchJSON(
-            'https://pizzaexample.com/api/?' + new URLSearchParams({ q }).toString()
+            'https://pizzaproject3.azurewebsites.net/api/?' + new URLSearchParams({ q }).toString()
         );
         displayResults(result.hits);
     }
 
     // When the page is loaded, fetch data from the API.
-    searchPizzas(goesWithFoodElement.textContent.trim());
+    const string = goesWithFoodElement.textContent.trim();
+    const trimmedString = string.split(',')[0];
+    searchPizzas(trimmedString);
+
 
     // When the form is submitted, fetch data from the API.
 
