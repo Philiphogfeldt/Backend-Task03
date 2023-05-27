@@ -1,126 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using Backend_Task03.Data;
-using Backend_Task03.Models;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.RazorPages.Infrastructure;
-using Microsoft.EntityFrameworkCore;
-
-namespace Backend_Task03.Pages.Beers
-{
-	public class IndexModel : PageModel
-	{
-		private readonly AppDbContext database;
-		private readonly AccessControl accessControl;
-
-		public IndexModel(AppDbContext context, IHttpContextAccessor httpContextAccessor)
-		{
-			database = context;
-			accessControl = new AccessControl(database, httpContextAccessor);
-		}
-
-		[BindProperty(SupportsGet = true)]
-		public string SelectedFoodType { get; set; }
-
-		[BindProperty(SupportsGet = true)]
-		public string SelectedBeerType { get; set; }
-
-		[BindProperty]
-		public int BeerIdToAddToFavorites { get; set; }
-
-		public IList<Beer> Beer { get; set; }
-
-		[BindProperty(SupportsGet = true)]
-		public string FindBeer { get; set; }
-
-		[BindProperty(SupportsGet = true)]
-		public string[] BeerType { get; set; }
-
-		public async Task OnGetAsync(string searchInput)
-		{
-			IQueryable<Beer> beers = database.Beers;
-
-			if (!string.IsNullOrEmpty(searchInput))
-			{
-				beers = beers.Where(b => b.Name.Contains(searchInput) || b.EAN13 == searchInput);
-			}
-
-			if (!string.IsNullOrEmpty(FindBeer))
-			{
-				beers = beers.Where(b => b.Name.Contains(FindBeer));
-			}
-
-			if (BeerType != null && BeerType.Length > 0)
-			{
-				List<string> types = new List<string>();
-				foreach (var type in BeerType)
-				{
-					switch (type)
-					{
-						case "Ale":
-							types.AddRange(new string[] { "Ale", "Brown Ale", "IPA", "Wheat Ale", "Belgian Ale", "Saison" });
-							break;
-						case "Lager":
-							types.AddRange(new string[] { "Lager", "Kolsch" });
-							break;
-						case "Stout":
-							types.AddRange(new string[] { "Stout", "Imperial Stout" });
-							break;
-						case "Ale-Lager":
-							types.AddRange(new string[] { "Ale", "Brown Ale", "IPA", "Wheat Ale", "Belgian Ale", "Saison", "Lager", "Kolsch" });
-							break;
-						case "All":
-							// Include all beer types, no filtering needed
-							break;
-						default:
-							// Handle other beer types individually if necessary
-							break;
-					}
-				}
-				beers = beers.Where(b => types.Contains(b.Type));
-			}
-
-			Beer = await beers.ToListAsync();
-		}
-
-		public async Task<IActionResult> OnPostToggleFavoriteAsync(int beerId)
-		{
-			var beer = database.Beers.Include(b => b.FavoritedBy).FirstOrDefault(b => b.ID == beerId);
-			var account = accessControl.LoggedInAccount;
-
-			if (beer != null && account != null)
-			{
-				if (account.FavoriteBeers.Any(b => b.ID == beerId))
-				{
-					account.FavoriteBeers.Remove(beer);
-					beer.FavoritedBy.Remove(account);
-				}
-				else
-				{
-					account.FavoriteBeers.Add(beer);
-					beer.FavoritedBy.Add(account);
-				}
-
-				await database.SaveChangesAsync();
-			}
-
-			return RedirectToPage();
-		}
-
-		public bool IsFavorite(int beerId)
-		{
-			var account = accessControl.LoggedInAccount;
-			return account != null && account.FavoriteBeers.Any(b => b.ID == beerId);
-		}
-	}
-}
-
-
-/*
-using System.Collections.Generic;
-using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Backend_Task03.Data;
@@ -132,16 +11,16 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Backend_Task03.Pages.Beers
 {
-	public class IndexModel : PageModel
-	{
-		private readonly AppDbContext database;
+    public class IndexModel : PageModel
+    {
+        private readonly AppDbContext database;
 		private readonly AccessControl accessControl;
 
 		public IndexModel(AppDbContext context, IHttpContextAccessor httpContextAccessor)
 		{
 			database = context;
 
-			accessControl = new AccessControl(database, httpContextAccessor);
+		    accessControl = new AccessControl(database, httpContextAccessor);
 		}
 
 		[BindProperty(SupportsGet = true)]
@@ -165,7 +44,7 @@ namespace Backend_Task03.Pages.Beers
 		public string Vegetarian { get; set; }
 		public string Dessert { get; set; }
 
-		*//*public async Task OnGetAsync(string searchInput)
+		public async Task OnGetAsync(string searchInput)
 		{
 			IQueryable<Beer> beers = database.Beers;
 
@@ -264,51 +143,6 @@ namespace Backend_Task03.Pages.Beers
 			}
 
 			await database.SaveChangesAsync();
-		}*//*
-
-		public async Task OnGetAsync(string searchInput)
-		{
-			IQueryable<Beer> beers = database.Beers;
-
-			if (!string.IsNullOrEmpty(searchInput))
-			{
-				beers = beers.Where(b => b.Name.Contains(searchInput) || b.EAN13 == searchInput);
-			}
-
-			if (!string.IsNullOrEmpty(FindBeer))
-			{
-				beers = beers.Where(b => b.Name.Contains(FindBeer));
-			}
-
-			if (BeerType != null && BeerType.Length > 0)
-			{
-				List<string> types = new List<string>();
-				foreach (var type in BeerType)
-				{
-					switch (type)
-					{
-						case "Ale":
-							types.AddRange(new string[] { "Ale", "Brown Ale", "IPA", "Wheat Ale", "Belgian Ale", "Saison" });
-							break;
-						case "Lager":
-							types.AddRange(new string[] { "Lager", "Kolsch" });
-							break;
-						case "Stout":
-							types.AddRange(new string[] { "Stout", "Imperial Stout" });
-							break;
-						case "Ale-Lager":
-							types.AddRange(new string[] { "Ale", "Brown Ale", "IPA", "Wheat Ale", "Belgian Ale", "Saison", "Lager", "Kolsch" });
-							break;
-						case "All":
-							// Include all beer types, no filtering needed
-							break;
-						default:
-							// Handle other beer types individually if necessary
-							break;
-					}
-				}
-				beers = beers.Where(b => types.Contains(b.Type));
-			}
 		}
 
 		public async Task OnPostAsync(string searchInput)
@@ -351,8 +185,8 @@ namespace Backend_Task03.Pages.Beers
 				beers2Show = beers2Show.Where(b => types.Contains(b.Type));
 			}
 
-			Beer = await beers2Show.ToListAsync();
-		}
+            Beer = await beers2Show.ToListAsync();
+        }
 		public async Task<IActionResult> OnPostToggleFavoriteAsync(int beerId)
 		{
 			var beer = database.Beers.Include(b => b.FavoritedBy).FirstOrDefault(b => b.ID == beerId);
@@ -374,15 +208,14 @@ namespace Backend_Task03.Pages.Beers
 				await database.SaveChangesAsync();
 			}
 
-			return RedirectToPage();
-		}
+            return RedirectToPage();
+        }
 
 		public bool IsFavorite(int beerId)
-		{
-			var account = accessControl.LoggedInAccount;
-			return account != null && account.FavoriteBeers.Any(b => b.ID == beerId);
-		}
+        {
+            var account = accessControl.LoggedInAccount;
+            return account != null && account.FavoriteBeers.Any(b => b.ID == beerId);
+        }
 
-	}
+    }
 }
-*/
