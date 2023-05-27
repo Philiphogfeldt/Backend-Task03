@@ -859,8 +859,26 @@ beerDetailsButton {
     display: grid;
     width: 960px;
     justify-self: center;
+    gap: 10px;
+    grid-template:
+        "adminGridTop adminGridTop adminGridTop"
+        "adminAccountCell adminAccountCell adminAccountCell"
+        "adminAccountCell adminAccountCell adminAccountCell";
     /*    justify-content: center;
     justify-items: center;*/
+}
+
+#adminGridTop {
+    display: grid;
+    grid-area: adminGridTop;
+}
+
+.adminAccountCell {
+    display: grid;
+    border: solid 2px orange;
+    width: 300px;
+    /*    grid-template:
+        "a b c d e";*/
 }
 
 .editBeerGrid {
@@ -945,7 +963,9 @@ beerDetailsButton {
 
     #beerIndex {
         align-content: start;
+        justify-content: center;
         justify-self: center;
+        justify-items: center;
         width: 500px;
         grid-template:
             "beerHead"
@@ -973,8 +993,14 @@ beerDetailsButton {
 
     .adminGrid {
         display: grid;
-        width: 500px;
+        width: 450px;
         justify-self: center;
+        justify-content: center;
+        gap: 10px;
+        grid-template:
+            "adminGridTop"
+            "adminAccountCell"
+            "adminAccountCell";
     }
 
     #beerGridCellRow7 {
