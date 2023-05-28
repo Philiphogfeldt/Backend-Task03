@@ -463,7 +463,7 @@ button,
 #accountDetailContainer {
     background-color: #f4ddd1;
     display: grid;
-    width: 310px;
+    width: 300px;
     padding: 10px;
     margin: 10px;
     height: auto;
@@ -895,15 +895,15 @@ beerDetailsButton {
             "beerlyLogoContainer"
             "allsearch"
             "navigationpages";
-        width: 450px;
+        width: 350px;
     }
 
     .header {
-        width: 450px;
+        width: 330px;
     }
 
     .AllSearch {
-        width: 450px;
+        width: 330px;
         border-radius: 32px;
         border: solid 2px orange;
     }
@@ -911,11 +911,11 @@ beerDetailsButton {
     .AllSearchRight {
         align-items: center;
         justify-content: center;
-        width: 450px;
+        width: 320px;
         grid-template:
             "a b"
             "c d";
-        padding: 20px;
+        padding: 10px;
     }
 
     #beerlyLogoContainer {
@@ -927,14 +927,14 @@ beerDetailsButton {
     .NavigationPages {
         border-radius: 32px;
         border: solid 2px orange;
-        grid-template-columns: repeat(3, auto);
+        grid-template-columns: repeat(2, auto);
         align-content: center;
         justify-content: center;
-        width: 450px;
+        width: 330px;
     }
 
     #beerDetailsContainer {
-        width: 500px;
+        width: 350px;
         justify-self: center;
         align-content: start;
         align-items: start;
@@ -951,11 +951,11 @@ beerDetailsButton {
             "b"
             "c";
         justify-self: center;
-        width: 500px;
+        width: 350px;
     }
 
     .normalBody {
-        width: 500px;
+        width: 350px;
         justify-content: center;
         justify-self: center;
         justify-items: center;
@@ -966,7 +966,7 @@ beerDetailsButton {
         justify-content: center;
         justify-self: center;
         justify-items: center;
-        width: 500px;
+        width: 350px;
         grid-template:
             "beerHead"
             "beerCreate"
@@ -974,7 +974,7 @@ beerDetailsButton {
     }
 
     #beerHead {
-        width: 500px;
+        width: 350px;
     }
 
     #suggBeerGrid {
@@ -985,7 +985,7 @@ beerDetailsButton {
     }
 
     #suggContainer {
-        width: 500px;
+        width: 350px;
         justify-self: center;
         justify-content: center;
         justify-items: center;
@@ -993,7 +993,7 @@ beerDetailsButton {
 
     .adminGrid {
         display: grid;
-        width: 450px;
+        width: 330px;
         justify-self: center;
         justify-content: center;
         justify-items: center;
@@ -1023,7 +1023,7 @@ beerDetailsButton {
     }
 
     #beerGridCell {
-        max-width: 450px;
+        max-width: 320px;
     }
 
     #beerReviewContainer {
@@ -1033,5 +1033,9 @@ beerDetailsButton {
     .editBeerGrid {
         display: grid;
         grid-template-columns: repeat(1, 200px);
+    }
+
+    .SearchInputBar {
+        width: 175px;
     }
 }
