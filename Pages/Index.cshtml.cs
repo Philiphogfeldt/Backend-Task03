@@ -43,9 +43,6 @@ namespace Backend_Task03.Pages
             }
         }
 
-
-
-
         public async Task<IActionResult> OnPostAsync(string findBeer, string[] beerType, string ean13)
         {
             IQueryable<Beer> beers2Show = database.Beers;

@@ -1000,6 +1000,9 @@ beerDetailsButton {
         grid-template:
             "adminGridTop"
             "adminAccountCell"
+            "adminAccountCell"
+            "adminAccountCell"
+            "adminAccountCell"
             "adminAccountCell";
     }
 
