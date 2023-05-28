@@ -2,7 +2,7 @@
     const url = new URL(urlString);
 
 
-    if (url.hostname === 'pizzaexample.com' && url.pathname === '/api/') {
+    if (url.hostname === 'pizzaproject3.azurewebsites.net' && url.pathname === '/api') {
 
         //Jag har bara behållt det här så länge. Den kommer aldrig att köras eftersom q aldrig= animal
         if (url.searchParams.get('q') === 'animal') {

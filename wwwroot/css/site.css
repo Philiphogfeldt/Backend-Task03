@@ -49,12 +49,12 @@ body {
     grid-area: beerlyLogoContainer;
     z-index: 0;
     width: 250px;
-
     margin: 0;
     justify-content: start;
 }
 
-#beerlyLogo {}
+#beerlyLogo {
+}
 
 /*.AllSearch {
     grid-area: allsearch;
@@ -168,13 +168,13 @@ body {
     background-color: white;
     border: 1px solid #6b7f9b;
     padding: 8px;
-    font-size: 14px;
+    font-size: 16px;
     border-radius: 4px;
 }
 
 .SearchInputBar {
     width: 200px;
-    font-size: 14px;
+    font-size: 16px;
     border: 1px solid #6b7f9b;
     border-radius: 4px;
 }
@@ -191,9 +191,9 @@ body {
     transition-duration: 0.4s;
 }
 
-.MainSearchButton:hover {
-    background-color: #cc7a00;
-}
+    .MainSearchButton:hover {
+        background-color: #cc7a00;
+    }
 
 .NavigationPages {
     grid-area: navigationpages;
@@ -227,10 +227,10 @@ button,
     height: fit-content;
 }
 
-button:hover,
-#postButton:hover {
-    background-color: #cc7a00;
-}
+    button:hover,
+    #postButton:hover {
+        background-color: #cc7a00;
+    }
 
 .dailyBeer {
     grid-area: dailyBeer;
@@ -240,17 +240,44 @@ button:hover,
     grid-area: favorites;
 }
 
-#beerGrid {
+#beerDetailsContainer {
     display: grid;
     width: 960px;
     justify-self: center;
+    align-content: start;
+    align-items: start;
+    align-self: start;
+    gap: 10px;
+    grid-template:
+        "beerGrid beerReviewContainer" / 2fr 1fr;
+}
+
+#beerGrid {
+    display: grid;
+    justify-self: center;
+    align-content: start;
+    align-items: start;
+    align-self: start;
+    gap: 10px;
+    grid-template:
+        "beerGridCell"
+        "pizzaWithBeer"
+        "beerCRUDButtons";
+}
+
+/*#beerGrid {
+    display: grid;
+    width: 960px;
+    justify-self: center;
+    align-content: start;
+    align-items: start;
+    align-self: start;
     gap: 10px;
     grid-template:
         "beerGridCell beerGridCell beerAddReview"
         "pizzaWithBeer pizzaWithBeer beerReviewContainer"
-        "pizzaWithBeer pizzaWithBeer beerReviewContainer"
         "beerCRUDButtons beerCRUDButtons beerReviewContainer";
-}
+}*/
 
 
 #beerGridCell {
@@ -272,7 +299,11 @@ button:hover,
 
 #beerReviewContainer {
     display: grid;
-    gap: 10px;
+    grid-template:
+        "beerAddReview"
+        "beerReviewCell";
+    /*gap: 10px;*/
+    width: 300px;
     grid-area: beerReviewContainer;
 }
 
@@ -282,11 +313,28 @@ button:hover,
     width: 300px;
 }
 
+    #beerReviewCell h4 {
+        background-color: #f4ddd1;
+        padding: 10px;
+        padding-right: 0px;
+        margin: 0px 0px 10px 0px;
+        border-bottom: 2px solid black;
+    }
+
 #reviewGridCell {
     background-color: #f4ddd1;
     display: grid;
-    margin: 10px;
+    width: 300px;
+    margin: 10px 0px 10px 0px;
 }
+
+    #reviewGridCell > * {
+        margin: 5px 5px 5px 10px;
+    }
+
+    #reviewGridCell em {
+        margin: 10px 0px 10px 10px;
+    }
 
 #beerGridCellRow1,
 #beerGridCellImage,
@@ -297,13 +345,25 @@ button:hover,
 #beerGridCellRow6,
 #beerGridCellRow7 {
     display: grid;
+    margin-left: 10px;
 }
 
 #beerGridCellRow3 {
     font-style: italic;
-    min-height: 3em;
+    /*min-height: 3em;*/
     margin: 10px;
 }
+
+#beerGridCellRow6 {
+    grid-template:
+        "g h i j k l" / auto auto auto auto 1fr;
+    margin-left: 0px;
+}
+
+    #beerGridCellRow6 img {
+        padding-left: 10px;
+    }
+
 
 #pizzaWithBeer {
     background-color: #f4ddd1;
@@ -320,6 +380,7 @@ button:hover,
 #pizzaBeerHead {
     display: grid;
     grid-area: pizzaBeerHead;
+    margin-left: 10px;
 }
 
 #recommendation {
@@ -327,16 +388,15 @@ button:hover,
     grid-area: recommendation;
 }
 
-#recommendation:first-of-type {
-    list-style-type: none;
-}
+    #recommendation:first-of-type {
+        list-style-type: none;
+    }
 
-#recommendation h4,
-.ingredientList,
-#recommendation img {
-
-    margin: 10px;
-}
+    #recommendation h4,
+    .ingredientList,
+    #recommendation img {
+        margin: 10px;
+    }
 
 .ingredientList {
     padding-inline-start: 20px;
@@ -347,10 +407,15 @@ button:hover,
     display: grid;
     height: fit-content;
     width: 300px;
-    padding: 10px;
     grid-area: beerAddReview;
-    padding: 5px;
+    /*   padding: 0px 5px;*/
+    margin-bottom: 12px;
 }
+
+    #beerAddReview > * {
+        margin-left: 10px;
+    }
+
 
 .form-control {
     height: 40px;
@@ -361,13 +426,16 @@ button:hover,
     margin-bottom: 6px;
 }
 
-#beerReviewContainer {
+/*#beerReviewContainer {
     padding: 5px;
-}
+}*/
 
 #beerCRUDButtons {
-    align-content: end;
+    align-content: start;
+    align-self: start;
+    align-items: start;
     display: grid;
+    height: max-content;
     grid-area: beerCRUDButtons;
 }
 
@@ -424,7 +492,7 @@ button:hover,
         "c"
         "d"
         "e"*/
-    ;
+        ;
 }
 
 #accountrightGrid {
@@ -634,23 +702,23 @@ beerDetailsButton {
     margin: 0px;
 }
 
-.firstGlass {
+.Glass1 {
     grid-area: o;
 }
 
-.secondGlass {
+.Glass2 {
     grid-area: p;
 }
 
-.thirdGlass {
+.Glass3 {
     grid-area: q;
 }
 
-.fourthGlass {
+.Glass4 {
     grid-area: r;
 }
 
-.fifthGlass {
+.Glass5 {
     grid-area: s;
 }
 
@@ -683,11 +751,11 @@ beerDetailsButton {
     display: none;
 }
 
-.beerFavoriteCheckbox:checked+.beerFavoriteLabel .unfilledStar {
+.beerFavoriteCheckbox:checked + .beerFavoriteLabel .unfilledStar {
     display: none;
 }
 
-.beerFavoriteCheckbox:checked+.beerFavoriteLabel .filledStar {
+.beerFavoriteCheckbox:checked + .beerFavoriteLabel .filledStar {
     display: inline-block;
 }
 
@@ -702,37 +770,40 @@ beerDetailsButton {
 
 #beerGridCellRow7Text {
     grid-area: u;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    align-self: center;
 }
 
-.row7firstGlass {
+.row7Glass1 {
     grid-area: x;
     display: flex;
     justify-self: center;
     align-self: center;
 }
 
-.row7secondGlass {
+.row7Glass2 {
     grid-area: y;
     display: flex;
     justify-self: center;
     align-self: center
 }
 
-.row7thirdGlass {
+.row7Glass3 {
     grid-area: z;
     display: flex;
     justify-self: center;
     align-self: center;
 }
 
-.row7fourthGlass {
+.row7Glass4 {
     grid-area: zx;
     display: flex;
     justify-self: center;
     align-self: center
 }
 
-.row7fifthGlass {
+.row7Glass5 {
     grid-area: zy;
     display: flex;
     justify-self: center;
@@ -776,9 +847,9 @@ beerDetailsButton {
     height: 25px;
 }
 
-.beerlyStar.checked {
-    display: none;
-}
+    .beerlyStar.checked {
+        display: none;
+    }
 
 .beerFavoriteLabel:hover .beerlyStar {
     filter: brightness(50%);
@@ -788,11 +859,179 @@ beerDetailsButton {
     display: grid;
     width: 960px;
     justify-self: center;
+    gap: 10px;
+    grid-template:
+        "adminGridTop adminGridTop adminGridTop"
+        "adminAccountCell adminAccountCell adminAccountCell"
+        "adminAccountCell adminAccountCell adminAccountCell";
     /*    justify-content: center;
     justify-items: center;*/
+}
+
+#adminGridTop {
+    display: grid;
+    grid-area: adminGridTop;
+}
+
+.adminAccountCell {
+    display: grid;
+    border: solid 2px orange;
+    width: 300px;
+    /*    grid-template:
+        "a b c d e";*/
 }
 
 .editBeerGrid {
     display: grid;
     grid-template-columns: repeat(4, 200px);
+}
+
+
+@media (max-width: 550px) {
+
+    .containerMain {
+        grid-template-areas:
+            "header"
+            "beerlyLogoContainer"
+            "allsearch"
+            "navigationpages";
+        width: 450px;
+    }
+
+    .header {
+        width: 450px;
+    }
+
+    .AllSearch {
+        width: 450px;
+        border-radius: 32px;
+        border: solid 2px orange;
+    }
+
+    .AllSearchRight {
+        align-items: center;
+        justify-content: center;
+        width: 450px;
+        grid-template:
+            "a b"
+            "c d";
+        padding: 20px;
+    }
+
+    #beerlyLogoContainer {
+        justify-content: center;
+        justify-items: center;
+        justify-self: center;
+    }
+
+    .NavigationPages {
+        border-radius: 32px;
+        border: solid 2px orange;
+        grid-template-columns: repeat(3, auto);
+        align-content: center;
+        justify-content: center;
+        width: 450px;
+    }
+
+    #beerDetailsContainer {
+        width: 500px;
+        justify-self: center;
+        align-content: start;
+        align-items: start;
+        align-self: start;
+        grid-template:
+            "beerGrid"
+            "beerReviewContainer";
+    }
+
+    #accountBodyGrid {
+        align-content: start;
+        grid-template:
+            "a"
+            "b"
+            "c";
+        justify-self: center;
+        width: 500px;
+    }
+
+    .normalBody {
+        width: 500px;
+        justify-content: center;
+        justify-self: center;
+        justify-items: center;
+    }
+
+    #beerIndex {
+        align-content: start;
+        justify-content: center;
+        justify-self: center;
+        justify-items: center;
+        width: 500px;
+        grid-template:
+            "beerHead"
+            "beerCreate"
+            "beerIndexCell";
+    }
+
+    #beerHead {
+        width: 500px;
+    }
+
+    #suggBeerGrid {
+        grid-template-columns: repeat(1, auto);
+        justify-self: center;
+        justify-content: center;
+        justify-items: center;
+    }
+
+    #suggContainer {
+        width: 500px;
+        justify-self: center;
+        justify-content: center;
+        justify-items: center;
+    }
+
+    .adminGrid {
+        display: grid;
+        width: 450px;
+        justify-self: center;
+        justify-content: center;
+        justify-items: center;
+        gap: 10px;
+        grid-template:
+            "adminGridTop"
+            "adminAccountCell"
+            "adminAccountCell"
+            "adminAccountCell"
+            "adminAccountCell"
+            "adminAccountCell";
+    }
+
+    .adminAccountCell {
+        justify-self: center;
+        justify-content: center;
+    }
+
+    #beerGridCellRow7 {
+        display: grid;
+        padding-right: 75px;
+        grid-template:
+            "u u u u u"
+            "x y z zx zy";
+        gap: 0px;
+        justify-content: start;
+    }
+
+    #beerGridCell {
+        max-width: 450px;
+    }
+
+    #beerReviewContainer {
+        margin-left: 30px;
+    }
+
+    .editBeerGrid {
+        display: grid;
+        grid-template-columns: repeat(1, 200px);
+    }
 }
