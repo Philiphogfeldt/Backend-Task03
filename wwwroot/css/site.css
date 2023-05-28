@@ -996,6 +996,7 @@ beerDetailsButton {
         width: 450px;
         justify-self: center;
         justify-content: center;
+        justify-items: center;
         gap: 10px;
         grid-template:
             "adminGridTop"
@@ -1004,6 +1005,11 @@ beerDetailsButton {
             "adminAccountCell"
             "adminAccountCell"
             "adminAccountCell";
+    }
+
+    .adminAccountCell {
+        justify-self: center;
+        justify-content: center;
     }
 
     #beerGridCellRow7 {
@@ -1022,5 +1028,10 @@ beerDetailsButton {
 
     #beerReviewContainer {
         margin-left: 30px;
+    }
+
+    .editBeerGrid {
+        display: grid;
+        grid-template-columns: repeat(1, 200px);
     }
 }
