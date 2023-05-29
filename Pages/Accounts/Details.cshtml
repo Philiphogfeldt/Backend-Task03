@@ -261,7 +261,7 @@
 							<h3>@review.Beer.Name</h3>
 							<p>@review.Account.Name said:</p>
 							<em>"@review.Comment"</em>
-							<p>-and rated it @review.Rating / 5!</p>
+							<p>And rated it @review.Rating / 5!</p>
 							<p>@review.Created.ToString("yyyy-MM-dd HH:mm")</p>
 						</div>
 					}
@@ -272,18 +272,19 @@
 							<h3>@review.Beer.Name</h3>
 							<p>@review.Account.Name said:</p>
 							<em>"@review.Comment"</em>
-							<p>-about this beer</p>
+							<p>About this beer</p>
 							<p>@review.Created.ToString("yyyy-MM-dd HH:mm")</p>
 						</div>
 					}
-					@*<div id="accountReviewGridBox">
-			<p>Beer</p>
-			<p>@review.Beer.Name</p>
-			<p>Comment</p>
-			<p>@review.Comment</p>
-			<p>Rating</p>
-			<p>@review.Rating / 5</p>
-			</div>*@
+					@if (@review.Comment == null && @review.Rating != 0)
+					{
+						<div id="reviewGridCell">
+							<h3>@review.Beer.Name</h3>
+							<p>@review.Account.Name</p>
+							<p>Rated @review.Rating / 5!</p>
+							<p>@review.Created.ToString("yyyy-MM-dd HH:mm")</p>
+						</div>
+					}
 				}
 
 
