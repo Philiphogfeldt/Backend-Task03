@@ -4,17 +4,11 @@ const useRealAPI = true;
 
 async function fetchJSON(url, options) {
     if (useRealAPI) {
-        try {
             const response = await fetch(url, options);
             const json = await response.json();
             return json;
-        }
-        catch
-        {
-            const message = document.querySelector('#message');
-            message.hidden = false;
-        }
-    } else {
+    }
+    else {
         // Sleep for one second to simulate a network delay.
         await new Promise((r) => setTimeout(r, 1000));
         const json = fakeFetch(url, options);
@@ -88,10 +82,19 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     async function searchPizzas(categoryname) {
+        try { 
         const result = await fetchJSON(
             'https://pizzaproject3.azurewebsites.net/api?' + new URLSearchParams({ categoryname }).toString()
         );
+
         displayResults(result);
+        }
+          
+        catch {
+            const message = document.querySelector('#message');
+            message.hidden = false;
+        }
+
     }
 
     // When the page is loaded, fetch data from the API.

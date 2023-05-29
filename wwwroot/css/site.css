@@ -402,6 +402,11 @@ button,
     padding-inline-start: 20px;
 }
 
+#message {
+    margin-left: 11px; 
+    margin-top: 0px;
+}
+
 #beerAddReview {
     background-color: #f4ddd1;
     display: grid;
