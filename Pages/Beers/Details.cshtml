@@ -33,40 +33,58 @@
 			</div>
 			<div id="beerGridCellRow5">
 
-			<div id="beerGridCellRow5">
-				@Html.DisplayFor(model => model.Beer.Type)
-			</div>
+				<div id="beerGridCellRow5">
+					@Html.DisplayFor(model => model.Beer.Type)
+				</div>
 
-			<div id="beerGridCellRow6">
-				<p id="goesWithFood" hidden>
-					@Html.DisplayFor(model=>
-					model.Beer.GoesWellWith)
-				</p>
+				<div class="beerFavoriteCell">
+					<form asp-page="./" asp-page-handler="ToggleFavorite" method="post">
+						<input type="hidden" name="beerId" value="@Model.Beer.ID" />
+						<input type="checkbox" id="beer@(Model.Beer.ID)Checkbox" class="beerFavoriteCheckbox visually-hidden" @(Model.IsFavorite(Model.Beer.ID) ? "checked" : "") onchange="this.form.submit()" />
+						<label for="beer@(Model.Beer.ID)Checkbox" class="beerFavoriteLabel">
+							<span class="unfilledStar">
+								<img class="beerlyStar" src="~/imagesBeerly/beerlyStarLH.png" alt="Not Filled Star">
+							</span>
+							<span class="filledStar">
+								<img class="beerlyStar checked" src="~/imagesBeerly/beerlyStarFav.png" alt="Filled Star">
+							</span>
+						</label>
+					</form>
 
-				@if (Model.Beer.GoesWellWith.Contains("Chicken"))
-				{
-					<img asp-append-version="true" name="Goesw" value="Chicken" src="../images/chicken.svg" style="width: 22px" />
-				}
+				</div>
 
-				@if (Model.Beer.GoesWellWith.Contains("Meat"))
-				{
-					<img asp-append-version="true" name="Goesw" value="Meat" src="../images/meat.svg" style="width: 22px" />
-				}
 
-				@if (Model.Beer.GoesWellWith.Contains("Fish"))
-				{
-					<img asp-append-version="true" name="Goesw" value="Fish" src="../images/fish.svg" style="width: 22px" />
-				}
 
-				@if (Model.Beer.GoesWellWith.Contains("Vegetarian"))
-				{
-					<img asp-append-version="true" name="Goesw" value="Vegetarian" src="../images/veg.svg" style="width: 22px" />
-				}
+				<div id="beerGridCellRow6">
+					<p id="goesWithFood" hidden>
+						@Html.DisplayFor(model=>
+						model.Beer.GoesWellWith)
+					</p>
 
-				@if (Model.Beer.GoesWellWith.Contains("Dessert"))
-				{
-					<img asp-append-version="true" name="Goesw" value="Dessert" src="../images/dessert.svg" style="width: 22px" />
-				}
+					@if (Model.Beer.GoesWellWith.Contains("Chicken"))
+					{
+						<img asp-append-version="true" name="Goesw" value="Chicken" src="../images/chicken.svg" style="width: 22px" />
+					}
+
+					@if (Model.Beer.GoesWellWith.Contains("Meat"))
+					{
+						<img asp-append-version="true" name="Goesw" value="Meat" src="../images/meat.svg" style="width: 22px" />
+					}
+
+					@if (Model.Beer.GoesWellWith.Contains("Fish"))
+					{
+						<img asp-append-version="true" name="Goesw" value="Fish" src="../images/fish.svg" style="width: 22px" />
+					}
+
+					@if (Model.Beer.GoesWellWith.Contains("Vegetarian"))
+					{
+						<img asp-append-version="true" name="Goesw" value="Vegetarian" src="../images/veg.svg" style="width: 22px" />
+					}
+
+					@if (Model.Beer.GoesWellWith.Contains("Dessert"))
+					{
+						<img asp-append-version="true" name="Goesw" value="Dessert" src="../images/dessert.svg" style="width: 22px" />
+					}
 				</div>
 			</div>
 			<div id="beerGridCellRow7">
@@ -75,8 +93,8 @@
 				@for (int i = 0; i < 5; i++)
 				{
 					<img class="row7@($"glass{i + 1}")" asp-append-version="true"
-					 src="@($"../images/{(i < Math.Floor((decimal)Model.Beer.Rating) ? "filled" : "empty")}.svg")"
-		  style="width: 30px" />
+						 src="@($"../images/{(i < Math.Floor((decimal)Model.Beer.Rating) ? "filled" : "empty")}.svg")"
+						 style="width: 30px" />
 				}
 			</div>
 
@@ -169,7 +187,7 @@
 					{
 						<div id="reviewGridCell">
 							<p>@comment.Account.Name said:</p>
-							<em>"@comment.Comment"</em><p> -and rated it @comment.Rating / 5!</p>
+							<em>"@comment.Comment"</em><p> And rated it @comment.Rating / 5!</p>
 							<p>@comment.Created.ToString("yyyy-MM-dd HH:mm")</p>
 						</div>
 					}
@@ -178,7 +196,16 @@
 					{
 						<div id="reviewGridCell">
 							<p>@comment.Account.Name said:</p>
-							<em>"@comment.Comment"</em> -about this beer
+							<em>"@comment.Comment"</em> About this beer
+							<p>@comment.Created.ToString("yyyy-MM-dd HH:mm")</p>
+						</div>
+					}
+					@if (@comment.Comment == null && @comment.Rating != 0)
+					{
+						<div id="reviewGridCell">
+							<h3>@comment.Beer.Name</h3>
+							<p>@comment.Account.Name</p>
+							<p>Rated @comment.Rating / 5!</p>
 							<p>@comment.Created.ToString("yyyy-MM-dd HH:mm")</p>
 						</div>
 					}
