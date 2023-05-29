@@ -38,7 +38,7 @@
 				</div>
 
 				<div class="beerFavoriteCell">
-					<form asp-page="./" asp-page-handler="ToggleFavorite" method="post">
+					<form asp-page-handler="ToggleFavorite" method="post">
 						<input type="hidden" name="beerId" value="@Model.Beer.ID" />
 						<input type="checkbox" id="beer@(Model.Beer.ID)Checkbox" class="beerFavoriteCheckbox visually-hidden" @(Model.IsFavorite(Model.Beer.ID) ? "checked" : "") onchange="this.form.submit()" />
 						<label for="beer@(Model.Beer.ID)Checkbox" class="beerFavoriteLabel">
@@ -46,10 +46,33 @@
 								<img class="beerlyStar" src="~/imagesBeerly/beerlyStarLH.png" alt="Not Filled Star">
 							</span>
 							<span class="filledStar">
-								<img class="beerlyStar checked" src="~/imagesBeerly/beerlyStarFav.png" alt="Filled Star">
+								<img class="beerlyStar" class="checked" src="~/imagesBeerly/beerlyStarFav.png" alt="Filled Star">
 							</span>
 						</label>
 					</form>
+
+					<script>
+						document.addEventListener('DOMContentLoaded', function () {
+							const checkboxes = document.querySelectorAll('.beerFavoriteCheckbox');
+
+							checkboxes.forEach(function (checkbox) {
+								const label = checkbox.nextElementSibling;
+
+								checkbox.addEventListener('change', function () {
+									const starUnselected = label.querySelector('.beerlyStar');
+									const starSelected = label.querySelector('.beerlyStar.checked');
+
+									if (checkbox.checked) {
+										starUnselected.style.display = 'none';
+										starSelected.style.display = 'grid';
+									} else {
+										starUnselected.style.display = 'grid';
+										starSelected.style.display = 'none';
+									}
+								});
+							});
+						});
+					</script>
 
 				</div>
 
