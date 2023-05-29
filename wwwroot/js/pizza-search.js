@@ -63,6 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     ingredientList.appendChild(ingredientLi);
                 }
 
+                // ska det ev vara: img.src = result.photo; eller img.src = result.photo.webformatURL; ? 
                 img.src = result.webformatURL;
                 img.style.width = '250px';
                 pizzaName.textContent = result.name;
