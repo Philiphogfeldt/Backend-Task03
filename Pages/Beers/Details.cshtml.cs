@@ -13,18 +13,18 @@ using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace Backend_Task03.Pages.Beers
 {
-    public class DetailsModel : PageModel
-    {
+	public class DetailsModel : PageModel
+	{
 		private readonly AppDbContext database;
-        private readonly AccessControl accessControl;
+		private readonly AccessControl accessControl;
 
-        public DetailsModel(AppDbContext context, IHttpContextAccessor httpContextAccessor)
-        {
-            database = context;
+		public DetailsModel(AppDbContext context, IHttpContextAccessor httpContextAccessor)
+		{
+			database = context;
 			accessControl = new AccessControl(database, httpContextAccessor);
 		}
 
-        public Beer Beer { get; set; } = default!;
+		public Beer Beer { get; set; } = default!;
 		public Review NewReview { get; set; }
 		public Account Account { get; set; }
 
@@ -126,7 +126,7 @@ namespace Backend_Task03.Pages.Beers
 			return Page();
 		}
 
-		public async Task<IActionResult> OnPostAsync(int id,string comment, int rating, List<string> food)
+		public async Task<IActionResult> OnPostAsync(int id, string? comment, int rating, List<string> food)
 		{
 			LoadBeer(id);
 			ActiveAccount();
@@ -134,6 +134,7 @@ namespace Backend_Task03.Pages.Beers
 			NewReview.Comment = comment;
 			NewReview.Rating = rating;
 			NewReview.Account = Account;
+
 
 			ThisReviewFoodcategories.Clear();
 

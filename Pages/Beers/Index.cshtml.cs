@@ -93,7 +93,7 @@ namespace Backend_Task03.Pages.Beers
 				if (beer.Reviews.Any())
 				{
 					decimal ratingValueCount = 0;
-					decimal reviewCount = beer.Reviews.Count;
+					decimal reviewCount = 0;
 
 					Dictionary<string, int> categoryCounts = new Dictionary<string, int>();
 
@@ -102,7 +102,7 @@ namespace Backend_Task03.Pages.Beers
 					{
 						foreach (var category in review.FoodCategories)
 						{
-							if (categoryCounts.ContainsKey(category.Name))
+								if (categoryCounts.ContainsKey(category.Name))
 							{
 								categoryCounts[category.Name]++;
 							}
@@ -112,7 +112,11 @@ namespace Backend_Task03.Pages.Beers
 							}
 						}
 
-						ratingValueCount += review.Rating;
+						if (review.Rating != 0)
+						{
+							ratingValueCount += review.Rating;
+							reviewCount++;
+						}
 					}
 
                     // Find the category/categories with the highest count
