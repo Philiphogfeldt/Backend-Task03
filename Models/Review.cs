@@ -7,7 +7,7 @@ public class Review : IValidatableObject
 
 	public int Rating { get; set; }
 
-	[StringLength(180, ErrorMessage = "Comment must be at most 180 characters long.")]
+	[StringLength(180, MinimumLength = 0, ErrorMessage = "Comment must be at most 180 characters long.")]
 	public string? Comment { get; set; }
 	public DateTime Created { get; set; } = DateTime.Now;
 	public Account Account { get; set; }

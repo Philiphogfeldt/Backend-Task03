@@ -126,7 +126,7 @@ namespace Backend_Task03.Pages.Beers
 			return Page();
 		}
 
-		public async Task<IActionResult> OnPostAsync(int id, string comment, int rating, List<string> food)
+		public async Task<IActionResult> OnPostAsync(int id, string? comment, int rating, List<string> food)
 		{
 			LoadBeer(id);
 			ActiveAccount();
@@ -134,6 +134,7 @@ namespace Backend_Task03.Pages.Beers
 			NewReview.Comment = comment;
 			NewReview.Rating = rating;
 			NewReview.Account = Account;
+
 
 			ThisReviewFoodcategories.Clear();
 
