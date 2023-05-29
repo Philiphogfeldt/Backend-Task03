@@ -53,8 +53,7 @@ namespace Backend_Task03.Controllers
 
         }
 
-        [ApiExplorerSettings(IgnoreApi = true)]
-        public Beer GetBeer(string category)
+        private Beer GetBeer(string category)
         {
             // Retrieve the beer from the database based on the "goesWellWith" value
             // Replace this with your actual database query implementation
@@ -73,8 +72,7 @@ namespace Backend_Task03.Controllers
             return randomBeer;
         }
 
-        [ApiExplorerSettings(IgnoreApi = true)]
-        public string GetImageUrl(string name)
+        private string GetImageUrl(string name)
         {
 
             var imageFiles = Directory.GetFiles("wwwroot/imagesBeerly");
