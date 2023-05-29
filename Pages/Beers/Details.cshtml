@@ -9,7 +9,7 @@
 <script type="module" src="~/js/pizza-search.js" asp-append-version="true" defer></script>
 
 <header>
-	<link rel="stylesheet" href="~/css/site.css" />
+	@*<link rel="stylesheet" href="~/css/site.css" />*@
 </header>
 
 <div id="beerDetailsContainer">
@@ -31,7 +31,7 @@
 			<div id="beerGridCellRow4">
 				@Html.DisplayFor(model => model.Beer.Percentage)%
 			</div>
-			<div id="beerGridCellRow5">
+					@*<div id="beerGridCellRow5">*@
 
 				<div id="beerGridCellRow5">
 					@Html.DisplayFor(model => model.Beer.Type)
@@ -109,15 +109,16 @@
 						<img asp-append-version="true" name="Goesw" value="Dessert" src="../images/dessert.svg" style="width: 22px" />
 					}
 				</div>
-			</div>
+			@*</div>*@
+					
+
 			<div id="beerGridCellRow7">
 				<p id="beerGridCellRow7Text">Our users give this beer a rating average of:</p>
-
 				@for (int i = 0; i < 5; i++)
 				{
 					<img class="row7@($"glass{i + 1}")" asp-append-version="true"
-						 src="@($"../images/{(i < Math.Floor((decimal)Model.Beer.Rating) ? "filled" : "empty")}.svg")"
-						 style="width: 30px" />
+					 src="@($"../images/{(Model.Beer.Rating >= i + 0.5 ? "filled" : "empty")}.svg")"
+		  style="width: 30px" />
 				}
 			</div>
 

@@ -342,6 +342,7 @@ button,
 #beerGridCellRow3,
 #beerGridCellRow4,
 #beerGridCellRow5,
+#beerGridCell .beerFavoriteCell,
 #beerGridCellRow6,
 #beerGridCellRow7 {
     display: grid;
@@ -352,6 +353,10 @@ button,
     font-style: italic;
     /*min-height: 3em;*/
     margin: 10px;
+}
+
+#beerGridCell .beerFavoriteCell {
+     padding-top:5px;
 }
 
 #beerGridCellRow6 {
@@ -894,6 +899,7 @@ beerDetailsButton {
 
 @media (max-width: 550px) {
 
+
     .containerMain {
         grid-template-areas:
             "header"
@@ -901,10 +907,14 @@ beerDetailsButton {
             "allsearch"
             "navigationpages";
         width: 450px;
+        margin: auto;
+        padding: 5px;
+       
     }
 
     .header {
         width: 450px;
+        padding: 0px;
     }
 
     .AllSearch {
@@ -920,7 +930,8 @@ beerDetailsButton {
         grid-template:
             "a b"
             "c d";
-        padding: 20px;
+      /*  padding: 20px;*/
+        padding: 20px 0px 20px 0px;
     }
 
     #beerlyLogoContainer {
@@ -939,7 +950,7 @@ beerDetailsButton {
     }
 
     #beerDetailsContainer {
-        width: 500px;
+        width: 400px;
         justify-self: center;
         align-content: start;
         align-items: start;
@@ -1032,7 +1043,9 @@ beerDetailsButton {
     }
 
     #beerReviewContainer {
-        margin-left: 30px;
+       /* margin-left: 30px;*/
+       justify-self: center;
+       margin-left:0px;
     }
 
     .editBeerGrid {
