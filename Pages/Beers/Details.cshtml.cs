@@ -13,18 +13,18 @@ using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace Backend_Task03.Pages.Beers
 {
-    public class DetailsModel : PageModel
-    {
+	public class DetailsModel : PageModel
+	{
 		private readonly AppDbContext database;
-        private readonly AccessControl accessControl;
+		private readonly AccessControl accessControl;
 
-        public DetailsModel(AppDbContext context, IHttpContextAccessor httpContextAccessor)
-        {
-            database = context;
+		public DetailsModel(AppDbContext context, IHttpContextAccessor httpContextAccessor)
+		{
+			database = context;
 			accessControl = new AccessControl(database, httpContextAccessor);
 		}
 
-        public Beer Beer { get; set; } = default!;
+		public Beer Beer { get; set; } = default!;
 		public Review NewReview { get; set; }
 		public Account Account { get; set; }
 
@@ -126,7 +126,7 @@ namespace Backend_Task03.Pages.Beers
 			return Page();
 		}
 
-		public async Task<IActionResult> OnPostAsync(int id,string comment, int rating, List<string> food)
+		public async Task<IActionResult> OnPostAsync(int id, string comment, int rating, List<string> food)
 		{
 			LoadBeer(id);
 			ActiveAccount();
@@ -171,25 +171,25 @@ namespace Backend_Task03.Pages.Beers
 				}
 			}
 
-			bool success = await TryUpdateModelAsync(
-					NewReview,
-					nameof(NewReview),
-					c => c.Rating,
-					c => c.Comment
+			await TryUpdateModelAsync(
+				NewReview,
+				nameof(NewReview),
+				c => c.Rating,
+				c => c.Comment
 				);
-
-			if (success)
+			
+			if (NewReview.Rating >= 0 || NewReview.Rating == null || !string.IsNullOrEmpty(NewReview.Comment))
 			{
 				Beer.Reviews.Add(NewReview);
 				database.Reviews.Add(NewReview);
 				database.SaveChanges();
 				return RedirectToPage("./Details", new { id = Beer.ID, name = Beer.Name });
 			}
-
 			else
-			{
-				return Page();
+			{			
+                return Page();
 			}
+
 		}
 	}
 }
