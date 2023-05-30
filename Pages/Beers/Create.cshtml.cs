@@ -14,19 +14,13 @@ namespace Backend_Task03.Pages.Beers
     public class CreateModel : PageModel
     {
         private readonly Backend_Task03.Data.AppDbContext database;
-		private readonly FileRepository uploads;
-		private readonly AccessControl accessControl;
 
-
-		public CreateModel(Backend_Task03.Data.AppDbContext context)
+        public CreateModel(Backend_Task03.Data.AppDbContext context)
         {
             database = context;
-			this.uploads = uploads;
-			this.accessControl = accessControl;
+        }
 
-		}
-
-		[BindProperty]
+        [BindProperty]
         public Beer Beer { get; set; } = default!;
 
         public IActionResult OnGet(bool generateEAN13 = false)
@@ -49,31 +43,5 @@ namespace Backend_Task03.Pages.Beers
 
             return RedirectToPage("./Index");
         }
-		public List<string> PhotoURLs { get; set; } = new List<string>();
-
-		public void OnGetPhoto()
-		{
-			string userFolderPath = Path.Combine(
-				uploads.FolderPath,
-				accessControl.LoggedInAccountID.ToString()
-			);
-			Directory.CreateDirectory(userFolderPath);
-			string[] files = Directory.GetFiles(userFolderPath);
-			foreach (string file in files)
-			{
-				string url = uploads.GetFileURL(file);
-				PhotoURLs.Add(url);
-			}
-		}
-
-		public async Task<IActionResult> OnPostPhoto(IFormFile photo)
-		{
-			string path = Path.Combine(
-				accessControl.LoggedInAccountID.ToString(),
-				Guid.NewGuid().ToString() + "-" + photo.FileName
-			);
-			await uploads.SaveFileAsync(photo, path);
-			return RedirectToPage();
-		}
-	}
+    }
 }
