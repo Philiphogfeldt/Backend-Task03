@@ -145,25 +145,25 @@ namespace Backend_Task03.Pages.Beers
 				}
 			}
 
-			await TryUpdateModelAsync(
-				NewReview,
-				nameof(NewReview),
-				c => c.Rating,
-				c => c.Comment
+			bool success = await TryUpdateModelAsync(
+					NewReview,
+					nameof(NewReview),
+					c => c.Rating,
+					c => c.Comment
 				);
-			
-			if (NewReview.Rating >= 0 || NewReview.Rating == null || !string.IsNullOrEmpty(NewReview.Comment))
+
+			if (success)
 			{
 				Beer.Reviews.Add(NewReview);
 				database.Reviews.Add(NewReview);
 				database.SaveChanges();
 				return RedirectToPage("./Details", new { id = Beer.ID, name = Beer.Name });
 			}
-			else
-			{			
-                return Page();
-			}
 
+			else
+			{
+				return Page();
+			}
 		}
 		public async Task<IActionResult> OnPostToggleFavoriteAsync(int beerId)
 		{
