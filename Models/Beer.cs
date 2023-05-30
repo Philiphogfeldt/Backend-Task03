@@ -17,6 +17,7 @@ namespace Backend_Task03.Models
         public double? Rating { get; set; }
         public List<Review>? Reviews { get; set; }
 		public List<Account>? FavoritedBy { get; set; }
+		public string? PhotoPath { get; set; }
 
 		//account kan inte creata ny review om man redan har en review på den ölen
 	}

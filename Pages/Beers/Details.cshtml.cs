@@ -29,7 +29,7 @@ namespace Backend_Task03.Pages.Beers
 		public Account Account { get; set; }
 
 		[BindProperty]
-		public List<string> ThisReviewFoodcategories { get; set; } = new List<string>();
+		public List<string> ThisReviewFoodCategories { get; set; } = new List<string>();
 
 		public void LoadBeer(int id)
 		{
@@ -135,62 +135,35 @@ namespace Backend_Task03.Pages.Beers
 			NewReview.Rating = rating;
 			NewReview.Account = Account;
 
-
-			ThisReviewFoodcategories.Clear();
-
-			foreach (var selectedFood in food)
+			foreach (var selectedFood in new[] { "Chicken", "Meat", "Fish", "Vegetarian", "Dessert" })
 			{
-				if (selectedFood == "Chicken")
+				if (food.Contains(selectedFood))
 				{
-					var chicken = database.FoodCategories.FirstOrDefault(c => c.Name == "Chicken");
-					NewReview.FoodCategories.Add(chicken);
-					ThisReviewFoodcategories.Add(selectedFood);
-				}
-				else if (selectedFood == "Meat")
-				{
-					var meat = database.FoodCategories.FirstOrDefault(c => c.Name == "Meat");
-					NewReview.FoodCategories.Add(meat);
-					ThisReviewFoodcategories.Add(selectedFood);
-				}
-				else if (selectedFood == "Fish")
-				{
-					var fish = database.FoodCategories.FirstOrDefault(c => c.Name == "Fish");
-					NewReview.FoodCategories.Add(fish);
-					ThisReviewFoodcategories.Add(selectedFood);
-				}
-				else if (selectedFood == "Vegetarian")
-				{
-					var veg = database.FoodCategories.FirstOrDefault(c => c.Name == "Vegetarian");
-					NewReview.FoodCategories.Add(veg);
-					ThisReviewFoodcategories.Add(selectedFood);
-				}
-				else if (selectedFood == "Dessert")
-				{
-					var dessert = database.FoodCategories.FirstOrDefault(c => c.Name == "Dessert");
-					NewReview.FoodCategories.Add(dessert);
-					ThisReviewFoodcategories.Add(selectedFood);
+					var foodCategory = database.FoodCategories.FirstOrDefault(c => c.Name == selectedFood);
+					NewReview.FoodCategories.Add(foodCategory);
+					ThisReviewFoodCategories.Add(selectedFood);
 				}
 			}
 
-			await TryUpdateModelAsync(
-				NewReview,
-				nameof(NewReview),
-				c => c.Rating,
-				c => c.Comment
+			bool success = await TryUpdateModelAsync(
+					NewReview,
+					nameof(NewReview),
+					c => c.Rating,
+					c => c.Comment
 				);
-			
-			if (NewReview.Rating >= 0 || NewReview.Rating == null || !string.IsNullOrEmpty(NewReview.Comment))
+
+			if (success)
 			{
 				Beer.Reviews.Add(NewReview);
 				database.Reviews.Add(NewReview);
 				database.SaveChanges();
 				return RedirectToPage("./Details", new { id = Beer.ID, name = Beer.Name });
 			}
-			else
-			{			
-                return Page();
-			}
 
+			else
+			{
+				return Page();
+			}
 		}
 		public async Task<IActionResult> OnPostToggleFavoriteAsync(int beerId)
 		{

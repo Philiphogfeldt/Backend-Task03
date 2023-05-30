@@ -4,10 +4,11 @@ const useRealAPI = true;
 
 async function fetchJSON(url, options) {
     if (useRealAPI) {
-        const response = await fetch(url, options);
-        const json = await response.json();
-        return json;
-    } else {
+            const response = await fetch(url, options);
+            const json = await response.json();
+            return json;
+    }
+    else {
         // Sleep for one second to simulate a network delay.
         await new Promise((r) => setTimeout(r, 1000));
         const json = fakeFetch(url, options);
@@ -63,8 +64,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     ingredientList.appendChild(ingredientLi);
                 }
 
-                img.src = result.webformatURL;
+                img.src = result.photo.toString();
                 img.style.width = '250px';
+             
                 pizzaName.textContent = result.name;
 
                 const li = document.createElement('li');
@@ -74,15 +76,23 @@ document.addEventListener('DOMContentLoaded', () => {
                 li.append(ingredientList);
 
                 resultList.append(li);
-            /*}*/
         }
     }
 
     async function searchPizzas(categoryname) {
+        try { 
         const result = await fetchJSON(
             'https://pizzaproject3.azurewebsites.net/api?' + new URLSearchParams({ categoryname }).toString()
         );
+
         displayResults(result);
+        }
+          
+        catch {
+            const message = document.querySelector('#message');
+            message.hidden = false;
+        }
+
     }
 
     // When the page is loaded, fetch data from the API.
