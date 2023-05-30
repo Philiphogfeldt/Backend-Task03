@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Backend_Task03.Data;
 using Backend_Task03.Models;
+using System.Security.Principal;
 
 namespace Backend_Task03.Pages.Accounts
 {
@@ -52,6 +53,22 @@ namespace Backend_Task03.Pages.Accounts
 
 			return Page();
 
+		}
+
+		public async Task<IActionResult> OnPostDeleteAsync(int id)
+		{
+			var review = await database.Reviews.FindAsync(id);
+
+			if (review != null)
+			{
+				if (review != null)
+				{
+					database.Reviews.Remove(review);
+					await database.SaveChangesAsync();
+				}
+			}
+			string refererUrl = Request.Headers["Referer"].ToString();
+			return Redirect(refererUrl);
 		}
 
 	}
