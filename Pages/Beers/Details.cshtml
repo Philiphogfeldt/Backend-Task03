@@ -29,7 +29,6 @@
 			</div>
 			<div id="beerGridCellRow3">
 				@Html.DisplayFor(model => model.Beer.Description)
-
 			</div>
 			<div id="beerGridCellRow4">
 				@Html.DisplayFor(model => model.Beer.Percentage)%
@@ -74,7 +73,6 @@
 						});
 					});
 				</script>
-
 			</div>
 
 			<div id="beerGridCellRow6">
@@ -104,8 +102,8 @@
 					}
 				}
 			</div>
-
 		</div>
+
 		<div id="pizzaWithBeer">
 			<h3 id="pizzaBeerHead">This pizza goes well with your chosen beer:</h3>
 			<div id="recommendation" hidden></div>
@@ -162,7 +160,7 @@
 
 					<label>
 						<input type="checkbox" name="food" value="Vegetarian" />
-						<img src="../images/veg.svg" asp-append-version="true" style="width: 22px" />
+						<img src="../images/vegetarian.svg" asp-append-version="true" style="width: 22px" />
 					</label>
 
 					<label>
@@ -179,8 +177,10 @@
 		<div id="beerReviewCell">
 			@if (Model.Beer != null && Model.Beer.Reviews != null && Model.Beer.Reviews.Count > 0)
 			{
+				var sortedReviews = Model.Beer.Reviews.OrderBy(comment => comment.Created);
+
 				<h4>Reviews</h4>
-				@foreach (var comment in Model.Beer.Reviews)
+				@foreach (var comment in sortedReviews)
 				{
 					@if (@comment.Comment != null && @comment.Rating != 0)
 					{

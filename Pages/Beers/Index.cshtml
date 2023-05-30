@@ -18,13 +18,16 @@
     </form>
     @*</p>*@
 
-    @foreach (var item in Model.Beer)
-    {
-        <div class="beerIndexCell">
-            <h3 id="beerName">@Html.DisplayFor(modelItem => item.Name)</h3>
-            <p id="beerCountry">(@Html.DisplayFor(modelItem => item.Country))</p>
-            <p id="beerBrewery">@Html.DisplayFor(modelItem => item.Brewery)</p>
-            <p id="beerPercentage">@Html.DisplayFor(modelItem => item.Percentage)%</p>
+	@foreach (var item in Model.Beer)
+	{
+		<div class="beerIndexCell">
+			<h3 id="beerName">@Html.DisplayFor(modelItem => item.Name)</h3>
+
+			<p id="beerCountry">(@Html.DisplayFor(modelItem => item.Country))</p>
+
+			<p id="beerBrewery">@Html.DisplayFor(modelItem => item.Brewery)</p>
+
+			<p id="beerPercentage">@Html.DisplayFor(modelItem => item.Percentage)%</p>
 
             <div id="beerImage">
                 @if (item.PhotoPath == "")

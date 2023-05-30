@@ -53,7 +53,6 @@ namespace Backend_Task03.Pages.BeerSuggestions
                 suggestedBeers.AddRange(beersOfThisType);
             }
 
-
             return suggestedBeers;
         }
     }
