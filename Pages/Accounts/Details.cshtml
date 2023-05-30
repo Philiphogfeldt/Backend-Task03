@@ -246,6 +246,9 @@
 							<em>"@review.Comment"</em>
 							<p>And rated it @review.Rating / 5!</p>
 							<p>@review.Created.ToString("yyyy-MM-dd HH:mm")</p>
+							<form method="post">
+								<button type="submit" asp-page-handler="Delete" asp-route-id="@review.ID" class="btn btn-danger">Delete</button>
+							</form>
 						</div>
 					}
 
@@ -257,6 +260,9 @@
 							<em>"@review.Comment"</em>
 							<p>About this beer</p>
 							<p>@review.Created.ToString("yyyy-MM-dd HH:mm")</p>
+							<form method="post">
+								<button type="submit" asp-page-handler="Delete" asp-route-id="@review.ID" class="btn btn-danger">Delete</button>
+							</form>
 						</div>
 					}
 					@if (@review.Comment == null && @review.Rating != 0)
@@ -266,8 +272,12 @@
 							<p>@review.Account.Name</p>
 							<p>Rated @review.Rating / 5!</p>
 							<p>@review.Created.ToString("yyyy-MM-dd HH:mm")</p>
+							<form method="post">
+								<button type="submit" asp-page-handler="Delete" asp-route-id="@review.ID" class="btn btn-danger">Delete</button>
+							</form>
 						</div>
 					}
+
 				}
 
 

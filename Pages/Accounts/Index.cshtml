@@ -16,27 +16,6 @@
 			</div>
 		</div>
 
-
-
-		@*		<table class="table">
-	<thead>
-	<tr>
-	<th>
-	@Html.DisplayNameFor(model => model.Account[0].OpenIDIssuer)
-	</th>
-	<th>
-	@Html.DisplayNameFor(model => model.Account[0].OpenIDSubject)
-	</th>
-	<th>
-	@Html.DisplayNameFor(model => model.Account[0].Name)
-	</th>
-	<th>
-	@Html.DisplayNameFor(model => model.Account[0].Role)
-	</th>
-	<th></th>
-	</tr>
-	</thead>*@
-		@*			<tbody>*@
 		@foreach (var item in Model.Account)
 		{
 			<div class="adminAccountCell">
@@ -59,29 +38,9 @@
 					</form>
 				</div>
 			</div>
-			@*<tr>
-	<td>
-	@Html.DisplayFor(modelItem => item.OpenIDIssuer)
-	</td>
-	<td>
-	@Html.DisplayFor(modelItem => item.OpenIDSubject)
-	</td>
-	<td>
-	@Html.DisplayFor(modelItem => item.Name)
-	</td>
-	<td>
-	@Html.DisplayFor(modelItem => item.Role)
-	</td>
-	<td>
-	<form method="post">
-	<button type="submit" asp-page-handler="Delete" asp-route-id="@item.ID" class="btn btn-danger">Delete</button>
-	</form>
-
-	</td>
-	</tr>*@
+			
 		}
-		@*			</tbody>*@
-		@*		</table>*@
+
 	}
 	else
 	{
