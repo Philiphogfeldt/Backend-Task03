@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Backend_Task03.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230530082059_init")]
+    [Migration("20230530134922_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -101,6 +101,9 @@ namespace Backend_Task03.Migrations
 
                     b.Property<double?>("Percentage")
                         .HasColumnType("float");
+
+                    b.Property<string>("PhotoPath")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<double?>("Rating")
                         .HasColumnType("float");

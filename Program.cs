@@ -117,14 +117,14 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
-Directory.CreateDirectory(builder.Configuration["Uploads:FolderPath"]);
-app.UseStaticFiles(new StaticFileOptions
-{
-    FileProvider = new PhysicalFileProvider(
-        Path.Combine(builder.Environment.ContentRootPath, builder.Configuration["Uploads:FolderPath"])
-    ),
-    RequestPath = builder.Configuration["Uploads:URLPath"]
-});
+//Directory.CreateDirectory(builder.Configuration["Uploads:FolderPath"]);
+//app.UseStaticFiles(new StaticFileOptions
+//{
+//    FileProvider = new PhysicalFileProvider(
+//        Path.Combine(builder.Environment.ContentRootPath, builder.Configuration["Uploads:FolderPath"])
+//    ),
+//    RequestPath = builder.Configuration["Uploads:URLPath"]
+//});
 app.UseRouting();
 app.UseAuthentication();
 app.UseCors(options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()); //Tillagd enligt Jakobs instruktion. Innebär att vem som helst får komma åt API:et.

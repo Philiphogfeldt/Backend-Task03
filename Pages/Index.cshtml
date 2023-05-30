@@ -21,6 +21,14 @@
 						<p id="beerPercentage">@Html.DisplayFor(modelItem => item.Percentage)%</p>
 
 						<div id="beerImage">
+							@if (item.PhotoPath == "")
+							{
+								<img id="smBeerImage" src="~/imagesBeerly/@(Model.Beer).png" width="100px" />
+							}
+							else
+							{
+								<img id="smBeerImage" src="@(item.PhotoPath)" width="100px" />
+							}
 							<img id="smBeerImage" src="~/imagesBeerly/@(item.Name).png" width="100px" />
 						</div>
 

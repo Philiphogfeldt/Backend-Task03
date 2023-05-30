@@ -52,8 +52,9 @@ namespace Backend_Task03.Data
                         Percentage = 6.5,
                         Brewery = "Hoppy Brewery",
                         Country = "USA",
-                        EAN13 = "1940375440218"
-                    },
+                        EAN13 = "1940375440218",
+						PhotoPath = ""
+					},
                     new Beer
                     {
                         Name = "Lager than Life",
@@ -62,8 +63,9 @@ namespace Backend_Task03.Data
                         Percentage = 4.8,
                         Brewery = "Big Brewery",
                         Country = "Canada",
-                        EAN13 = "1154166643669"
-                    },
+                        EAN13 = "1154166643669",
+						PhotoPath = ""
+					},
                     new Beer
                     {
                         Name = "Witty Kolsch",
@@ -72,8 +74,9 @@ namespace Backend_Task03.Data
                         Percentage = 5.0,
                         Brewery = "Wit Brewery",
                         Country = "Germany",
-                        EAN13 = "0991733191373"
-                    },
+                        EAN13 = "0991733191373",
+						PhotoPath = ""
+					},
                     new Beer
                     {
                         Name = "Saison's Greetings",
@@ -82,8 +85,9 @@ namespace Backend_Task03.Data
                         Percentage = 6.2,
                         Brewery = "Seasonal Brewery",
                         Country = "Belgium",
-                        EAN13 = "3768642176626"
-                    },
+                        EAN13 = "3768642176626",
+						PhotoPath = ""
+					},
                     new Beer
                     {
                         Name = "Hazy Daze IPA",
@@ -92,8 +96,9 @@ namespace Backend_Task03.Data
                         Percentage = 6.8,
                         Brewery = "Hazy Brewery",
                         Country = "USA",
-                        EAN13 = "1222009428947"
-                    },
+                        EAN13 = "1222009428947",
+						PhotoPath = ""
+					},
                     new Beer
                     {
                         Name = "Red Oktoberfest",
@@ -102,8 +107,9 @@ namespace Backend_Task03.Data
                         Percentage = 5.5,
                         Brewery = "Red Brewery",
                         Country = "Germany",
-                        EAN13 = "4754493539030"
-                    },
+                        EAN13 = "4754493539030",
+						PhotoPath = ""
+					},
                     new Beer
                     {
                         Name = "Imperial Stout of Mind",
@@ -112,8 +118,9 @@ namespace Backend_Task03.Data
                         Percentage = 10.0,
                         Brewery = "Mind Brewery",
                         Country = "USA",
-                        EAN13 = "9614110758235"
-                    },
+                        EAN13 = "9614110758235",
+						PhotoPath = ""
+					},
                     new Beer
                     {
                         Name = "Belgian Waffle Ale",
@@ -122,8 +129,9 @@ namespace Backend_Task03.Data
                         Percentage = 7.0,
                         Brewery = "Waffle Brewery",
                         Country = "Belgium",
-                        EAN13 = "8623813663884"
-                    },
+                        EAN13 = "8623813663884",
+						PhotoPath = ""
+					},
                     new Beer
                     {
                         Name = "Irish Goodbye Stout",
@@ -132,8 +140,9 @@ namespace Backend_Task03.Data
                         Percentage = 5.2,
                         Brewery = "Goodbye Brewery",
                         Country = "Ireland",
-                        EAN13 = "8212798694862"
-                    },
+                        EAN13 = "8212798694862",
+						PhotoPath = ""
+					},
                     new Beer
                     {
                          Name = "Sourpuss Gose",
@@ -142,8 +151,9 @@ namespace Backend_Task03.Data
                         Percentage = 4.2,
                         Brewery = "Sourpuss Brewery",
                         Country = "USA",
-                        EAN13 = "8991846926529"
-                    },
+                        EAN13 = "8991846926529",
+						PhotoPath = ""
+					},
                     new Beer
                     {
                         Name = "Funky Monkey Brown Ale",
@@ -152,8 +162,9 @@ namespace Backend_Task03.Data
                         Percentage = 5.8,
                         Brewery = "Funky Brewery",
                         Country = "USA",
-                        EAN13 = "1442094668961"
-                    },
+                        EAN13 = "1442094668961",
+						PhotoPath = ""
+					},
                     new Beer
                     {
                         Name = "Tropical Tripel",
@@ -162,8 +173,9 @@ namespace Backend_Task03.Data
                         Percentage = 9.5,
                         Brewery = "Tropical Brewery",
                         Country = "Belgium",
-                        EAN13 = "0855394176653"
-                    },
+                        EAN13 = "0855394176653",
+						PhotoPath = ""
+					},
                     new Beer
                     {
                         Name = "Java Stout",
@@ -172,8 +184,9 @@ namespace Backend_Task03.Data
                         Percentage = 6.0,
                         Brewery = "Java Brewery",
                         Country = "USA",
-                        EAN13 = "8648669673863"
-                    },
+                        EAN13 = "8648669673863",
+						PhotoPath = ""
+					},
                     new Beer
                     {
                         Name = "Cucumber Kolsch",
@@ -182,8 +195,9 @@ namespace Backend_Task03.Data
                         Percentage = 4.5,
                         Brewery = "Cucumber Brewery",
                         Country = "USA",
-                        EAN13 = "8431155282560"
-                    },
+                        EAN13 = "8431155282560",
+						PhotoPath = ""
+					},
                     new Beer
                     {
                         Name = "Cherry Bomb Sour",
@@ -192,8 +206,9 @@ namespace Backend_Task03.Data
                         Percentage = 5.0,
                         Brewery = "Cherry Brewery",
                         Country = "USA",
-                        EAN13 = "4768974526181"
-                    },
+                        EAN13 = "4768974526181",
+						PhotoPath = ""
+					},
                     new Beer
                     {
                         Name = "Honey Wheat Ale",
@@ -202,8 +217,9 @@ namespace Backend_Task03.Data
                         Percentage = 4.2,
                         Brewery = "Honey Brewery",
                         Country = "USA",
-                        EAN13 = "8067715472180"
-                    },
+                        EAN13 = "8067715472180",
+						PhotoPath = ""
+					},
                     new Beer
                     {
                         Name = "Gingerbread Stout",
@@ -212,8 +228,9 @@ namespace Backend_Task03.Data
                         Percentage = 8.0,
                         Brewery = "Gingerbread Brewery",
                         Country = "USA",
-                        EAN13 = "2909312251583"
-                    },
+                        EAN13 = "2909312251583",
+						PhotoPath = ""
+					},
                     new Beer
                     {
                         Name = "Peanut Butter Porter",
@@ -222,8 +239,9 @@ namespace Backend_Task03.Data
                         Percentage = 6.5,
                         Brewery = "Peanut Brewery",
                         Country = "USA",
-                        EAN13 = "1835571799362"
-                    },
+                        EAN13 = "1835571799362",
+						PhotoPath = ""
+					},
                     new Beer
                     {
                         Name = "Mango Habanero Wheat Ale",
@@ -232,8 +250,9 @@ namespace Backend_Task03.Data
                         Percentage = 5.0,
                         Brewery = "Mango Habanero Brewery",
                         Country = "USA",
-                        EAN13 = "1265144397501"
-                    }
+                        EAN13 = "1265144397501",
+						PhotoPath = ""
+					}
                 };
 
                 database.Beers.AddRange(beers);
