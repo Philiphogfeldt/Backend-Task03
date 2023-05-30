@@ -135,8 +135,6 @@ namespace Backend_Task03.Pages.Beers
 			NewReview.Rating = rating;
 			NewReview.Account = Account;
 
-			//ThisReviewFoodcategories.Clear();
-
 			foreach (var selectedFood in new[] { "Chicken", "Meat", "Fish", "Vegetarian", "Dessert" })
 			{
 				if (food.Contains(selectedFood))
