@@ -76,37 +76,17 @@
 
 				</div>
 
-
-
-				<div id="beerGridCellRow6">
-					<p id="goesWithFood" hidden>
-						@Html.DisplayFor(model=>
-						model.Beer.GoesWellWith)
-					</p>
-
-					@if (Model.Beer.GoesWellWith.Contains("Chicken"))
+			<div id="beerGridCellRow6">
+				<p id="goesWithFood" hidden>
+					@Html.DisplayFor(model=>
+					model.Beer.GoesWellWith)
+				</p>
+					@foreach (var food in new[] { "Chicken", "Meat", "Fish", "Vegetarian", "Dessert" })
 					{
-						<img asp-append-version="true" name="Goesw" value="Chicken" src="../images/chicken.svg" style="width: 22px" />
-					}
-
-					@if (Model.Beer.GoesWellWith.Contains("Meat"))
-					{
-						<img asp-append-version="true" name="Goesw" value="Meat" src="../images/meat.svg" style="width: 22px" />
-					}
-
-					@if (Model.Beer.GoesWellWith.Contains("Fish"))
-					{
-						<img asp-append-version="true" name="Goesw" value="Fish" src="../images/fish.svg" style="width: 22px" />
-					}
-
-					@if (Model.Beer.GoesWellWith.Contains("Vegetarian"))
-					{
-						<img asp-append-version="true" name="Goesw" value="Vegetarian" src="../images/veg.svg" style="width: 22px" />
-					}
-
-					@if (Model.Beer.GoesWellWith.Contains("Dessert"))
-					{
-						<img asp-append-version="true" name="Goesw" value="Dessert" src="../images/dessert.svg" style="width: 22px" />
+						if (Model.Beer.GoesWellWith.Contains(food))
+						{
+							<img asp-append-version="true" name="Goesw" value="@food" src="../images/@(food.ToLower()).svg" style="width: 22px" />
+						}
 					}
 				</div>
 			@*</div>*@

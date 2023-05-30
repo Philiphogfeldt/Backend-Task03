@@ -56,29 +56,12 @@
 
 						<div id="beerGoesWellWith">
 							@*@Html.DisplayFor(modelItem => item.GoesWellWith)*@
-							@if (item.GoesWellWith.Contains("Chicken"))
+							@foreach (var food in new[] { "Chicken", "Meat", "Fish", "Vegetarian", "Dessert" })
 							{
-								<img id="chicken " asp-append-version="true" name="Goesw" value="Chicken" src="~/images/chicken.svg" style="width: 22px" />
-							}
-
-							@if (item.GoesWellWith.Contains("Meat"))
-							{
-								<img id="meat" asp-append-version="true" name="Goesw" value="Meat" src="~/images/meat.svg" style="width: 22px" />
-							}
-
-							@if (item.GoesWellWith.Contains("Fish"))
-							{
-								<img id="fish" asp-append-version="true" name="Goesw" value="Fish" src="~/images/fish.svg" style="width: 22px" />
-							}
-
-							@if (item.GoesWellWith.Contains("Vegetarian"))
-							{
-								<img id="veg" asp-append-version="true" name="Goesw" value="Vegetarian" src="~/images/veg.svg" style="width: 22px" />
-							}
-
-							@if (item.GoesWellWith.Contains("Dessert"))
-							{
-								<img id="dessert" asp-append-version="true" name="Goesw" value="Dessert" src="~/images/dessert.svg" style="width: 22px" />
+								if (item.GoesWellWith.Contains(food))
+								{
+									<img asp-append-version="true" name="Goesw" value="@food" src="../images/@(food.ToLower()).svg" style="width: 22px" />
+								}
 							}
 						</div>
 
