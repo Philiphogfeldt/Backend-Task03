@@ -220,6 +220,5 @@ namespace Backend_Task03.Pages.Beers
             var account = accessControl.LoggedInAccount;
             return account != null && account.FavoriteBeers.Any(b => b.ID == beerId);
         }
-
     }
 }

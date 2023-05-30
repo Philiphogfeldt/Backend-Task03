@@ -6,7 +6,4 @@
         public string Name { get; set; }
         public List<Review> Reviews { get; set; } = new List<Review>();
     }
-
-   
 }
-
