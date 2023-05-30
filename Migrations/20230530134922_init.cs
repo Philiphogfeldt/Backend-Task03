@@ -39,7 +39,8 @@ namespace Backend_Task03.Migrations
                     Country = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     EAN13 = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     GoesWellWith = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Rating = table.Column<double>(type: "float", nullable: true)
+                    Rating = table.Column<double>(type: "float", nullable: true),
+                    PhotoPath = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {

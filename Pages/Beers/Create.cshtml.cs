@@ -28,15 +28,26 @@ namespace Backend_Task03.Pages.Beers
             Beer = new Beer { EAN13 = EAN13.GenerateEAN13() };
             return Page();
         }
-
-        public async Task<IActionResult> OnPostAsync()
+        public async Task<IActionResult> OnPostAsync(IFormFile photo)
         {
             if (!ModelState.IsValid || database.Beers == null || Beer == null)
             {
                 return Page();
             }
+            var fileName = Guid.NewGuid().ToString() + Path.GetExtension(photo.FileName);
+            var filePath = Path.Combine("wwwroot", "imagesBeerly", fileName);
+            using (var fileStream = new FileStream(filePath, FileMode.Create))
+            {
+                await photo.CopyToAsync(fileStream);
+            }
 
-            //Beer.Percentage = Beer.Percentage.ToString() + "%";
+            TempData["PhotoPath"] = "/imagesBeerly/" + fileName;
+
+            if (TempData["PhotoPath"] != null)
+            {
+                Beer.PhotoPath = TempData["PhotoPath"].ToString();
+            }
+
             Beer.EAN13 = EAN13.GenerateEAN13();
             database.Beers.Add(Beer);
             await database.SaveChangesAsync();
