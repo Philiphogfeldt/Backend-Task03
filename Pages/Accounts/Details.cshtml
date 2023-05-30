@@ -6,14 +6,9 @@
 	ViewData["Title"] = "Details";
 }
 
-<header>
-	<link rel="stylesheet" href="~/css/site.css" />
-</header>
-
 @if (AccessControl.LoggedInAccount.Role == "Admin" || AccessControl.LoggedInAccount.ID == Model.Account?.ID)
 {
 	<div class="normalBody">
-
 		<div id="accountBodyGrid">
 			<div id="accountleftGrid">
 				<h2>Account</h2>
@@ -42,6 +37,7 @@
 				{
 					<div class="beerIndexCell">
 						<h3 id="beerName">@Html.DisplayFor(modelItem => item.Name)</h3>
+
 						<p id="beerCountry">(@Html.DisplayFor(modelItem => item.Country))</p>
 
 						<p id="beerBrewery">@Html.DisplayFor(modelItem => item.Brewery)</p>
@@ -55,7 +51,6 @@
 						<p id="beerType">@Html.DisplayFor(modelItem => item.Type)</p>
 
 						<div id="beerGoesWellWith">
-							@*@Html.DisplayFor(modelItem => item.GoesWellWith)*@
 							@foreach (var food in new[] { "Chicken", "Meat", "Fish", "Vegetarian", "Dessert" })
 							{
 								if (item.GoesWellWith.Contains(food))
@@ -65,173 +60,19 @@
 							}
 						</div>
 
-						@*<p id="beerRating">Our users give this beer an average @Html.DisplayFor(modelItem => item.Rating) of 5.</p>*@
-
 						<div id="beerRating">
 							<p id="ratingText">Our users give this beer a rating average of:</p>
-
-							@if (item.Rating < 0.5)
+							@for (int i = 0; i < 5; i++)
 							{
-								<img class="firstGlass" asp-append-version="true" src="~/images/empty.svg" style="width: 30px" />
-								<img class="secondGlass" asp-append-version="true" src="~/images/empty.svg" style="width: 30px" />
-								<img class="thirdGlass" asp-append-version="true" src="~/images/empty.svg" style="width: 30px" />
-								<img class="fourthGlass" asp-append-version="true" src="~/images/empty.svg" style="width: 30px" />
-								<img class="fifthGlass" asp-append-version="true" src="~/images/empty.svg" style="width: 30px" />
-							}
-							@if (item.Rating >= 0.5 && item.Rating < 1.5)
-							{
-								<img class="firstGlass" asp-append-version="true" src="~/images/filled.svg" style="width: 30px" />
-								<img class="secondGlass" asp-append-version="true" src="~/images/empty.svg" style="width: 30px" />
-								<img class="thirdGlass" asp-append-version="true" src="~/images/empty.svg" style="width: 30px" />
-								<img class="fourthGlass" asp-append-version="true" src="~/images/empty.svg" style="width: 30px" />
-								<img class="fifthGlass" asp-append-version="true" src="~/images/empty.svg" style="width: 30px" />
-							}
-							@if (item.Rating >= 1.5 && item.Rating < 2.5)
-							{
-								<img class="firstGlass" asp-append-version="true" src="~/images/filled.svg" style="width: 30px" />
-								<img class="secondGlass" asp-append-version="true" src="~/images/filled.svg" style="width: 30px" />
-								<img class="thirdGlass" asp-append-version="true" src="~/images/empty.svg" style="width: 30px" />
-								<img class="fourthGlass" asp-append-version="true" src="~/images/empty.svg" style="width: 30px" />
-								<img class="fifthGlass" asp-append-version="true" src="~/images/empty.svg" style="width: 30px" />
-							}
-							@if (item.Rating >= 2.5 && item.Rating < 3.5)
-							{
-								<img class="firstGlass" asp-append-version="true" src="~/images/filled.svg" style="width: 30px" />
-								<img class="secondGlass" asp-append-version="true" src="~/images/filled.svg" style="width: 30px" />
-								<img class="thirdGlass" asp-append-version="true" src="~/images/filled.svg" style="width: 30px" />
-								<img class="fourthGlass" asp-append-version="true" src="~/images/empty.svg" style="width: 30px" />
-								<img class="fifthGlass" asp-append-version="true" src="~/images/empty.svg" style="width: 30px" />
-							}
-							@if (item.Rating >= 3.5 && item.Rating < 4.5)
-							{
-								<img class="firstGlass" asp-append-version="true" src="~/images/filled.svg" style="width: 30px" />
-								<img class="secondGlass" asp-append-version="true" src="~/images/filled.svg" style="width: 30px" />
-								<img class="thirdGlass" asp-append-version="true" src="~/images/filled.svg" style="width: 30px" />
-								<img class="fourthGlass" asp-append-version="true" src="~/images/filled.svg" style="width: 30px" />
-								<img class="fifthGlass" asp-append-version="true" src="~/images/empty.svg" style="width: 30px" />
-							}
-							@if (item.Rating >= 4.5)
-							{
-								<img class="firstGlass" asp-append-version="true" src="~/images/filled.svg" style="width: 30px" />
-								<img class="secondGlass" asp-append-version="true" src="~/images/filled.svg" style="width: 30px" />
-								<img class="thirdGlass" asp-append-version="true" src="~/images/filled.svg" style="width: 30px" />
-								<img class="fourthGlass" asp-append-version="true" src="~/images/filled.svg" style="width: 30px" />
-								<img class="fifthGlass" asp-append-version="true" src="~/images/filled.svg" style="width: 30px" />
+								<img class="row7@($"glass{i + 1}")" asp-append-version="true"
+						 src="@($"../images/{(item.Rating >= i + 0.5 ? "filled" : "empty")}.svg")" style="width: 30px" />
 							}
 
 						</div>
-
-
-
 						<button type="button" id="beerDetailsButton" onclick="location.href='@Url.Page("/Beers/Details", new { id = item.ID, name = item.Name })'">Details</button>
-
-						<div id="beerFavoriteCell">
-							@*<form asp-page-handler="ToggleFavorite" method="post">
-					<input type="hidden" name="beerId" value="@(item.ID)" />
-					<input type="checkbox" id="@(item.ID)Checkbox" class="beerFavoriteCheckbox visually-hidden" onchange="this.form.submit()" @(Model.IsFavorite(item.ID) ? "checked" : "") />
-					<label for="@(item.ID)Checkbox" class="beerFavoriteLabel">
-					<span class="unfilledStar">
-					<img class="beerlyStar" src="~/imagesBeerly/beerlyStarLH.png" alt="Not Filled Star">
-					</span>
-					<span class="filledStar">
-					<img class="beerlyStar checked" src="~/imagesBeerly/beerlyStarFav.png" alt="Filled Star">
-					</span>
-					</label>
-					</form>*@
-
-							@* Funkar
-					@*<form asp-page-handler="ToggleFavorite" method="post">
-					<input type="hidden" name="beerId" value="@(item.ID)" />
-					<input type="checkbox" onchange="this.form.submit()" class="beerFavoriteCheckbox" @(Model.IsFavorite(item.ID) ? "checked" : "") />
-					</form>*@
-
-
-							@*<input type="checkbox" id="@(item.Name)Checkbox" class="beerFavoriteCheckbox visually-hidden">
-					<label for="@(item.Name)Checkbox" class="beerFavoriteLabel">
-					<img class="beerlyStar" src="~/imagesBeerly/beerlyStarLH.png" alt="Not Filled Star">
-					<img class="beerlyStar checked" src="~/imagesBeerly/beerlyStarFav.png" alt="Filled Star">
-					</label>*@
-						</div>
-
-
-						@*FUNKAR GAMLA*@
-						@*<input type="checkbox" id="@(item.Name)Checkbox" class="beerFavoriteCheckbox visually-hidden">
-				<label for="@(item.Name)Checkbox" class="beerFavoriteLabel">
-				<img class="beerlyStar" src="~/imagesBeerly/beerlyStarLH.png" alt="Not Filled Star">
-				<img class="beerlyStar checked" src="~/imagesBeerly/beerlyStarFav.png" alt="Filled Star">
-				</label>*@
-
-
-						@*				KNAPPEN FAVVO
-				*@
-						@*				<form method="post" asp-page-handler="AddToFavorites" asp-route-beerId="@item.ID">
-				<button type="submit">Add to favorites</button>
-				</form>*@
-
-
-
-						@*				<script>
-				const checkbox = document.getElementById('@(item.Name)Checkbox');
-				const starUnselected = checkbox.previousElementSibling;
-				const starSelected = checkbox.nextElementSibling.querySelector('.checked');
-
-				checkbox.addEventListener('change', function () {
-				if (checkbox.checked) {
-				starUnselected.style.display = 'none';
-				starSelected.style.display = 'grid';
-				} else {
-				starUnselected.style.display = 'grid';
-				starSelected.style.display = 'none';
-				}
-				});
-				</script>*@
-
-						@*				<input type="checkbox" id="beerFavoriteCheckbox_@(item.Name)" class="beerFavoriteCheckbox visually-hidden">
-				<label for="beerFavoriteCheckbox_@(item.Name)" class="beerFavoriteLabel">
-				<img class="beerlyStar not-filled" src="~/imagesBeerly/beerlyStarLH.png" alt="Not Filled Star">
-				<img class="beerlyStar filled" src="~/imagesBeerly/beerlyStarFav.png" alt="Filled Star">
-				</label>*@
-
-						@*				<input type="checkbox" id="@(item.Name)Checkbox" class="@(item.Name)Checkbox visually-hidden">
-				<label for="@(item.Name)Checkbox" class="@(item.Name)CheckboxLabel"></label>*@
-
-
-						@*				<input type="checkbox" id="beerFavoriteCheckbox" class="beerFavoriteCheckbox visually-hidden">
-				<label for="beerFavoriteCheckbox" class="beerFavoriteLabel">
-				<img class="beerlyStar" src="~/imagesBeerly/beerlyStarLH.png" alt="Not Filled Star">
-				<img class="beerlyStar checked" src="~/imagesBeerly/beerlyStarFav.png" alt="Filled Star">
-				</label>
-
-				<img src="~/imagesBeerly/beerlyStarLH.png" />*@
 					</div>
-
-					@*<script>
-			document.addEventListener('DOMContentLoaded', function () {
-			const checkboxes = document.querySelectorAll('.beerFavoriteCheckbox');
-
-			checkboxes.forEach(function (checkbox) {
-			const label = checkbox.nextElementSibling;
-
-			checkbox.addEventListener('change', function () {
-			const starUnselected = label.querySelector('.beerlyStar');
-			const starSelected = label.querySelector('.beerlyStar.checked');
-
-			if (checkbox.checked) {
-			starUnselected.style.display = 'none';
-			starSelected.style.display = 'grid';
-			} else {
-			starUnselected.style.display = 'grid';
-			starSelected.style.display = 'none';
-			}
-			});
-			});
-			});
-			</script>*@
-
-
 				}
 			</div>
-
 
 			<div id="accountrightGrid">
 				<h2>Reviews</h2>
@@ -277,17 +118,10 @@
 							</form>
 						</div>
 					}
-
 				}
-
-
 			</div>
-
 		</div>
-
 	</div>
-
-
 }
 else
 {
@@ -295,6 +129,3 @@ else
 		"ACCESS DENIED"
 	</h1>
 }
-
-
-

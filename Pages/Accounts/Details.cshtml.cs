@@ -21,7 +21,7 @@ namespace Backend_Task03.Pages.Accounts
 		[BindProperty]
 		public Account Account { get; set; } = default!;
 
-		public List<Review> AccountReviews { get; set; } = new List<Review>();  //greco's test grej
+		public List<Review> AccountReviews { get; set; } = new List<Review>();
 
 		public DetailsModel(AppDbContext context)
 		{
@@ -52,7 +52,6 @@ namespace Backend_Task03.Pages.Accounts
 			}
 
 			return Page();
-
 		}
 
 		public async Task<IActionResult> OnPostDeleteAsync(int id)
@@ -70,6 +69,5 @@ namespace Backend_Task03.Pages.Accounts
 			string refererUrl = Request.Headers["Referer"].ToString();
 			return Redirect(refererUrl);
 		}
-
 	}
 }
