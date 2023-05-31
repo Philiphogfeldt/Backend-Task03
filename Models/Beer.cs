@@ -5,11 +5,17 @@ namespace Backend_Task03.Models
     public class Beer
     {
         public int ID { get; set; }
+        [Required]
         public string Name { get; set; }
-        public string Description { get; set; }
+		[Required]
+		public string Description { get; set; }
+        [Required]
         public string Type { get; set; }
+        [Required]
         public double? Percentage { get; set; }
+        [Required]
         public string Brewery { get; set; }
+        [Required]
         public string Country { get; set; }
 		[RegularExpression("^[0-9]+$", ErrorMessage = "Only numbers are allowed.")]
 		public string EAN13 { get; set; }
@@ -18,7 +24,5 @@ namespace Backend_Task03.Models
         public List<Review>? Reviews { get; set; }
 		public List<Account>? FavoritedBy { get; set; }
 		public string? PhotoPath { get; set; }
-
-		//account kan inte creata ny review om man redan har en review på den ölen
 	}
 }
