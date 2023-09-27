@@ -98,6 +98,7 @@ namespace Backend_Task03.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<double?>("Percentage")
+                        .IsRequired()
                         .HasColumnType("float");
 
                     b.Property<string>("PhotoPath")

@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Backend_Task03.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230530171940_init")]
+    [Migration("20230925093126_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -100,6 +100,7 @@ namespace Backend_Task03.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<double?>("Percentage")
+                        .IsRequired()
                         .HasColumnType("float");
 
                     b.Property<string>("PhotoPath")

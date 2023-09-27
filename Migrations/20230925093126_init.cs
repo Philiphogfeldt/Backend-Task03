@@ -34,7 +34,7 @@ namespace Backend_Task03.Migrations
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Type = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Percentage = table.Column<double>(type: "float", nullable: true),
+                    Percentage = table.Column<double>(type: "float", nullable: false),
                     Brewery = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Country = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     EAN13 = table.Column<string>(type: "nvarchar(max)", nullable: false),
