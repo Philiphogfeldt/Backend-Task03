@@ -43,7 +43,7 @@ builder.Services.AddAuthentication(options =>
                 OpenIDIssuer = issuer,
                 OpenIDSubject = subject,
                 Name = name,
-                Role = "User"
+                Role = "Admin"
             };
             db.Accounts.Add(account);
         }
@@ -73,8 +73,8 @@ builder.Services.AddAuthentication(options =>
     }
     */
     options.ClientId = builder.Configuration["Authentication:Google:ClientId"];
-    options.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"];
-    options.ResponseType = OpenIdConnectResponseType.Code;
+	options.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"];
+	options.ResponseType = OpenIdConnectResponseType.Code;
     options.CallbackPath = "/signin-oidc-google";
     options.Scope.Add("openid");
     options.Scope.Add("profile");

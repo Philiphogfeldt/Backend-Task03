@@ -1,20 +1,20 @@
 {
   "dependencies": {
-    "mssql1": {
+    "mssql3": {
       "restored": true,
-      "restoreTime": "2023-05-04T08:06:06.6946614Z"
+      "restoreTime": "2023-10-06T08:48:49.2212521Z"
     }
   },
   "parameters": {
-    "mssql1.subscriptionId": {
-      "Name": "mssql1.subscriptionId",
+    "mssql3.subscriptionId": {
+      "Name": "mssql3.subscriptionId",
       "Type": "subscription",
       "Value": "f31a6e74-654c-4a4b-bbf5-f5c6ec763dc6"
     },
-    "mssql1.resourceGroupName": {
-      "Name": "mssql1.resourceGroupName",
+    "mssql3.resourceGroupName": {
+      "Name": "mssql3.resourceGroupName",
       "Type": "resourceGroup",
-      "Value": "Azuremood"
+      "Value": "MaskinBeerly"
     }
   }
 }

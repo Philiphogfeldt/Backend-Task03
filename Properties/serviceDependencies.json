@@ -4,6 +4,14 @@
       "type": "mssql",
       "connectionId": "ConnectionStrings:DefaultConnection",
       "dynamicId": null
+    },
+    "mssql2": {
+      "type": "mssql",
+      "connectionId": "beerly.database.windows.net"
+    },
+    "mssql3": {
+      "type": "mssql",
+      "connectionId": "beerlydbdbserver.database.windows.net"
     }
   }
 }
